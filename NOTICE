@@ -1,0 +1,18 @@
+ptcg-rl
+Copyright 2026 Razantsau Maksim
+
+This project is derived from the following works, licensed under the
+Apache License, Version 2.0:
+
+- ymgaq/ptcg-population-rl
+  https://github.com/ymgaq/ptcg-population-rl
+  Sample implementation of "24th Solution: A Population-Based RL Ecosystem"
+  (Kaggle Pokémon TCG AI Battle).
+
+- t-kabaya/pokemon_sample (commit b5e78d8)
+  https://github.com/t-kabaya/pokemon_sample
+  Fork of the above with parallel rollout collection/extraction, Makefile
+  workflow, RunPod setup, and Hugging Face artifact tooling.
+
+The competition C++ engine and official assets are downloaded separately and
+remain under their upstream terms.
