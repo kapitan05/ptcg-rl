@@ -8,7 +8,10 @@ license-files = ["LICENSE"]
 requires-python = ">=3.12"
 dependencies = [
     "lightgbm>=4.7.0",
+    "matplotlib>=3.11.2",
     "numpy>=2.5.3",
+    "pydantic>=2.14.3",
+    "pyyaml>=6.0.3",
     "scipy>=1.18.1",
     "torch>=2.14.0",
 ]
@@ -17,7 +20,9 @@ dependencies = [
 dev = [
     "huggingface-hub>=2.2.0",
     "kaggle>=2.2.4",
+    "pytest>=9.2.0",
     "ruff>=0.16.7",
+    "wandb>=0.31.0",
 ]
 
 [tool.ruff]

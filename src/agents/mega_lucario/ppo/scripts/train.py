@@ -42,6 +42,13 @@ def add_training_args(p: argparse.ArgumentParser) -> None:
         p.add_argument("--" + name.replace("_", "-"), type=int, default=DEFAULTS[name])
     p.add_argument("--audit-threads", type=int, default=1)
     p.add_argument("--device", choices=["cuda", "cpu"], default="cuda")
+    p.add_argument("--kl-target", type=float, default=DEFAULTS["kl_target"])
+    p.add_argument(
+        "--kl-early-stop",
+        type=float,
+        default=0.0,
+        help="Stop the epoch when an update's approx KL exceeds this multiple of kl_target (0=off)",
+    )
 
 
 def training_config(a: argparse.Namespace, seed: int) -> dict[str, Any]:
@@ -64,6 +71,8 @@ def training_config(a: argparse.Namespace, seed: int) -> dict[str, Any]:
             "micro_batch_size",
             "device",
             "audit_threads",
+            "kl_target",
+            "kl_early_stop",
         )
     }
     result.update(

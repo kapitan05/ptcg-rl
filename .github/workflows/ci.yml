@@ -1,0 +1,21 @@
+name: ci
+on:
+  push: {branches: [main]}
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: "3.12", enable-cache: true}
+      - name: Sync locked environment
+        run: uv sync --locked --dev
+      - name: Lint
+        run: uv run ruff check src tests && uv run ruff format --check src/ptcg_exp tests
+      - name: Experiment-layer tests (configs, seeds, stats, Slurm, PPO health)
+        run: uv run pytest tests/ -q
+      - name: Pipeline contract tests (no engine needed)
+        run: PYTHONPATH=src:src/tools:src/agents/mega_lucario/tests uv run python -m unittest src/agents/mega_lucario/tests/test_ppo_contracts.py
+# The end-to-end smoke run (configs/base/smoke.yaml) needs the Kaggle-licensed engine,
+# so it runs on Eden before merging: `make smoke` (see docs/setup.md).

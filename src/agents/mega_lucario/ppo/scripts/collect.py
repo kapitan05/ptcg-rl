@@ -312,7 +312,13 @@ def collect(
                 f"({percent:.1f}%) after {opponent} seat {seat}",
                 flush=True,
             )
-    results = [r for rows in rows_by_job if rows is not None for r in rows]
+    # Tag each game with its opponent and learner seat for per-opponent health checks.
+    results = [
+        dict(r, opponent=jobs[i].opponent, learner_seat=jobs[i].seat)
+        for i, rows in enumerate(rows_by_job)
+        if rows is not None
+        for r in rows
+    ]
     print("PPO rollout extraction start", flush=True)
     data, manifest = extract(
         output / "replays", output, sha256(checkpoint), temperature, extract_workers

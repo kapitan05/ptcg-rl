@@ -1,0 +1,10 @@
+# B/01 (template for the modeling owner): copy, change ONE thing, keep seeds/eval identical.
+extends: ../../base/full.yaml
+name: history_tokens
+owner: B
+question: representation
+hypothesis: Adding logs[] history tokens improves distillation KL and arena rating.
+resources: {cpus: 32, mem: 128G, gpus: 1}
+stages:
+  distill: {teacher_model: models/scale/best.gbdt, device: cuda}
+  eval: {games_per_pair: 200}
