@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 from ptcg_exp import config as config_mod
-from ptcg_exp import health, slurm
+from ptcg_exp import slurm
 from ptcg_exp.evaluate import evaluate
 from ptcg_exp.seeds import derive
 from ptcg_exp.subsets import make_subset
@@ -359,6 +359,8 @@ class Pipeline:
             return
         base = self.dir / "ppo"
         log = base / "ppo.log"
+        from ptcg_exp import health  # numpy: not importable on the Eden login node
+
         h = self.cfg.health
         _sh(
             _py(
