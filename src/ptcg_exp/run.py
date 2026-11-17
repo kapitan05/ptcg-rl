@@ -358,7 +358,7 @@ class Pipeline:
         if self.run.stage_done("ppo", inputs):
             return
         base = self.dir / "ppo"
-        log = base / "ppo.log"
+        log = self.dir / "ppo.log"  # outside base: run_cycle.py requires an empty output dir
         from ptcg_exp import health  # numpy: not importable on the Eden login node
 
         h = self.cfg.health
