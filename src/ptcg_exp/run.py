@@ -21,7 +21,7 @@ from ptcg_exp import slurm
 from ptcg_exp.evaluate import evaluate
 from ptcg_exp.seeds import derive
 from ptcg_exp.subsets import make_subset
-from ptcg_exp.tracking import ROOT, Run, sha256
+from ptcg_exp.tracking import JSON, ROOT, Run, sha256
 
 L = "src/agents/mega_lucario"
 STAGES = ("data", "gbdt", "distill", "ppo", "eval")
@@ -158,7 +158,7 @@ class Pipeline:
         )
         model_file = model / "model.gbdt"
         # train.py prints one JSON summary line (model_id, best_iteration, metrics) to stdout.
-        summary = next(
+        summary: JSON = next(
             (
                 json.loads(x)
                 for x in reversed(log.read_text().splitlines())
@@ -468,16 +468,16 @@ class Pipeline:
         summary = evaluate(
             models, self.dir / "eval", e.games_per_pair, e.workers, e.protocol, e.include_rule_bots
         )
-        for r in summary["ratings"]:  # type: ignore[union-attr]
+        for r in summary["ratings"]:
             self.run.log("eval", agent=r["agent"], mu=r["mu"], sigma=r["sigma"], lcb=r["lcb"])
         self.done("eval", inputs, eval_summary=str(self.dir / "eval/summary.json"))
 
 
-def _flat(d: object, prefix: str = "") -> dict[str, object]:
+def _flat(d: object, prefix: str = "") -> JSON:
     """Flatten nested dicts for metric logging."""
     if not isinstance(d, dict):
         return {prefix.rstrip("."): d}
-    out: dict[str, object] = {}
+    out: JSON = {}
     for k, v in d.items():
         out.update(_flat(v, f"{prefix}{k}."))
     return out

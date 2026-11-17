@@ -205,6 +205,8 @@ def _cycle(tmp_path: Path, **over: object) -> Path:
     )
     if over.get("no_hooks"):
         training.pop("updates_log")
+    if over.get("no_heldout_kl"):
+        training.pop("heldout_global_approximate_kl")
     (c / "models/training.json").write_text(json.dumps(training))
     (c / "canary.json").write_text(
         json.dumps(dict(teacher_agreement=0.8, illegal_pick_rate=float(over.get("illegal", 0.0))))
@@ -233,6 +235,7 @@ def test_health_healthy_cycle_passes(tmp_path: Path) -> None:
         (dict(nan=3), "gae_sanity"),
         (dict(illegal=0.01), "illegal_picks"),
         (dict(no_hooks=True), "health_hooks_present"),
+        (dict(no_heldout_kl=True), "heldout_kl"),
     ],
 )
 def test_health_injected_faults_fail(tmp_path: Path, fault: dict[str, object], check: str) -> None:
@@ -246,3 +249,18 @@ def test_health_small_step_warns(tmp_path: Path) -> None:
     """A held-out KL far below target is a warning (LR probably too small), not a failure."""
     r = health.check_cycle(_cycle(tmp_path, heldout_kl=1e-5), config.HealthThresholds())
     assert _status(r, "heldout_kl") == "warn" and r["promote_allowed"] is True
+
+
+def test_code_sha256_tracks_content(tmp_path: Path) -> None:
+    """The code hash changes with file content, not with mtime or unrelated files."""
+    from ptcg_exp.tracking import code_sha256
+
+    (tmp_path / "src").mkdir()
+    (tmp_path / "configs").mkdir()
+    f = tmp_path / "src" / "a.py"
+    f.write_text("x = 1\n")
+    h1 = code_sha256(tmp_path)
+    (tmp_path / "src" / "notes.txt").write_text("ignored")
+    assert code_sha256(tmp_path) == h1
+    f.write_text("x = 2\n")
+    assert code_sha256(tmp_path) != h1

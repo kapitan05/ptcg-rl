@@ -14,12 +14,10 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from ptcg_exp.tracking import sha256
+from ptcg_exp.tracking import JSON, sha256
 
 
-def build(
-    feature_dir: Path, output: Path, decisions: int = 2000, seed: int = 7
-) -> dict[str, object]:
+def build(feature_dir: Path, output: Path, decisions: int = 2000, seed: int = 7) -> JSON:
     """Sample fixed first-queries from the validation split into canary.npz."""
     from agents.mega_lucario.transformer.train import load_split
 

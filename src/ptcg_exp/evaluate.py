@@ -11,6 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from ptcg_exp.seeds import eval_seed
+from ptcg_exp.tracking import JSON
 
 ROOT = Path(__file__).resolve().parents[2]
 RULE_BOTS = {
@@ -48,7 +49,7 @@ def build_roster(
     return roster
 
 
-def pair_table(games_path: Path) -> list[dict[str, object]]:
+def pair_table(games_path: Path) -> list[JSON]:
     """Per ordered pair (both seats pooled): wins/draws/losses, win rate and Wilson CI."""
     stats: dict[tuple[str, str], dict[str, float]] = defaultdict(
         lambda: dict(w=0, d=0, l=0, s0=0, s0n=0)
@@ -97,7 +98,7 @@ def evaluate(
     workers: int = 32,
     protocol: str = "rating_v1",
     include_rule_bots: bool = True,
-) -> dict[str, object]:
+) -> JSON:
     """Run the protocol and write `summary.json` (ratings + per-pair table)."""
     output.mkdir(parents=True, exist_ok=True)
     roster = build_roster(models, include_rule_bots)
@@ -139,12 +140,12 @@ def evaluate(
     return summary
 
 
-def promote(summary: dict[str, object], candidate: str, champion: str) -> dict[str, object]:
+def promote(summary: JSON, candidate: str, champion: str) -> JSON:
     """Promotion rule: candidate LCB ≥ champion mean and no opponent drop beyond its CI."""
-    r = {x["agent"]: x for x in summary["ratings"]}  # type: ignore[index]
+    r = {x["agent"]: x for x in summary["ratings"]}
     if candidate not in r or champion not in r:
         raise ValueError("Candidate and champion must both be in the evaluated roster")
-    pairs = {(p["agent"], p["opponent"]): p for p in summary["pairs"]}  # type: ignore[index]
+    pairs = {(p["agent"], p["opponent"]): p for p in summary["pairs"]}
     regressions = []
     for (agent, opp), p in pairs.items():
         if agent != candidate or opp == champion or (champion, opp) not in pairs:
@@ -173,7 +174,7 @@ def main() -> None:
     a = p.parse_args()
     models = dict(m.split("=", 1) for m in a.model)
     s = evaluate(models, a.output_dir, a.games_per_pair, a.workers, a.protocol, not a.no_rule_bots)
-    for x in s["ratings"]:  # type: ignore[union-attr]
+    for x in s["ratings"]:
         print(f"{x['agent']:>24} {x['mu']:7.1f} ± {1.96 * x['sigma']:5.1f}")
 
 

@@ -13,6 +13,8 @@ jobs:
         run: uv sync --locked --dev
       - name: Lint
         run: uv run ruff check src tests && uv run ruff format --check src/ptcg_exp tests
+      - name: Type check (shared layer; upstream agents not followed)
+        run: uv run mypy src/ptcg_exp --ignore-missing-imports --follow-imports=silent
       - name: Experiment-layer tests (configs, seeds, stats, Slurm, PPO health)
         run: uv run pytest tests/ -q
       - name: Pipeline contract tests (no engine needed)

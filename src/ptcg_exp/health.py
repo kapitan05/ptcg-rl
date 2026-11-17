@@ -19,12 +19,13 @@ from typing import Literal
 import numpy as np
 
 from ptcg_exp.config import HealthThresholds
+from ptcg_exp.tracking import JSON
 
 Status = Literal["pass", "warn", "fail", "skip"]
 ORDER = {"pass": 0, "skip": 0, "warn": 1, "fail": 2}
 
 
-def _check(name: str, status: Status, value: object, rule: str) -> dict[str, object]:
+def _check(name: str, status: Status, value: object, rule: str) -> JSON:
     """One health-check record."""
     return dict(check=name, status=status, value=value, rule=rule)
 
@@ -36,16 +37,16 @@ def _find(cycle: Path, name: str) -> Path | None:
 
 
 def rollout_checks(
-    rollout: dict[str, object],
+    rollout: JSON,
     t: HealthThresholds,
     cfg_temperature: float | None,
-    previous: dict[str, object] | None,
-) -> list[dict[str, object]]:
+    previous: JSON | None,
+) -> list[JSON]:
     """Pre-update data checks on the collected rollout."""
     out = []
     games = rollout.get("arena_results", [])
     by: dict[tuple[str, int], list[float]] = defaultdict(list)
-    for g in games:  # type: ignore[union-attr]
+    for g in games:
         if "opponent" not in g:
             continue
         seat = g["learner_seat"]
@@ -71,9 +72,9 @@ def rollout_checks(
         out.append(
             _check("win_rate_per_opponent_seat", "skip", None, "rollout lacks opponent tags")
         )
-    steps = [g["steps"] for g in games]  # type: ignore[union-attr]
+    steps = [g["steps"] for g in games]
     if steps and previous and previous.get("arena_results"):
-        prev = np.mean([g["steps"] for g in previous["arena_results"]])  # type: ignore[union-attr]
+        prev = np.mean([g["steps"] for g in previous["arena_results"]])
         shift = abs(np.mean(steps) - prev) / max(prev, 1e-9)
         out.append(
             _check(
@@ -122,9 +123,7 @@ def rollout_checks(
     return out
 
 
-def update_checks(
-    training: dict[str, object], t: HealthThresholds, previous: dict[str, object] | None
-) -> list[dict[str, object]]:
+def update_checks(training: JSON, t: HealthThresholds, previous: JSON | None) -> list[JSON]:
     """Per-update streamed checks and post-update checks."""
     out = []
     hi = training.get("health_inputs")
@@ -139,8 +138,8 @@ def update_checks(
             )
         )
         return out
-    adv = hi["raw_advantage"]  # type: ignore[index]
-    rr = hi["return_range"]  # type: ignore[index]
+    adv = hi["raw_advantage"]
+    rr = hi["return_range"]
     ok = adv["nonfinite"] == 0 and -1 - 1e-6 <= rr[0] and rr[1] <= 1 + 1e-6
     out.append(
         _check(
@@ -150,7 +149,7 @@ def update_checks(
             "no non-finite advantages; returns within [-1, 1]",
         )
     )
-    ev0 = hi["explained_variance_before"]  # type: ignore[index]
+    ev0 = hi["explained_variance_before"]
     out.append(
         _check(
             "explained_variance_before",
@@ -159,7 +158,7 @@ def update_checks(
             "critic better than a constant (EV ≥ 0)",
         )
     )
-    kls = [r["approximate_kl"] for r in log]  # type: ignore[index]
+    kls = [r["approximate_kl"] for r in log]
     kmax = max(kls)
     fail_at = t.kl_fail_multiple * t.kl_target
     out.append(
@@ -174,7 +173,7 @@ def update_checks(
             f"max ≤ {t.kl_fail_multiple}×kl_target = {fail_at:.4g}",
         )
     )
-    clip = max(r["clip_fraction"] for r in log)  # type: ignore[index]
+    clip = max(r["clip_fraction"] for r in log)
     out.append(
         _check(
             "clip_fraction",
@@ -183,7 +182,7 @@ def update_checks(
             f"max ≤ {t.clip_fraction_warn}",
         )
     )
-    p99 = max(r.get("ratio_p99", 1.0) for r in log)  # type: ignore[union-attr]
+    p99 = max(r.get("ratio_p99", 1.0) for r in log)
     out.append(
         _check(
             "ratio_p99",
@@ -192,7 +191,7 @@ def update_checks(
             f"max p99 ≤ {t.ratio_p99_warn}",
         )
     )
-    g = [r["gradient_norm"] for r in log]  # type: ignore[index]
+    g = [r["gradient_norm"] for r in log]
     spike = max(g) / max(float(np.median(g)), 1e-12)
     out.append(
         _check(
@@ -202,13 +201,13 @@ def update_checks(
             f"max/median pre-clip norm ≤ {t.grad_spike_warn}",
         )
     )
-    finite = all(np.isfinite(v) for r in log for v in r.values() if isinstance(v, int | float))  # type: ignore[union-attr]
+    finite = all(np.isfinite(v) for r in log for v in r.values() if isinstance(v, int | float))
     out.append(
         _check(
             "finite_metrics", "pass" if finite else "fail", finite, "all per-update metrics finite"
         )
     )
-    ur = [r.get("update_ratio") for r in log if r.get("update_ratio") is not None]  # type: ignore[union-attr]
+    ur = [r.get("update_ratio") for r in log if r.get("update_ratio") is not None]
     if ur:
         lo, hi_b = t.update_ratio_band
         med = float(np.median(ur))
@@ -226,13 +225,13 @@ def update_checks(
     )
     hkl = training.get("heldout_global_approximate_kl")
     band = (t.kl_low_multiple * t.kl_target, t.kl_fail_multiple * t.kl_target)
-    status: Status = "fail" if hkl > band[1] else "warn" if hkl < band[0] else "pass"  # type: ignore[operator]
+    status: Status = "fail" if hkl is None or hkl > band[1] else "warn" if hkl < band[0] else "pass"
     out.append(
         _check(
             "heldout_kl", status, hkl, f"in [{band[0]:.4g}, {band[1]:.4g}] (low = step too small)"
         )
     )
-    ev1 = hi["explained_variance_after_heldout"]  # type: ignore[index]
+    ev1 = hi["explained_variance_after_heldout"]
     out.append(
         _check(
             "explained_variance_after",
@@ -241,7 +240,7 @@ def update_checks(
             "EV ≥ 0 on held-out",
         )
     )
-    ece = hi["value_ece_heldout"]  # type: ignore[index]
+    ece = hi["value_ece_heldout"]
     out.append(
         _check(
             "value_calibration_ece",
@@ -250,7 +249,7 @@ def update_checks(
             f"10-bin ECE ≤ {t.ece_warn}",
         )
     )
-    e0, e1 = hi["entropy_behavior_heldout"], hi["entropy_updated_heldout"]  # type: ignore[index]
+    e0, e1 = hi["entropy_behavior_heldout"], hi["entropy_updated_heldout"]
     drop = (e0 - e1) / max(e0, 1e-9)
     out.append(
         _check(
@@ -265,7 +264,7 @@ def update_checks(
 
 def canary_checks(
     canary: dict[str, float] | None, previous: dict[str, float] | None, t: HealthThresholds
-) -> list[dict[str, object]]:
+) -> list[JSON]:
     """Drift on the fixed probe set."""
     if canary is None:
         return [_check("canary", "skip", None, "no canary.json for this cycle")]
@@ -299,17 +298,17 @@ def check_cycle(
     t: HealthThresholds,
     previous_cycle: Path | None = None,
     temperature: float | None = 1.0,
-) -> dict[str, object]:
+) -> JSON:
     """Run every available check for one cycle and write <cycle>/health.json."""
 
-    def load(base: Path | None, name: str) -> dict[str, object] | None:
+    def load(base: Path | None, name: str) -> JSON | None:
         """Load a JSON output if present."""
         if base is None:
             return None
         path = _find(base, name)
         return json.loads(path.read_text()) if path else None
 
-    checks: list[dict[str, object]] = []
+    checks: list[JSON] = []
     rollout_path = cycle / "rollout/manifest.json"
     rollout = json.loads(rollout_path.read_text()) if rollout_path.exists() else None
     prev_rollout = None
@@ -334,8 +333,8 @@ def check_cycle(
             "new checkpoint exported to C++ and validated (2e-5) before next rollout",
         )
     )
-    checks += canary_checks(load(cycle, "canary.json"), load(previous_cycle, "canary.json"), t)  # type: ignore[arg-type]
-    worst = max((c["status"] for c in checks), key=lambda s: ORDER[s])  # type: ignore[index]
+    checks += canary_checks(load(cycle, "canary.json"), load(previous_cycle, "canary.json"), t)
+    worst = max((c["status"] for c in checks), key=lambda s: ORDER[s])
     report = dict(
         cycle=str(cycle),
         status=worst,
@@ -355,7 +354,7 @@ def main() -> None:
     p.add_argument("--temperature", type=float, default=1.0)
     a = p.parse_args()
     r = check_cycle(a.cycle, HealthThresholds(), a.previous, a.temperature)
-    for c in r["checks"]:  # type: ignore[union-attr]
+    for c in r["checks"]:
         print(f"{c['status']:>5}  {c['check']:<30} {json.dumps(c['value'], default=float)[:70]}")
     print(f"overall: {r['status']}  promote_allowed={r['promote_allowed']}")
     raise SystemExit(2 if r["status"] == "fail" else 0)

@@ -1,0 +1,12 @@
+# Determinism check: identical to smoke.yaml except the name (new run dir, same seeds).
+name: smoke_repeat
+owner: shared
+question: smoke
+hypothesis: The full pipeline runs end to end and all gates pass.
+profile: smoke
+seeds: [0]
+resources: {cpus: 4, mem: 8G, time: "01:00:00", gpus: 0}
+stages:
+  data: {collect_games_per_opponent: 2}
+  gbdt: {profile: quick, threads: 4, test_fraction: 0.0, validation_fraction: 0.25, audit: true}
+  eval: {games_per_pair: 4, workers: 4}

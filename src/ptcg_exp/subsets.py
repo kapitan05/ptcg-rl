@@ -10,6 +10,8 @@ import re
 import shutil
 from pathlib import Path
 
+from ptcg_exp.tracking import JSON
+
 GAME = re.compile(r"game-(\d+)\.jsonl$")
 
 
@@ -24,11 +26,11 @@ def sha256(path: Path) -> str:
 
 def games_in(directory: Path) -> list[Path]:
     """Return a directory's replays in numeric game order."""
-    found = [p for p in directory.iterdir() if GAME.search(p.name)]
-    return sorted(found, key=lambda p: int(GAME.search(p.name).group(1)))
+    found = [(int(m.group(1)), p) for p in directory.iterdir() if (m := GAME.search(p.name))]
+    return [p for _, p in sorted(found)]
 
 
-def make_subset(source: Path, output: Path, per_dir: int) -> dict[str, object]:
+def make_subset(source: Path, output: Path, per_dir: int) -> JSON:
     """Hard-link the first `per_dir` games of every opponent/seat dir; return the manifest."""
     dirs = sorted(d for d in source.iterdir() if d.is_dir())
     if not dirs:

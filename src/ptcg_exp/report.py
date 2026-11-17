@@ -15,6 +15,8 @@ from pathlib import Path
 
 import matplotlib
 
+from ptcg_exp.tracking import JSON
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
@@ -46,10 +48,10 @@ def _peak_rss_gb(path: Path) -> float | None:
     return int(m.group(1)) / 1024**2 if m else None
 
 
-def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[str, object]]:
+def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[JSON]:
     """Table + figure: GBDT strength vs. number of teacher games, with seed spread and CIs."""
     out.mkdir(parents=True, exist_ok=True)
-    rows: list[dict[str, object]] = []
+    rows: list[JSON] = []
     ratings = {}
     pairs = {}
     if eval_summary and eval_summary.exists():
@@ -62,7 +64,7 @@ def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[st
             continue
         size, seed = int(m.group(1)), int(m.group(2))
         label = f"gbdt_{size}_s{seed}"
-        row: dict[str, object] = dict(size=size, seed=seed, label=label, **_top1(d / "train.log"))
+        row: JSON = dict(size=size, seed=seed, label=label, **_top1(d / "train.log"))
         row["extract_peak_gb"] = _peak_rss_gb(d / "extract.time")
         row["train_peak_gb"] = _peak_rss_gb(d / "train.time")
         if label in ratings:
@@ -80,9 +82,9 @@ def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[st
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader()
         w.writerows(rows)
-    by: dict[int, list[dict[str, object]]] = defaultdict(list)
+    by: dict[int, list[JSON]] = defaultdict(list)
     for r in rows:
-        by[int(r["size"])].append(r)  # type: ignore[arg-type]
+        by[int(r["size"])].append(r)
     sizes = sorted(by)
     fig, axes = plt.subplots(1, 3, figsize=(14, 3.8))
     preferred = ("main.test.query_top1", "main.validation.query_top1")
@@ -107,12 +109,12 @@ def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[st
         for s in sizes:
             for r in by[s]:
                 if "mu" in r:
-                    mu, half = float(r["mu"]), 1.96 * float(r["sigma"])  # type: ignore[arg-type]
+                    mu, half = float(r["mu"]), 1.96 * float(r["sigma"])
                     axes[1].errorbar(
                         s * jitter[int(r["seed"])],
                         mu,
                         yerr=half,
-                        fmt="o",  # type: ignore[arg-type]
+                        fmt="o",
                         color="#2a74c9",
                         capsize=3,
                     )
@@ -132,12 +134,12 @@ def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[st
         for s in sizes:
             for r in by[s]:
                 if "vs_teacher" in r:
-                    lo, hi = float(r["vs_teacher_lo"]), float(r["vs_teacher_hi"])  # type: ignore[arg-type]
-                    v = float(r["vs_teacher"])  # type: ignore[arg-type]
+                    lo, hi = float(r["vs_teacher_lo"]), float(r["vs_teacher_hi"])
+                    v = float(r["vs_teacher"])
                     axes[2].errorbar(
                         s * jitter[int(r["seed"])],
                         v,
-                        yerr=[[v - lo], [hi - v]],  # type: ignore[arg-type]
+                        yerr=[[v - lo], [hi - v]],
                         fmt="o",
                         color="#1e9e5a",
                         capsize=3,
