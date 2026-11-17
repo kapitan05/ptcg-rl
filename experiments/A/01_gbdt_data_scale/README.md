@@ -13,13 +13,20 @@
 ## Results
 
 ### Per-decision agreement (query top-1, held-out games)
-| Games | Seed | main val | main test | general val | general test | train peak RAM |
-|---|---|---|---|---|---|---|
-| 120 | 0 | 0.901 | 0.883 | 0.916 | 0.934 | 11.9 GB |
-| 120 | 1 | 0.898 | 0.878 | 0.924 | 0.900 | 11.9 GB |
-| 120 | 2 | 0.882 | 0.874 | 0.911 | 0.915 | 11.9 GB |
-| 400 | | | | | | |
-| 1600 | | | | | | |
+| Games | Seed | main val | main test | general val | general test | train peak RAM | train wall |
+|---|---|---|---|---|---|---|---|
+| 120 | 0 | 0.901 | 0.883 | 0.916 | 0.934 | 11 GB | 0:42 |
+| 120 | 1 | 0.898 | 0.878 | 0.924 | 0.900 | 11 GB | 0:42 |
+| 120 | 2 | 0.882 | 0.874 | 0.911 | 0.915 | 11 GB | 1:08 |
+| 400 | 0 | 0.907 | 0.901 | 0.953 | 0.953 | 37 GB | 1:51 |
+| 400 | 1 | 0.907 | 0.904 | 0.952 | 0.936 | 37 GB | 1:21 |
+| 400 | 2 | 0.909 | 0.904 | 0.947 | 0.947 | 37 GB | 1:17 |
+| 1600 | 0 | 0.924 | 0.921 | 0.967 | 0.967 | 148 GB | 5:01 |
+| 1600 | 1 | 0.921 | 0.924 | 0.967 | 0.964 | 149 GB | 5:31 |
+| 1600 | 2 | 0.920 | 0.924 | 0.965 | 0.965 | 149 GB | 4:05 |
+
+**Mean test top-1:** main 0.878 → 0.903 → 0.923; general 0.916 → 0.945 → 0.965 (120 → 400 → 1,600 games). The seed spread at each size (≤ 0.03) is far smaller than the gaps between sizes.
+**Memory:** peak RAM ≈ 0.09 GB per game (LightGBM, 16 threads), roughly linear. It explains why 256+ games ran out of memory on the 8 GB Mac. (On the Mac, 120 games peaked lower with fewer threads; part of the peak is per-thread LightGBM buffers.)
 
 ### Playing strength
 _Pending: rating job over 4 rule bots + 9 GBDTs._
