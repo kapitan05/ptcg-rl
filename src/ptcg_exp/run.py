@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -220,17 +221,12 @@ class Pipeline:
             gbdt_features=str(feats),
         )
 
-    def distill(self) -> None:
-        """GBDT-teacher replays → Transformer extract/train/export → validate gate → canary set."""
+    def collect_teacher_games(
+        self, replays: Path, teacher: str, log: Path, workers: int = 0
+    ) -> None:
+        """Collect GBDT-teacher games for distillation (resumable: --resume continues a prefix)."""
         c = self.cfg.stages.distill
         assert c is not None
-        teacher = str(ROOT / c.teacher_model) if c.teacher_model else self.out["gbdt_model"]
-        inputs = _hash(c.model_dump(), sha256(Path(teacher)), self.seed)
-        if self.run.stage_done("distill", inputs):
-            return
-        base = self.dir / "distill"
-        log = base / "distill.log"
-        replays, feats, model = base / "teacher_replays", base / "features", base / "model"
         _sh(
             _py(
                 f"{L}/scripts/collect_replays.py",
@@ -245,11 +241,34 @@ class Pipeline:
                 "--seed",
                 self.seed_of("distill", "teacher_games"),
                 "--workers",
-                self.cfg.resources.cpus,
+                workers or self.cfg.resources.cpus,
                 "--resume",
             ),
             log,
         )
+
+    def prefetch(self) -> None:
+        """CPU-only: collect distillation teacher games ahead of a GPU job (same seeds and path)."""
+        c = self.cfg.stages.distill
+        assert c is not None
+        teacher = str(ROOT / c.teacher_model) if c.teacher_model else self.out["gbdt_model"]
+        base = self.dir / "distill"
+        workers = int(os.environ.get("SLURM_CPUS_PER_TASK", self.cfg.resources.cpus))
+        self.collect_teacher_games(base / "teacher_replays", teacher, base / "distill.log", workers)
+        self.run.save()
+
+    def distill(self) -> None:
+        """GBDT-teacher replays → Transformer extract/train/export → validate gate → canary set."""
+        c = self.cfg.stages.distill
+        assert c is not None
+        teacher = str(ROOT / c.teacher_model) if c.teacher_model else self.out["gbdt_model"]
+        inputs = _hash(c.model_dump(), sha256(Path(teacher)), self.seed)
+        if self.run.stage_done("distill", inputs):
+            return
+        base = self.dir / "distill"
+        log = base / "distill.log"
+        replays, feats, model = base / "teacher_replays", base / "features", base / "model"
+        self.collect_teacher_games(replays, teacher, log)
         _sh(
             _py(
                 f"{L}/transformer/scripts/extract.py",
@@ -472,6 +491,8 @@ def run(config_path: Path, seed: int, stages: list[str] | None = None) -> Run:
     wanted = [
         s for s in STAGES if getattr(cfg.stages, s) is not None and (not stages or s in stages)
     ]
+    if stages and "prefetch" in stages:
+        wanted = ["prefetch"]
     for stage in wanted:
         print(f"[ptcg] {r.id}: stage {stage}", flush=True)
         getattr(pipe, stage)()
