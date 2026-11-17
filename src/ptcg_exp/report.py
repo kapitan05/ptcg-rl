@@ -84,38 +84,73 @@ def data_scale(runs: Path, eval_summary: Path | None, out: Path) -> list[dict[st
     for r in rows:
         by[int(r["size"])].append(r)  # type: ignore[arg-type]
     sizes = sorted(by)
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3.8))
+    fig, axes = plt.subplots(1, 3, figsize=(14, 3.8))
     preferred = ("main.test.query_top1", "main.validation.query_top1")
     acc_key = next((k for k in preferred if k in keys), None)
+    jitter = {0: 0.97, 1: 1.0, 2: 1.03}
     if acc_key:
-        for size in sizes:
-            vals = [float(r[acc_key]) for r in by[size] if acc_key in r]
-            axes[0].scatter([size] * len(vals), vals, color="#20beff", alpha=0.7)
-        means = [np.mean([float(r[acc_key]) for r in by[s] if acc_key in r]) for s in sizes]
-        axes[0].plot(sizes, means, color="#2a74c9", marker="o")
-        axes[0].set_ylabel(f"top-1 agreement ({acc_key})")
-    axes[0].set_xscale("log")
-    axes[0].set_xlabel("teacher games")
+        for bank, color in (("main", "#2a74c9"), ("general", "#8a63d2")):
+            key = acc_key.replace("main.", f"{bank}.")
+            vals = [[float(r[key]) for r in by[s] if key in r] for s in sizes]
+            axes[0].scatter(
+                [s for s, v in zip(sizes, vals) for _ in v],
+                [x for v in vals for x in v],
+                color=color,
+                alpha=0.45,
+                s=18,
+            )
+            axes[0].plot(sizes, [np.mean(v) for v in vals], color=color, marker="o", label=bank)
+        axes[0].set_ylabel("test top-1 agreement with teacher")
+        axes[0].legend(fontsize=8)
     axes[0].set_title("Per-decision imitation accuracy")
+    if any("mu" in r for r in rows):
+        for s in sizes:
+            for r in by[s]:
+                if "mu" in r:
+                    mu, half = float(r["mu"]), 1.96 * float(r["sigma"])  # type: ignore[arg-type]
+                    axes[1].errorbar(
+                        s * jitter[int(r["seed"])],
+                        mu,
+                        yerr=half,
+                        fmt="o",  # type: ignore[arg-type]
+                        color="#2a74c9",
+                        capsize=3,
+                    )
+        if ratings and "lucario_rule" in ratings:
+            t = ratings["lucario_rule"]
+            axes[1].axhspan(
+                t["mu"] - 1.96 * t["sigma"],
+                t["mu"] + 1.96 * t["sigma"],
+                color="#e8a400",
+                alpha=0.18,
+            )
+            axes[1].axhline(t["mu"], color="#e8a400", lw=1.5, label="rule-bot teacher")
+            axes[1].legend(fontsize=8, loc="lower right")
+        axes[1].set_ylabel("Bradley–Terry rating (95% CI)")
+    axes[1].set_title("Playing strength (all games)")
     if any("vs_teacher" in r for r in rows):
-        for size in sizes:
-            for r in by[size]:
+        for s in sizes:
+            for r in by[s]:
                 if "vs_teacher" in r:
                     lo, hi = float(r["vs_teacher_lo"]), float(r["vs_teacher_hi"])  # type: ignore[arg-type]
                     v = float(r["vs_teacher"])  # type: ignore[arg-type]
-                    axes[1].errorbar(
-                        size * (1 + 0.04 * int(r["seed"])),
+                    axes[2].errorbar(
+                        s * jitter[int(r["seed"])],
                         v,
                         yerr=[[v - lo], [hi - v]],  # type: ignore[arg-type]
                         fmt="o",
                         color="#1e9e5a",
                         capsize=3,
                     )
-        axes[1].axhline(0.5, color="#9fb0c3", ls="--", lw=1)
-        axes[1].set_ylabel("win rate vs rule-bot teacher (95% CI)")
-    axes[1].set_xscale("log")
-    axes[1].set_xlabel("teacher games")
-    axes[1].set_title("Playing strength")
+        axes[2].axhline(0.5, color="#9fb0c3", ls="--", lw=1)
+        axes[2].set_ylabel("win rate vs teacher (95% Wilson CI)")
+    axes[2].set_title("Head-to-head vs teacher (200 games)")
+    for ax in axes:
+        ax.set_xscale("log")
+        ax.set_xticks(sizes)
+        ax.set_xticklabels([str(s) for s in sizes])
+        ax.minorticks_off()
+        ax.set_xlabel("teacher games (log scale)")
     fig.tight_layout()
     fig.savefig(out / "data_scale.png", dpi=160)
     return rows
