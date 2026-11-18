@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -264,3 +265,25 @@ def test_code_sha256_tracks_content(tmp_path: Path) -> None:
     assert code_sha256(tmp_path) == h1
     f.write_text("x = 2\n")
     assert code_sha256(tmp_path) != h1
+
+
+@pytest.mark.skipif(shutil.which("zstd") is None, reason="zstd not installed")
+def test_archive_replaces_dir_with_verified_tarball(tmp_path: Path) -> None:
+    """archive() writes <dir>.tar.zst + .sha256, keeps every file, and removes the dir."""
+    from ptcg_exp.run import archive
+
+    d = tmp_path / "replays" / "iono-seat0"
+    d.mkdir(parents=True)
+    for i in range(5):
+        (d / f"game-{i}.json").write_text(json.dumps({"game": i}))
+    out = archive(tmp_path / "replays")
+    assert out.name == "replays.tar.zst" and out.exists()
+    assert (tmp_path / "replays.tar.zst.sha256").exists()
+    assert not (tmp_path / "replays").exists()
+
+
+def test_eval_labels_are_unique() -> None:
+    """Learning-curve checkpoints get distinct roster labels from the final PPO model."""
+    keys = ["gbdt_model", "transformer_bin", "ppo_bin", "ppo_c3_bin", "ppo_c7_bin"]
+    labels = [k.rsplit("_", 1)[0] for k in keys]
+    assert labels == ["gbdt", "transformer", "ppo", "ppo_c3", "ppo_c7"]

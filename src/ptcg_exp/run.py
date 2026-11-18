@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -45,6 +46,25 @@ def _sh(cmd: list[str], log: Path) -> None:
         proc = subprocess.run(cmd, cwd=ROOT, stdout=out, stderr=subprocess.STDOUT)
     if proc.returncode:
         raise RuntimeError(f"Command failed ({proc.returncode}); see {log}")
+
+
+def archive(directory: Path) -> Path:
+    """Replace a directory by a verified <dir>.tar.zst (file count checked) and return it."""
+    target = directory.with_name(directory.name + ".tar.zst")
+    files = sum(1 for p in directory.rglob("*") if p.is_file())
+    subprocess.run(
+        f'tar -C "{directory.parent}" -cf - "{directory.name}" | zstd -q -T0 -9 -f -o "{target}"',
+        shell=True,
+        check=True,
+    )
+    listed = subprocess.run(
+        f'zstd -dc "{target}" | tar -tf -', shell=True, check=True, capture_output=True, text=True
+    ).stdout.splitlines()
+    if sum(1 for x in listed if not x.endswith("/")) != files:
+        raise RuntimeError(f"Archive file count mismatch for {directory}")
+    target.with_name(target.name + ".sha256").write_text(f"{sha256(target)}  {target.name}\n")
+    shutil.rmtree(directory)
+    return target
 
 
 def _hash(*parts: object) -> str:
@@ -268,23 +288,31 @@ class Pipeline:
         base = self.dir / "distill"
         log = base / "distill.log"
         replays, feats, model = base / "teacher_replays", base / "features", base / "model"
-        self.collect_teacher_games(replays, teacher, log)
-        _sh(
-            _py(
-                f"{L}/transformer/scripts/extract.py",
-                "--replay-dir",
-                replays,
-                "--model",
-                teacher,
-                "--output-dir",
-                feats,
-                "--workers",
-                self.cfg.resources.cpus,
-                "--seed",
-                self.seed_of("distill", "split"),
-            ),
-            log,
-        )
+        if c.features_from:
+            feats = ROOT / c.features_from.format(seed=self.seed)
+            if not (feats / "manifest.json").exists():
+                raise FileNotFoundError(f"features_from has no manifest.json: {feats}")
+            self.run.manifest["features_from_manifest_sha256"] = sha256(feats / "manifest.json")
+        else:
+            self.collect_teacher_games(replays, teacher, log)
+            _sh(
+                _py(
+                    f"{L}/transformer/scripts/extract.py",
+                    "--replay-dir",
+                    replays,
+                    "--model",
+                    teacher,
+                    "--output-dir",
+                    feats,
+                    "--workers",
+                    self.cfg.resources.cpus,
+                    "--seed",
+                    self.seed_of("distill", "split"),
+                ),
+                log,
+            )
+            if not c.keep_teacher_replays:
+                archive(replays)
         train = [
             "--feature-dir",
             feats,
@@ -371,7 +399,11 @@ class Pipeline:
         """PPO cycles; each cycle gets canary drift metrics and a health.json gate."""
         p = self.cfg.stages.ppo
         assert p is not None
-        ckpt = str(ROOT / p.checkpoint) if p.checkpoint else self.out["transformer_checkpoint"]
+        ckpt = (
+            str(ROOT / p.checkpoint.format(seed=self.seed))
+            if p.checkpoint
+            else self.out["transformer_checkpoint"]
+        )
         gbdt = str(ROOT / p.gbdt_model) if p.gbdt_model else self.out["gbdt_model"]
         inputs = _hash(p.model_dump(), sha256(Path(ckpt)), sha256(Path(gbdt)), self.seed)
         if self.run.stage_done("ppo", inputs):
@@ -381,17 +413,72 @@ class Pipeline:
         from ptcg_exp import health  # numpy: not importable on the Eden login node
 
         h = self.cfg.health
+        canary = str(ROOT / p.canary.format(seed=self.seed)) if p.canary else self.out.get("canary")
+        current, prev_cycle = ckpt, None
+        statuses: list[str] = []
+        # One cycle per run_cycle.py call: a health gate after every cycle, per-cycle cleanup of
+        # the raw rollouts, and resumption at cycle granularity within the 1-day job limit.
+        for i in range(p.cycles):
+            cycle = base / f"cycle-{i:03d}"
+            finished = (cycle / "health.json").exists() and (cycle / "models/model.pt").exists()
+            if not finished:
+                if cycle.exists():
+                    shutil.rmtree(cycle)  # partial cycle from an interrupted job
+                self._ppo_cycle(i, current, base, gbdt, log)
+                if canary:
+                    args = [
+                        "--canary",
+                        canary,
+                        "--checkpoint",
+                        str(cycle / "models/model.pt"),
+                        "--output",
+                        str(cycle / "canary.json"),
+                    ]
+                    if prev_cycle is not None:
+                        args += ["--previous-logits", str(prev_cycle / "canary.npy")]
+                    _sh([sys.executable, "-m", "ptcg_exp.canary", "score", *args], log)
+                report = health.check_cycle(cycle, h, prev_cycle)
+                self.run.log("ppo_health", cycle=cycle.name, status=report["status"])
+                if not p.keep_rollouts:
+                    self._drop_rollout(cycle / "rollout")
+            status = json.loads((cycle / "health.json").read_text())["status"]
+            statuses.append(status)
+            if status == "fail":
+                self.run.record_gate("ppo_health", False, statuses=statuses)
+                raise GateError(f"PPO health failed at {cycle.name}: {statuses}")
+            current, prev_cycle = str(cycle / "models/model.pt"), cycle
+        self.run.record_gate("ppo_health", True, statuses=statuses)
+        last = base / f"cycle-{p.cycles - 1:03d}"
+        curve = {
+            f"ppo_c{k}_bin": str(base / f"cycle-{k:03d}/models/model.bin")
+            for k in p.eval_cycles
+            if k < p.cycles - 1
+        }
+        self.done(
+            "ppo",
+            inputs,
+            ppo_bin=str(last / "models/model.bin"),
+            ppo_checkpoint=str(last / "models/model.pt"),
+            **curve,
+        )
+
+    def _ppo_cycle(self, i: int, checkpoint: str, base: Path, gbdt: str, log: Path) -> None:
+        """Run exactly one PPO cycle (index i) with run_cycle.py, starting from `checkpoint`."""
+        p = self.cfg.stages.ppo
+        assert p is not None
         _sh(
             _py(
                 f"{L}/ppo/scripts/run_cycle.py",
                 "--checkpoint",
-                ckpt,
+                checkpoint,
                 "--output-dir",
                 base,
+                "--start-cycle",
+                i,
+                "--cycles",
+                1,
                 "--gbdt-model",
                 gbdt,
-                "--cycles",
-                p.cycles,
                 "--games",
                 p.games,
                 "--updates",
@@ -413,42 +500,18 @@ class Pipeline:
                 "--update-seed",
                 self.seed_of("ppo", "update") % 1_000_000,
                 "--kl-target",
-                h.kl_target,
+                self.cfg.health.kl_target,
             ),
             log,
         )
-        canary = self.out.get("canary")
-        prev_cycle, prev_logits = None, None
-        statuses = []
-        for cycle in sorted(base.glob("cycle-*")):
-            if canary:
-                args = [
-                    "--canary",
-                    canary,
-                    "--checkpoint",
-                    str(cycle / "models/model.pt"),
-                    "--output",
-                    str(cycle / "canary.json"),
-                ]
-                if prev_logits:
-                    args += ["--previous-logits", prev_logits]
-                _sh([sys.executable, "-m", "ptcg_exp.canary", "score", *args], log)
-                prev_logits = str(cycle / "canary.npy")
-            report = health.check_cycle(cycle, h, prev_cycle)
-            statuses.append(report["status"])
-            self.run.log("ppo_health", cycle=cycle.name, status=report["status"])
-            prev_cycle = cycle
-        passed = "fail" not in statuses
-        self.run.record_gate("ppo_health", passed, statuses=statuses)
-        if not passed:
-            raise GateError(f"PPO health failed: {statuses}")
-        last = sorted(base.glob("cycle-*"))[-1]
-        self.done(
-            "ppo",
-            inputs,
-            ppo_bin=str(last / "models/model.bin"),
-            ppo_checkpoint=str(last / "models/model.pt"),
-        )
+
+    @staticmethod
+    def _drop_rollout(rollout: Path) -> None:
+        """Archive raw replays; delete regenerable arrays (sha256 kept in rollout/manifest.json)."""
+        if (rollout / "replays").is_dir():
+            archive(rollout / "replays")
+        for name in ("rollout.npz", "decisions.json"):
+            (rollout / name).unlink(missing_ok=True)
 
     def eval(self) -> None:
         """Fixed protocol over this run's models plus configured extras."""
@@ -457,11 +520,12 @@ class Pipeline:
         if not self.run.gates_ok():
             raise GateError("Refusing to evaluate: a correctness gate failed")
         models = {
-            f"{self.cfg.name}_s{self.seed}_{k.split('_')[0]}": v
+            f"{self.cfg.name}_s{self.seed}_{k.rsplit('_', 1)[0]}": v
             for k, v in self.out.items()
             if k in ("gbdt_model", "transformer_bin", "ppo_bin")
+            or (k.startswith("ppo_c") and k.endswith("_bin"))
         }
-        models.update({k: str(ROOT / v) for k, v in e.extra.items()})
+        models.update({k: str(ROOT / v.format(seed=self.seed)) for k, v in e.extra.items()})
         inputs = _hash(e.model_dump(), {k: sha256(Path(v)) for k, v in models.items()})
         if self.run.stage_done("eval", inputs):
             return

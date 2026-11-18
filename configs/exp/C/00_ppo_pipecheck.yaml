@@ -1,0 +1,26 @@
+# C/00: toy 2-cycle run of the per-cycle PPO stage (resume, canary, health gate, rollout
+# archiving, learning-curve eval). Gates C/01 via afterok. Proves plumbing, not strength.
+extends: ../../base/full.yaml
+name: ppo_pipecheck
+owner: C
+question: pipeline
+hypothesis: Two PPO cycles run, each passes health, rollouts are archived, cycle 0 is rated.
+seeds: [0]
+resources: {cpus: 16, mem: 64G, time: "02:00:00", gpus: 1}
+stages:
+  ppo:
+    checkpoint: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.pt
+    canary: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/canary.npz
+    gbdt_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    cycles: 2
+    games: 200
+    updates: 4
+    workers: 16
+    device: cuda
+    eval_cycles: [0]
+  eval:
+    games_per_pair: 10
+    workers: 16
+    include_rule_bots: false
+    extra:
+      start_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin

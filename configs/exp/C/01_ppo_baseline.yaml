@@ -1,0 +1,29 @@
+# C/01: repo-default PPO at full cycle size, started from each A/02 seed's distilled Transformer.
+# The baseline arm for every C ablation (each ablation copies this file and changes ONE knob).
+extends: ../../base/full.yaml
+name: ppo_baseline
+owner: C
+question: ppo_ablation
+hypothesis: >-
+  Repo-default PPO (5,000 games and 128 updates per cycle; opponents = 4 rule bots + GBDT + self)
+  beats its starting Transformer after 12 cycles (pooled win rate vs. start > 0.5, Wilson LCB > 0.5)
+  with no failed health check; per-cycle ratings rise monotonically within CIs.
+seeds: [0, 1, 2]
+resources: {cpus: 32, mem: 160G, time: "23:00:00", gpus: 1}
+stages:
+  ppo:
+    checkpoint: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.pt
+    canary: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/canary.npz
+    gbdt_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    cycles: 12
+    games: 5000
+    updates: 128
+    workers: 32
+    device: cuda
+    eval_cycles: [2, 5, 8]
+  eval:
+    games_per_pair: 200
+    workers: 32
+    extra:
+      start_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+      gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt

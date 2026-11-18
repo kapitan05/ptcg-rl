@@ -60,12 +60,16 @@ class DistillStage(Strict):
     value_weight: float = 0.25
     device: Literal["cpu", "cuda"] = "cuda"
     max_updates: int | None = None
+    # Reuse an extracted feature dir instead of collecting/extracting ("{seed}" is substituted).
+    # Pairs an ablation with its baseline: same games, same split, only the changed knob differs.
+    features_from: str | None = None
+    keep_teacher_replays: bool = False  # False: archive raw replays as .tar.zst after extraction
 
 
 class PpoStage(Strict):
     """PPO collect/train cycles started from a distilled checkpoint."""
 
-    checkpoint: str | None = None  # None = this run's distilled model
+    checkpoint: str | None = None  # None = this run's distilled model; "{seed}" is substituted
     gbdt_model: str | None = None
     cycles: int = 1
     games: int = 5000
@@ -73,6 +77,12 @@ class PpoStage(Strict):
     batch_size: int = 1024
     workers: int = 16
     device: Literal["cpu", "cuda"] = "cuda"
+    # Raw rollouts are ~43 GB per 5,000-game cycle (Eden quota: 200 GB). False: after a cycle's
+    # health check, archive replays as .tar.zst and drop rollout.npz/decisions.json (their sha256
+    # stays in rollout/manifest.json; collection is seeded, so they are regenerable).
+    keep_rollouts: bool = False
+    eval_cycles: list[int] = Field(default_factory=list)  # extra cycles to rate (learning curve)
+    canary: str | None = None  # canary.npz when no distill stage ran ("{seed}" substituted)
 
 
 class EvalStage(Strict):
@@ -82,7 +92,7 @@ class EvalStage(Strict):
     games_per_pair: int = 200
     workers: int = 32
     include_rule_bots: bool = True
-    extra: dict[str, str] = Field(default_factory=dict)  # label -> model path
+    extra: dict[str, str] = Field(default_factory=dict)  # label -> model path ("{seed}" ok)
 
 
 class HealthThresholds(Strict):
