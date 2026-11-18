@@ -47,6 +47,20 @@ class GbdtStage(Strict):
     audit: bool = True  # gate 4: C++ vs Python GBDT scores within 1e-10
 
 
+class DaggerStage(Strict):
+    """One DAgger round: new games labeled by the distill teacher, merged with base features.
+
+    player=student: the student Transformer plays and the teacher relabels its states (DAgger).
+    player=teacher: the teacher plays the same number of games (equal-label-budget BC control).
+    Both arms use the same game seeds, so they are paired.
+    """
+
+    base_features: str  # feature dir this round adds to ("{seed}" substituted)
+    player: Literal["student", "teacher"]
+    student_model: str | None = None  # student .bin ("{seed}" substituted); required for student
+    games_per_opponent: int = 625  # x 4 rule-bot opponents, both seats
+
+
 class DistillStage(Strict):
     """Transformer distillation from a GBDT teacher."""
 
@@ -117,6 +131,7 @@ class Stages(Strict):
 
     data: DataStage | None = None
     gbdt: GbdtStage | None = None
+    dagger: DaggerStage | None = None
     distill: DistillStage | None = None
     ppo: PpoStage | None = None
     eval: EvalStage | None = None

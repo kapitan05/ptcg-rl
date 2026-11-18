@@ -287,3 +287,58 @@ def test_eval_labels_are_unique() -> None:
     keys = ["gbdt_model", "transformer_bin", "ppo_bin", "ppo_c3_bin", "ppo_c7_bin"]
     labels = [k.rsplit("_", 1)[0] for k in keys]
     assert labels == ["gbdt", "transformer", "ppo", "ppo_c3", "ppo_c7"]
+
+
+def _feature_dir(root: Path, games: list[str]) -> Path:
+    """Minimal distillation-v2 feature dir with one train shard."""
+    root.mkdir(parents=True)
+    (root / "train-0000.npz").write_bytes(b"npz" + root.name.encode())
+    (root / "train-0000.json").write_text("[]")
+    manifest = dict(
+        format="ptcg-distillation-v2",
+        contract_id="c",
+        teacher_model_id="t",
+        teacher_model_sha256="s",
+        feature_names=["f"],
+        split_seed=1,
+        splits=dict(
+            train=dict(
+                games=[dict(sha256=g) for g in games],
+                shards=[dict(path="train-0000.npz", sha256="x")],
+                forced_queries=2,
+            )
+        ),
+    )
+    (root / "manifest.json").write_text(json.dumps(manifest))
+    return root
+
+
+def test_merge_links_shards_and_rejects_shared_games(tmp_path: Path) -> None:
+    """Merged dir has tagged hard links and summed counts; a shared game is refused."""
+    from ptcg_exp.features_merge import merge
+
+    a = _feature_dir(tmp_path / "a", ["g1", "g2"])
+    b = _feature_dir(tmp_path / "b", ["g3"])
+    m = merge({"base": a, "dagger_student": b}, tmp_path / "m")
+    train = m["splits"]["train"]
+    assert len(train["games"]) == 3 and train["forced_queries"] == 4
+    assert {s["path"] for s in train["shards"]} == {
+        "base-train-0000.npz",
+        "dagger_student-train-0000.npz",
+    }
+    assert (tmp_path / "m/base-train-0000.npz").stat().st_ino == (
+        a / "train-0000.npz"
+    ).stat().st_ino
+    c = _feature_dir(tmp_path / "c", ["g2"])
+    with pytest.raises(ValueError, match="two sources"):
+        merge({"base": a, "dup": c}, tmp_path / "m2")
+
+
+def test_agent_for_infers_deck_and_kind() -> None:
+    """Held-out opponents of other decks map to their own arena agents."""
+    from ptcg_exp.evaluate import agent_for
+
+    assert agent_for("outputs/mega_lucario/scale/model.gbdt") == "mega_lucario_gbdt"
+    assert agent_for("runs/x/distill/model/model.bin") == "mega_lucario_transformer"
+    assert agent_for("outputs/dragapult/heldout/model/model.gbdt") == "dragapult_gbdt"
+    assert agent_for("outputs/mega_abomasnow/heldout/model/model.gbdt") == "mega_abomasnow_gbdt"

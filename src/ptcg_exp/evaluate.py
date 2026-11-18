@@ -20,7 +20,18 @@ RULE_BOTS = {
     "iono_rule": "iono",
     "abomasnow_rule": "mega_abomasnow",
 }
-AGENT_FOR_SUFFIX = {".gbdt": "mega_lucario_gbdt", ".bin": "mega_lucario_transformer"}
+AGENT_FOR_SUFFIX = {".gbdt": "gbdt", ".bin": "transformer"}
+DECKS = ("mega_lucario", "dragapult", "iono", "mega_abomasnow")
+
+
+def agent_for(path: str) -> str:
+    """Arena agent for a model file: the deck comes from the path (`outputs/<deck>/...`),
+    defaulting to mega_lucario; the kind (GBDT or Transformer) from the suffix."""
+    p = Path(path)
+    if p.suffix not in AGENT_FOR_SUFFIX:
+        raise ValueError(f"Unknown model type: {path}")
+    deck = next((d for d in DECKS[1:] if d in p.parts), "mega_lucario")
+    return f"{deck}_{AGENT_FOR_SUFFIX[p.suffix]}"
 
 
 def wilson(wins: float, n: int, z: float = 1.96) -> tuple[float, float]:
@@ -42,10 +53,7 @@ def build_roster(
     if include_rule_bots:
         roster.update({label: dict(agent=agent) for label, agent in RULE_BOTS.items()})
     for label, path in models.items():
-        suffix = Path(path).suffix
-        if suffix not in AGENT_FOR_SUFFIX:
-            raise ValueError(f"Unknown model type for {label}: {path}")
-        roster[label] = dict(agent=AGENT_FOR_SUFFIX[suffix], model=str(Path(path).resolve()))
+        roster[label] = dict(agent=agent_for(path), model=str(Path(path).resolve()))
     return roster
 
 

@@ -33,8 +33,9 @@ def render(
     root: Path,
     seeds: list[int],
     stages: list[str] | None = None,
+    max_parallel: int | None = None,
 ) -> str:
-    """Return the sbatch script for a config; seeds become a job array."""
+    """Return the sbatch script for a config; seeds become a job array (optionally throttled)."""
     r = cfg.resources
     return TEMPLATE.format(
         account=ACCOUNT,
@@ -45,7 +46,12 @@ def render(
         name=f"{cfg.owner}-{cfg.name}"[:40],
         logs=root / "logs",
         gres=f"#SBATCH --gres=gpu:{r.gpus}\n" if r.gpus else "",
-        array=f"#SBATCH --array={','.join(map(str, seeds))}\n" if len(seeds) > 1 else "",
+        array=(
+            f"#SBATCH --array={','.join(map(str, seeds))}"
+            f"{f'%{max_parallel}' if max_parallel else ''}\n"
+            if len(seeds) > 1
+            else ""
+        ),
         root=root,
         default_seed=seeds[0],
         config=config_path,
@@ -60,12 +66,13 @@ def submit(
     seeds: list[int],
     stages: list[str] | None = None,
     dependency: str | None = None,
+    max_parallel: int | None = None,
 ) -> str:
     """Write jobs/<owner>-<name>.sbatch, submit it, and return the Slurm job ID."""
     (root / "jobs").mkdir(exist_ok=True)
     (root / "logs").mkdir(exist_ok=True)
     script = root / "jobs" / f"{cfg.owner}-{cfg.name}.sbatch"
-    script.write_text(render(cfg, config_path, root, seeds, stages))
+    script.write_text(render(cfg, config_path, root, seeds, stages, max_parallel))
     cmd = (
         ["sbatch", "--parsable"]
         + ([f"--dependency={dependency}"] if dependency else [])

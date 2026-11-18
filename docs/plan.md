@@ -90,8 +90,8 @@
 | 1 | **C/01 PPO baseline:** 12 cycles × 5,000 games × 128 updates, 3 seeds, starting from each A/02 seed's Transformer; rated at cycles 2, 5, 8 and 11 against the start and the GBDT | C | submitted: job 1944835 (after the C/00 pipecheck 1944834, after the disk cleanup 1944831) |
 | 2 | **C/02 critic ablation:** value_weight 0.25 → 1.0, paired on the A/02 features and training seeds | C | submitted: job 1944836 |
 | 3 | **Per-cycle PPO stage:** a health gate after every cycle, rollout archiving, resume at cycle granularity, learning-curve evaluation | shared | done (`run.py`), tested in C/00 |
-| 4 | **DAgger round 1:** the student plays, the GBDT labels the student's states, retrain on teacher + student states (same label budget as BC) | A | to implement: a `dagger` stage (collect with `mega_lucario_transformer` → extract with the GBDT as labeler → train) |
-| 5 | **P1 held-out pool:** GBDTs for dragapult, iono and abomasnow, plus `rating_v2` | A/C | to implement (configs) |
+| 4 | **DAgger round 1 (A/03–A/05):** the student plays 2,500 games vs. the rule bots; the GBDT relabels its states (`transformer/relabel.py`, self-test: relabel ≡ extract bit for bit on GBDT games, 100% agreement); merged with A/02's features; retrained. Control arm: the GBDT plays the same 2,500 seeded games (equal label budget). Both arms rated in one roster per seed. | A | implemented; submitted: A/03 pipecheck 1944843 → student arm 1944844 → BC arm 1944845 → joint eval 1944846 |
+| 5 | **P1 held-out pool:** GBDTs for dragapult, iono and abomasnow (400 games each, audit gate); the roster infers the deck from `outputs/<deck>/` | A/C | implemented; submitted 1944842. Once the models exist, held-out evaluation configs for C/01 and A/05 follow |
 | 6 | **History tokens + parity** | B | to implement (new contract) |
 | 7 | **Kaggle:** submit only a promoted champion; measure decision time | all | after C/01 |
 

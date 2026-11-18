@@ -1,0 +1,24 @@
+# A/04 DAgger round 1, arm "student". Both arms add 2,500 games (625 per rule-bot opponent, same game
+# seeds) to the 5,000-game A/02 features of the same seed and retrain from scratch with A/02's
+# settings. student = the A/02 Transformer plays and the GBDT relabels its states (DAgger);
+# teacher = the GBDT plays (equal label budget behavior cloning). Paired by seed.
+extends: ../../base/full.yaml
+name: dagger_r1_student
+owner: A
+question: dagger
+hypothesis: >-
+  DAgger (student arm) beats the equal-budget BC arm head-to-head (pooled Wilson LCB > 0.5) and
+  narrows the gap to the GBDT teacher vs. A/02 (0.448).
+seeds: [0, 1, 2]
+resources: {cpus: 32, mem: 160G, time: "12:00:00", gpus: 1}
+stages:
+  dagger:
+    base_features: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/features
+    player: student
+    student_model: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+    games_per_opponent: 625
+  distill:
+    teacher_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    epochs: 5
+    device: cuda
+# Rated together with the other arm in 05_dagger_r1_eval.yaml (one roster, paired).

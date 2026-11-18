@@ -1,6 +1,6 @@
 """`ptcg run <config> --seed N`: run pipeline stages by wrapping the existing, validated scripts.
 
-Stages (in order, each optional): data → gbdt → distill → ppo → eval.
+Stages (in order, each optional): data → gbdt → dagger → distill → ppo → eval.
 Every stage records inputs hash, outputs, seeds and resources in runs/<id>/manifest.json,
 is skipped when already done with identical inputs, and failed correctness gates stop
 all downstream stages.
@@ -20,12 +20,13 @@ from pathlib import Path
 from ptcg_exp import config as config_mod
 from ptcg_exp import slurm
 from ptcg_exp.evaluate import evaluate
+from ptcg_exp.features_merge import merge
 from ptcg_exp.seeds import derive
 from ptcg_exp.subsets import make_subset
 from ptcg_exp.tracking import JSON, ROOT, Run, sha256
 
 L = "src/agents/mega_lucario"
-STAGES = ("data", "gbdt", "distill", "ppo", "eval")
+STAGES = ("data", "gbdt", "dagger", "distill", "ppo", "eval")
 
 
 class GateError(RuntimeError):
@@ -242,9 +243,20 @@ class Pipeline:
         )
 
     def collect_teacher_games(
-        self, replays: Path, teacher: str, log: Path, workers: int = 0
+        self,
+        replays: Path,
+        teacher: str,
+        log: Path,
+        workers: int = 0,
+        *,
+        player: str = "mega_lucario_gbdt",
+        games_per_opponent: int | None = None,
+        seed: int | None = None,
     ) -> None:
-        """Collect GBDT-teacher games for distillation (resumable: --resume continues a prefix)."""
+        """Collect seeded games vs. the 4 rule bots (resumable: --resume continues a prefix).
+
+        Defaults: GBDT-teacher games for distillation. DAgger passes the student as `player`.
+        """
         c = self.cfg.stages.distill
         assert c is not None
         _sh(
@@ -253,18 +265,89 @@ class Pipeline:
                 "--output-dir",
                 replays,
                 "--games-per-opponent",
-                c.teacher_games_per_opponent,
+                games_per_opponent or c.teacher_games_per_opponent,
                 "--teacher",
-                "mega_lucario_gbdt",
+                player,
                 "--model",
                 teacher,
                 "--seed",
-                self.seed_of("distill", "teacher_games"),
+                seed if seed is not None else self.seed_of("distill", "teacher_games"),
                 "--workers",
                 workers or self.cfg.resources.cpus,
                 "--resume",
             ),
             log,
+        )
+
+    def dagger(self) -> None:
+        """One DAgger round (or its equal-budget BC control) → merged feature dir for distill."""
+        d, c = self.cfg.stages.dagger, self.cfg.stages.distill
+        assert d is not None and c is not None, "dagger needs a distill section (teacher, training)"
+        teacher = str(ROOT / c.teacher_model) if c.teacher_model else self.out["gbdt_model"]
+        base_feats = ROOT / d.base_features.format(seed=self.seed)
+        student = ROOT / d.student_model.format(seed=self.seed) if d.student_model else None
+        if d.player == "student" and student is None:
+            raise ValueError("dagger.player=student requires student_model")
+        inputs = _hash(
+            d.model_dump(),
+            sha256(Path(teacher)),
+            sha256(base_feats / "manifest.json"),
+            sha256(student) if student else None,
+            self.seed,
+        )
+        if self.run.stage_done("dagger", inputs):
+            return
+        base = self.dir / "dagger"
+        log = base / "dagger.log"
+        replays, new, merged = base / "replays", base / "features_new", base / "features"
+        for stale in (new, merged):  # derived dirs from an interrupted attempt
+            if stale.exists():
+                shutil.rmtree(stale)
+        games_seed = self.seed_of("dagger", "games")  # same for both arms: paired games
+        if d.player == "student":
+            assert student is not None
+            self.collect_teacher_games(
+                replays,
+                str(student),
+                log,
+                player="mega_lucario_transformer",
+                games_per_opponent=d.games_per_opponent,
+                seed=games_seed,
+            )
+            script = f"{L}/transformer/scripts/relabel.py"
+        else:
+            self.collect_teacher_games(
+                replays, teacher, log, games_per_opponent=d.games_per_opponent, seed=games_seed
+            )
+            script = f"{L}/transformer/scripts/extract.py"
+        _sh(
+            _py(
+                script,
+                "--replay-dir",
+                replays,
+                "--model",
+                teacher,
+                "--output-dir",
+                new,
+                "--workers",
+                self.cfg.resources.cpus,
+                "--seed",
+                self.seed_of("dagger", "split"),
+            ),
+            log,
+        )
+        archive(replays)
+        manifest = merge({"base": base_feats, f"dagger_{d.player}": new}, merged)
+        agreement = json.loads((new / "manifest.json").read_text()).get("student_teacher_agreement")
+        if agreement:
+            self.run.log(
+                "dagger", **{f"student_teacher_agreement.{k}": v for k, v in agreement.items()}
+            )
+        self.done(
+            "dagger",
+            inputs,
+            dagger_features=str(merged),
+            dagger_train_games=str(len(manifest["splits"]["train"]["games"])),
         )
 
     def prefetch(self) -> None:
@@ -282,13 +365,21 @@ class Pipeline:
         c = self.cfg.stages.distill
         assert c is not None
         teacher = str(ROOT / c.teacher_model) if c.teacher_model else self.out["gbdt_model"]
-        inputs = _hash(c.model_dump(), sha256(Path(teacher)), self.seed)
+        dagger_feats = self.out.get("dagger_features") if self.cfg.stages.dagger else None
+        inputs = _hash(
+            c.model_dump(),
+            sha256(Path(teacher)),
+            self.seed,
+            sha256(Path(dagger_feats) / "manifest.json") if dagger_feats else None,
+        )
         if self.run.stage_done("distill", inputs):
             return
         base = self.dir / "distill"
         log = base / "distill.log"
         replays, feats, model = base / "teacher_replays", base / "features", base / "model"
-        if c.features_from:
+        if dagger_feats:
+            feats = Path(dagger_feats)
+        elif c.features_from:
             feats = ROOT / c.features_from.format(seed=self.seed)
             if not (feats / "manifest.json").exists():
                 raise FileNotFoundError(f"features_from has no manifest.json: {feats}")
@@ -574,11 +665,14 @@ def main() -> None:
     p.add_argument("--stages", type=lambda s: s.split(","), help=f"Subset of {','.join(STAGES)}")
     p.add_argument("--submit", action="store_true", help="Submit to Slurm instead of running")
     p.add_argument("--dependency", help="Slurm dependency, e.g. afterok:123")
+    p.add_argument("--max-parallel", type=int, help="Throttle the seed array (disk/GPU budget)")
     a = p.parse_args()
     cfg = config_mod.load(a.config)
     seeds = [a.seed] if a.seed is not None else cfg.seeds
     if a.submit:
-        job = slurm.submit(cfg, a.config.resolve(), ROOT, seeds, a.stages, a.dependency)
+        job = slurm.submit(
+            cfg, a.config.resolve(), ROOT, seeds, a.stages, a.dependency, a.max_parallel
+        )
         print(f"Submitted {cfg.owner}/{cfg.name} seeds={seeds} as job {job}")
         return
     for s in seeds:
