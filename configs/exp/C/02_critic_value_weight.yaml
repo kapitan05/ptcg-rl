@@ -23,3 +23,7 @@ stages:
     extra:
       a02_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
       gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+      # held-out pool (P1): other-deck GBDTs, never trained against; report separately
+      heldout_dragapult_gbdt: outputs/dragapult/heldout/model/model.gbdt
+      heldout_iono_gbdt: outputs/iono/heldout/model/model.gbdt
+      heldout_abomasnow_gbdt: outputs/mega_abomasnow/heldout/model/model.gbdt
