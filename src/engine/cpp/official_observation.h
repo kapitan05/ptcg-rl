@@ -26,7 +26,7 @@ inline official::CardView pokemon_view(const State& state, CardRef ref) {
     if (!out.present) return out;
     const auto& card = state.getCard(ref);
     out.is_pokemon = true;
-    out.hp = state.getHp(card);
+    out.hp = std::max(0, state.getHp(card));  // playground ToJson clamps HP at 0
     out.maxHp = state.getMaxHp(card);
     out.appearThisTurn = card.appear;
     std::vector<EnergyType> energies;

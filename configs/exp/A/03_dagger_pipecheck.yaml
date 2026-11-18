@@ -1,0 +1,19 @@
+# A/03 pipecheck: toy DAgger round (student games → GBDT relabel → merge → distill → validate).
+extends: ../../base/full.yaml
+name: dagger_pipecheck
+owner: A
+question: pipeline
+hypothesis: The DAgger stage runs end to end, relabeled shards train, the parity gate passes.
+seeds: [0]
+resources: {cpus: 16, mem: 64G, time: "02:00:00", gpus: 1}
+stages:
+  dagger:
+    base_features: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/features
+    player: student
+    student_model: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+    games_per_opponent: 4
+  distill:
+    teacher_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    epochs: 1
+    max_updates: 50
+    device: cuda

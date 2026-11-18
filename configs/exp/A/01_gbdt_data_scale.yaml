@@ -1,0 +1,11 @@
+# A/01: does imitation quality scale with teacher data? One config per size; seeds 0-2.
+# Submitted on Eden by jobs/gbdt_scale.sbatch (same stages, hand-written for the first run).
+extends: ../../base/full.yaml
+name: gbdt_scale_1600
+owner: A
+question: data_scale
+hypothesis: GBDT strength vs the rule-bot teacher rises with the number of teacher games.
+resources: {cpus: 16, mem: 192G, time: "12:00:00"}
+stages:
+  data: {per_dir: 200}
+  gbdt: {profile: standard, threads: 16}

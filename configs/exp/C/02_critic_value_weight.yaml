@@ -1,0 +1,25 @@
+# C/02: critic ablation. A/02 distillation with value_weight 0.25 -> 1.0, on the SAME extracted
+# features and training seed as A/02 seed s (paired). Motivation: A/02 critic EV 0.31, value loss
+# rises after epoch 3, and seed 2 warned on value ECE (0.157).
+extends: ../../base/full.yaml
+name: critic_value_weight
+owner: C
+question: ppo_ablation
+hypothesis: >-
+  A 4x value-loss weight lowers validation value MSE and ECE (all 3 seeds) while teacher top-1
+  drops < 0.5 pp; the arena rating is unchanged within CIs.
+seeds: [0, 1, 2]
+resources: {cpus: 16, mem: 96G, time: "04:00:00", gpus: 1}
+stages:
+  distill:
+    teacher_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    features_from: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/features
+    epochs: 5
+    value_weight: 1.0
+    device: cuda
+  eval:
+    games_per_pair: 200
+    workers: 16
+    extra:
+      a02_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+      gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt

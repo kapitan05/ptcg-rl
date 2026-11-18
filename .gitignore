@@ -29,3 +29,8 @@ kaggle.json
 
 # macOS
 .DS_Store
+submissions/
+
+# Experiment layer outputs (provenance stays in runs/<id>/manifest.json on the machine that ran it)
+runs/
+logs/

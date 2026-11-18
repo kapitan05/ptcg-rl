@@ -31,11 +31,15 @@ def collect(
     workers: int = 1,
     resume: bool = False,
 ) -> dict[str, Any]:
-    """Collect or resume seeded teacher matches against each official rule policy."""
-    if teacher not in ("mega_lucario", "mega_lucario_gbdt"):
+    """Collect or resume seeded teacher matches against each official rule policy.
+
+    `mega_lucario_transformer` (with a .bin --model) collects *student* games for DAgger; its
+    model ID is assigned by the C++ loader, so replays must agree on one ID instead.
+    """
+    if teacher not in ("mega_lucario", "mega_lucario_gbdt", "mega_lucario_transformer"):
         raise ValueError("Unsupported teacher")
-    if (teacher == "mega_lucario_gbdt") != (model is not None):
-        raise ValueError("The GBDT teacher requires --model; rule teacher does not use one")
+    if (teacher != "mega_lucario") != (model is not None):
+        raise ValueError("GBDT/Transformer players require --model; rule teacher does not use one")
     per_seat = (
         [games, games]
         if games_per_opponent is None
@@ -48,7 +52,12 @@ def collect(
     if any(output.iterdir()) and not resume:
         raise ValueError("Output directory must be empty (or use --resume)")
     check_deck(list(map(int, (ROOT / "src/agents/mega_lucario/deck.csv").read_text().split())))
-    model_id = model.read_text().splitlines()[2].split()[1] if model is not None else None
+    model_id = (
+        model.read_text().splitlines()[2].split()[1]
+        if teacher == "mega_lucario_gbdt" and model is not None
+        else None
+    )
+    neural = teacher == "mega_lucario_transformer"
     jobs = []
     next_seed = seed
     for opponent in ("mega_lucario", "dragapult", "iono", "mega_abomasnow"):
@@ -69,7 +78,8 @@ def collect(
             if (
                 header["agents"] != [a, b]
                 or replay_schema(header) != SCHEMA_ID
-                or header["models"][seat] != model_id
+                or (not neural and header["models"][seat] != model_id)
+                or (neural and not header["models"][seat])
             ):
                 raise ValueError("Resume replay teacher/schema/model mismatch")
             check_deck(header["decks"][seat])
@@ -77,6 +87,7 @@ def collect(
                 path=str(path.relative_to(output)),
                 sha256=sha256(path),
                 seed=header["seed"],
+                model_id=header["models"][seat],
                 **terminal,
             )
 
@@ -95,8 +106,8 @@ def collect(
                 if not destination.exists()
                 else destination / f"continuation-{len(entries)}"
             )
-            deck_a = "mega_lucario" if a == "mega_lucario_gbdt" else a
-            deck_b = "mega_lucario" if b == "mega_lucario_gbdt" else b
+            deck_a = "mega_lucario" if a.startswith("mega_lucario") else a
+            deck_b = "mega_lucario" if b.startswith("mega_lucario") else b
             command = [
                 str(binary.resolve()),
                 "--agent-a",
@@ -136,6 +147,8 @@ def collect(
         entries = [
             entry for pairing_entries in pool.map(pairing, jobs) for entry in pairing_entries
         ]
+    if len({e["model_id"] for e in entries}) != 1:
+        raise ValueError("Replays disagree on the player model ID")
     manifest = dict(
         format="ptcg-rule-corpus-v1",
         schema_id=SCHEMA_ID,
@@ -166,7 +179,9 @@ def main() -> None:
     )
     p.add_argument("--seed", type=int, default=20260910)
     p.add_argument(
-        "--teacher", choices=["mega_lucario", "mega_lucario_gbdt"], default="mega_lucario"
+        "--teacher",
+        choices=["mega_lucario", "mega_lucario_gbdt", "mega_lucario_transformer"],
+        default="mega_lucario",
     )
     p.add_argument("--model", type=Path)
     p.add_argument("--workers", type=int, default=1)

@@ -1,0 +1,18 @@
+# A/05: rate both DAgger round-1 arms in ONE roster per seed (paired head-to-head), with the A/02
+# start and the GBDT teacher. Run after both A/04 arms finish (afterok).
+extends: ../../base/full.yaml
+name: dagger_r1_eval
+owner: A
+question: dagger
+hypothesis: See A/04 (pre-registered there).
+seeds: [0, 1, 2]
+resources: {cpus: 32, mem: 64G, time: "06:00:00", gpus: 0}
+stages:
+  eval:
+    games_per_pair: 200
+    workers: 32
+    extra:
+      dagger_student: runs/A-dagger_r1_student-s{seed}-3d614aea/distill/model/model.bin
+      dagger_teacher_bc: runs/A-dagger_r1_teacher-s{seed}-6a595f8b/distill/model/model.bin
+      a02_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+      gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt

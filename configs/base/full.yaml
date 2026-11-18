@@ -1,0 +1,6 @@
+# Shared defaults for full-size runs on Eden. Experiments `extends:` this and override.
+profile: full
+seeds: [0, 1, 2]
+resources: {cpus: 16, mem: 64G, time: "12:00:00", gpus: 0}
+health:
+  kl_target: 0.004
