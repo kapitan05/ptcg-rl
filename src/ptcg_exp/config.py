@@ -80,6 +80,25 @@ class DistillStage(Strict):
     keep_teacher_replays: bool = False  # False: archive raw replays as .tar.zst after extraction
 
 
+class League(Strict):
+    """Opponent pool for PPO beyond the repo default (plan P2 snapshot league, P3 PFSP).
+
+    Each cycle trains vs. the default opponents plus frozen Transformer snapshots: the `recent`
+    newest and `older` evenly spaced older ones, drawn from `seed_pool` (earlier runs' .bin files,
+    "{seed}" substituted) followed by this run's own cycle checkpoints.
+    """
+
+    recent: int = 3
+    older: int = 2
+    seed_pool: list[str] = Field(default_factory=list)
+    snapshot_weight: float = 1.0  # sampling weight of each snapshot (defaults weigh 1.0 each)
+    # PFSP: weight_i *= max(floor, 1 - win_rate_i) ** power, from the previous cycle's
+    # per-opponent win rate (opponents not seen yet: win rate 0.5).
+    pfsp: bool = False
+    pfsp_power: float = 1.0
+    pfsp_floor: float = 0.2
+
+
 class PpoStage(Strict):
     """PPO collect/train cycles started from a distilled checkpoint."""
 
@@ -97,6 +116,10 @@ class PpoStage(Strict):
     keep_rollouts: bool = False
     eval_cycles: list[int] = Field(default_factory=list)  # extra cycles to rate (learning curve)
     canary: str | None = None  # canary.npz when no distill stage ran ("{seed}" substituted)
+    # In-loop early stop: end the epoch when a minibatch's approx KL > kl_early_stop × kl_target
+    # (0 = off, the repo default).
+    kl_early_stop: float = 0.0
+    league: League | None = None
 
 
 class EvalStage(Strict):
@@ -152,8 +175,17 @@ class ExperimentConfig(Strict):
 
     def config_hash(self) -> str:
         """Return the sha256 of the canonical JSON form (independent of key order)."""
-        payload = json.dumps(self.model_dump(mode="json"), sort_keys=True, separators=(",", ":"))
+        data = self.model_dump(mode="json")
+        ppo = data["stages"].get("ppo")
+        if ppo is not None:  # fields added after C/01: omit at default so earlier run IDs hold
+            for key, default in _PPO_LATE_DEFAULTS.items():
+                if ppo.get(key) == default:
+                    del ppo[key]
+        payload = json.dumps(data, sort_keys=True, separators=(",", ":"))
         return hashlib.sha256(payload.encode()).hexdigest()
+
+
+_PPO_LATE_DEFAULTS: dict[str, object] = {"kl_early_stop": 0.0, "league": None}
 
 
 def _merge(base: dict[str, object], override: dict[str, object]) -> dict[str, object]:

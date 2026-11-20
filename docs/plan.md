@@ -87,11 +87,11 @@
 ## Sprint 2 (18 Nov – 6 Dec): concrete work and Eden jobs
 | # | Work | Owner | Status / Eden |
 |---|---|---|---|
-| 1 | **C/01 PPO baseline:** 12 cycles × 5,000 games × 128 updates, 3 seeds, starting from each A/02 seed's Transformer; rated at cycles 2, 5, 8 and 11 against the start and the GBDT | C | submitted: job 1944835 (after the C/00 pipecheck 1944834, after the disk cleanup 1944831) |
-| 2 | **C/02 critic ablation:** value_weight 0.25 → 1.0, paired on the A/02 features and training seeds | C | submitted: job 1944836 |
+| 1 | **C/01 PPO baseline:** 12 cycles × 5,000 games × 128 updates, 3 seeds, starting from each A/02 seed's Transformer; rated at cycles 2, 5, 8 and 11 against the start and the GBDT | C | **done**: s0/s1 beat start 0.625 [0.58, 0.67] and GBDT 0.625; tie the rule bots; s2 stopped by its health gate → rerun C/01b with KL early stop (`experiments/C/01_ppo_baseline`) |
+| 2 | **C/02 critic ablation:** value_weight 0.25 → 1.0, paired on the A/02 features and training seeds | C | **done, rejected**: value MSE unchanged, top-1 −1.1 pp, BT −11 (`experiments/C/02_critic_value_weight`) |
 | 3 | **Per-cycle PPO stage:** a health gate after every cycle, rollout archiving, resume at cycle granularity, learning-curve evaluation | shared | done (`run.py`), tested in C/00 |
-| 4 | **DAgger round 1 (A/03–A/05):** the student plays 2,500 games vs. the rule bots; the GBDT relabels its states (`transformer/relabel.py`, self-test: relabel ≡ extract bit for bit on GBDT games, 100% agreement); merged with A/02's features; retrained. Control arm: the GBDT plays the same 2,500 seeded games (equal label budget). Both arms rated in one roster per seed. | A | implemented; submitted: A/03 pipecheck 1944843 → student arm 1944844 → BC arm 1944845 → joint eval 1944846 |
-| 5 | **P1 held-out pool:** GBDTs for dragapult, iono and abomasnow (400 games each, audit gate); the roster infers the deck from `outputs/<deck>/` | A/C | implemented; submitted 1944842. Once the models exist, held-out evaluation configs for C/01 and A/05 follow |
+| 4 | **DAgger round 1 (A/03–A/05):** the student plays 2,500 games vs. the rule bots; the GBDT relabels its states (`transformer/relabel.py`, self-test: relabel ≡ extract bit for bit on GBDT games, 100% agreement); merged with A/02's features; retrained. Control arm: the GBDT plays the same 2,500 seeded games (equal label budget). Both arms rated in one roster per seed. | A | **done, no gain**: DAgger vs. BC 0.505 [0.47, 0.55], vs. A/02 0.452; agreement on student states 94.2% (`experiments/A/04_dagger_r1`) |
+| 5 | **P1 held-out pool:** GBDTs for dragapult, iono and abomasnow (400 games each, audit gate); the roster infers the deck from `outputs/<deck>/` | A/C | **done**: 3 GBDTs, audits exact; in all Sprint 2/3 eval rosters |
 | 6 | **History tokens + parity** | B | to implement (new contract) |
 | 7 | **Kaggle:** submit only a promoted champion; measure decision time | all | after C/01 |
 
@@ -99,3 +99,22 @@
 - If C/01 beats its start (pooled LCB > 0.5), the Sprint 3 ablations (P2, P3, KL-to-teacher) start from C/01.
 - If not, the C/01 health logs decide the next step: a weak critic points to C/02, KL that's too small points to the learning rate or epochs.
 - If DAgger closes the GBDT → Transformer gap, the Transformer gets re-distilled before further PPO.
+
+## Sprint 3 (21 Nov – 6 Dec): opponent pool and submission
+Decision rules applied: C/01 beat its start (LCB 0.58 > 0.5), so the pool ablations start from C/01's final policies. DAgger didn't help, so no re-distillation and no round 2. C/02 rejected, so value_weight stays 0.25.
+
+| # | Work | Owner | Status / Eden |
+|---|---|---|---|
+| 1 | **C/01b:** seed 2 rerun with `kl_early_stop: 2.0` (deviation, reported) | C | queued 1948509 (after the league pipecheck 1948508) |
+| 2 | **C/03 control:** continue each C/01 final for 6 cycles, default pool | C | queued 1948510 |
+| 3 | **C/04 snapshot league (P2):** + frozen snapshots (3 newest + 2 older, from C/01 c2/c5/c8, the start and own cycles) | C | implemented (`League`, `league_roster`); queued 1948511 |
+| 4 | **C/05 league + PFSP (P3):** weight × max(0.2, 1 − win rate) from the previous cycle | C | queued 1948512 |
+| 5 | **C/06 joint evaluation:** C/01 final, C/03, C/04, C/05, A/02, GBDT and held-out pool, one roster per seed | C | queued 1948513 |
+| 6 | **Kaggle submission of the promoted champion,** decision time measured | all | after C/06 |
+| 7 | **History tokens (B)** | B | see `experiments/B` |
+
+All Sprint 3 PPO arms use the same start, seeds, 5,000 games per cycle and early stop, so they're paired. The jobs run one at a time (array throttle 1, chained with `afterany`), because one full cycle needs about 43 GB of the 65 GB free.
+
+**P4 (cross-deck learned opponents in training) is dropped for now:** the only learned other-deck agents are the held-out GBDTs, and training against them would destroy the held-out pool.
+
+**Success criteria (pre-registered):** C/04 vs. C/03, and C/05 vs. C/04, paired by seed. Report rating_v1 and the held-out pool separately. Promote the arm whose pooled head-to-head LCB against C/01 final is > 0.5 and which doesn't lose on the held-out pool.

@@ -164,13 +164,15 @@ def update_checks(training: JSON, t: HealthThresholds, previous: JSON | None) ->
     out.append(
         _check(
             "approx_kl_per_update",
-            "fail" if kmax > fail_at else "pass",
+            # An early stop halts the epoch at the offending minibatch, so only warn; the
+            # post-update held-out KL check still fails a step that is too large overall.
+            ("warn" if training.get("early_stopped") else "fail") if kmax > fail_at else "pass",
             dict(
                 mean=float(np.mean(kls)),
                 max=float(kmax),
                 early_stopped=training.get("early_stopped"),
             ),
-            f"max ≤ {t.kl_fail_multiple}×kl_target = {fail_at:.4g}",
+            f"max ≤ {t.kl_fail_multiple}×kl_target = {fail_at:.4g} (warn if early-stopped)",
         )
     )
     clip = max(r["clip_fraction"] for r in log)

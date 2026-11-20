@@ -19,6 +19,7 @@ from pathlib import Path
 
 from ptcg_exp import config as config_mod
 from ptcg_exp import slurm
+from ptcg_exp.config import League
 from ptcg_exp.evaluate import evaluate
 from ptcg_exp.features_merge import merge
 from ptcg_exp.seeds import derive
@@ -27,6 +28,52 @@ from ptcg_exp.tracking import JSON, ROOT, Run, sha256
 
 L = "src/agents/mega_lucario"
 STAGES = ("data", "gbdt", "dagger", "distill", "ppo", "eval")
+
+
+DEFAULT_OPPONENTS = (
+    "mega_lucario",
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario_gbdt",
+    "self",
+)
+
+
+def _previous_win_rates(health_json: Path) -> dict[str, float]:
+    """Per-opponent learner win rate (mean over seats) from a cycle's health.json."""
+    if not health_json.exists():
+        return {}
+    for c in json.loads(health_json.read_text())["checks"]:
+        if c["check"] == "win_rate_per_opponent_seat" and isinstance(c["value"], dict):
+            by: dict[str, list[float]] = {}
+            for key, rate in c["value"].items():
+                by.setdefault(key.rsplit("/", 1)[0], []).append(float(rate))
+            return {k: sum(v) / len(v) for k, v in by.items()}
+    return {}
+
+
+def league_roster(snapshots: dict[str, Path], league: League, win_rates: dict[str, float]) -> JSON:
+    """Pick the `recent` newest + `older` evenly spaced older snapshots; weight all opponents.
+
+    `snapshots` maps stable aliases (oldest first) to .bin files, so PFSP win rates from the
+    previous cycle map back onto the same opponents.
+    """
+    names = list(snapshots)
+    recent = names[len(names) - league.recent :] if league.recent else []
+    rest = names[: len(names) - len(recent)]
+    older: list[str] = []
+    if league.older and rest:
+        step = len(rest) / league.older
+        older = list(dict.fromkeys(rest[int(k * step)] for k in range(league.older)))
+    models = {n: str(snapshots[n]) for n in older + recent}
+    weights = {n: 1.0 for n in DEFAULT_OPPONENTS} | {n: league.snapshot_weight for n in models}
+    if league.pfsp:
+        weights = {
+            n: w * max(league.pfsp_floor, 1.0 - win_rates.get(n, 0.5)) ** league.pfsp_power
+            for n, w in weights.items()
+        }
+    return dict(opponents=list(weights), weights=weights, models=models)
 
 
 class GateError(RuntimeError):
@@ -592,9 +639,44 @@ class Pipeline:
                 self.seed_of("ppo", "update") % 1_000_000,
                 "--kl-target",
                 self.cfg.health.kl_target,
+                "--kl-early-stop",
+                p.kl_early_stop,
+                *self._league_args(i, base),
             ),
             log,
         )
+
+    def _league_args(self, i: int, base: Path) -> list[str | int | float]:
+        """Snapshot-league (+PFSP) roster for cycle i, written as a run_cycle opponent config."""
+        p = self.cfg.stages.ppo
+        assert p is not None
+        if p.league is None:
+            return []
+        start = Path(
+            str(ROOT / p.checkpoint.format(seed=self.seed))
+            if p.checkpoint
+            else self.out["transformer_checkpoint"]
+        ).with_suffix(".bin")
+        snapshots: dict[str, Path] = {}
+        for k, s in enumerate(p.league.seed_pool):
+            snapshots[f"snap_pool{k}"] = ROOT / s.format(seed=self.seed)
+        snapshots["snap_start"] = start
+        for k in range(i):
+            snapshots[f"snap_c{k:03d}"] = base / f"cycle-{k:03d}/models/model.bin"
+        unique: dict[str, Path] = {}
+        for alias, path in snapshots.items():  # the start .bin may also be in seed_pool
+            if path.exists() and path.resolve() not in {q.resolve() for q in unique.values()}:
+                unique[alias] = path
+        roster = league_roster(
+            unique,
+            p.league,
+            _previous_win_rates(base / f"cycle-{i - 1:03d}/health.json") if i else {},
+        )
+        path = self.dir / "ppo_rosters" / f"cycle-{i:03d}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(roster, indent=2) + "\n")
+        self.run.log("ppo_roster", cycle=i, weights=roster["weights"])
+        return ["--opponents", *roster["opponents"], "--opponent-config", str(path)]
 
     @staticmethod
     def _drop_rollout(rollout: Path) -> None:

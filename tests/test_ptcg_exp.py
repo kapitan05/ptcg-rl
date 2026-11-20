@@ -191,7 +191,7 @@ def _cycle(tmp_path: Path, **over: object) -> Path:
     ]
     training = dict(
         updates_log=log,
-        early_stopped=False,
+        early_stopped=bool(over.get("early_stopped", False)),
         parameter_delta_l2=0.5,
         heldout_global_approximate_kl=float(over.get("heldout_kl", 0.004)),  # type: ignore[arg-type]
         health_inputs=dict(
@@ -342,3 +342,37 @@ def test_agent_for_infers_deck_and_kind() -> None:
     assert agent_for("runs/x/distill/model/model.bin") == "mega_lucario_transformer"
     assert agent_for("outputs/dragapult/heldout/model/model.gbdt") == "dragapult_gbdt"
     assert agent_for("outputs/mega_abomasnow/heldout/model/model.gbdt") == "mega_abomasnow_gbdt"
+
+
+def test_health_early_stopped_kl_spike_warns(tmp_path: Path) -> None:
+    """A minibatch KL spike that triggered the in-loop early stop warns instead of failing."""
+    r = health.check_cycle(_cycle(tmp_path, kl=0.05, early_stopped=True), config.HealthThresholds())
+    assert _status(r, "approx_kl_per_update") == "warn"
+
+
+def test_late_ppo_fields_keep_run_ids() -> None:
+    """Fields added after C/01 (league, kl_early_stop) don't change earlier run IDs."""
+    assert config.load(ROOT / "configs/exp/C/01_ppo_baseline.yaml").config_hash()[:8] == "ba1b0384"
+    cfg = config.load(ROOT / "configs/exp/C/01_ppo_baseline.yaml")
+    assert cfg.stages.ppo is not None
+    cfg.stages.ppo.kl_early_stop = 2.0
+    assert cfg.config_hash()[:8] != "ba1b0384"
+
+
+def test_league_roster_selects_and_weights(tmp_path: Path) -> None:
+    """Recent + evenly spaced older snapshots; PFSP upweights opponents the learner loses to."""
+    from ptcg_exp.run import DEFAULT_OPPONENTS, league_roster
+
+    snaps = {f"snap_c{k:03d}": tmp_path / f"{k}.bin" for k in range(10)}
+    lg = config.League(recent=3, older=2)
+    r = league_roster(snaps, lg, {})
+    assert list(r["models"]) == ["snap_c000", "snap_c003", "snap_c007", "snap_c008", "snap_c009"]
+    assert r["opponents"][: len(DEFAULT_OPPONENTS)] == list(DEFAULT_OPPONENTS)
+    assert set(r["weights"].values()) == {1.0}
+    pf = league_roster(
+        snaps, config.League(recent=1, older=0, pfsp=True), {"iono": 0.9, "self": 0.3}
+    )
+    assert pf["weights"]["iono"] == pytest.approx(0.2)  # floor
+    assert pf["weights"]["self"] == pytest.approx(0.7)
+    assert pf["weights"]["snap_c009"] == pytest.approx(0.5)  # unseen: win rate 0.5
+    assert list(league_roster({}, lg, {})["models"]) == []

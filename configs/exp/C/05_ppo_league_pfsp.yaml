@@ -1,0 +1,11 @@
+# C/05 (plan P3): C/04 + PFSP. Each opponent's weight × max(0.2, 1 − learner win rate) from the
+# previous cycle, so games shift toward the opponents the learner loses to.
+extends: 04_ppo_league.yaml
+name: ppo_league_pfsp
+hypothesis: >-
+  PFSP over the league beats C/04 (paired seeds) on rating_v1 and held-out, by spending games
+  where the learner is weakest.
+stages:
+  ppo:
+    league:
+      pfsp: true
