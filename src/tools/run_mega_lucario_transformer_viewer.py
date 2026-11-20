@@ -122,7 +122,8 @@ class TransformerAgent:
         self.model.to(self.device)
         self.table = card_table()
         self.deck = [
-            int(card_id) for card_id in (ROOT / "src/agents/mega_lucario/deck.csv").read_text().split()
+            int(card_id)
+            for card_id in (ROOT / "src/agents/mega_lucario/deck.csv").read_text().split()
         ]
         check_deck(self.deck)
 
@@ -148,7 +149,9 @@ class TransformerAgent:
             prefix.append(choice)
 
 
-def run(checkpoint: Path, device: str, output_json: Path, output_html: Path, viewer_url: str) -> None:
+def run(
+    checkpoint: Path, device: str, output_json: Path, output_html: Path, viewer_url: str
+) -> None:
     """Run one game, save the official visualizer payload, and write auto-submit HTML."""
     transformer_agent = TransformerAgent(checkpoint, device)
     deck_obs = {"select": None, "logs": [], "current": None}
@@ -157,7 +160,9 @@ def run(checkpoint: Path, device: str, output_json: Path, output_html: Path, vie
     deck_b = transformer_agent(deck_obs)
     obs, start = battle_start(deck_a, deck_b)
     if obs is None:
-        raise RuntimeError(f"Battle failed to start: player={start.errorPlayer} type={start.errorType}")
+        raise RuntimeError(
+            f"Battle failed to start: player={start.errorPlayer} type={start.errorType}"
+        )
 
     obs_log: list[Any] = [""]
     action_log: list[Any] = [None]
@@ -193,7 +198,9 @@ def run(checkpoint: Path, device: str, output_json: Path, output_html: Path, vie
                 entry["action"] = [action_log[index], action_log[index]]
         output_json.parent.mkdir(parents=True, exist_ok=True)
         output_html.parent.mkdir(parents=True, exist_ok=True)
-        output_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        output_json.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
         write_autoload_html(payload, output_html, viewer_url)
         print(output_html)
     finally:

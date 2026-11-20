@@ -110,8 +110,8 @@ Decision rules applied: C/01 beat its start (LCB 0.58 > 0.5), so the pool ablati
 | 3 | **C/04 snapshot league (P2):** + frozen snapshots (3 newest + 2 older, from C/01 c2/c5/c8, the start and own cycles) | C | implemented (`League`, `league_roster`); queued 1948511 |
 | 4 | **C/05 league + PFSP (P3):** weight × max(0.2, 1 − win rate) from the previous cycle | C | queued 1948512 |
 | 5 | **C/06 joint evaluation:** C/01 final, C/03, C/04, C/05, A/02, GBDT and held-out pool, one roster per seed | C | queued 1948513 |
-| 6 | **Kaggle submission of the promoted champion,** decision time measured | all | after C/06 |
-| 7 | **History tokens (B)** | B | see `experiments/B` |
+| 6 | **Kaggle submission:** NumPy inference (`transformer/numpy_model.py`, no torch), `build_submission.py --transformer-checkpoint`, gate `submission_check.py` | all | **built and gated** for C/01 s0 final: scores ≡ C++ within 2.8e-6, 513/513 actions identical, cg games vs. rule bots 28-11-1, p99 10 ms/decision, 5.8 MB. Uploading to Kaggle is the user's step; re-gate the C/06 champion |
+| 7 | **History features (B/01)** | B | designed (`experiments/B/01_history`): 20 free Global-token slots, parity-safe log fields only, as a second arena agent (v3 contract). Built after the PPO chain frees the build and disk |
 
 All Sprint 3 PPO arms use the same start, seeds, 5,000 games per cycle and early stop, so they're paired. The jobs run one at a time (array throttle 1, chained with `afterany`), because one full cycle needs about 43 GB of the 65 GB free.
 
