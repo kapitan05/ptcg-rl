@@ -1,0 +1,7 @@
+{
+  "path": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/canary.npz",
+  "sha256": "d66662bce28c896d9c87d2f7327ebdd3075cd3ca1c0703901e9458299b28e9c4",
+  "decisions": 2000,
+  "seed": 7,
+  "source_manifest_sha256": "4023a60e4af657c3151ab738b2108c74ada6c4fbd4a11c7218dcdb7822076bd7"
+}

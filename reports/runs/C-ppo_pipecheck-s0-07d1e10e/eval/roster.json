@@ -1,0 +1,14 @@
+{
+  "ppo_pipecheck_s0_ppo": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-001/models/model.bin"
+  },
+  "ppo_pipecheck_s0_ppo_c0": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-000/models/model.bin"
+  },
+  "start_transformer": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin"
+  }
+}

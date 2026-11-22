@@ -1,0 +1,7 @@
+{
+  "path": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/canary.npz",
+  "sha256": "05ad3710b9a36c1be8a58c0eeb2f9531c06b008a6a081bd9e653331071a218ce",
+  "decisions": 577,
+  "seed": 7,
+  "source_manifest_sha256": "144356425a9c6f133e249fd44dc76a8c54a5bf1849cf8dfb4d81ea06575deddd"
+}

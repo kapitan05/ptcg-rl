@@ -1,0 +1,7 @@
+{
+  "path": "runs/C-critic_value_weight-s0-6892257d/distill/canary.npz",
+  "sha256": "7e341d7496b32a1c6e26cab4b163aa4637d2492d31f438fc49017a619295d354",
+  "decisions": 2000,
+  "seed": 7,
+  "source_manifest_sha256": "5b6efe49c0f634687abf5c82eb3b8d02991951d2ba1cb408f4c08c3f437d3f82"
+}

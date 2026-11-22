@@ -1,0 +1,18 @@
+{
+  "lucario_rule": {
+    "agent": "mega_lucario"
+  },
+  "dragapult_rule": {
+    "agent": "dragapult"
+  },
+  "iono_rule": {
+    "agent": "iono"
+  },
+  "abomasnow_rule": {
+    "agent": "mega_abomasnow"
+  },
+  "smoke_s0_gbdt": {
+    "agent": "mega_lucario_gbdt",
+    "model": "runs/shared-smoke-s0-8eac01e2/gbdt/model/model.gbdt"
+  }
+}

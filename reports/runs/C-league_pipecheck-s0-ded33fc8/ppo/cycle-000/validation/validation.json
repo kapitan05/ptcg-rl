@@ -1,0 +1,86 @@
+{
+  "games": [
+    {
+      "game": 0,
+      "agent_a": "mega_lucario_transformer",
+      "agent_b": "mega_lucario_gbdt",
+      "result": 1,
+      "steps": 132,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    },
+    {
+      "game": 1,
+      "agent_a": "mega_lucario_transformer",
+      "agent_b": "mega_lucario_gbdt",
+      "result": 0,
+      "steps": 88,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    },
+    {
+      "game": 0,
+      "agent_a": "mega_lucario_gbdt",
+      "agent_b": "mega_lucario_transformer",
+      "result": 0,
+      "steps": 162,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    },
+    {
+      "game": 1,
+      "agent_a": "mega_lucario_gbdt",
+      "agent_b": "mega_lucario_transformer",
+      "result": 0,
+      "steps": 29,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    },
+    {
+      "game": 0,
+      "agent_a": "mega_lucario_transformer",
+      "agent_b": "mega_lucario_transformer",
+      "result": 1,
+      "steps": 138,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    },
+    {
+      "game": 1,
+      "agent_a": "mega_lucario_transformer",
+      "agent_b": "mega_lucario_transformer",
+      "result": 0,
+      "steps": 157,
+      "agent_errors": 0,
+      "engine_errors": 0,
+      "error_seat": -1
+    }
+  ],
+  "deterministic_replays": true,
+  "standalone_bin": true,
+  "parity": {
+    "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+    "model_id": "02b7bc5dfcfabc6cc09d7fd365d85559c3706549c3e8899aed5812b4b13a4059",
+    "bin_sha256": "8aefa2a4da89a5ff82cd00a2a60f64694d63040b4d476fe5d831d72437e1b45e",
+    "atol": 2e-05,
+    "rtol": 2e-05,
+    "games": 6,
+    "decisions": 505,
+    "queries": 538,
+    "rows": 15149,
+    "max_abs_error": 2.683358298671834e-06,
+    "feature_max_abs_error": 4.76837158203125e-07,
+    "value_max_abs_error": 1.4435731634995785e-06,
+    "float32_max_abs_error": 4.323640641956672e-06,
+    "action_mismatches": 0,
+    "agent_errors": 0,
+    "engine_errors": 0,
+    "probe_queries": 0,
+    "probe_rows": 0
+  }
+}

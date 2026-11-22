@@ -1,0 +1,614 @@
+[
+  {
+    "cycle": 0,
+    "games": 200,
+    "episodes": 232,
+    "decisions": 15347,
+    "training": {
+      "config": {
+        "learning_rate": 3e-05,
+        "gamma": 1.0,
+        "gae_lambda": 0.99,
+        "clip": 0.2,
+        "value_clip": 0.2,
+        "value_coefficient": 0.25,
+        "entropy_coefficient": 0.01,
+        "weight_decay": 0.0001,
+        "max_grad_norm": 0.5,
+        "batch_size": 1024,
+        "updates": 4,
+        "holdout_decisions": 10000,
+        "micro_batch_size": 128,
+        "device": "cuda",
+        "audit_threads": 8,
+        "kl_target": 0.004,
+        "kl_early_stop": 0.0,
+        "seed": 455452,
+        "epochs": 1,
+        "advantage_normalization": "training decisions only, population std",
+        "value_target": "GAE return",
+        "value_loss": "51-bin interpolated cross entropy + clipped expectation MSE",
+        "entropy": "sum along sampled prefix path"
+      },
+      "heldout_global_approximate_kl": 0.00021685953731642553,
+      "heldout_sampled_forward_kl": -0.00041861417842968193,
+      "holdout_decisions": 1534,
+      "holdout_indices_sha256": "1a1ba108be639c3e7e35a46073759da69309ad9499b40d2343a1626aeac2669b",
+      "holdout_selection": "uniform linspace in episode-step order; excluded from optimizer",
+      "training_decisions": 13813,
+      "behavior_sha256": "8f60deb9290a3e46e2049e98e67f0ae3ed9250ea4707b350a7c862f43767c7fb",
+      "rollout_sha256": "d1613f3afbd2d6a449099aab8a9ade7c712af4f57e4b0af241cbae1380c33e3b",
+      "audit": {
+        "max_abs_errors": {
+          "logp": 4.346361729190562e-06,
+          "value": 1.5015508609828032e-06,
+          "entropy": 1.0115972499669112e-06
+        },
+        "atol": 2e-05,
+        "rtol": 2e-05,
+        "decisions": 15347,
+        "threads": 8
+      },
+      "updates": 4,
+      "decisions_used": 4096,
+      "decisions_available": 15347,
+      "parameter_delta_l2": 0.10835368896442317,
+      "optimizer_resumed": false,
+      "mean_metrics": {
+        "loss": 3.2327234894037247,
+        "policy_loss": 0.008146315580233932,
+        "value_loss": 0.2529859934002161,
+        "entropy": 0.7018547840416431,
+        "approximate_kl": 4.267690733428253e-05,
+        "clip_fraction": 0.0,
+        "ratio_min": 0.9675780013203621,
+        "ratio_max": 1.0393180809915066,
+        "ratio_p01": 0.9806911144405603,
+        "ratio_p99": 1.0245433412492275,
+        "distribution_loss": 12.67339688539505,
+        "gradient_norm": 10.40098762512207,
+        "update_ratio": 0.00033347887084381477
+      },
+      "last_metrics": {
+        "loss": 3.1448525488376617,
+        "policy_loss": 0.0029888106510043144,
+        "value_loss": 0.25096030719578266,
+        "entropy": 0.7122295573353767,
+        "approximate_kl": 0.0001019413457470364,
+        "clip_fraction": 0.0,
+        "ratio_min": 0.9381084144115448,
+        "ratio_max": 1.0739639699459076,
+        "ratio_p01": 0.9634267538785934,
+        "ratio_p99": 1.0434785783290863,
+        "distribution_loss": 12.34498381614685,
+        "gradient_norm": 10.848264694213867,
+        "update_ratio": 0.00032310880149893657
+      },
+      "updates_log": [
+        {
+          "loss": 3.403282254934311,
+          "policy_loss": 0.05159005266614258,
+          "value_loss": 0.24929362535476685,
+          "entropy": 0.7107562571763992,
+          "approximate_kl": 1.7101626781368395e-09,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9999989569187164,
+          "ratio_max": 1.0000010579824448,
+          "ratio_p01": 0.9999993741512299,
+          "ratio_p99": 1.0000007152557373,
+          "distribution_loss": 13.185905456542969,
+          "gradient_norm": 10.068365097045898,
+          "update_ratio": 0.0003523721697503952
+        },
+        {
+          "loss": 3.233946353197098,
+          "policy_loss": 0.0006662264931946993,
+          "value_loss": 0.2562686298042536,
+          "entropy": 0.6727822571992874,
+          "approximate_kl": 1.759227922093487e-05,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9753168374300003,
+          "ratio_max": 1.0326471775770187,
+          "ratio_p01": 0.9854006543755531,
+          "ratio_p99": 1.0189354121685028,
+          "distribution_loss": 12.703763127326965,
+          "gradient_norm": 10.183506965637207,
+          "update_ratio": 0.0003324273394868783
+        },
+        {
+          "loss": 3.1488128006458282,
+          "policy_loss": -0.02265982748940587,
+          "value_loss": 0.2554214112460613,
+          "entropy": 0.7116510644555092,
+          "approximate_kl": 5.117229420648073e-05,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9568877965211868,
+          "ratio_max": 1.0506601184606552,
+          "ratio_p01": 0.9739376753568649,
+          "ratio_p99": 1.0357586592435837,
+          "distribution_loss": 12.458935141563416,
+          "gradient_norm": 10.503813743591309,
+          "update_ratio": 0.00032600717263904906
+        },
+        {
+          "loss": 3.1448525488376617,
+          "policy_loss": 0.0029888106510043144,
+          "value_loss": 0.25096030719578266,
+          "entropy": 0.7122295573353767,
+          "approximate_kl": 0.0001019413457470364,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9381084144115448,
+          "ratio_max": 1.0739639699459076,
+          "ratio_p01": 0.9634267538785934,
+          "ratio_p99": 1.0434785783290863,
+          "distribution_loss": 12.34498381614685,
+          "gradient_norm": 10.848264694213867,
+          "update_ratio": 0.00032310880149893657
+        }
+      ],
+      "early_stopped": false,
+      "health_inputs": {
+        "raw_advantage": {
+          "mean": -0.08734948425682852,
+          "std": 0.7084085331204254,
+          "nonfinite": 0
+        },
+        "return_range": [
+          -1.0,
+          1.0
+        ],
+        "explained_variance_before": 0.240506999040342,
+        "explained_variance_after_heldout": 0.22758308961531426,
+        "value_ece_heldout": 0.1592904228267272,
+        "entropy_behavior_heldout": 0.7318702207804733,
+        "entropy_updated_heldout": 0.73551569564081
+      },
+      "opponent_distribution": {
+        "opponents": [
+          "mega_lucario",
+          "dragapult",
+          "iono",
+          "mega_abomasnow",
+          "mega_lucario_gbdt",
+          "self"
+        ],
+        "games_per_opponent": null,
+        "total_games": 200,
+        "opponent_weights": {
+          "mega_lucario": 1.0,
+          "dragapult": 1.0,
+          "iono": 1.0,
+          "mega_abomasnow": 1.0,
+          "mega_lucario_gbdt": 1.0,
+          "self": 1.0
+        },
+        "allocated_games": {
+          "mega_lucario": 34,
+          "dragapult": 34,
+          "iono": 34,
+          "mega_abomasnow": 34,
+          "mega_lucario_gbdt": 32,
+          "self": 32
+        },
+        "fixed_model_sha256": {},
+        "game_fraction": {
+          "mega_lucario": 0.17,
+          "dragapult": 0.17,
+          "iono": 0.17,
+          "mega_abomasnow": 0.17,
+          "mega_lucario_gbdt": 0.16,
+          "self": 0.16
+        },
+        "seed": 1862971003,
+        "sample_seed": 1905354094,
+        "temperature": 1.0,
+        "workers": 16,
+        "extract_workers": 16,
+        "rollout_chunk_games": 64,
+        "audit_threads": 8,
+        "gbdt_model_sha256": "d467ec54f7a6051fee07f50651e979ffb164c38a72d5ac1f0fc6ddc23f0632da",
+        "reward": {
+          "win": 1.0,
+          "draw": 0.0,
+          "loss": -1.0,
+          "intermediate": 0.0
+        },
+        "timestep": "one learner decision, sum prefix logp; terminal-only reward"
+      },
+      "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "1237a08e81bfc716b963e4fbcb87fe90aa1ca1aba9d4c319d1ad3daba0504ded"
+    },
+    "validation": {
+      "games": [
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_gbdt",
+          "result": 1,
+          "steps": 119,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_gbdt",
+          "result": 0,
+          "steps": 97,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_gbdt",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 163,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_gbdt",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 29,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 141,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_transformer",
+          "result": 1,
+          "steps": 125,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        }
+      ],
+      "deterministic_replays": true,
+      "standalone_bin": true,
+      "parity": {
+        "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+        "model_id": "1237a08e81bfc716b963e4fbcb87fe90aa1ca1aba9d4c319d1ad3daba0504ded",
+        "bin_sha256": "a64d65d6644823b9c9d6e640e39f946720a9fb72b46585d198ceab14f83ccead",
+        "atol": 2e-05,
+        "rtol": 2e-05,
+        "games": 6,
+        "decisions": 475,
+        "queries": 506,
+        "rows": 13855,
+        "max_abs_error": 2.9685716578242705e-06,
+        "feature_max_abs_error": 4.76837158203125e-07,
+        "value_max_abs_error": 1.6019788106058641e-06,
+        "float32_max_abs_error": 2.4753828897772223e-06,
+        "action_mismatches": 0,
+        "agent_errors": 0,
+        "engine_errors": 0,
+        "probe_queries": 0,
+        "probe_rows": 0
+      }
+    }
+  },
+  {
+    "cycle": 1,
+    "games": 200,
+    "episodes": 232,
+    "decisions": 15490,
+    "training": {
+      "config": {
+        "learning_rate": 3e-05,
+        "gamma": 1.0,
+        "gae_lambda": 0.99,
+        "clip": 0.2,
+        "value_clip": 0.2,
+        "value_coefficient": 0.25,
+        "entropy_coefficient": 0.01,
+        "weight_decay": 0.0001,
+        "max_grad_norm": 0.5,
+        "batch_size": 1024,
+        "updates": 4,
+        "holdout_decisions": 10000,
+        "micro_batch_size": 128,
+        "device": "cuda",
+        "audit_threads": 8,
+        "kl_target": 0.004,
+        "kl_early_stop": 0.0,
+        "seed": 455453,
+        "epochs": 1,
+        "advantage_normalization": "training decisions only, population std",
+        "value_target": "GAE return",
+        "value_loss": "51-bin interpolated cross entropy + clipped expectation MSE",
+        "entropy": "sum along sampled prefix path"
+      },
+      "heldout_global_approximate_kl": 0.00017619181194479755,
+      "heldout_sampled_forward_kl": 3.175655920782984e-05,
+      "holdout_decisions": 1549,
+      "holdout_indices_sha256": "20d7f21a0dfe9c85f26ba396562aeb793da9ad1f459c68159af3b5d831871476",
+      "holdout_selection": "uniform linspace in episode-step order; excluded from optimizer",
+      "training_decisions": 13941,
+      "behavior_sha256": "1237a08e81bfc716b963e4fbcb87fe90aa1ca1aba9d4c319d1ad3daba0504ded",
+      "rollout_sha256": "b9b5f906b0a2c8e3346785c8c00249b526fc195d800b521cc73c5de668099ac4",
+      "audit": {
+        "max_abs_errors": {
+          "logp": 3.5949566237203356e-06,
+          "value": 1.3126591711376534e-06,
+          "entropy": 1.0030215831235978e-06
+        },
+        "atol": 2e-05,
+        "rtol": 2e-05,
+        "decisions": 15490,
+        "threads": 8
+      },
+      "updates": 4,
+      "decisions_used": 4096,
+      "decisions_available": 15490,
+      "parameter_delta_l2": 0.10427871728061901,
+      "optimizer_resumed": true,
+      "mean_metrics": {
+        "loss": 2.7319289669394493,
+        "policy_loss": -0.009129447804298252,
+        "value_loss": 0.22376114735379815,
+        "entropy": 0.725116116926074,
+        "approximate_kl": 4.2819369880930935e-05,
+        "clip_fraction": 0.0,
+        "ratio_min": 0.9702312350273132,
+        "ratio_max": 1.037733569741249,
+        "ratio_p01": 0.9797814376652241,
+        "ratio_p99": 1.0263159312307835,
+        "distribution_loss": 10.769477218389511,
+        "gradient_norm": 11.275629043579102,
+        "update_ratio": 0.00031635527766565483
+      },
+      "last_metrics": {
+        "loss": 2.6012925505638123,
+        "policy_loss": -0.016867646481841803,
+        "value_loss": 0.23256342485547066,
+        "entropy": 0.6882142797112465,
+        "approximate_kl": 0.00010978798809446744,
+        "clip_fraction": 0.0,
+        "ratio_min": 0.9366869106888771,
+        "ratio_max": 1.0637434422969818,
+        "ratio_p01": 0.956854559481144,
+        "ratio_p99": 1.0507944226264954,
+        "distribution_loss": 10.267606019973755,
+        "gradient_norm": 11.893270492553711,
+        "update_ratio": 0.00031390721093939886
+      },
+      "updates_log": [
+        {
+          "loss": 2.8546102344989777,
+          "policy_loss": 0.042073797434568405,
+          "value_loss": 0.20921745710074902,
+          "entropy": 0.7137722596526146,
+          "approximate_kl": 1.0571170605544467e-09,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9999989941716194,
+          "ratio_max": 1.0000009089708328,
+          "ratio_p01": 0.9999993741512299,
+          "ratio_p99": 1.0000005960464478,
+          "distribution_loss": 11.06947934627533,
+          "gradient_norm": 10.643695831298828,
+          "update_ratio": 0.0003193941755672194
+        },
+        {
+          "loss": 2.705991804599762,
+          "policy_loss": -0.03248272812925279,
+          "value_loss": 0.2260356768965721,
+          "entropy": 0.7786901295185089,
+          "approximate_kl": 1.6303285519825295e-05,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9756328836083412,
+          "ratio_max": 1.0337353497743607,
+          "ratio_p01": 0.9865574762225151,
+          "ratio_p99": 1.0178854763507843,
+          "distribution_loss": 10.759010076522827,
+          "gradient_norm": 10.871586799621582,
+          "update_ratio": 0.0003167147684391785
+        },
+        {
+          "loss": 2.7658212780952454,
+          "policy_loss": -0.02924121404066682,
+          "value_loss": 0.22722803056240082,
+          "entropy": 0.7197877988219261,
+          "approximate_kl": 4.5185148792370455e-05,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9686061516404152,
+          "ratio_max": 1.053454577922821,
+          "ratio_p01": 0.9757143408060074,
+          "ratio_p99": 1.0365832298994064,
+          "distribution_loss": 10.981813430786133,
+          "gradient_norm": 11.693963050842285,
+          "update_ratio": 0.0003154049557168225
+        },
+        {
+          "loss": 2.6012925505638123,
+          "policy_loss": -0.016867646481841803,
+          "value_loss": 0.23256342485547066,
+          "entropy": 0.6882142797112465,
+          "approximate_kl": 0.00010978798809446744,
+          "clip_fraction": 0.0,
+          "ratio_min": 0.9366869106888771,
+          "ratio_max": 1.0637434422969818,
+          "ratio_p01": 0.956854559481144,
+          "ratio_p99": 1.0507944226264954,
+          "distribution_loss": 10.267606019973755,
+          "gradient_norm": 11.893270492553711,
+          "update_ratio": 0.00031390721093939886
+        }
+      ],
+      "early_stopped": false,
+      "health_inputs": {
+        "raw_advantage": {
+          "mean": -0.08592194004886204,
+          "std": 0.6627777014979833,
+          "nonfinite": 0
+        },
+        "return_range": [
+          -1.0,
+          1.0
+        ],
+        "explained_variance_before": 0.34247979553654107,
+        "explained_variance_after_heldout": 0.3403930252129279,
+        "value_ece_heldout": 0.11075514553428879,
+        "entropy_behavior_heldout": 0.705599565852217,
+        "entropy_updated_heldout": 0.7100355717118437
+      },
+      "opponent_distribution": {
+        "opponents": [
+          "mega_lucario",
+          "dragapult",
+          "iono",
+          "mega_abomasnow",
+          "mega_lucario_gbdt",
+          "self"
+        ],
+        "games_per_opponent": null,
+        "total_games": 200,
+        "opponent_weights": {
+          "mega_lucario": 1.0,
+          "dragapult": 1.0,
+          "iono": 1.0,
+          "mega_abomasnow": 1.0,
+          "mega_lucario_gbdt": 1.0,
+          "self": 1.0
+        },
+        "allocated_games": {
+          "mega_lucario": 34,
+          "dragapult": 34,
+          "iono": 34,
+          "mega_abomasnow": 34,
+          "mega_lucario_gbdt": 32,
+          "self": 32
+        },
+        "fixed_model_sha256": {},
+        "game_fraction": {
+          "mega_lucario": 0.17,
+          "dragapult": 0.17,
+          "iono": 0.17,
+          "mega_abomasnow": 0.17,
+          "mega_lucario_gbdt": 0.16,
+          "self": 0.16
+        },
+        "seed": 1862971203,
+        "sample_seed": 1905354494,
+        "temperature": 1.0,
+        "workers": 16,
+        "extract_workers": 16,
+        "rollout_chunk_games": 64,
+        "audit_threads": 8,
+        "gbdt_model_sha256": "d467ec54f7a6051fee07f50651e979ffb164c38a72d5ac1f0fc6ddc23f0632da",
+        "reward": {
+          "win": 1.0,
+          "draw": 0.0,
+          "loss": -1.0,
+          "intermediate": 0.0
+        },
+        "timestep": "one learner decision, sum prefix logp; terminal-only reward"
+      },
+      "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "27690d36876826af40e06ddc504d59f9274f14cb7ec1446a2679f07eaccb29c1"
+    },
+    "validation": {
+      "games": [
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_gbdt",
+          "result": 1,
+          "steps": 119,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_gbdt",
+          "result": 0,
+          "steps": 97,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_gbdt",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 163,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_gbdt",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 29,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 0,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_transformer",
+          "result": 0,
+          "steps": 141,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        },
+        {
+          "game": 1,
+          "agent_a": "mega_lucario_transformer",
+          "agent_b": "mega_lucario_transformer",
+          "result": 1,
+          "steps": 125,
+          "agent_errors": 0,
+          "engine_errors": 0,
+          "error_seat": -1
+        }
+      ],
+      "deterministic_replays": true,
+      "standalone_bin": true,
+      "parity": {
+        "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+        "model_id": "27690d36876826af40e06ddc504d59f9274f14cb7ec1446a2679f07eaccb29c1",
+        "bin_sha256": "7f013ef2234394638953a32a48194455a51f784b336ef5cb9ebb9a3fee2085f2",
+        "atol": 2e-05,
+        "rtol": 2e-05,
+        "games": 6,
+        "decisions": 475,
+        "queries": 506,
+        "rows": 13855,
+        "max_abs_error": 2.126717800088329e-06,
+        "feature_max_abs_error": 4.76837158203125e-07,
+        "value_max_abs_error": 1.4812134168096236e-06,
+        "float32_max_abs_error": 2.974576473580015e-06,
+        "action_mismatches": 0,
+        "agent_errors": 0,
+        "engine_errors": 0,
+        "probe_queries": 0,
+        "probe_rows": 0
+      }
+    }
+  }
+]

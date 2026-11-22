@@ -1,0 +1,42 @@
+{
+  "lucario_rule": {
+    "agent": "mega_lucario"
+  },
+  "dragapult_rule": {
+    "agent": "dragapult"
+  },
+  "iono_rule": {
+    "agent": "iono"
+  },
+  "abomasnow_rule": {
+    "agent": "mega_abomasnow"
+  },
+  "dagger_student": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-dagger_r1_student-s0-3d614aea/distill/model/model.bin"
+  },
+  "dagger_teacher_bc": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-dagger_r1_teacher-s0-6a595f8b/distill/model/model.bin"
+  },
+  "a02_transformer": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin"
+  },
+  "gbdt_1600_s0": {
+    "agent": "mega_lucario_gbdt",
+    "model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt"
+  },
+  "heldout_dragapult_gbdt": {
+    "agent": "dragapult_gbdt",
+    "model": "outputs/dragapult/heldout/model/model.gbdt"
+  },
+  "heldout_iono_gbdt": {
+    "agent": "iono_gbdt",
+    "model": "outputs/iono/heldout/model/model.gbdt"
+  },
+  "heldout_abomasnow_gbdt": {
+    "agent": "mega_abomasnow_gbdt",
+    "model": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+  }
+}

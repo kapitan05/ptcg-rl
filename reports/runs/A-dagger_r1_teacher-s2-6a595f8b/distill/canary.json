@@ -1,0 +1,7 @@
+{
+  "path": "runs/A-dagger_r1_teacher-s2-6a595f8b/distill/canary.npz",
+  "sha256": "4ea2b4cb36cf69313c4a672a2c79b26932b2023e99cb88ebb9aa03fc20dec225",
+  "decisions": 2000,
+  "seed": 7,
+  "source_manifest_sha256": "35b38b50035d0d41308748cf780d0df7e7e57693e9da18c1dca70ff481652795"
+}

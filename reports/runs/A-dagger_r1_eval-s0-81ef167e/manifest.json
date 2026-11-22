@@ -1,0 +1,102 @@
+{
+  "run_id": "A-dagger_r1_eval-s0-81ef167e",
+  "config": {
+    "name": "dagger_r1_eval",
+    "owner": "A",
+    "question": "dagger",
+    "hypothesis": "See A/04 (pre-registered there).",
+    "profile": "full",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "resources": {
+      "cpus": 32,
+      "mem": "64G",
+      "time": "06:00:00",
+      "gpus": 0
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "dagger": null,
+      "distill": null,
+      "ppo": null,
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 200,
+        "workers": 32,
+        "include_rule_bots": true,
+        "extra": {
+          "dagger_student": "runs/A-dagger_r1_student-s{seed}-3d614aea/distill/model/model.bin",
+          "dagger_teacher_bc": "runs/A-dagger_r1_teacher-s{seed}-6a595f8b/distill/model/model.bin",
+          "a02_transformer": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin",
+          "gbdt_1600_s0": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+          "heldout_dragapult_gbdt": "outputs/dragapult/heldout/model/model.gbdt",
+          "heldout_iono_gbdt": "outputs/iono/heldout/model/model.gbdt",
+          "heldout_abomasnow_gbdt": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+        }
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "81ef167e00368ed22944aeb2ace928be5823bc8cdd096db7df4f0a50e3f538c0",
+  "seed": 0,
+  "created": "2026-11-19T21:08:47+0100",
+  "stages": {
+    "eval": {
+      "status": "done",
+      "inputs_hash": "d738ef350abad1a5e2e0b97342b713e8bff94f010928a9967ccbb90955708688",
+      "finished": "2026-11-19T21:09:31+0100",
+      "children_max_rss_mb": 40.5,
+      "outputs": {
+        "eval_summary": "runs/A-dagger_r1_eval-s0-81ef167e/eval/summary.json"
+      }
+    }
+  },
+  "gates": {},
+  "git": {
+    "sha": "c75592459fbe94586644ef54963327f7678330ce",
+    "branch": "maksim/shared-layer",
+    "dirty": true,
+    "code_sha256": "79c4f9aacd0157209a4b06e621f19647e64ae1bffb47eb3d2538bec99a8baf68"
+  },
+  "uv_lock_sha256": "823fd3a94bcdfec8b27789d69b888ae4acf8ed6f995c9b4195f18836bdd07257",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-1",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1946631",
+    "slurm_array_task": "0",
+    "slurm_cpus": "32",
+    "gpus": null
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "outputs": {
+    "eval_summary": "runs/A-dagger_r1_eval-s0-81ef167e/eval/summary.json"
+  }
+}

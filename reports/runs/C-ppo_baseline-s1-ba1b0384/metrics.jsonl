@@ -1,0 +1,26 @@
+{"t": 1795093568.4952161, "stage": "ppo_health", "cycle": "cycle-000", "status": "warn"}
+{"t": 1795095502.1565483, "stage": "ppo_health", "cycle": "cycle-001", "status": "pass"}
+{"t": 1795097112.3591743, "stage": "ppo_health", "cycle": "cycle-002", "status": "pass"}
+{"t": 1795098928.8976045, "stage": "ppo_health", "cycle": "cycle-003", "status": "pass"}
+{"t": 1795100771.443126, "stage": "ppo_health", "cycle": "cycle-004", "status": "pass"}
+{"t": 1795102462.5401905, "stage": "ppo_health", "cycle": "cycle-005", "status": "pass"}
+{"t": 1795104088.4120162, "stage": "ppo_health", "cycle": "cycle-006", "status": "pass"}
+{"t": 1795105810.515138, "stage": "ppo_health", "cycle": "cycle-007", "status": "pass"}
+{"t": 1795107672.235078, "stage": "ppo_health", "cycle": "cycle-008", "status": "pass"}
+{"t": 1795109447.5414784, "stage": "ppo_health", "cycle": "cycle-009", "status": "pass"}
+{"t": 1795111243.969292, "stage": "ppo_health", "cycle": "cycle-010", "status": "pass"}
+{"t": 1795113130.3934205, "stage": "ppo_health", "cycle": "cycle-011", "status": "pass"}
+{"t": 1795113390.8278646, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["warn", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass", "pass"]}
+{"t": 1795113444.9793017, "stage": "eval", "agent": "ppo_baseline_s1_ppo", "mu": 1051.7426623396486, "sigma": 7.079496637732365, "lcb": 1037.5836690641838}
+{"t": 1795113444.9814732, "stage": "eval", "agent": "ppo_baseline_s1_ppo_c5", "mu": 1046.3224012566263, "sigma": 7.11297518115966, "lcb": 1032.096450894307}
+{"t": 1795113444.98645, "stage": "eval", "agent": "lucario_rule", "mu": 1045.4990214491484, "sigma": 7.0799088749592585, "lcb": 1031.3392036992298}
+{"t": 1795113444.9884586, "stage": "eval", "agent": "dragapult_rule", "mu": 1043.797339133463, "sigma": 7.055668385697551, "lcb": 1029.686002362068}
+{"t": 1795113444.993051, "stage": "eval", "agent": "ppo_baseline_s1_ppo_c8", "mu": 1031.1177450677064, "sigma": 7.120947270351485, "lcb": 1016.8758505270034}
+{"t": 1795113444.994588, "stage": "eval", "agent": "ppo_baseline_s1_ppo_c2", "mu": 1024.44323217975, "sigma": 7.106864379580348, "lcb": 1010.2295034205894}
+{"t": 1795113444.9995894, "stage": "eval", "agent": "gbdt_1600_s0", "mu": 1019.6186855959419, "sigma": 7.115049390127367, "lcb": 1005.3885868156872}
+{"t": 1795113445.0013468, "stage": "eval", "agent": "start_transformer", "mu": 1000.8323006881627, "sigma": 7.041298899613206, "lcb": 986.7497028889363}
+{"t": 1795113445.0060558, "stage": "eval", "agent": "abomasnow_rule", "mu": 979.2865882645187, "sigma": 6.404548608593441, "lcb": 966.4774910473319}
+{"t": 1795113445.0072937, "stage": "eval", "agent": "heldout_abomasnow_gbdt", "mu": 961.205556776098, "sigma": 6.244869347903418, "lcb": 948.7158180802911}
+{"t": 1795113445.0123255, "stage": "eval", "agent": "heldout_dragapult_gbdt", "mu": 959.9444693400033, "sigma": 6.917387950711356, "lcb": 946.1096934385805}
+{"t": 1795113445.0141292, "stage": "eval", "agent": "iono_rule", "mu": 929.8002764476647, "sigma": 6.123649512435758, "lcb": 917.5529774227932}
+{"t": 1795113445.0187016, "stage": "eval", "agent": "heldout_iono_gbdt", "mu": 906.3897214612678, "sigma": 6.1184825980566195, "lcb": 894.1527562651545}

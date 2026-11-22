@@ -1,0 +1,144 @@
+{
+  "protocol": "rating_v1",
+  "eval_seed": 3146688782,
+  "games_per_pair": 10,
+  "roster": {
+    "ppo_pipecheck_s0_ppo": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-001/models/model.bin"
+    },
+    "ppo_pipecheck_s0_ppo_c0": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-000/models/model.bin"
+    },
+    "start_transformer": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin"
+    }
+  },
+  "ratings": [
+    {
+      "agent": "ppo_pipecheck_s0_ppo_c0",
+      "mu": 1023.2094992677492,
+      "sigma": 52.052586948376764,
+      "lcb": 919.1043253709956,
+      "interval95": [
+        921.1864288489307,
+        1125.2325696865676
+      ],
+      "games": 20,
+      "weight": 0.9942777921826788
+    },
+    {
+      "agent": "start_transformer",
+      "mu": 1023.2094992677492,
+      "sigma": 52.052586948376764,
+      "lcb": 919.1043253709956,
+      "interval95": [
+        921.1864288489307,
+        1125.2325696865676
+      ],
+      "games": 20,
+      "weight": 0.9942777921826788
+    },
+    {
+      "agent": "ppo_pipecheck_s0_ppo",
+      "mu": 953.5810014645017,
+      "sigma": 52.45838047139212,
+      "lcb": 848.6642405217175,
+      "interval95": [
+        850.7625757405731,
+        1056.3994271884303
+      ],
+      "games": 20,
+      "weight": 1.0114444156346423
+    }
+  ],
+  "pairs": [
+    {
+      "agent": "ppo_pipecheck_s0_ppo",
+      "opponent": "ppo_pipecheck_s0_ppo_c0",
+      "games": 10,
+      "wins": 4,
+      "draws": 0,
+      "losses": 6,
+      "win_rate": 0.4,
+      "ci95": [
+        0.16817758120350967,
+        0.6873304525498135
+      ],
+      "seat0_win_rate": 0.4
+    },
+    {
+      "agent": "ppo_pipecheck_s0_ppo",
+      "opponent": "start_transformer",
+      "games": 10,
+      "wins": 4,
+      "draws": 0,
+      "losses": 6,
+      "win_rate": 0.4,
+      "ci95": [
+        0.16817758120350967,
+        0.6873304525498135
+      ],
+      "seat0_win_rate": 0.2
+    },
+    {
+      "agent": "ppo_pipecheck_s0_ppo_c0",
+      "opponent": "ppo_pipecheck_s0_ppo",
+      "games": 10,
+      "wins": 6,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.6,
+      "ci95": [
+        0.3126695474501864,
+        0.8318224187964902
+      ],
+      "seat0_win_rate": 0.6
+    },
+    {
+      "agent": "ppo_pipecheck_s0_ppo_c0",
+      "opponent": "start_transformer",
+      "games": 10,
+      "wins": 5,
+      "draws": 0,
+      "losses": 5,
+      "win_rate": 0.5,
+      "ci95": [
+        0.23658959361548731,
+        0.7634104063845126
+      ],
+      "seat0_win_rate": 0.6
+    },
+    {
+      "agent": "start_transformer",
+      "opponent": "ppo_pipecheck_s0_ppo",
+      "games": 10,
+      "wins": 6,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.6,
+      "ci95": [
+        0.3126695474501864,
+        0.8318224187964902
+      ],
+      "seat0_win_rate": 0.4
+    },
+    {
+      "agent": "start_transformer",
+      "opponent": "ppo_pipecheck_s0_ppo_c0",
+      "games": 10,
+      "wins": 5,
+      "draws": 0,
+      "losses": 5,
+      "win_rate": 0.5,
+      "ci95": [
+        0.23658959361548731,
+        0.7634104063845126
+      ],
+      "seat0_win_rate": 0.6
+    }
+  ],
+  "corpus_sha256": "c346d82f36031bd03a172f49504bab1aacc06da9a7c740e1bfe78f40bf5b3dcd"
+}

@@ -1,0 +1,368 @@
+{
+  "protocol": "rating_v1",
+  "eval_seed": 3146688782,
+  "games_per_pair": 4,
+  "roster": {
+    "lucario_rule": {
+      "agent": "mega_lucario"
+    },
+    "dragapult_rule": {
+      "agent": "dragapult"
+    },
+    "iono_rule": {
+      "agent": "iono"
+    },
+    "abomasnow_rule": {
+      "agent": "mega_abomasnow"
+    },
+    "smoke_s0_gbdt": {
+      "agent": "mega_lucario_gbdt",
+      "model": "runs/shared-smoke-s0-8eac01e2/gbdt/model/model.gbdt"
+    }
+  },
+  "ratings": [
+    {
+      "agent": "dragapult_rule",
+      "mu": 1379.0991013306436,
+      "sigma": 131.24669676873975,
+      "lcb": 1116.6057077931641,
+      "interval95": [
+        1121.8555756639137,
+        1636.3426269973736
+      ],
+      "games": 16,
+      "weight": 1.1108180197566744
+    },
+    {
+      "agent": "lucario_rule",
+      "mu": 1123.5592066166073,
+      "sigma": 93.90862720535678,
+      "lcb": 935.7419522058938,
+      "interval95": [
+        939.4982972941079,
+        1307.6201159391067
+      ],
+      "games": 16,
+      "weight": 0.916880029427654
+    },
+    {
+      "agent": "abomasnow_rule",
+      "mu": 850.8985019491975,
+      "sigma": 88.6308855006212,
+      "lcb": 673.636730947955,
+      "interval95": [
+        677.1819663679798,
+        1024.615037530415
+      ],
+      "games": 16,
+      "weight": 0.9645890543097065
+    },
+    {
+      "agent": "iono_rule",
+      "mu": 845.3068838806674,
+      "sigma": 89.35061820725146,
+      "lcb": 666.6056474661646,
+      "interval95": [
+        670.1796721944546,
+        1020.4340955668803
+      ],
+      "games": 16,
+      "weight": 0.934807416728422
+    },
+    {
+      "agent": "smoke_s0_gbdt",
+      "mu": 801.1363062228843,
+      "sigma": 90.52648161560164,
+      "lcb": 620.083342991681,
+      "interval95": [
+        623.7044022563051,
+        978.5682101894635
+      ],
+      "games": 16,
+      "weight": 1.0729054797775435
+    }
+  ],
+  "pairs": [
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "dragapult_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "iono_rule",
+      "games": 4,
+      "wins": 1,
+      "draws": 0,
+      "losses": 3,
+      "win_rate": 0.25,
+      "ci95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "lucario_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "smoke_s0_gbdt",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "abomasnow_rule",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "iono_rule",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "lucario_rule",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "smoke_s0_gbdt",
+      "games": 4,
+      "wins": 3,
+      "draws": 0,
+      "losses": 1,
+      "win_rate": 0.75,
+      "ci95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "abomasnow_rule",
+      "games": 4,
+      "wins": 3,
+      "draws": 0,
+      "losses": 1,
+      "win_rate": 0.75,
+      "ci95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "dragapult_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "lucario_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "smoke_s0_gbdt",
+      "games": 4,
+      "wins": 2,
+      "draws": 0,
+      "losses": 2,
+      "win_rate": 0.5,
+      "ci95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "abomasnow_rule",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "dragapult_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "iono_rule",
+      "games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "win_rate": 1.0,
+      "ci95": [
+        0.5100999795960008,
+        1.0
+      ],
+      "seat0_win_rate": 1.0
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "smoke_s0_gbdt",
+      "games": 4,
+      "wins": 3,
+      "draws": 0,
+      "losses": 1,
+      "win_rate": 0.75,
+      "ci95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "smoke_s0_gbdt",
+      "opponent": "abomasnow_rule",
+      "games": 4,
+      "wins": 0,
+      "draws": 0,
+      "losses": 4,
+      "win_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.48990002040399916
+      ],
+      "seat0_win_rate": 0.0
+    },
+    {
+      "agent": "smoke_s0_gbdt",
+      "opponent": "dragapult_rule",
+      "games": 4,
+      "wins": 1,
+      "draws": 0,
+      "losses": 3,
+      "win_rate": 0.25,
+      "ci95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "smoke_s0_gbdt",
+      "opponent": "iono_rule",
+      "games": 4,
+      "wins": 2,
+      "draws": 0,
+      "losses": 2,
+      "win_rate": 0.5,
+      "ci95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "smoke_s0_gbdt",
+      "opponent": "lucario_rule",
+      "games": 4,
+      "wins": 1,
+      "draws": 0,
+      "losses": 3,
+      "win_rate": 0.25,
+      "ci95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "seat0_win_rate": 0.0
+    }
+  ],
+  "corpus_sha256": "d1367333809d8233cf0909b727816093d49d25ea0e15553c61f6c9cfd7da34d3"
+}

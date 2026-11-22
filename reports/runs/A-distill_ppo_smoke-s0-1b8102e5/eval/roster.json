@@ -1,0 +1,26 @@
+{
+  "lucario_rule": {
+    "agent": "mega_lucario"
+  },
+  "dragapult_rule": {
+    "agent": "dragapult"
+  },
+  "iono_rule": {
+    "agent": "iono"
+  },
+  "abomasnow_rule": {
+    "agent": "mega_abomasnow"
+  },
+  "distill_ppo_smoke_s0_transformer": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin"
+  },
+  "distill_ppo_smoke_s0_ppo": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/ppo/cycle-000/models/model.bin"
+  },
+  "gbdt_1600_s0": {
+    "agent": "mega_lucario_gbdt",
+    "model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "run_id": "shared-smoke-s0-8eac01e2",
+  "config": {
+    "name": "smoke",
+    "owner": "shared",
+    "question": "smoke",
+    "hypothesis": "The full pipeline runs end to end and all gates pass.",
+    "profile": "smoke",
+    "seeds": [
+      0
+    ],
+    "resources": {
+      "cpus": 4,
+      "mem": "8G",
+      "time": "01:00:00",
+      "gpus": 0
+    },
+    "stages": {
+      "data": {
+        "replay_dir": "outputs/mega_lucario/rule_replays",
+        "per_dir": null,
+        "teacher": "mega_lucario",
+        "collect_games_per_opponent": 2
+      },
+      "gbdt": {
+        "profile": "quick",
+        "threads": 4,
+        "validation_fraction": 0.25,
+        "test_fraction": 0.0,
+        "audit": true
+      },
+      "distill": null,
+      "ppo": null,
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 4,
+        "workers": 4,
+        "include_rule_bots": true,
+        "extra": {}
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "8eac01e24bc778164152b0b95b05461415ed7f3d338c953acd931aeac7f716e2",
+  "seed": 0,
+  "created": "2026-11-17T09:42:36+0100",
+  "stages": {
+    "data": {
+      "status": "done",
+      "inputs_hash": "1561b0a5fd39d280a81d68f0164bf7d4f11d98db37ceffe6d410f4a0eff97cca",
+      "finished": "2026-11-17T09:42:39+0100",
+      "children_max_rss_mb": 48.0,
+      "outputs": {
+        "replays": "runs/shared-smoke-s0-8eac01e2/data/replays",
+        "replays_manifest_sha256": "ade8fc4b8bd4b1318ebf8aad1695cc47e98e6d7346444536207f5e709aa9539e"
+      }
+    },
+    "gbdt": {
+      "status": "done",
+      "inputs_hash": "46ac913036bc15d85a86ef30bd9d9e1ffe68dc835619481923adfa019f199543",
+      "finished": "2026-11-17T09:43:02+0100",
+      "children_max_rss_mb": 500.6,
+      "outputs": {
+        "gbdt_model": "runs/shared-smoke-s0-8eac01e2/gbdt/model/model.gbdt",
+        "gbdt_model_sha256": "c7273b6589ae0d518de793e9b407d646d880a6be2a3637738c917318af05789e",
+        "gbdt_features": "runs/shared-smoke-s0-8eac01e2/gbdt/features"
+      }
+    },
+    "eval": {
+      "status": "done",
+      "inputs_hash": "c74953c8aa5427a8a99ec28535a5dd5e04f9b54ce83476c7e37e0559b8f0d39d",
+      "finished": "2026-11-17T09:43:02+0100",
+      "children_max_rss_mb": 500.6,
+      "outputs": {
+        "eval_summary": "runs/shared-smoke-s0-8eac01e2/eval/summary.json"
+      }
+    }
+  },
+  "gates": {
+    "gbdt_audit_1e-10": {
+      "passed": true,
+      "report": "runs/shared-smoke-s0-8eac01e2/gbdt/audit.json"
+    }
+  },
+  "git": {
+    "sha": "c7bfa7f24a92f7ef334fe7944dfd9cc5c8fc5a47",
+    "branch": "main",
+    "dirty": true
+  },
+  "uv_lock_sha256": "54b780a453f9e982a4ad527a1fd134554a1e73c672f8064ce93761e0821c62d3",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-3",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1943726",
+    "slurm_array_task": null,
+    "slurm_cpus": "4",
+    "gpus": [
+      "No devices were found"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "data": {
+      "collect": 163901060
+    },
+    "gbdt": {
+      "split": 1050234342,
+      "train": 1877850383,
+      "audit": 308360557
+    }
+  },
+  "outputs": {
+    "replays": "runs/shared-smoke-s0-8eac01e2/data/replays",
+    "replays_manifest_sha256": "ade8fc4b8bd4b1318ebf8aad1695cc47e98e6d7346444536207f5e709aa9539e",
+    "gbdt_model": "runs/shared-smoke-s0-8eac01e2/gbdt/model/model.gbdt",
+    "gbdt_model_sha256": "c7273b6589ae0d518de793e9b407d646d880a6be2a3637738c917318af05789e",
+    "gbdt_features": "runs/shared-smoke-s0-8eac01e2/gbdt/features",
+    "eval_summary": "runs/shared-smoke-s0-8eac01e2/eval/summary.json"
+  }
+}

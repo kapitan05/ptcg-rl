@@ -1,0 +1,105 @@
+{
+  "format": "ptcg-rule-corpus-v1",
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "games": [
+    {
+      "path": "mega_lucario-seat0/game-0.jsonl",
+      "sha256": "97d151ee0d4afa92bed2432d91b87202e4491f811b6f559795ce50020a171031",
+      "seed": 308360557,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 169,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "mega_lucario-seat1/game-0.jsonl",
+      "sha256": "2c9ce075e4a4447a66fc66752353aef0e7d2bc5bba33ccd4323f7d6a7a477ca9",
+      "seed": 308360558,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 46,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "dragapult-seat0/game-0.jsonl",
+      "sha256": "ea40b5fcf28356fd6b36444976794831caaf63718931e297d52f90eae24d39e5",
+      "seed": 308360559,
+      "type": "terminal",
+      "game": 0,
+      "result": 1,
+      "steps": 142,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "dragapult-seat1/game-0.jsonl",
+      "sha256": "979ffd751874ecea7bda41a7af806489f66696d0a9bf5aa197ddb698f3c7fd12",
+      "seed": 308360560,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 192,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "iono-seat0/game-0.jsonl",
+      "sha256": "d968a478043d42fc91cc00357f8445fccda3960efb93c74fe0c0933ee2d7beba",
+      "seed": 308360561,
+      "type": "terminal",
+      "game": 0,
+      "result": 1,
+      "steps": 190,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "iono-seat1/game-0.jsonl",
+      "sha256": "40a438762ec173162b6e4e974ad08ae48357fafd8638ef12cdc0b9e1729476b8",
+      "seed": 308360562,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 201,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "mega_abomasnow-seat0/game-0.jsonl",
+      "sha256": "3c7ff6f533b73e5ccd1bc8da7c2fa7a904fe2264677e3d6619465c0dd8655542",
+      "seed": 308360563,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 75,
+      "agent_errors": 0,
+      "engine_errors": 0
+    },
+    {
+      "path": "mega_abomasnow-seat1/game-0.jsonl",
+      "sha256": "7347da5b2ac7b454733ce7492ca8f5b923560c0f6afb3508e767c2d5539ebcca",
+      "seed": 308360564,
+      "type": "terminal",
+      "game": 0,
+      "result": 0,
+      "steps": 22,
+      "agent_errors": 0,
+      "engine_errors": 0
+    }
+  ],
+  "teacher": "mega_lucario_gbdt",
+  "model_sha256": "c7273b6589ae0d518de793e9b407d646d880a6be2a3637738c917318af05789e",
+  "seed": 308360557,
+  "games_per_pairing": 1,
+  "games_by_seat": [
+    1,
+    1
+  ],
+  "games_per_opponent": 2,
+  "total_games": 8,
+  "workers": 8
+}

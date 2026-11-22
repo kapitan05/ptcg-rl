@@ -1,0 +1,10 @@
+{"t": 1794921241.9206934, "stage": "gate", "gate": "transformer_validate_2e-5", "passed": true}
+{"t": 1794921601.9666083, "stage": "ppo_health", "cycle": "cycle-000", "status": "pass"}
+{"t": 1794921601.9868608, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["pass"]}
+{"t": 1794921617.3622966, "stage": "eval", "agent": "lucario_rule", "mu": 1051.3866304540716, "sigma": 9.202817099060338, "lcb": 1032.980996255951}
+{"t": 1794921617.3638053, "stage": "eval", "agent": "dragapult_rule", "mu": 1035.123645512805, "sigma": 9.148932312908878, "lcb": 1016.8257808869873}
+{"t": 1794921617.3680086, "stage": "eval", "agent": "gbdt_1600_s0", "mu": 1024.5634312797163, "sigma": 9.222227380717905, "lcb": 1006.1189765182804}
+{"t": 1794921617.369348, "stage": "eval", "agent": "distill_ppo_smoke_s0_transformer", "mu": 1004.972111117979, "sigma": 9.195445336444118, "lcb": 986.5812204450908}
+{"t": 1794921617.3734372, "stage": "eval", "agent": "distill_ppo_smoke_s0_ppo", "mu": 995.0961247705994, "sigma": 9.177165652694452, "lcb": 976.7417934652105}
+{"t": 1794921617.375072, "stage": "eval", "agent": "abomasnow_rule", "mu": 976.1918383444881, "sigma": 8.31306468761818, "lcb": 959.5657089692518}
+{"t": 1794921617.3794148, "stage": "eval", "agent": "iono_rule", "mu": 912.6662185203409, "sigma": 8.173886336256366, "lcb": 896.3184458478281}

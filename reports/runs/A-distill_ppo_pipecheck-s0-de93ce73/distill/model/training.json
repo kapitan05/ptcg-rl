@@ -1,0 +1,41 @@
+{
+  "config": {
+    "epochs": 1,
+    "max_updates": null,
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "temperature": 1.0,
+    "hard_weight": 0.1,
+    "value_weight": 0.25,
+    "value_target": "terminal outcome per acting seat",
+    "loss": "KL + action_weight * joint NLL + value_weight * distribution CE",
+    "seed": 1086154023,
+    "device": "cuda",
+    "weight_decay": 0.0001,
+    "gradient_clip": 0.5,
+    "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "torch_version": "2.14.0+cu130"
+  },
+  "updates": 48,
+  "max_updates": null,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.1905600816454613,
+      "validation": {
+        "decisions": 577,
+        "queries": 598,
+        "teacher_top1": 0.7424749163879598,
+        "loss": 0.6186898857923273,
+        "kl": 0.26622461048527857,
+        "action_nll": 1.0026877451190916,
+        "value_loss": 1.0087859182258618,
+        "value_mse": 0.9975338942876515
+      }
+    }
+  ],
+  "selected_epoch": 1,
+  "test": null,
+  "checkpoint_sha256": "9a8428e4cd4b8bb239bb33e647fdb94bd8306cbc93417b1a92e64c4737ef82f6",
+  "teacher_model_id": "030592b601895f0201f5f26455729c0e6a3fb965582841d69376c467d1d35d0e"
+}

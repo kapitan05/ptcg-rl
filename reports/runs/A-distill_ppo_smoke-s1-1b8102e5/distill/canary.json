@@ -1,0 +1,7 @@
+{
+  "path": "runs/A-distill_ppo_smoke-s1-1b8102e5/distill/canary.npz",
+  "sha256": "a022ae0ea3c6a4177455e01dfda550f7dce8d5593b58366e520a12c1b4f4a30d",
+  "decisions": 2000,
+  "seed": 7,
+  "source_manifest_sha256": "7c2d771dd756ca7e818ad5d8552f72033c06203be3d5f39c2c4a7401f4493676"
+}
