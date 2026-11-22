@@ -38,3 +38,21 @@ uv run pytest tests/ -q
    - Don't use `sbatch --export=...`: it gets jobs held with "user env retrieval failed".
 
 Resources on the `student` partition: 3 nodes × 48 CPUs / ~756 GB RAM; stud-2 and stud-3 each have 2× RTX 6000; 1-day job limit.
+
+## Results and tracking
+- **Saved results:** `reports/runs/<run_id>/` holds the small per-run files from the cluster's `runs/`: manifest, metrics, eval summary/roster/ratings, and per PPO cycle health, canary, training and validation JSON. Machine-specific path prefixes are stripped. Models, replays and rollouts stay on the cluster (hashes are in the manifests).
+- **Refresh from Eden** (from the repo root):
+  ```bash
+  rsync -a --prune-empty-dirs --exclude 'C01_s*' --exclude '*/rollout/' --exclude '*/replays/' \
+    --exclude 'card_metadata.json' --exclude '*/features*/' --include '*/' \
+    --include '*.json' \
+    --include 'metrics.jsonl' --include 'ratings.csv' --include 'ppo_rosters/*.json' \
+    --include 'wandb/**' --exclude '*' eden:ptcg-rl/runs/ reports/runs/
+  ```
+  Then strip machine path prefixes: `grep -rlE "/(mnt/evafs|home2)/" reports/runs | xargs sed -i "" -E "s#/(mnt/evafs/faculty/home|home2/faculty)/[^/]+/ptcg-rl/##g"` (macOS `sed`). `wandb/` is git-ignored; it is only there to be synced.
+- **W&B:** jobs rendered by `ptcg_exp.slurm` log offline by default (`PTCG_WANDB=1`, `WANDB_MODE=offline`; set `PTCG_WANDB=0` to disable) into `runs/<id>/wandb/`. No API key is stored on the cluster. After pulling, run on a machine where you ran `uv run wandb login`:
+  ```bash
+  PYTHONPATH=src uv run python -m ptcg_exp.wandb_backfill --sync-offline reports/runs   # cluster offline runs
+  PYTHONPATH=src uv run python -m ptcg_exp.wandb_backfill                               # runs without W&B logs
+  ```
+  Logged: config, per-cycle PPO metrics (`ppo_cycle/*`: training means, held-out KL, every numeric health check, canary), gates, BT ratings and pairwise win rates. Live and backfilled logging share one W&B run id per run ID.

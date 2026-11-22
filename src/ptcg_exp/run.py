@@ -20,6 +20,7 @@ from pathlib import Path
 from ptcg_exp import config as config_mod
 from ptcg_exp import slurm
 from ptcg_exp.config import League
+from ptcg_exp.cycle_metrics import cycle_metrics
 from ptcg_exp.evaluate import evaluate
 from ptcg_exp.features_merge import merge
 from ptcg_exp.seeds import derive
@@ -577,6 +578,7 @@ class Pipeline:
                     _sh([sys.executable, "-m", "ptcg_exp.canary", "score", *args], log)
                 report = health.check_cycle(cycle, h, prev_cycle)
                 self.run.log("ppo_health", cycle=cycle.name, status=report["status"])
+                self.run.log("ppo_cycle", **cycle_metrics(cycle))
                 if not p.keep_rollouts:
                     self._drop_rollout(cycle / "rollout")
             status = json.loads((cycle / "health.json").read_text())["status"]

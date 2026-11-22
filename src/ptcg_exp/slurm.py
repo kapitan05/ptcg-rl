@@ -21,6 +21,9 @@ TEMPLATE = """#!/bin/bash
 {gres}{array}set -euo pipefail
 cd {root}
 export PYTHONPATH=src OMP_NUM_THREADS={cpus} CUBLAS_WORKSPACE_CONFIG=:4096:8
+# W&B on by default, offline (no key on the cluster): runs/<id>/wandb/, synced later from a
+# machine with a key (`python -m ptcg_exp.wandb_backfill --sync-offline`). Set PTCG_WANDB=0 to disable.
+export PTCG_WANDB=${{PTCG_WANDB:-1}} WANDB_MODE=${{WANDB_MODE:-offline}}
 # Python is called directly: srun is not on PATH inside Eden batch jobs.
 SEED=${{SLURM_ARRAY_TASK_ID:-{default_seed}}}
 .venv/bin/python -m ptcg_exp.run {config} --seed "$SEED" {stages}

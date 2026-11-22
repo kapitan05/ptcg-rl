@@ -376,3 +376,50 @@ def test_league_roster_selects_and_weights(tmp_path: Path) -> None:
     assert pf["weights"]["self"] == pytest.approx(0.7)
     assert pf["weights"]["snap_c009"] == pytest.approx(0.5)  # unseen: win rate 0.5
     assert list(league_roster({}, lg, {})["models"]) == []
+
+
+def test_cycle_metrics_flattens_saved_cycle(tmp_path: Path) -> None:
+    """training/health/canary files become flat scalar keys; dict values are averaged."""
+    from ptcg_exp.cycle_metrics import cycle_metrics
+
+    cycle = tmp_path / "ppo/cycle-003"
+    (cycle / "models").mkdir(parents=True)
+    (cycle / "models/training.json").write_text(
+        json.dumps(
+            dict(
+                mean_metrics=dict(approximate_kl=0.004, entropy=0.7),
+                heldout_global_approximate_kl=0.003,
+                early_stopped=True,
+            )
+        )
+    )
+    (cycle / "health.json").write_text(
+        json.dumps(
+            dict(
+                status="warn",
+                checks=[
+                    dict(check="value_ece", value=0.12),
+                    dict(
+                        check="win_rate_per_opponent_seat", value={"a/seat0": 0.2, "a/seat1": 0.4}
+                    ),
+                    dict(check="seeds_recorded", value="ok"),
+                ],
+            )
+        )
+    )
+    m = cycle_metrics(cycle)
+    assert m["cycle"] == 3.0
+    assert m["train/approximate_kl"] == 0.004
+    assert m["heldout/heldout_global_approximate_kl"] == 0.003
+    assert m["train/early_stopped"] == 1.0
+    assert m["health/status"] == 1.0
+    assert abs(m["health/win_rate_per_opponent_seat"] - 0.3) < 1e-12
+    assert "health/seeds_recorded" not in m
+
+
+def test_wandb_id_is_stable() -> None:
+    """Live logging and backfill must address the same W&B run."""
+    from ptcg_exp.tracking import wandb_id
+
+    assert wandb_id("C-ppo_baseline-s0-ba1b0384") == wandb_id("C-ppo_baseline-s0-ba1b0384")
+    assert wandb_id("a") != wandb_id("b") and len(wandb_id("a")) == 16

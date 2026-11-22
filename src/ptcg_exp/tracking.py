@@ -198,21 +198,34 @@ def _wandb_log(run: Run, stage: str, metrics: JSON) -> None:
     """Log numeric metrics to W&B if PTCG_WANDB=1 (offline by default on the cluster)."""
     if os.environ.get("PTCG_WANDB") != "1":
         return
+    # Tracking must never break an experiment: any W&B error is reported once and logging stops.
+    if _WANDB.get(run.id) is False:
+        return
     try:
         import wandb
-    except ImportError:
-        return
-    if run.id not in _WANDB:
-        os.environ.setdefault("WANDB_MODE", "offline")
-        _WANDB[run.id] = wandb.init(
-            project="ptcg-rl",
-            name=run.id,
-            group=run.cfg.question,
-            tags=[run.cfg.owner, run.cfg.profile],
-            config=run.manifest["config"] | dict(seed=run.seed, config_hash=run.cfg.config_hash()),
-            dir=str(run.dir),
-            reinit=True,
-        )
-    numeric = {f"{stage}/{k}": v for k, v in metrics.items() if isinstance(v, int | float)}
-    if numeric:
-        _WANDB[run.id].log(numeric)
+
+        if run.id not in _WANDB:
+            os.environ.setdefault("WANDB_MODE", "offline")
+            _WANDB[run.id] = wandb.init(
+                project="ptcg-rl",
+                name=run.id,
+                id=wandb_id(run.id),
+                resume="allow",
+                group=run.cfg.question,
+                tags=[run.cfg.owner, run.cfg.profile],
+                config=run.manifest["config"]
+                | dict(seed=run.seed, config_hash=run.cfg.config_hash()),
+                dir=str(run.dir),
+                reinit=True,
+            )
+        numeric = {f"{stage}/{k}": v for k, v in metrics.items() if isinstance(v, int | float)}
+        if numeric:
+            _WANDB[run.id].log(numeric)
+    except Exception as e:  # noqa: BLE001
+        print(f"[ptcg] W&B disabled for {run.id}: {type(e).__name__}: {e}", flush=True)
+        _WANDB[run.id] = False
+
+
+def wandb_id(run_id: str) -> str:
+    """Stable W&B run id for a run ID, so live logging and backfill write to the same run."""
+    return hashlib.sha256(run_id.encode()).hexdigest()[:16]

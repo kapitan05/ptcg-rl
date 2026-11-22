@@ -33,4 +33,10 @@ submissions/
 
 # Experiment layer outputs (provenance stays in runs/<id>/manifest.json on the machine that ran it)
 runs/
+!reports/runs/
 logs/
+
+# W&B local run files and compressed replay archives
+wandb/
+*.tar.zst
+*.tar.zst.sha256
