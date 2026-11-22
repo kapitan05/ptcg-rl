@@ -1,7 +1,13 @@
 # Contributing (team workflow)
 
 ## Branches and PRs
-- `main` is protected: changes go through a PR with 1 review and green CI.
+- `main` is protected (GitHub branch protection):
+  - every change goes through a PR; **1 approving review** from someone other than the author
+  - CI job `test` (ruff, mypy, pytest, contract tests) must pass, and the branch must be up to date with `main`
+  - a new push dismisses earlier approvals; all review conversations must be resolved
+  - squash merge only (linear history); the branch is deleted after merge; no force pushes or deletion of `main`
+  - repository admins can bypass in an emergency; don't use it for normal work
+- Secret scanning with push protection is on: a push containing a recognised key is rejected. Keep keys in `.env` / `~/.netrc`, never in the repo or on Eden.
 - Branch names: `<owner>/<topic>` (e.g. `maksim/shared-layer`, `B/history-tokens`).
 - Keep PRs small. Pipeline-logic changes need a test. Contract changes (features, architecture) need re-verified parity and a new `CONTRACT_ID`.
 
