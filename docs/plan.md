@@ -105,8 +105,8 @@ Decision rules applied: C/01 beat its start (LCB 0.58 > 0.5), so the pool ablati
 
 | # | Work | Owner | Status / Eden |
 |---|---|---|---|
-| 1 | **C/01b:** seed 2 rerun with `kl_early_stop: 2.0` (deviation, reported) | C | queued 1948509 (after the league pipecheck 1948508) |
-| 2 | **C/03 control:** continue each C/01 final for 6 cycles, default pool | C | queued 1948510 |
+| 1 | **C/01b:** seed 2 rerun with `kl_early_stop: 2.0` (deviation, reported) | C | **done** (1948509): 12 cycles no fail; BT 1020 → 1056; vs. start 0.562, rule bots 0.52–0.53 |
+| 2 | **C/03 control:** continue each C/01 final for 6 cycles, default pool | C | **done** (1948510): 18/18 pass; vs. C/01 final 0.532 [0.49, 0.57]; abomasnow rule 0.582 [0.54, 0.62] (`experiments/C/03_ppo_continue`) |
 | 3 | **C/04 snapshot league (P2):** + frozen snapshots (3 newest + 2 older, from C/01 c2/c5/c8, the start and own cycles) | C | implemented (`League`, `league_roster`); queued 1948511 |
 | 4 | **C/05 league + PFSP (P3):** weight × max(0.2, 1 − win rate) from the previous cycle | C | queued 1948512 |
 | 5 | **C/06 joint evaluation:** C/01 final, C/03, C/04, C/05, A/02, GBDT and held-out pool, one roster per seed | C | queued 1948513 |

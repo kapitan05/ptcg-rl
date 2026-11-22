@@ -26,3 +26,10 @@
 - `approx_kl_per_update`: max minibatch KL 0.020 > 4 × kl_target = 0.016 (mean 0.0063). KL early stop was off, so nothing stopped the epoch.
 - The run stopped before any further cycle, as designed: no unhealthy checkpoint reached the next rollout.
 - **Rerun as C/01b** (`01b_ppo_baseline_s2_klstop.yaml`, seed 2 only, `kl_early_stop: 2.0`). This is a deviation from the pre-registered config (one knob, one seed), reported separately. The rule also changed: a KL spike that triggered the early stop is now a warning, while the post-update held-out KL check still fails a step that's too large.
+
+## C/01b result (seed 2, `kl_early_stop: 2.0`; job 1948509, 6.2 h): completed, no fail
+- Health: warn cycles 0–1, pass 2–11.
+- BT: start 1020 → c2 1024 → c5 1035 → c8 1046 → final **1056** [1042, 1070]; lucario_rule 1049 in the same roster.
+- Final vs. start 0.562 [0.49, 0.63]; vs. GBDT 0.545 [0.48, 0.61]; vs. rule bots 0.52–0.53 (tie); vs. iono 0.79.
+- Held-out: dragapult 0.61, iono 0.805, abomasnow 0.517.
+- Same direction as seeds 0/1 but a smaller gain; on its own the CI touches 0.5. With KL early stop the run is healthy, so all 3 seeds now count.
