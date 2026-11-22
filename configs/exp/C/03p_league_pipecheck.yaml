@@ -1,0 +1,13 @@
+# C/03p: toy-size pipecheck of the league + PFSP + KL early stop code before the Sprint 3 chain.
+extends: 05_ppo_league_pfsp.yaml
+name: league_pipecheck
+seeds: [0]
+resources: {cpus: 32, mem: 64G, time: "02:00:00", gpus: 1}
+stages:
+  ppo:
+    cycles: 2
+    games: 240
+    updates: 4
+    eval_cycles: [0]
+  eval:
+    games_per_pair: 10

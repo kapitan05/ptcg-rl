@@ -198,9 +198,7 @@ def main() -> None:
     args.output_json.write_text(
         json.dumps(converted, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_autoload_html(
-        converted["official_visualizer_payload"], args.output_html, args.viewer_url
-    )
+    write_autoload_html(converted["official_visualizer_payload"], args.output_html, args.viewer_url)
     print(args.output_html)
 
 

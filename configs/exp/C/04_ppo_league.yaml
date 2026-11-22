@@ -1,0 +1,17 @@
+# C/04 (plan P2): C/03 + snapshot league. Each cycle also trains vs. frozen (argmax) snapshots:
+# the 3 newest + 2 evenly spaced older ones from C/01 cycles 2/5/8, the start (C/01 final) and
+# this run's own cycles. Same 5,000 games per cycle, so the snapshots dilute the default pool.
+extends: 03_ppo_continue.yaml
+name: ppo_league
+hypothesis: >-
+  A snapshot league guards against forgetting: vs. C/03 (paired seeds), equal or better
+  rating_v1 and better held-out rating.
+stages:
+  ppo:
+    league:
+      recent: 3
+      older: 2
+      seed_pool:
+        - runs/C01_s{seed}/ppo/cycle-002/models/model.bin
+        - runs/C01_s{seed}/ppo/cycle-005/models/model.bin
+        - runs/C01_s{seed}/ppo/cycle-008/models/model.bin

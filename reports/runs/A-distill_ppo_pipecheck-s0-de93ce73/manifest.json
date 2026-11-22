@@ -1,0 +1,162 @@
+{
+  "run_id": "A-distill_ppo_pipecheck-s0-de93ce73",
+  "config": {
+    "name": "distill_ppo_pipecheck",
+    "owner": "A",
+    "question": "pipeline",
+    "hypothesis": "All distill/PPO stages and gates run on an Eden GPU node.",
+    "profile": "full",
+    "seeds": [
+      0
+    ],
+    "resources": {
+      "cpus": 16,
+      "mem": "64G",
+      "time": "06:00:00",
+      "gpus": 1
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "distill": {
+        "teacher_model": "outputs/mega_lucario/scale/runs/games_120_s0/model/model.gbdt",
+        "teacher_games_per_opponent": 50,
+        "epochs": 1,
+        "batch_size": 256,
+        "learning_rate": 0.0003,
+        "temperature": 1.0,
+        "hard_weight": 0.1,
+        "value_weight": 0.25,
+        "device": "cuda",
+        "max_updates": null
+      },
+      "ppo": {
+        "checkpoint": null,
+        "gbdt_model": "outputs/mega_lucario/scale/runs/games_120_s0/model/model.gbdt",
+        "cycles": 1,
+        "games": 64,
+        "updates": 2,
+        "batch_size": 64,
+        "workers": 16,
+        "device": "cuda"
+      },
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 20,
+        "workers": 16,
+        "include_rule_bots": true,
+        "extra": {}
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "de93ce739fe3a3e8267f1731756b432ddc5b1e7e2901aca190e0de55e01cc3f3",
+  "seed": 0,
+  "created": "2026-11-17T10:16:05+0100",
+  "stages": {
+    "distill": {
+      "status": "done",
+      "inputs_hash": "945c8e6f7e3d17527472d97e02428d447dc8338bc96f8bcb80e58236d711bb55",
+      "finished": "2026-11-17T10:22:37+0100",
+      "children_max_rss_mb": 2934.0,
+      "outputs": {
+        "transformer_checkpoint": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/model/model.pt",
+        "transformer_bin": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/model/model.bin",
+        "canary": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/canary.npz",
+        "transformer_sha256": "9a8428e4cd4b8bb239bb33e647fdb94bd8306cbc93417b1a92e64c4737ef82f6"
+      }
+    },
+    "ppo": {
+      "status": "done",
+      "inputs_hash": "953897e56c70f7e857259a8e71b2a991517e441ec1cf712ed987a0841f7a7587",
+      "finished": "2026-11-17T10:24:27+0100",
+      "children_max_rss_mb": 2664.0,
+      "outputs": {
+        "ppo_bin": "runs/A-distill_ppo_pipecheck-s0-de93ce73/ppo/cycle-000/models/model.bin",
+        "ppo_checkpoint": "runs/A-distill_ppo_pipecheck-s0-de93ce73/ppo/cycle-000/models/model.pt"
+      }
+    },
+    "eval": {
+      "status": "done",
+      "inputs_hash": "aef50794fdf9276d7d5c4c123742b3146b683454729a8261ebe31d4d82571f35",
+      "finished": "2026-11-17T10:24:29+0100",
+      "children_max_rss_mb": 2664.0,
+      "outputs": {
+        "eval_summary": "runs/A-distill_ppo_pipecheck-s0-de93ce73/eval/summary.json"
+      }
+    }
+  },
+  "gates": {
+    "transformer_validate_2e-5": {
+      "passed": true
+    },
+    "ppo_health": {
+      "passed": true,
+      "statuses": [
+        "warn"
+      ]
+    }
+  },
+  "git": {
+    "sha": "c7bfa7f24a92f7ef334fe7944dfd9cc5c8fc5a47",
+    "branch": "main",
+    "dirty": true
+  },
+  "uv_lock_sha256": "54b780a453f9e982a4ad527a1fd134554a1e73c672f8064ce93761e0821c62d3",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-3",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1943740",
+    "slurm_array_task": null,
+    "slurm_cpus": "16",
+    "gpus": [
+      "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "distill": {
+      "teacher_games": 709309177,
+      "split": 1088219892,
+      "train": 1086154023
+    },
+    "ppo": {
+      "arena": 1862971003,
+      "sample": 1905354094,
+      "update": 1374455452
+    }
+  },
+  "outputs": {
+    "transformer_checkpoint": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/model/model.pt",
+    "transformer_bin": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/model/model.bin",
+    "canary": "runs/A-distill_ppo_pipecheck-s0-de93ce73/distill/canary.npz",
+    "transformer_sha256": "9a8428e4cd4b8bb239bb33e647fdb94bd8306cbc93417b1a92e64c4737ef82f6",
+    "ppo_bin": "runs/A-distill_ppo_pipecheck-s0-de93ce73/ppo/cycle-000/models/model.bin",
+    "ppo_checkpoint": "runs/A-distill_ppo_pipecheck-s0-de93ce73/ppo/cycle-000/models/model.pt",
+    "eval_summary": "runs/A-distill_ppo_pipecheck-s0-de93ce73/eval/summary.json"
+  }
+}

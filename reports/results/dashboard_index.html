@@ -1,0 +1,366 @@
+<meta name="dash-one-writer">
+<style>
+.pr { display: grid; gap: var(--cds-gap-xl); }
+.pr h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+.pr h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.pr .lede { color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; max-width: 72ch; }
+.pr .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: var(--cds-gap-xs) 0 0; max-width: 72ch; }
+.pr .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--cds-gap-md); }
+.pr .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.pr .tile .lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.pr .tile .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; font-variant-numeric: tabular-nums; display: block; margin: var(--cds-gap-xs) 0; }
+.pr .tile .ci { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.pr .row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; justify-content: space-between; }
+.pr .chart { position: relative; min-height: 260px; }
+.pr .chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
+.pr .chart .axis path, .pr .chart .axis line { stroke: var(--cds-chart-axis); }
+.pr .chart .grid line { stroke: var(--cds-chart-grid); }
+.pr .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-xs); }
+.pr .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--sw); vertical-align: -1px; }
+.pr .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.pr .tablewrap { overflow-x: auto; }
+.pr table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.pr th, .pr td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.pr th:first-child, .pr td:first-child { text-align: left; }
+.pr th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.pr .err { color: var(--color-bad); font-size: var(--cds-font-size-caption); }
+</style>
+
+<div class="pr">
+  <header id="top">
+    <h1>PTCG RL results</h1>
+    <p class="lede">PPO (C/01, 3 seeds) wins <b data-draw="s-c01" data-source="pooled" data-field="win_rate" data-where="key=C/01 PPO baseline · start Transformer">—</b> of games against its starting Transformer. Six more cycles (C/03) win <b data-draw="s-c03" data-source="pooled" data-field="win_rate" data-where="key=C/03 continue (control) · C/01 final">—</b> against C/01's final model, and the snapshot league (C/04) wins <b data-draw="s-c04" data-source="pooled" data-field="win_rate" data-where="key=C/04 snapshot league · C/01 final">—</b>.</p>
+    <p class="note">Win rates pool all seeds of an arm: 200 games per seed and opponent, both seats, evaluation seeds disjoint from training. Intervals are Wilson 95%. A draw counts as half a win. Runs still in progress show the seeds finished so far.</p>
+  </header>
+
+  <section class="tiles" id="tiles">
+    <div class="tile" id="tile-c01">
+      <div class="lab">C/01 PPO vs. its start</div>
+      <span class="big" data-draw="t-c01" data-source="pooled" data-field="win_rate" data-where="key=C/01 PPO baseline · start Transformer">—</span>
+      <span class="ci">95% CI <span data-draw="t-c01-lo" data-source="pooled" data-field="ci_low" data-where="key=C/01 PPO baseline · start Transformer">—</span>–<span data-draw="t-c01-hi" data-source="pooled" data-field="ci_high" data-where="key=C/01 PPO baseline · start Transformer">—</span></span>
+    </div>
+    <div class="tile" id="tile-c03">
+      <div class="lab">C/03 continue vs. C/01 final</div>
+      <span class="big" data-draw="t-c03" data-source="pooled" data-field="win_rate" data-where="key=C/03 continue (control) · C/01 final">—</span>
+      <span class="ci">95% CI <span data-draw="t-c03-lo" data-source="pooled" data-field="ci_low" data-where="key=C/03 continue (control) · C/01 final">—</span>–<span data-draw="t-c03-hi" data-source="pooled" data-field="ci_high" data-where="key=C/03 continue (control) · C/01 final">—</span></span>
+    </div>
+    <div class="tile" id="tile-c04">
+      <div class="lab">C/04 league vs. C/01 final</div>
+      <span class="big" data-draw="t-c04" data-source="pooled" data-field="win_rate" data-where="key=C/04 snapshot league · C/01 final">—</span>
+      <span class="ci">95% CI <span data-draw="t-c04-lo" data-source="pooled" data-field="ci_low" data-where="key=C/04 snapshot league · C/01 final">—</span>–<span data-draw="t-c04-hi" data-source="pooled" data-field="ci_high" data-where="key=C/04 snapshot league · C/01 final">—</span></span>
+    </div>
+    <div class="tile" id="tile-health">
+      <div class="lab">PPO cycles passing every health check</div>
+      <span class="big" data-draw="t-pass" data-source="health_counts" data-field="cycles" data-where="status=pass">—</span>
+      <span class="ci">warn <span data-draw="t-warn" data-source="health_counts" data-field="cycles" data-where="status=warn">—</span> · fail <span data-draw="t-fail" data-source="health_counts" data-field="cycles" data-where="status=fail">—</span></span>
+    </div>
+  </section>
+
+  <section id="by-opponent">
+    <div class="row">
+      <h2>Win rate by opponent</h2>
+      <select class="dash-select" id="arm-group" aria-label="Arms to show">
+        <option value="ppo">PPO arms</option>
+        <option value="imitation">Imitation and ablations</option>
+      </select>
+    </div>
+    <p class="note">Each dot is an arm's pooled win rate against one opponent, with its 95% interval. Right of the dashed line means it wins more than it loses. "Held-out" opponents are other-deck GBDTs that no arm ever trained against.</p>
+    <div class="chart" data-draw="dots" data-source="pooled"></div>
+  </section>
+
+  <section id="curve">
+    <h2>Learning curve: rating above the Lucario rule bot</h2>
+    <p class="note">BT rating of each checkpoint minus the Lucario rule bot's rating in the same evaluation, by PPO cycle. Cycle −1 is the distilled start; C/03 and C/04 start from C/01's final model (cycle 11). One line per arm and seed.</p>
+    <div class="chart" data-draw="curve" data-source="curve"></div>
+  </section>
+
+  <section id="health">
+    <div class="row">
+      <h2>PPO health per cycle</h2>
+      <select class="dash-select" id="health-metric" aria-label="Health metric">
+        <option value="approx_kl">Approximate KL per update (mean)</option>
+        <option value="heldout_kl">Held-out KL after the update</option>
+        <option value="clip_fraction">Clip fraction</option>
+        <option value="entropy">Policy entropy</option>
+        <option value="value_ece">Value calibration error (ECE)</option>
+        <option value="explained_variance">Critic explained variance</option>
+        <option value="teacher_agreement">Agreement with the GBDT teacher (canary)</option>
+      </select>
+    </div>
+    <p class="note">One point per finished cycle. Amber points are cycles whose health check warned; red would be a failed cycle, which stops the run.</p>
+    <div class="chart" data-draw="health" data-source="cycles"></div>
+  </section>
+
+  <section id="summary">
+    <h2>All arms, pooled</h2>
+    <p class="note">Win rate of each arm's final model. The start column is the distilled Transformer the arm began from (for A/02, its GBDT teacher).</p>
+    <div class="tablewrap">
+      <table data-source="summary" data-row-key="arm">
+        <thead><tr>
+          <th data-field="arm">Arm</th><th data-field="seeds">Seeds</th><th data-field="vs_start">vs. start</th><th data-field="vs_c01">vs. C/01 final</th>
+          <th data-field="vs_lucario">Lucario rule</th><th data-field="vs_dragapult">Dragapult rule</th><th data-field="vs_abomasnow">Abomasnow rule</th><th data-field="vs_iono">Iono rule</th><th data-field="vs_heldout">Held-out mean</th>
+        </tr></thead>
+        <tbody data-draw="summary-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details id="method">
+    <summary>How these numbers are made</summary>
+    <p class="note">Each experiment's final model plays every opponent in a fixed roster under protocol rating_v1. Pairwise results come from the evaluation summary of each run; ratings are Bayesian Bradley–Terry fits per roster, so ratings from different rosters are compared through the Lucario rule bot present in each. Health metrics come from each PPO cycle's health, training and canary records. All files are exported from the repository's reports/runs by ptcg_exp.export_results.</p>
+  </details>
+</div>
+
+<script>
+window.PR = (() => {
+  const PPO = ['C/01 PPO baseline', 'C/03 continue (control)', 'C/04 snapshot league', 'C/05 league + PFSP'];
+  const IMIT = ['A/02 distilled Transformer', 'A/04 BC control', 'A/04 DAgger student', 'C/02 critic weight 1.0'];
+  const OPP = ['start Transformer', 'C/01 final', 'GBDT teacher', 'Lucario rule bot', 'Dragapult rule bot', 'Abomasnow rule bot', 'Iono rule bot', 'held-out Dragapult GBDT', 'held-out Abomasnow GBDT', 'held-out Iono GBDT'];
+  const ARMS = [...PPO, ...IMIT];
+  const color = (arm) => dash.colors[Math.max(0, ARMS.indexOf(arm)) % dash.colors.length];
+  const f3 = d3.format('.3f');
+  function tip(el) {
+    let t = el.querySelector('.tip');
+    if (!t) { t = document.createElement('div'); t.className = 'tip'; t.hidden = true; el.appendChild(t); }
+    return {
+      show(ev, lines) {
+        t.replaceChildren(...lines.map((s) => { const d = document.createElement('div'); d.textContent = s; return d; }));
+        t.hidden = false;
+        const r = el.getBoundingClientRect();
+        let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+        if (x + t.offsetWidth > el.clientWidth) x = Math.max(0, ev.clientX - r.left - t.offsetWidth - 12);
+        t.style.left = x + 'px'; t.style.top = y + 'px';
+      },
+      hide() { t.hidden = true; },
+    };
+  }
+  function fail(el, msg) {
+    el.replaceChildren();
+    const p = document.createElement('p'); p.className = 'err'; p.textContent = msg; el.appendChild(p);
+  }
+  function legend(el, arms) {
+    const box = document.createElement('div'); box.className = 'legend';
+    for (const a of arms) { const s = document.createElement('span'); s.style.setProperty('--sw', color(a)); s.textContent = a; box.appendChild(s); }
+    el.appendChild(box);
+  }
+  return { PPO, IMIT, OPP, ARMS, color, f3, tip, fail, legend };
+})();
+
+dash.calc('pooled', {
+  inputs: ['pairs'],
+  title: 'Pooled win rate per arm and opponent',
+  description: 'Sum of wins (draws count half) over all seeds of an arm against one opponent, divided by games; Wilson 95% interval.',
+  fn: (pairs) => {
+    const z = 1.96, groups = new Map();
+    for (const r of pairs) {
+      const key = `${r.arm} · ${r.opponent}`;
+      const g = groups.get(key) || { key, arm: r.arm, opponent: r.opponent, games: 0, wins: 0, seeds: new Set() };
+      g.games += +r.games; g.wins += +r.wins + 0.5 * +r.draws; g.seeds.add(r.seed);
+      groups.set(key, g);
+    }
+    return [...groups.values()].map((g) => {
+      const n = g.games, p = g.wins / n, d = 1 + z * z / n;
+      const c = (p + z * z / (2 * n)) / d, h = (z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))) / d;
+      return { key: g.key, arm: g.arm, opponent: g.opponent, seeds: g.seeds.size, games: n,
+        win_rate: Math.round(p * 1000) / 1000, ci_low: Math.round((c - h) * 1000) / 1000, ci_high: Math.round((c + h) * 1000) / 1000 };
+    });
+  },
+});
+
+dash.calc('summary', {
+  inputs: ['pooled'],
+  title: 'Pooled win rates, one row per arm',
+  description: 'The pooled win rates pivoted by opponent; held-out mean averages the three held-out GBDTs.',
+  fn: (pooled) => {
+    const by = d3.group(pooled, (r) => r.arm);
+    const order = ['C/01 PPO baseline', 'C/03 continue (control)', 'C/04 snapshot league', 'C/05 league + PFSP', 'A/02 distilled Transformer', 'A/04 BC control', 'A/04 DAgger student', 'C/02 critic weight 1.0'];
+    return order.filter((a) => by.has(a)).map((arm) => {
+      const rows = by.get(arm), get = (o) => { const r = rows.find((x) => x.opponent === o); return r ? r.win_rate : null; };
+      const held = rows.filter((x) => x.opponent.startsWith('held-out'));
+      return { arm, seeds: d3.max(rows, (r) => r.seeds),
+        vs_start: arm.startsWith('A/02') ? get('GBDT teacher') : get('start Transformer'), vs_c01: get('C/01 final'),
+        vs_lucario: get('Lucario rule bot'), vs_dragapult: get('Dragapult rule bot'), vs_abomasnow: get('Abomasnow rule bot'), vs_iono: get('Iono rule bot'),
+        vs_heldout: held.length ? Math.round(d3.mean(held, (r) => r.win_rate) * 1000) / 1000 : null };
+    });
+  },
+});
+
+dash.calc('curve', {
+  inputs: ['ratings'],
+  title: 'Rating above the Lucario rule bot by cycle',
+  description: 'Each own checkpoint\'s BT rating (and the start / C/01 final it began from) minus the Lucario rule bot\'s rating in the same run\'s evaluation.',
+  fn: (ratings) => {
+    const out = [];
+    for (const [run, rows] of d3.group(ratings, (r) => r.run)) {
+      const luc = rows.find((r) => r.agent === 'lucario_rule');
+      if (!luc) continue;
+      for (const r of rows) {
+        if (r.cycle === null || r.cycle === '' || !r.arm.startsWith('C/0') || r.arm.startsWith('C/02')) continue;
+        const own = r.role === 'own final' || r.role === 'own checkpoint';
+        const start = (r.role === 'start' && r.arm.startsWith('C/01')) || r.role === 'C/01 final';
+        if (!own && !start) continue;
+        out.push({ run, series: `${r.arm} s${r.seed}`, arm: r.arm, seed: +r.seed, cycle: +r.cycle, rel: Math.round((+r.mu - +luc.mu) * 10) / 10 });
+      }
+    }
+    return out.sort((a, b) => a.cycle - b.cycle);
+  },
+});
+
+dash.calc('health_counts', {
+  inputs: ['cycles'],
+  title: 'PPO cycles by health status',
+  description: 'Number of finished PPO cycles (all C arms and seeds) whose health check passed, warned or failed.',
+  fn: (cycles) => ['pass', 'warn', 'fail'].map((status) => ({ status, cycles: cycles.filter((c) => c.experiment.startsWith('C/') && c.health_status === status).length })),
+});
+</script>
+
+<script>
+(() => {
+  const row = (name, key) => { const p = dash.data('pooled'); return p.status === 'ok' ? p.data.find((r) => r.key === key) : null; };
+  const num = (el, r, field) => { el.textContent = r && r[field] != null ? PR.f3(r[field]) : '—'; };
+  const spots = [
+    ['s-c01', 'C/01 PPO baseline · start Transformer', 'win_rate'], ['s-c03', 'C/03 continue (control) · C/01 final', 'win_rate'], ['s-c04', 'C/04 snapshot league · C/01 final', 'win_rate'],
+    ['t-c01', 'C/01 PPO baseline · start Transformer', 'win_rate'], ['t-c01-lo', 'C/01 PPO baseline · start Transformer', 'ci_low'], ['t-c01-hi', 'C/01 PPO baseline · start Transformer', 'ci_high'],
+    ['t-c03', 'C/03 continue (control) · C/01 final', 'win_rate'], ['t-c03-lo', 'C/03 continue (control) · C/01 final', 'ci_low'], ['t-c03-hi', 'C/03 continue (control) · C/01 final', 'ci_high'],
+    ['t-c04', 'C/04 snapshot league · C/01 final', 'win_rate'], ['t-c04-lo', 'C/04 snapshot league · C/01 final', 'ci_low'], ['t-c04-hi', 'C/04 snapshot league · C/01 final', 'ci_high'],
+  ];
+  for (const [name, key, field] of spots) dash.draw(name, (el) => num(el, row(name, key), field));
+  for (const s of ['pass', 'warn', 'fail']) {
+    dash.draw(`t-${s}`, (el) => {
+      const h = dash.data('health_counts');
+      const r = h.status === 'ok' ? h.data.find((x) => x.status === s) : null;
+      el.textContent = r ? String(r.cycles) : '—';
+    });
+  }
+  for (const sel of document.querySelectorAll('#arm-group')) sel.addEventListener('change', () => dash.draw('dots'));
+  for (const sel of document.querySelectorAll('#health-metric')) sel.addEventListener('change', () => dash.draw('health'));
+})();
+</script>
+
+<script>
+dash.draw('dots', (el) => {
+  const p = dash.data('pooled');
+  if (p.status === 'error') return PR.fail(el, 'The win-rate file failed to load.');
+  if (p.status !== 'ok') { el.replaceChildren(); el.textContent = '—'; return; }
+  const groupSel = document.querySelector('#arm-group');
+  const arms = (groupSel && groupSel.value === 'imitation' ? PR.IMIT : PR.PPO).filter((a) => p.data.some((r) => r.arm === a));
+  const rows = p.data.filter((r) => arms.includes(r.arm));
+  const opps = PR.OPP.filter((o) => rows.some((r) => r.opponent === o));
+  el.replaceChildren();
+  const W = el.clientWidth || 600, rowH = 26, top = 8, bottom = 32;
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('role', 'img')
+    .attr('aria-label', 'Pooled win rate with 95% intervals for each arm against each opponent');
+  const probe = svg.append('g');
+  const labelW = d3.max(opps, (o) => probe.append('text').text(o).node().getComputedTextLength()) || 120;
+  probe.remove();
+  const left = Math.min(labelW + 12, W * 0.45), right = 16;
+  const H = top + opps.length * rowH + bottom;
+  svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+  const x = d3.scaleLinear().domain([0.2, 0.9]).range([left, W - right]);
+  const y = d3.scaleBand().domain(opps).range([top, top + opps.length * rowH]).paddingInner(0.2);
+  const off = d3.scaleBand().domain(arms).range([0, y.bandwidth()]).padding(0.2);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${top})`)
+    .call(d3.axisBottom(x).ticks(W < 480 ? 4 : 7).tickSize(opps.length * rowH).tickFormat('')).call((g) => g.select('.domain').remove());
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${top + opps.length * rowH})`)
+    .call(d3.axisBottom(x).ticks(W < 480 ? 4 : 7).tickFormat(d3.format('.0%')));
+  svg.append('line').attr('x1', x(0.5)).attr('x2', x(0.5)).attr('y1', top).attr('y2', top + opps.length * rowH)
+    .style('stroke', 'var(--cds-chart-reference)').style('stroke-dasharray', '4 3');
+  svg.append('g').selectAll('text').data(opps).join('text').attr('x', left - 8).attr('y', (o) => y(o) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((o) => o);
+  const t = PR.tip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r) => `translate(0,${y(r.opponent) + off(r.arm) + off.bandwidth() / 2})`);
+  g.append('line').attr('x1', (r) => x(r.ci_low)).attr('x2', (r) => x(r.ci_high)).style('stroke', (r) => PR.color(r.arm)).style('stroke-width', 2).style('opacity', 0.6);
+  g.append('circle').attr('cx', (r) => x(r.win_rate)).attr('r', 4).style('fill', (r) => PR.color(r.arm));
+  g.append('rect').attr('x', left).attr('width', W - left - right).attr('y', -off.bandwidth() / 2).attr('height', Math.max(off.bandwidth(), 6)).style('fill', 'transparent')
+    .on('pointermove', (ev, r) => t.show(ev, [r.arm, `vs. ${r.opponent}`, `win rate ${PR.f3(r.win_rate)} [${PR.f3(r.ci_low)}, ${PR.f3(r.ci_high)}]`, `${r.games} games, ${r.seeds} seed${r.seeds > 1 ? 's' : ''}`]))
+    .on('pointerleave', () => t.hide());
+  PR.legend(el, arms);
+});
+</script>
+
+<script>
+dash.draw('curve', (el) => {
+  const c = dash.data('curve');
+  if (c.status === 'error') return PR.fail(el, 'The ratings file failed to load.');
+  if (c.status !== 'ok') { el.replaceChildren(); el.textContent = '—'; return; }
+  el.replaceChildren();
+  const W = el.clientWidth || 600, H = 280, m = { top: 12, right: 16, bottom: 34, left: 44 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
+    .attr('role', 'img').attr('aria-label', 'Rating above the Lucario rule bot by PPO cycle, one line per arm and seed');
+  const x = d3.scaleLinear().domain(d3.extent(c.data, (d) => d.cycle)).nice().range([m.left, W - m.right]);
+  const y = d3.scaleLinear().domain(d3.extent(c.data, (d) => d.rel)).nice().range([H - m.bottom, m.top]);
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.left - m.right)).tickFormat('')).call((g) => g.select('.domain').remove());
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.bottom})`).call(d3.axisBottom(x).ticks(W < 480 ? 5 : 10).tickFormat(d3.format('d')));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((v) => (v > 0 ? '+' : '') + v));
+  svg.append('line').attr('x1', m.left).attr('x2', W - m.right).attr('y1', y(0)).attr('y2', y(0)).style('stroke', 'var(--cds-chart-reference)').style('stroke-dasharray', '4 3');
+  svg.append('text').attr('x', W - m.right).attr('y', y(0) - 4).attr('text-anchor', 'end').text('Lucario rule bot');
+  svg.append('text').attr('x', W - m.right).attr('y', H - 4).attr('text-anchor', 'end').text('PPO cycle');
+  const series = d3.groups(c.data, (d) => d.series);
+  const line = d3.line().x((d) => x(d.cycle)).y((d) => y(d.rel));
+  svg.append('g').selectAll('path').data(series).join('path').attr('d', ([, pts]) => line(pts))
+    .style('fill', 'none').style('stroke', ([, pts]) => PR.color(pts[0].arm)).style('stroke-width', 1.5).style('opacity', 0.85);
+  const t = PR.tip(el);
+  svg.append('g').selectAll('circle').data(c.data).join('circle').attr('cx', (d) => x(d.cycle)).attr('cy', (d) => y(d.rel)).attr('r', 3.5)
+    .style('fill', (d) => PR.color(d.arm))
+    .on('pointermove', (ev, d) => t.show(ev, [d.series, `cycle ${d.cycle}`, `${d.rel > 0 ? '+' : ''}${d.rel} BT vs. Lucario rule bot`]))
+    .on('pointerleave', () => t.hide());
+  PR.legend(el, PR.PPO.filter((a) => c.data.some((d) => d.arm === a)));
+});
+</script>
+
+<script>
+dash.draw('health', (el) => {
+  const c = dash.data('cycles');
+  if (c.status === 'error') return PR.fail(el, 'The PPO cycle file failed to load.');
+  if (c.status !== 'ok') { el.replaceChildren(); el.textContent = '—'; return; }
+  const sel = document.querySelector('#health-metric');
+  const metric = sel ? sel.value : 'approx_kl';
+  const label = sel ? sel.options[sel.selectedIndex].text : metric;
+  const pts = c.data.filter((d) => d.experiment.startsWith('C/') && d[metric] !== null && d[metric] !== '')
+    .map((d) => ({ series: `${d.arm} s${d.seed}`, arm: d.arm, seed: d.seed, cycle: +d.global_cycle, v: +d[metric], status: d.health_status }))
+    .sort((a, b) => a.cycle - b.cycle);
+  el.replaceChildren();
+  if (!pts.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'No cycles record this metric.'; el.appendChild(p); return; }
+  const W = el.clientWidth || 600, H = 260, m = { top: 12, right: 16, bottom: 34, left: 56 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
+    .attr('role', 'img').attr('aria-label', `${label} per PPO cycle, one line per arm and seed`);
+  const x = d3.scaleLinear().domain(d3.extent(pts, (d) => d.cycle)).nice().range([m.left, W - m.right]);
+  const y = d3.scaleLinear().domain(d3.extent(pts, (d) => d.v)).nice().range([H - m.bottom, m.top]);
+  const fmt = d3.format(Math.abs(y.domain()[1]) < 0.1 ? '.3f' : '.2f');
+  svg.append('g').attr('class', 'grid').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.left - m.right)).tickFormat('')).call((g) => g.select('.domain').remove());
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.bottom})`).call(d3.axisBottom(x).ticks(W < 480 ? 5 : 10).tickFormat(d3.format('d')));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(fmt));
+  svg.append('text').attr('x', W - m.right).attr('y', H - 4).attr('text-anchor', 'end').text('PPO cycle');
+  const line = d3.line().x((d) => x(d.cycle)).y((d) => y(d.v));
+  svg.append('g').selectAll('path').data(d3.groups(pts, (d) => d.series)).join('path').attr('d', ([, s]) => line(s))
+    .style('fill', 'none').style('stroke', ([, s]) => PR.color(s[0].arm)).style('stroke-width', 1.2).style('opacity', 0.7);
+  const t = PR.tip(el);
+  svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (d) => x(d.cycle)).attr('cy', (d) => y(d.v)).attr('r', (d) => (d.status === 'pass' ? 2.5 : 4.5))
+    .style('fill', (d) => (d.status === 'fail' ? 'var(--color-bad)' : d.status === 'warn' ? 'var(--color-warn)' : PR.color(d.arm)))
+    .on('pointermove', (ev, d) => t.show(ev, [d.series, `cycle ${d.cycle}: ${fmt(d.v)}`, `health ${d.status}`]))
+    .on('pointerleave', () => t.hide());
+  PR.legend(el, PR.PPO.filter((a) => pts.some((d) => d.arm === a)));
+});
+</script>
+
+<script>
+dash.draw('summary-rows', (tb) => {
+  const s = dash.data('summary');
+  tb.replaceChildren();
+  if (s.status !== 'ok') {
+    const tr = document.createElement('tr'), td = document.createElement('td');
+    td.colSpan = 9; td.textContent = s.status === 'error' ? 'The win-rate file failed to load.' : '—';
+    tr.appendChild(td); tb.appendChild(tr); return;
+  }
+  const cols = ['arm', 'seeds', 'vs_start', 'vs_c01', 'vs_lucario', 'vs_dragapult', 'vs_abomasnow', 'vs_iono', 'vs_heldout'];
+  for (const r of s.data) {
+    const tr = document.createElement('tr');
+    for (const c of cols) {
+      const td = document.createElement('td');
+      const v = r[c];
+      td.textContent = v === null || v === undefined ? '–' : typeof v === 'number' && c !== 'seeds' ? PR.f3(v) : String(v);
+      tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  }
+});
+</script>

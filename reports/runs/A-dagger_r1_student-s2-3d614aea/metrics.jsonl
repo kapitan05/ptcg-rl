@@ -1,0 +1,2 @@
+{"t": 1795059201.7742093, "stage": "dagger", "student_teacher_agreement.train": 0.9370415570217255, "student_teacher_agreement.validation": 0.9393977415307403}
+{"t": 1795059439.4404995, "stage": "gate", "gate": "transformer_validate_2e-5", "passed": true}

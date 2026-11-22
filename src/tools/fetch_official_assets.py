@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -20,6 +21,18 @@ CG_SHA256 = {
     "sim.py": "1555f57f5d22bf4c09d70e0e667a916e575e68c9dd1de9ead34ba5e7e4968655",
     "utils.py": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b",
 }
+# Playground sample_submission/cg (R2 engine); api.py is unchanged from CG_SHA256.
+PLAYGROUND_CG_SHA256 = {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "api.py": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+    "game.py": "2558b876af5990b8648ecd8030456bf34bd0f8e4a7251e32a2c074f848a897da",
+    "libcg.so": "c699020e086eede189c445c7abf9d891a60005ceec6eb91dccd5bbdcd3c0de22",
+    "libcg.dylib": "da53cb331277cc8aa0a6181da28afeea28ae2f205372c234eca4a5c9cf3f4672",
+    "libcg-arm64.so": "95628f0bd20ac5e6f1e142c88cd52c9dc7361f9c371b5599f63b27c110892545",
+    "sim.py": "e83ca04300990267cd04385fb98ded670b517dfceb481a2bfa63ff433e2946ff",
+    "utils.py": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b",
+}
+CG_DISTRIBUTIONS = {"original": CG_SHA256, "playground": PLAYGROUND_CG_SHA256}
 OFFICIAL_AGENTS = (
     {
         "name": "mega_lucario",
@@ -66,6 +79,11 @@ def main() -> None:
         action="store_true",
         help="Require SHA-256 verification against the repository's fixed snapshot; default skips the check because Kaggle upstream files drift over time.",
     )
+    parser.add_argument(
+        "--cg-from",
+        type=Path,
+        help="Copy a local cg package (e.g. the playground sample_submission/cg) instead of downloading the dataset",
+    )
     args = parser.parse_args()
     kaggle = Path(sys.executable).parent / "kaggle"
     enforce_checks = args.require_hash_check
@@ -73,10 +91,23 @@ def main() -> None:
         if enforce_checks:
             check(AGENTS / agent["name"] / "deck.csv", agent["deck_sha256"])
     destination = args.asset_root / "cg-lib"
-    subprocess.run(
-        [str(kaggle), "datasets", "download", CG_DATASET, "--unzip", "--path", str(destination)],
-        check=True,
-    )
+    if args.cg_from is not None:
+        if not (args.cg_from / "api.py").is_file():
+            raise FileNotFoundError(f"Not a cg package: {args.cg_from}")
+        shutil.copytree(args.cg_from, destination / "cg", dirs_exist_ok=True)
+    else:
+        subprocess.run(
+            [
+                str(kaggle),
+                "datasets",
+                "download",
+                CG_DATASET,
+                "--unzip",
+                "--path",
+                str(destination),
+            ],
+            check=True,
+        )
     if enforce_checks:
         for filename, expected in CG_SHA256.items():
             check(args.asset_root / "cg-lib/cg" / filename, expected)
@@ -101,7 +132,9 @@ def main() -> None:
     if enforce_checks:
         print("Verified official Python API and bundled decks.")
     else:
-        print("Downloaded official assets without SHA-256 verification; use --require-hash-check for fixed-snapshot validation.")
+        print(
+            "Downloaded official assets without SHA-256 verification; use --require-hash-check for fixed-snapshot validation."
+        )
 
 
 if __name__ == "__main__":

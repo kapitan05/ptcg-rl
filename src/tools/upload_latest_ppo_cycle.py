@@ -16,11 +16,7 @@ def latest_local_cycle(output_dir: Path) -> tuple[str, Path]:
     for path in output_dir.iterdir() if output_dir.exists() else []:
         match = pattern.match(path.name)
         models = path / "models"
-        if (
-            match
-            and (models / "model.pt").is_file()
-            and (models / "model.bin").is_file()
-        ):
+        if match and (models / "model.pt").is_file() and (models / "model.bin").is_file():
             cycle = match.group(1)
             candidates.append((int(cycle), cycle, models))
     if not candidates:
@@ -51,7 +47,9 @@ def main() -> None:
     parser.add_argument("repo_id")
     parser.add_argument("--repo-type", default="model")
     parser.add_argument("--remote-root", default="mega_lucario/ppo")
-    parser.add_argument("--output-dir", type=Path, default=Path("outputs/mega_lucario/ppo_training"))
+    parser.add_argument(
+        "--output-dir", type=Path, default=Path("outputs/mega_lucario/ppo_training")
+    )
     args = parser.parse_args()
     upload_cycle(args.repo_id, args.repo_type, args.remote_root, args.output_dir)
 

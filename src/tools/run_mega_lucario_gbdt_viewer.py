@@ -119,7 +119,10 @@ class GbdtAgent:
         self.training, self.boosters = load_bundle(model)
         self.table = card_table()
         self.route = NAMES.index("context_0")
-        self.deck = [int(card_id) for card_id in (ROOT / "src/agents/mega_lucario/deck.csv").read_text().split()]
+        self.deck = [
+            int(card_id)
+            for card_id in (ROOT / "src/agents/mega_lucario/deck.csv").read_text().split()
+        ]
         check_deck(self.deck)
 
     def __call__(self, obs: dict[str, Any]) -> list[int]:
@@ -151,7 +154,9 @@ def run(model: Path, output_json: Path, output_html: Path, viewer_url: str) -> N
     deck_b = gbdt_agent(deck_obs)
     obs, start = battle_start(deck_a, deck_b)
     if obs is None:
-        raise RuntimeError(f"Battle failed to start: player={start.errorPlayer} type={start.errorType}")
+        raise RuntimeError(
+            f"Battle failed to start: player={start.errorPlayer} type={start.errorType}"
+        )
 
     obs_log: list[Any] = [""]
     action_log: list[Any] = [None]
@@ -179,7 +184,9 @@ def run(model: Path, output_json: Path, output_html: Path, viewer_url: str) -> N
                 entry["action"] = [action_log[index], action_log[index]]
         output_json.parent.mkdir(parents=True, exist_ok=True)
         output_html.parent.mkdir(parents=True, exist_ok=True)
-        output_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        output_json.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
         write_autoload_html(payload, output_html, viewer_url)
         print(output_html)
     finally:

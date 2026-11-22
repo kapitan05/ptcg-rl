@@ -1,0 +1,97 @@
+{
+  "config": {
+    "epochs": 5,
+    "max_updates": null,
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "temperature": 1.0,
+    "hard_weight": 0.1,
+    "value_weight": 1.0,
+    "value_target": "terminal outcome per acting seat",
+    "loss": "KL + action_weight * joint NLL + value_weight * distribution CE",
+    "seed": 1039022627,
+    "device": "cuda",
+    "weight_decay": 0.0001,
+    "gradient_clip": 0.5,
+    "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "torch_version": "2.14.0+cu130"
+  },
+  "updates": 6075,
+  "max_updates": null,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8712323097877466,
+      "validation": {
+        "decisions": 16071,
+        "queries": 17114,
+        "teacher_top1": 0.9314011920065444,
+        "loss": 0.6840962851420624,
+        "kl": 0.052141715200884134,
+        "action_nll": 0.5501009323424716,
+        "value_loss": 0.5769444728867874,
+        "value_mse": 0.7917464487984796
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6062102080511104,
+      "validation": {
+        "decisions": 16071,
+        "queries": 17114,
+        "teacher_top1": 0.9432628257566904,
+        "loss": 0.646549601181317,
+        "kl": 0.03494926100738996,
+        "action_nll": 0.5297658352807065,
+        "value_loss": 0.5586237518983656,
+        "value_mse": 0.765757375458969
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.5654044725592783,
+      "validation": {
+        "decisions": 16071,
+        "queries": 17114,
+        "teacher_top1": 0.9520275797592614,
+        "loss": 0.651772940012716,
+        "kl": 0.03031322243048277,
+        "action_nll": 0.5215859162207376,
+        "value_loss": 0.5693011244968861,
+        "value_mse": 0.7737249071734092
+      }
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.5285513264805453,
+      "validation": {
+        "decisions": 16071,
+        "queries": 17114,
+        "teacher_top1": 0.9499824704919949,
+        "loss": 0.6492365528284951,
+        "kl": 0.02741641050100208,
+        "action_nll": 0.5205856935770686,
+        "value_loss": 0.5697615691167729,
+        "value_mse": 0.766358657472499
+      }
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.4771793385992176,
+      "validation": {
+        "decisions": 16071,
+        "queries": 17114,
+        "teacher_top1": 0.9534299403996728,
+        "loss": 0.8684822261522616,
+        "kl": 0.02568412433087429,
+        "action_nll": 0.5195063471935064,
+        "value_loss": 0.7908474644492479,
+        "value_mse": 0.9163539985989999
+      }
+    }
+  ],
+  "selected_epoch": 2,
+  "test": null,
+  "checkpoint_sha256": "0181765deab26d51d147eab9e38a648da146bc2fa0e107c3d50bee1e65fd457c",
+  "teacher_model_id": "0f8f5d926fabfa6a8656cd0ae8c89a3cb78045ee35870131808dc9b401b9f945"
+}

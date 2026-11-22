@@ -1,0 +1,184 @@
+{
+  "config": {
+    "learning_rate": 3e-05,
+    "gamma": 1.0,
+    "gae_lambda": 0.99,
+    "clip": 0.2,
+    "value_clip": 0.2,
+    "value_coefficient": 0.25,
+    "entropy_coefficient": 0.01,
+    "weight_decay": 0.0001,
+    "max_grad_norm": 0.5,
+    "batch_size": 64,
+    "updates": 2,
+    "holdout_decisions": 10000,
+    "micro_batch_size": 128,
+    "device": "cuda",
+    "audit_threads": 8,
+    "kl_target": 0.004,
+    "kl_early_stop": 0.0,
+    "seed": 455452,
+    "epochs": 1,
+    "advantage_normalization": "training decisions only, population std",
+    "value_target": "GAE return",
+    "value_loss": "51-bin interpolated cross entropy + clipped expectation MSE",
+    "entropy": "sum along sampled prefix path"
+  },
+  "heldout_global_approximate_kl": 0.003509459363195641,
+  "heldout_sampled_forward_kl": 0.0072120052473395166,
+  "holdout_decisions": 415,
+  "holdout_indices_sha256": "8013b1be17f921234a9175fabd8c86d6e3deaee02acde02e06a59b188836dd46",
+  "holdout_selection": "uniform linspace in episode-step order; excluded from optimizer",
+  "training_decisions": 3735,
+  "behavior_sha256": "9a8428e4cd4b8bb239bb33e647fdb94bd8306cbc93417b1a92e64c4737ef82f6",
+  "rollout_sha256": "fa981fcdf4cea8fe897df6366456a9da7abe617842c8e47e2a9e44391f24cc9d",
+  "audit": {
+    "max_abs_errors": {
+      "logp": 1.5424751165227235e-06,
+      "value": 2.1637700699499857e-07,
+      "entropy": 1.4430359847050767e-06
+    },
+    "atol": 2e-05,
+    "rtol": 2e-05,
+    "decisions": 4150,
+    "threads": 8
+  },
+  "updates": 2,
+  "decisions_used": 128,
+  "decisions_available": 4150,
+  "parameter_delta_l2": 0.045959815045652073,
+  "optimizer_resumed": false,
+  "mean_metrics": {
+    "loss": 1.3663752675056458,
+    "policy_loss": 0.034261138178408146,
+    "value_loss": 0.2821497172117233,
+    "entropy": 1.0284503102302551,
+    "approximate_kl": 0.00032615565578453243,
+    "clip_fraction": 0.0,
+    "ratio_min": 0.9563417434692383,
+    "ratio_max": 1.0640936493873596,
+    "ratio_p01": 0.9571619033813477,
+    "ratio_p99": 1.0479596853256226,
+    "distribution_loss": 5.08744478225708,
+    "gradient_norm": 4.130190968513489,
+    "update_ratio": 0.00031374780571846446
+  },
+  "last_metrics": {
+    "loss": 1.3224705457687378,
+    "policy_loss": -0.008190719410777092,
+    "value_loss": 0.29010117053985596,
+    "entropy": 0.9155031442642212,
+    "approximate_kl": 0.0006523149204440415,
+    "clip_fraction": 0.0,
+    "ratio_min": 0.912684440612793,
+    "ratio_max": 1.1281862258911133,
+    "ratio_p01": 0.9143247604370117,
+    "ratio_p99": 1.0959185361862183,
+    "distribution_loss": 5.069163799285889,
+    "gradient_norm": 3.7862236499786377,
+    "update_ratio": 0.00026424357995929863
+  },
+  "updates_log": [
+    {
+      "loss": 1.4102799892425537,
+      "policy_loss": 0.07671299576759338,
+      "value_loss": 0.2741982638835907,
+      "entropy": 1.141397476196289,
+      "approximate_kl": -3.6088749766349792e-09,
+      "clip_fraction": 0.0,
+      "ratio_min": 0.9999990463256836,
+      "ratio_max": 1.000001072883606,
+      "ratio_p01": 0.9999990463256836,
+      "ratio_p99": 1.0000008344650269,
+      "distribution_loss": 5.1057257652282715,
+      "gradient_norm": 4.47415828704834,
+      "update_ratio": 0.00036325203147763023
+    },
+    {
+      "loss": 1.3224705457687378,
+      "policy_loss": -0.008190719410777092,
+      "value_loss": 0.29010117053985596,
+      "entropy": 0.9155031442642212,
+      "approximate_kl": 0.0006523149204440415,
+      "clip_fraction": 0.0,
+      "ratio_min": 0.912684440612793,
+      "ratio_max": 1.1281862258911133,
+      "ratio_p01": 0.9143247604370117,
+      "ratio_p99": 1.0959185361862183,
+      "distribution_loss": 5.069163799285889,
+      "gradient_norm": 3.7862236499786377,
+      "update_ratio": 0.00026424357995929863
+    }
+  ],
+  "early_stopped": false,
+  "health_inputs": {
+    "raw_advantage": {
+      "mean": -0.37553812168349876,
+      "std": 0.6559429722432599,
+      "nonfinite": 0
+    },
+    "return_range": [
+      -1.0,
+      1.0
+    ],
+    "explained_variance_before": 8.057782996950813e-05,
+    "explained_variance_after_heldout": 9.331338488327567e-05,
+    "value_ece_heldout": 0.3691369688247603,
+    "entropy_behavior_heldout": 1.0540642994220688,
+    "entropy_updated_heldout": 1.0492308304117746
+  },
+  "opponent_distribution": {
+    "opponents": [
+      "mega_lucario",
+      "dragapult",
+      "iono",
+      "mega_abomasnow",
+      "mega_lucario_gbdt",
+      "self"
+    ],
+    "games_per_opponent": null,
+    "total_games": 64,
+    "opponent_weights": {
+      "mega_lucario": 1.0,
+      "dragapult": 1.0,
+      "iono": 1.0,
+      "mega_abomasnow": 1.0,
+      "mega_lucario_gbdt": 1.0,
+      "self": 1.0
+    },
+    "allocated_games": {
+      "mega_lucario": 12,
+      "dragapult": 12,
+      "iono": 10,
+      "mega_abomasnow": 10,
+      "mega_lucario_gbdt": 10,
+      "self": 10
+    },
+    "fixed_model_sha256": {},
+    "game_fraction": {
+      "mega_lucario": 0.1875,
+      "dragapult": 0.1875,
+      "iono": 0.15625,
+      "mega_abomasnow": 0.15625,
+      "mega_lucario_gbdt": 0.15625,
+      "self": 0.15625
+    },
+    "seed": 1862971003,
+    "sample_seed": 1905354094,
+    "temperature": 1.0,
+    "workers": 16,
+    "extract_workers": 16,
+    "rollout_chunk_games": 64,
+    "audit_threads": 8,
+    "gbdt_model_sha256": "241993dbb8d3f5cb235b67bbba6612a2f5ba6fb7a9dfb2bc950da8f214b73b21",
+    "reward": {
+      "win": 1.0,
+      "draw": 0.0,
+      "loss": -1.0,
+      "intermediate": 0.0
+    },
+    "timestep": "one learner decision, sum prefix logp; terminal-only reward"
+  },
+  "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "checkpoint_sha256": "8b4e170cead9f077bc725c431258efe85a6b04ad6dba9087ac2513a4782f1509"
+}

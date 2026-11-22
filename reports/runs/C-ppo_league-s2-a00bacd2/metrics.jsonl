@@ -1,0 +1,11 @@
+{"t": 1795357630.8775249, "stage": "ppo_roster", "cycle": 0, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_pool2": 1.0, "snap_start": 1.0}}
+{"t": 1795359145.2040465, "stage": "ppo_health", "cycle": "cycle-000", "status": "pass"}
+{"t": 1795359367.3587286, "stage": "ppo_roster", "cycle": 1, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_pool2": 1.0, "snap_start": 1.0, "snap_c000": 1.0}}
+{"t": 1795360947.0100977, "stage": "ppo_health", "cycle": "cycle-001", "status": "pass"}
+{"t": 1795361203.1606784, "stage": "ppo_roster", "cycle": 2, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_start": 1.0, "snap_c000": 1.0, "snap_c001": 1.0}}
+{"t": 1795362840.7692554, "stage": "ppo_health", "cycle": "cycle-002", "status": "pass"}
+{"t": 1795363092.571763, "stage": "ppo_roster", "cycle": 3, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool2": 1.0, "snap_c000": 1.0, "snap_c001": 1.0, "snap_c002": 1.0}}
+{"t": 1795364565.559732, "stage": "ppo_health", "cycle": "cycle-003", "status": "pass"}
+{"t": 1795364734.845199, "stage": "ppo_roster", "cycle": 4, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool2": 1.0, "snap_c001": 1.0, "snap_c002": 1.0, "snap_c003": 1.0}}
+{"t": 1795366266.9756756, "stage": "ppo_health", "cycle": "cycle-004", "status": "pass"}
+{"t": 1795366542.151336, "stage": "ppo_roster", "cycle": 5, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_start": 1.0, "snap_c002": 1.0, "snap_c003": 1.0, "snap_c004": 1.0}}

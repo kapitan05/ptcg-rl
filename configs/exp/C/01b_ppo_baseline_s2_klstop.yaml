@@ -1,0 +1,10 @@
+# C/01b: rerun of C/01 seed 2 with the in-loop KL early stop on. C/01 s2 failed its health gate
+# at cycle 0 (one minibatch KL 0.020 > 4×kl_target 0.016, early stop off). Deviation from the
+# pre-registered C/01 (one knob, one seed); reported as such next to seeds 0 and 1.
+extends: 01_ppo_baseline.yaml
+name: ppo_baseline_klstop
+hypothesis: See C/01; kl_early_stop 2.0 (stop when a minibatch KL > 2×kl_target).
+seeds: [2]
+stages:
+  ppo:
+    kl_early_stop: 2.0

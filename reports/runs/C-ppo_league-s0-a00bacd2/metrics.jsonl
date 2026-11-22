@@ -1,0 +1,25 @@
+{"t": 1795334272.2591126, "stage": "ppo_roster", "cycle": 0, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_pool2": 1.0, "snap_start": 1.0}}
+{"t": 1795335791.4572406, "stage": "ppo_health", "cycle": "cycle-000", "status": "pass"}
+{"t": 1795335978.8851166, "stage": "ppo_roster", "cycle": 1, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_pool2": 1.0, "snap_start": 1.0, "snap_c000": 1.0}}
+{"t": 1795337484.1730642, "stage": "ppo_health", "cycle": "cycle-001", "status": "pass"}
+{"t": 1795337668.563811, "stage": "ppo_roster", "cycle": 2, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool1": 1.0, "snap_start": 1.0, "snap_c000": 1.0, "snap_c001": 1.0}}
+{"t": 1795339181.3703296, "stage": "ppo_health", "cycle": "cycle-002", "status": "pass"}
+{"t": 1795339351.0102983, "stage": "ppo_roster", "cycle": 3, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool2": 1.0, "snap_c000": 1.0, "snap_c001": 1.0, "snap_c002": 1.0}}
+{"t": 1795340859.802366, "stage": "ppo_health", "cycle": "cycle-003", "status": "pass"}
+{"t": 1795341037.896746, "stage": "ppo_roster", "cycle": 4, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_pool2": 1.0, "snap_c001": 1.0, "snap_c002": 1.0, "snap_c003": 1.0}}
+{"t": 1795342515.8985794, "stage": "ppo_health", "cycle": "cycle-004", "status": "pass"}
+{"t": 1795342691.149718, "stage": "ppo_roster", "cycle": 5, "weights": {"mega_lucario": 1.0, "dragapult": 1.0, "iono": 1.0, "mega_abomasnow": 1.0, "mega_lucario_gbdt": 1.0, "self": 1.0, "snap_pool0": 1.0, "snap_start": 1.0, "snap_c002": 1.0, "snap_c003": 1.0, "snap_c004": 1.0}}
+{"t": 1795344068.03597, "stage": "ppo_health", "cycle": "cycle-005", "status": "pass"}
+{"t": 1795344242.5527883, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["pass", "pass", "pass", "pass", "pass", "pass"]}
+{"t": 1795344288.5846624, "stage": "eval", "agent": "ppo_league_s0_ppo", "mu": 1076.2933616478608, "sigma": 7.499510124512587, "lcb": 1061.2943413988357}
+{"t": 1795344288.5863206, "stage": "eval", "agent": "c01_final", "mu": 1067.4590829654276, "sigma": 7.51512550636551, "lcb": 1052.4288319526966}
+{"t": 1795344288.590704, "stage": "eval", "agent": "ppo_league_s0_ppo_c2", "mu": 1058.1782474211998, "sigma": 7.4109766973901685, "lcb": 1043.3562940264194}
+{"t": 1795344288.5925674, "stage": "eval", "agent": "dragapult_rule", "mu": 1046.6069651081282, "sigma": 7.501319476278807, "lcb": 1031.6043261555706}
+{"t": 1795344288.5970316, "stage": "eval", "agent": "lucario_rule", "mu": 1043.2341858668972, "sigma": 7.437160062852835, "lcb": 1028.3598657411915}
+{"t": 1795344288.5987532, "stage": "eval", "agent": "gbdt_1600_s0", "mu": 1014.1305775912871, "sigma": 7.452418866281779, "lcb": 999.2257398587235}
+{"t": 1795344288.6030817, "stage": "eval", "agent": "start_transformer", "mu": 999.2560686743421, "sigma": 7.441978558216566, "lcb": 984.372111557909}
+{"t": 1795344288.6046293, "stage": "eval", "agent": "abomasnow_rule", "mu": 970.9616152444228, "sigma": 6.636778008829392, "lcb": 957.688059226764}
+{"t": 1795344288.6090121, "stage": "eval", "agent": "heldout_dragapult_gbdt", "mu": 944.2992758288001, "sigma": 7.152569249046384, "lcb": 929.9941373307073}
+{"t": 1795344288.6107745, "stage": "eval", "agent": "iono_rule", "mu": 944.0364224541333, "sigma": 6.547488048546826, "lcb": 930.9414463570397}
+{"t": 1795344288.6152582, "stage": "eval", "agent": "heldout_abomasnow_gbdt", "mu": 937.8139096959699, "sigma": 6.537120268145454, "lcb": 924.739669159679}
+{"t": 1795344288.6168146, "stage": "eval", "agent": "heldout_iono_gbdt", "mu": 897.7302875015313, "sigma": 6.426470230493183, "lcb": 884.8773470405449}

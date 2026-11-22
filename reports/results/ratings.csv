@@ -1,0 +1,184 @@
+run,experiment,arm,seed,agent,role,cycle,mu,lcb,ucb,games
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,lucario_rule,rule bot,,1054.14,1038.86,1069.1,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,dragapult_rule,rule bot,,1054.09,1038.83,1069.05,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,gbdt_1600_s0,teacher,,1034.72,1019.38,1049.76,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 DAgger student,0,dagger_student,own final,,1030.27,1014.86,1045.38,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 BC control,0,dagger_teacher_bc,own final,,1026.16,1010.82,1041.21,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,a02_transformer,start,-1,1015.77,1000.42,1030.81,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,abomasnow_rule,rule bot,,990.71,977.08,1004.07,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,heldout_dragapult_gbdt,held-out,,959.28,944.34,973.92,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,iono_rule,rule bot,,950.95,937.44,964.2,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,heldout_abomasnow_gbdt,held-out,,947.42,934.06,960.51,2000
+A-dagger_r1_eval-s0-81ef167e,A/04,A/04 eval,0,heldout_iono_gbdt,held-out,,936.48,923.1,949.59,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,lucario_rule,rule bot,,1058.45,1043.06,1073.53,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,dragapult_rule,rule bot,,1057.37,1042.07,1072.36,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,gbdt_1600_s0,teacher,,1034.54,1019.09,1049.67,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 DAgger student,1,dagger_student,own final,,1031.74,1016.25,1046.92,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 BC control,1,dagger_teacher_bc,own final,,1019.87,1004.44,1034.99,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,a02_transformer,start,-1,1018.78,1003.42,1033.83,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,abomasnow_rule,rule bot,,988.62,974.95,1002.02,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,heldout_dragapult_gbdt,held-out,,961.22,946.21,975.93,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,heldout_abomasnow_gbdt,held-out,,949.32,935.95,962.41,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,iono_rule,rule bot,,948.74,935.25,961.97,2000
+A-dagger_r1_eval-s1-81ef167e,A/04,A/04 eval,1,heldout_iono_gbdt,held-out,,931.36,918.04,944.41,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,dragapult_rule,rule bot,,1057.33,1042.13,1072.21,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,lucario_rule,rule bot,,1054.31,1039.03,1069.28,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,gbdt_1600_s0,teacher,,1039.87,1024.53,1054.91,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,a02_transformer,start,-1,1021.03,1005.69,1036.06,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 BC control,2,dagger_teacher_bc,own final,,1017.93,1002.58,1032.97,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 DAgger student,2,dagger_student,own final,,1017.38,1001.96,1032.49,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,abomasnow_rule,rule bot,,990.93,977.29,1004.3,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,heldout_dragapult_gbdt,held-out,,960.47,945.5,975.14,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,heldout_abomasnow_gbdt,held-out,,951.92,938.6,964.98,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,iono_rule,rule bot,,949.82,936.37,963.0,2000
+A-dagger_r1_eval-s2-81ef167e,A/04,A/04 eval,2,heldout_iono_gbdt,held-out,,939.01,925.6,952.15,2000
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,lucario_rule,rule bot,,1051.39,1032.98,1069.42,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,dragapult_rule,rule bot,,1035.12,1016.83,1053.06,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,gbdt_1600_s0,teacher,,1024.56,1006.12,1042.64,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,distill_ppo_smoke_s0_transformer,own final,0,1004.97,986.58,1023.0,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,distill_ppo_smoke_s0_ppo,other,,995.1,976.74,1013.08,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,abomasnow_rule,rule bot,,976.19,959.57,992.49,1200
+A-distill_ppo_smoke-s0-1b8102e5,A/02,A/02 distilled Transformer,0,iono_rule,rule bot,,912.67,896.32,928.69,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,lucario_rule,rule bot,,1049.15,1030.7,1067.24,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,dragapult_rule,rule bot,,1032.31,1013.92,1050.34,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,gbdt_1600_s0,teacher,,1028.56,1009.98,1046.76,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,distill_ppo_smoke_s1_transformer,own final,0,1002.04,983.61,1020.1,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,distill_ppo_smoke_s1_ppo,other,,996.04,977.63,1014.08,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,abomasnow_rule,rule bot,,980.41,963.78,996.71,1200
+A-distill_ppo_smoke-s1-1b8102e5,A/02,A/02 distilled Transformer,1,iono_rule,rule bot,,911.5,895.23,927.44,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,lucario_rule,rule bot,,1042.83,1024.23,1061.06,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,dragapult_rule,rule bot,,1034.96,1016.44,1053.11,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,gbdt_1600_s0,teacher,,1023.5,1004.79,1041.83,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,distill_ppo_smoke_s2_transformer,own final,0,1013.22,994.57,1031.5,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,distill_ppo_smoke_s2_ppo,other,,999.44,981.03,1017.49,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,abomasnow_rule,rule bot,,979.52,962.9,995.81,1200
+A-distill_ppo_smoke-s2-1b8102e5,A/02,A/02 distilled Transformer,2,iono_rule,rule bot,,906.52,890.29,922.43,1200
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,lucario_rule,rule bot,,1075.87,1060.14,1091.29,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,dragapult_rule,rule bot,,1068.42,1052.69,1083.84,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,gbdt_1600_s0,teacher,,1033.44,1017.61,1048.94,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,a02_transformer,start,-1,1018.62,1002.67,1034.24,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,critic_value_weight_s0_transformer,own final,,1003.8,987.93,1019.35,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,heldout_dragapult_gbdt,held-out,,975.36,959.66,990.74,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,abomasnow_rule,rule bot,,970.78,956.69,984.58,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,iono_rule,rule bot,,963.92,949.52,978.02,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,heldout_abomasnow_gbdt,held-out,,949.61,935.24,963.69,1800
+C-critic_value_weight-s0-6892257d,C/02,C/02 critic weight 1.0,0,heldout_iono_gbdt,held-out,,940.19,925.9,954.2,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,lucario_rule,rule bot,,1071.01,1055.14,1086.57,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,dragapult_rule,rule bot,,1069.38,1053.54,1084.91,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,gbdt_1600_s0,teacher,,1034.96,1019.0,1050.59,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,a02_transformer,start,-1,1016.84,1000.97,1032.38,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,critic_value_weight_s1_transformer,own final,,1007.34,991.4,1022.96,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,heldout_dragapult_gbdt,held-out,,982.98,967.19,998.45,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,abomasnow_rule,rule bot,,971.03,956.95,984.83,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,iono_rule,rule bot,,959.15,944.92,973.09,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,heldout_abomasnow_gbdt,held-out,,947.98,933.59,962.07,1800
+C-critic_value_weight-s1-6892257d,C/02,C/02 critic weight 1.0,1,heldout_iono_gbdt,held-out,,939.34,925.09,953.31,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,lucario_rule,rule bot,,1075.58,1059.65,1091.19,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,dragapult_rule,rule bot,,1068.43,1052.58,1083.96,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,gbdt_1600_s0,teacher,,1033.02,1017.01,1048.71,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,a02_transformer,start,-1,1017.22,1001.31,1032.82,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,critic_value_weight_s2_transformer,own final,,1007.97,992.01,1023.61,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,heldout_dragapult_gbdt,held-out,,978.83,963.05,994.29,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,abomasnow_rule,rule bot,,971.23,957.14,985.03,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,iono_rule,rule bot,,961.66,947.32,975.71,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,heldout_abomasnow_gbdt,held-out,,952.16,937.84,966.2,1800
+C-critic_value_weight-s2-6892257d,C/02,C/02 critic weight 1.0,2,heldout_iono_gbdt,held-out,,933.9,919.7,947.81,1800
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,ppo_baseline_s0_ppo,own final,11,1069.77,1055.78,1083.48,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,lucario_rule,rule bot,,1043.46,1029.34,1057.3,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,dragapult_rule,rule bot,,1039.81,1025.67,1053.66,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,ppo_baseline_s0_ppo_c8,own checkpoint,8,1039.17,1024.92,1053.14,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,gbdt_1600_s0,teacher,,1027.92,1013.65,1041.91,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,ppo_baseline_s0_ppo_c5,own checkpoint,5,1024.59,1010.37,1038.53,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,ppo_baseline_s0_ppo_c2,own checkpoint,2,1022.62,1008.4,1036.55,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,start_transformer,start,-1,1004.84,990.75,1018.65,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,abomasnow_rule,rule bot,,981.38,968.58,993.92,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,heldout_dragapult_gbdt,held-out,,957.65,943.84,971.18,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,heldout_abomasnow_gbdt,held-out,,955.28,942.69,967.63,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,iono_rule,rule bot,,928.71,916.39,940.77,2400
+C-ppo_baseline-s0-ba1b0384,C/01,C/01 PPO baseline,0,heldout_iono_gbdt,held-out,,904.81,892.54,916.84,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,ppo_baseline_s1_ppo,own final,11,1051.74,1037.58,1065.62,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,ppo_baseline_s1_ppo_c5,own checkpoint,5,1046.32,1032.1,1060.26,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,lucario_rule,rule bot,,1045.5,1031.34,1059.38,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,dragapult_rule,rule bot,,1043.8,1029.69,1057.63,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,ppo_baseline_s1_ppo_c8,own checkpoint,8,1031.12,1016.88,1045.07,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,ppo_baseline_s1_ppo_c2,own checkpoint,2,1024.44,1010.23,1038.37,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,gbdt_1600_s0,teacher,,1019.62,1005.39,1033.56,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,start_transformer,start,-1,1000.83,986.75,1014.63,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,abomasnow_rule,rule bot,,979.29,966.48,991.84,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,heldout_abomasnow_gbdt,held-out,,961.21,948.72,973.45,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,heldout_dragapult_gbdt,held-out,,959.94,946.11,973.5,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,iono_rule,rule bot,,929.8,917.55,941.8,2400
+C-ppo_baseline-s1-ba1b0384,C/01,C/01 PPO baseline,1,heldout_iono_gbdt,held-out,,906.39,894.15,918.38,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,ppo_baseline_klstop_s2_ppo,own final,11,1056.07,1041.88,1069.98,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,lucario_rule,rule bot,,1048.52,1034.29,1062.46,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,ppo_baseline_klstop_s2_ppo_c8,own checkpoint,8,1046.41,1032.17,1060.36,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,dragapult_rule,rule bot,,1036.19,1021.95,1050.15,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,ppo_baseline_klstop_s2_ppo_c5,own checkpoint,5,1034.59,1020.4,1048.49,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,ppo_baseline_klstop_s2_ppo_c2,own checkpoint,2,1023.93,1009.61,1037.96,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,start_transformer,start,-1,1019.56,1005.34,1033.5,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,gbdt_1600_s0,teacher,,1018.44,1004.15,1032.45,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,abomasnow_rule,rule bot,,976.19,963.39,988.73,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,heldout_abomasnow_gbdt,held-out,,958.98,946.48,971.22,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,heldout_dragapult_gbdt,held-out,,949.9,936.16,963.38,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,iono_rule,rule bot,,928.07,915.77,940.11,2400
+C-ppo_baseline_klstop-s2-856aebb4,C/01,C/01 PPO baseline,2,heldout_iono_gbdt,held-out,,903.16,890.9,915.17,2400
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,ppo_continue_s0_ppo,own final,17,1080.55,1065.59,1095.21,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,c01_final,C/01 final,11,1066.85,1051.78,1081.62,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,ppo_continue_s0_ppo_c2,own checkpoint,14,1054.01,1039.08,1068.65,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,dragapult_rule,rule bot,,1046.87,1031.86,1061.58,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,lucario_rule,rule bot,,1045.27,1030.37,1059.86,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,gbdt_1600_s0,teacher,,1012.46,997.55,1027.08,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,start_transformer,start,-1,1001.78,986.83,1016.44,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,abomasnow_rule,rule bot,,971.7,958.46,984.68,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,heldout_dragapult_gbdt,held-out,,941.91,927.6,955.93,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,iono_rule,rule bot,,941.32,928.28,954.1,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,heldout_abomasnow_gbdt,held-out,,938.19,925.13,950.99,2200
+C-ppo_continue-s0-4cbddd27,C/03,C/03 continue (control),0,heldout_iono_gbdt,held-out,,899.07,886.19,911.7,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,ppo_continue_s1_ppo,own final,17,1059.36,1044.42,1074.01,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,ppo_continue_s1_ppo_c2,own checkpoint,14,1056.92,1042.05,1071.5,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,dragapult_rule,rule bot,,1053.43,1038.61,1067.95,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,lucario_rule,rule bot,,1048.96,1034.19,1063.44,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,c01_final,C/01 final,11,1047.05,1032.15,1061.64,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,gbdt_1600_s0,teacher,,1017.53,1002.72,1032.04,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,start_transformer,start,-1,996.91,982.09,1011.44,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,abomasnow_rule,rule bot,,973.14,959.84,986.17,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,heldout_dragapult_gbdt,held-out,,956.93,942.6,970.98,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,iono_rule,rule bot,,947.89,934.9,960.62,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,heldout_abomasnow_gbdt,held-out,,937.69,924.63,950.49,2200
+C-ppo_continue-s1-4cbddd27,C/03,C/03 continue (control),1,heldout_iono_gbdt,held-out,,904.18,891.44,916.66,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,ppo_continue_s2_ppo,own final,17,1079.78,1064.92,1094.34,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,ppo_continue_s2_ppo_c2,own checkpoint,14,1055.73,1040.82,1070.34,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,lucario_rule,rule bot,,1054.03,1039.25,1068.52,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,c01_final,C/01 final,11,1044.64,1029.69,1059.29,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,dragapult_rule,rule bot,,1039.36,1024.39,1054.04,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,gbdt_1600_s0,teacher,,1017.12,1002.29,1031.65,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,start_transformer,start,-1,1000.12,985.29,1014.66,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,abomasnow_rule,rule bot,,969.18,955.87,982.23,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,heldout_dragapult_gbdt,held-out,,947.95,933.66,961.95,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,iono_rule,rule bot,,944.32,931.33,957.05,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,heldout_abomasnow_gbdt,held-out,,942.78,929.79,955.52,2200
+C-ppo_continue-s2-4cbddd27,C/03,C/03 continue (control),2,heldout_iono_gbdt,held-out,,904.98,892.15,917.55,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,ppo_league_s0_ppo,own final,17,1076.29,1061.29,1090.99,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,c01_final,C/01 final,11,1067.46,1052.43,1082.19,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,ppo_league_s0_ppo_c2,own checkpoint,14,1058.18,1043.36,1072.7,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,dragapult_rule,rule bot,,1046.61,1031.6,1061.31,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,lucario_rule,rule bot,,1043.23,1028.36,1057.81,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,gbdt_1600_s0,teacher,,1014.13,999.23,1028.74,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,start_transformer,start,-1,999.26,984.37,1013.84,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,abomasnow_rule,rule bot,,970.96,957.69,983.97,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,heldout_dragapult_gbdt,held-out,,944.3,929.99,958.32,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,iono_rule,rule bot,,944.04,930.94,956.87,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,heldout_abomasnow_gbdt,held-out,,937.81,924.74,950.63,2200
+C-ppo_league-s0-a00bacd2,C/04,C/04 snapshot league,0,heldout_iono_gbdt,held-out,,897.73,884.88,910.33,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,ppo_league_s1_ppo,own final,17,1063.93,1048.99,1078.57,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,lucario_rule,rule bot,,1051.56,1036.68,1066.13,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,ppo_league_s1_ppo_c2,own checkpoint,14,1050.0,1035.08,1064.63,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,dragapult_rule,rule bot,,1049.08,1034.14,1063.72,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,c01_final,C/01 final,11,1044.25,1029.26,1058.94,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,gbdt_1600_s0,teacher,,1020.67,1005.75,1035.29,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,start_transformer,start,-1,999.5,984.59,1014.1,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,abomasnow_rule,rule bot,,971.38,958.06,984.42,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_dragapult_gbdt,held-out,,955.77,941.4,969.84,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,iono_rule,rule bot,,945.23,932.33,957.87,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_abomasnow_gbdt,held-out,,944.91,931.93,957.64,2200
+C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_iono_gbdt,held-out,,903.73,891.04,916.16,2200

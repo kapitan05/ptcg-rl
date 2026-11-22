@@ -1,0 +1,6 @@
+{"t": 1795029621.0564322, "stage": "ppo_health", "cycle": "cycle-000", "status": "warn"}
+{"t": 1795029697.9214282, "stage": "ppo_health", "cycle": "cycle-001", "status": "warn"}
+{"t": 1795029700.566506, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["warn", "warn"]}
+{"t": 1795029702.205536, "stage": "eval", "agent": "ppo_pipecheck_s0_ppo_c0", "mu": 1023.2094992677492, "sigma": 52.052586948376764, "lcb": 919.1043253709956}
+{"t": 1795029702.2076404, "stage": "eval", "agent": "start_transformer", "mu": 1023.2094992677492, "sigma": 52.052586948376764, "lcb": 919.1043253709956}
+{"t": 1795029702.2127538, "stage": "eval", "agent": "ppo_pipecheck_s0_ppo", "mu": 953.5810014645017, "sigma": 52.45838047139212, "lcb": 848.6642405217175}

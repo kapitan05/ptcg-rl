@@ -1,0 +1,20 @@
+{
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "model_id": "87c78c5dfb09ddf3a2fa043c3f26dbb1aeeb26ffa1546b39e87b381cba72f162",
+  "bin_sha256": "dfb5e5e4a4fee1bbf11bcb439c8f9291a6a58487384c1e3037e10a2b14db6f14",
+  "atol": 2e-05,
+  "rtol": 2e-05,
+  "games": 6,
+  "decisions": 513,
+  "queries": 536,
+  "rows": 14658,
+  "max_abs_error": 2.559198071683255e-06,
+  "feature_max_abs_error": 4.76837158203125e-07,
+  "value_max_abs_error": 1.148047233195948e-06,
+  "float32_max_abs_error": 3.1138942357955557e-06,
+  "action_mismatches": 0,
+  "agent_errors": 0,
+  "engine_errors": 0,
+  "probe_queries": 0,
+  "probe_rows": 0
+}

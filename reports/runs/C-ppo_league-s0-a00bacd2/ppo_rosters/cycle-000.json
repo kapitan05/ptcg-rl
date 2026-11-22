@@ -1,0 +1,32 @@
+{
+  "opponents": [
+    "mega_lucario",
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario_gbdt",
+    "self",
+    "snap_pool0",
+    "snap_pool1",
+    "snap_pool2",
+    "snap_start"
+  ],
+  "weights": {
+    "mega_lucario": 1.0,
+    "dragapult": 1.0,
+    "iono": 1.0,
+    "mega_abomasnow": 1.0,
+    "mega_lucario_gbdt": 1.0,
+    "self": 1.0,
+    "snap_pool0": 1.0,
+    "snap_pool1": 1.0,
+    "snap_pool2": 1.0,
+    "snap_start": 1.0
+  },
+  "models": {
+    "snap_pool0": "runs/C01_s0/ppo/cycle-002/models/model.bin",
+    "snap_pool1": "runs/C01_s0/ppo/cycle-005/models/model.bin",
+    "snap_pool2": "runs/C01_s0/ppo/cycle-008/models/model.bin",
+    "snap_start": "runs/C01_s0/ppo/cycle-011/models/model.bin"
+  }
+}

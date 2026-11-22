@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 AGENTS = ("mega_lucario", "dragapult", "iono", "mega_abomasnow")
 
-from fetch_cg_engine import DISTRIBUTION, ROOT, verify_tree
+from fetch_cg_engine import DISTRIBUTIONS, ROOT, verify_tree
 
 
 def main() -> None:
@@ -22,8 +22,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--engine-dir", type=Path, default=ROOT / "src/engine/cg")
     parser.add_argument("--output", type=Path, default=ROOT / "build/arena_cpp")
+    parser.add_argument("--distribution", choices=sorted(DISTRIBUTIONS), default="playground")
     args = parser.parse_args()
-    verify_tree(args.engine_dir, DISTRIBUTION)
+    verify_tree(args.engine_dir, DISTRIBUTIONS[args.distribution])
     args.output.parent.mkdir(parents=True, exist_ok=True)
     generated = args.output.parent / "generated"
     generated.mkdir(parents=True, exist_ok=True)
@@ -72,7 +73,7 @@ def main() -> None:
             if method == "transformer":
                 command += numeric_flags
             subprocess.run(command, check=True)
-    verify_tree(args.engine_dir, DISTRIBUTION)
+    verify_tree(args.engine_dir, DISTRIBUTIONS[args.distribution])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,158 @@
+{
+  "run_id": "C-league_pipecheck-s0-ded33fc8",
+  "config": {
+    "name": "league_pipecheck",
+    "owner": "C",
+    "question": "ppo_opponent_pool",
+    "hypothesis": "PFSP over the league beats C/04 (paired seeds) on rating_v1 and held-out, by spending games where the learner is weakest.",
+    "profile": "full",
+    "seeds": [
+      0
+    ],
+    "resources": {
+      "cpus": 32,
+      "mem": "64G",
+      "time": "02:00:00",
+      "gpus": 1
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "dagger": null,
+      "distill": null,
+      "ppo": {
+        "checkpoint": "runs/C01_s{seed}/ppo/cycle-011/models/model.pt",
+        "gbdt_model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+        "cycles": 2,
+        "games": 240,
+        "updates": 4,
+        "batch_size": 1024,
+        "workers": 32,
+        "device": "cuda",
+        "keep_rollouts": false,
+        "eval_cycles": [
+          0
+        ],
+        "canary": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/canary.npz",
+        "kl_early_stop": 2.0,
+        "league": {
+          "recent": 3,
+          "older": 2,
+          "seed_pool": [
+            "runs/C01_s{seed}/ppo/cycle-002/models/model.bin",
+            "runs/C01_s{seed}/ppo/cycle-005/models/model.bin",
+            "runs/C01_s{seed}/ppo/cycle-008/models/model.bin"
+          ],
+          "snapshot_weight": 1.0,
+          "pfsp": true,
+          "pfsp_power": 1.0,
+          "pfsp_floor": 0.2
+        }
+      },
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 10,
+        "workers": 32,
+        "include_rule_bots": true,
+        "extra": {
+          "c01_final": "runs/C01_s{seed}/ppo/cycle-011/models/model.bin",
+          "start_transformer": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin",
+          "gbdt_1600_s0": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+          "heldout_dragapult_gbdt": "outputs/dragapult/heldout/model/model.gbdt",
+          "heldout_iono_gbdt": "outputs/iono/heldout/model/model.gbdt",
+          "heldout_abomasnow_gbdt": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+        }
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "ded33fc885c05c9848097c83e7293bbb49d4afc2419f7aaaa2d0a5791636f9df",
+  "seed": 0,
+  "created": "2026-11-21T05:29:52+0100",
+  "stages": {
+    "ppo": {
+      "status": "done",
+      "inputs_hash": "f9740f56dd94b325299f67a4beeba74844f9fe51aa346e6178f99a6e1783c76b",
+      "finished": "2026-11-21T05:37:03+0100",
+      "children_max_rss_mb": 3098.1,
+      "outputs": {
+        "ppo_bin": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-001/models/model.bin",
+        "ppo_checkpoint": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-001/models/model.pt",
+        "ppo_c0_bin": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-000/models/model.bin"
+      }
+    },
+    "eval": {
+      "status": "done",
+      "inputs_hash": "541c9c84533ab708786482409d603ea8079527714a9a2e88b88d808b93dfe536",
+      "finished": "2026-11-21T05:37:07+0100",
+      "children_max_rss_mb": 3098.1,
+      "outputs": {
+        "eval_summary": "runs/C-league_pipecheck-s0-ded33fc8/eval/summary.json"
+      }
+    }
+  },
+  "gates": {
+    "ppo_health": {
+      "passed": true,
+      "statuses": [
+        "warn",
+        "warn"
+      ]
+    }
+  },
+  "git": {
+    "sha": "c75592459fbe94586644ef54963327f7678330ce",
+    "branch": "maksim/shared-layer",
+    "dirty": true,
+    "code_sha256": "a9ee52307f93456806034bdb484150f5ae85daca1efcbfa1a371b21a2c0ee04a"
+  },
+  "uv_lock_sha256": "823fd3a94bcdfec8b27789d69b888ae4acf8ed6f995c9b4195f18836bdd07257",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-2",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1948508",
+    "slurm_array_task": null,
+    "slurm_cpus": "32",
+    "gpus": [
+      "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "ppo": {
+      "arena": 1862971003,
+      "sample": 1905354094,
+      "update": 1374455452
+    }
+  },
+  "outputs": {
+    "ppo_bin": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-001/models/model.bin",
+    "ppo_checkpoint": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-001/models/model.pt",
+    "ppo_c0_bin": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-000/models/model.bin",
+    "eval_summary": "runs/C-league_pipecheck-s0-ded33fc8/eval/summary.json"
+  }
+}

@@ -1,0 +1,9 @@
+{"t": 1794907354.7855182, "stage": "gate", "gate": "transformer_validate_2e-5", "passed": true}
+{"t": 1794907467.620308, "stage": "ppo_health", "cycle": "cycle-000", "status": "warn"}
+{"t": 1794907467.630552, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["warn"]}
+{"t": 1794907469.241121, "stage": "eval", "agent": "dragapult_rule", "mu": 1100.0178440314369, "sigma": 31.558017742982734, "lcb": 1036.9018085454713}
+{"t": 1794907469.2427123, "stage": "eval", "agent": "lucario_rule", "mu": 1092.5433483393927, "sigma": 30.899332802668013, "lcb": 1030.7446827340566}
+{"t": 1794907469.2476397, "stage": "eval", "agent": "iono_rule", "mu": 1018.783904196105, "sigma": 30.200814524026697, "lcb": 958.3822751480516}
+{"t": 1794907469.2493644, "stage": "eval", "agent": "abomasnow_rule", "mu": 1000.2773984390992, "sigma": 29.780946791729246, "lcb": 940.7155048556407}
+{"t": 1794907469.2541356, "stage": "eval", "agent": "distill_ppo_pipecheck_s0_transformer", "mu": 900.6422417430997, "sigma": 31.164071976102793, "lcb": 838.3140977908942}
+{"t": 1794907469.2557006, "stage": "eval", "agent": "distill_ppo_pipecheck_s0_ppo", "mu": 887.7352632508665, "sigma": 31.366565032848925, "lcb": 825.0021331851686}

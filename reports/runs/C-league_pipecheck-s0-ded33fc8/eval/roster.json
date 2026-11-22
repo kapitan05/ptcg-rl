@@ -1,0 +1,46 @@
+{
+  "lucario_rule": {
+    "agent": "mega_lucario"
+  },
+  "dragapult_rule": {
+    "agent": "dragapult"
+  },
+  "iono_rule": {
+    "agent": "iono"
+  },
+  "abomasnow_rule": {
+    "agent": "mega_abomasnow"
+  },
+  "league_pipecheck_s0_ppo": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-001/models/model.bin"
+  },
+  "league_pipecheck_s0_ppo_c0": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/C-league_pipecheck-s0-ded33fc8/ppo/cycle-000/models/model.bin"
+  },
+  "c01_final": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/C-ppo_baseline-s0-ba1b0384/ppo/cycle-011/models/model.bin"
+  },
+  "start_transformer": {
+    "agent": "mega_lucario_transformer",
+    "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin"
+  },
+  "gbdt_1600_s0": {
+    "agent": "mega_lucario_gbdt",
+    "model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt"
+  },
+  "heldout_dragapult_gbdt": {
+    "agent": "dragapult_gbdt",
+    "model": "outputs/dragapult/heldout/model/model.gbdt"
+  },
+  "heldout_iono_gbdt": {
+    "agent": "iono_gbdt",
+    "model": "outputs/iono/heldout/model/model.gbdt"
+  },
+  "heldout_abomasnow_gbdt": {
+    "agent": "mega_abomasnow_gbdt",
+    "model": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+  }
+}

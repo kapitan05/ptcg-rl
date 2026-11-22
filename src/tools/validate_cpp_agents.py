@@ -16,7 +16,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import TYPE_CHECKING
 
-from fetch_official_assets import CG_SHA256, OFFICIAL_AGENTS
+from fetch_official_assets import CG_DISTRIBUTIONS, OFFICIAL_AGENTS
 
 if TYPE_CHECKING:
     from types import ModuleType
@@ -215,10 +215,11 @@ def main() -> None:
     parser.add_argument(
         "--games", type=int, default=1, help="Games per ordered pairing (16 pairings)"
     )
+    parser.add_argument("--cg-distribution", choices=sorted(CG_DISTRIBUTIONS), default="playground")
     args = parser.parse_args()
     if args.games < 1:
         parser.error("--games must be positive")
-    for filename, expected in CG_SHA256.items():
+    for filename, expected in CG_DISTRIBUTIONS[args.cg_distribution].items():
         verify(args.cg_root / "cg" / filename, expected)
     sys.path.insert(0, str(args.cg_root.resolve()))
     args.output_dir.mkdir(parents=True, exist_ok=True)

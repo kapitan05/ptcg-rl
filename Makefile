@@ -70,7 +70,8 @@ PPO_LATEST_CHECKPOINT ?= $(PPO_DIR)/latest/models/model.pt
 PPO_PREVIOUS_BIN ?= $(PPO_DIR)/previous/models/model.bin
 PPO_BASE_CHECKPOINT ?= $(PPO_DIR)/cycle-$(PPO_BASE_CYCLE_ID)/models/model.pt
 RUNPOD_SETUP_ARGS ?=
-HF_NAMESPACE ?= kaba777
+# Set to the team Hugging Face org (e.g. `make hf-... HF_NAMESPACE=<org>`); empty fails loudly instead of pushing to the upstream author.
+HF_NAMESPACE ?=
 HF_MODEL_REPO ?= $(HF_NAMESPACE)/ptcg-mega-lucario-models
 HF_DATASET_REPO ?= $(HF_NAMESPACE)/ptcg-mega-lucario-runs
 HF_REPO_VISIBILITY ?= --private
@@ -472,3 +473,13 @@ mega-lucario-ppo-train-next-cycle: $(ARENA)
 	  --batch-size $(PPO_BATCH_SIZE) \
 	  --micro-batch-size $(PPO_MICRO_BATCH_SIZE) \
 	  --updates $(PPO_UPDATES)
+
+# ---- Team experiment layer (src/ptcg_exp) ------------------------------------------
+.PHONY: test smoke
+test:
+	uv run ruff check src tests
+	uv run pytest tests/ -q
+
+# End-to-end smoke of every stage + gates at toy size; run on Eden (or any machine with the engine).
+smoke:
+	PYTHONPATH=src $(PYTHON) -m ptcg_exp.run configs/base/smoke.yaml --seed 0

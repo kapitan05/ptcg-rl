@@ -132,6 +132,11 @@ def clipped_loss(
         entropy=entropy.mean(),
         approximate_kl=(ratio - 1 - log_ratio).mean(),
         clip_fraction=((ratio - 1).abs() > config["clip"]).float().mean(),
+        # Health diagnostics: ratio tails reveal outlier decisions the mean KL hides.
+        ratio_min=ratio.detach().min(),
+        ratio_max=ratio.detach().max(),
+        ratio_p01=torch.quantile(ratio.detach().float(), 0.01),
+        ratio_p99=torch.quantile(ratio.detach().float(), 0.99),
     )
     return loss, stats
 
@@ -194,6 +199,15 @@ def train(
         config["gamma"],
         config["gae_lambda"],
     )
+    raw_advantage = dict(
+        mean=float(advantages.mean()),
+        std=float(advantages.std()),
+        nonfinite=int((~np.isfinite(advantages)).sum()),
+    )
+    return_range = [float(returns.min()), float(returns.max())]
+    explained_variance_before = float(
+        1 - np.var(returns - data["old_value"]) / max(float(np.var(returns)), 1e-8)
+    )
     holdout_count = min(config.get("holdout_decisions", 10000), max(1, len(advantages) // 10))
     if len(advantages) < 2 or holdout_count < 1:
         raise ValueError("At least two decisions and positive holdout required")
@@ -220,6 +234,7 @@ def train(
             group.update(lr=config["learning_rate"], weight_decay=config["weight_decay"])
     order = rng.permutation(training_indices)
     reports = []
+    early_stopped = False
     used = 0
     max_updates = min(
         config["updates"], (len(order) + config["batch_size"] - 1) // config["batch_size"]
@@ -264,10 +279,22 @@ def train(
         norm = torch.nn.utils.clip_grad_norm_(
             model.parameters(), config["max_grad_norm"], error_if_nonfinite=True
         )
+        previous = [p.detach().clone() for p in model.parameters()]
         optimizer.step()
-        record["gradient_norm"] = float(norm)
+        with torch.no_grad():
+            step_sq = sum(
+                float((p - q).square().sum()) for p, q in zip(model.parameters(), previous)
+            )
+            param_sq = sum(float(q.square().sum()) for q in previous)
+        record["gradient_norm"] = float(norm)  # pre-clip total norm
+        record["update_ratio"] = (step_sq / max(param_sq, 1e-30)) ** 0.5
         reports.append(record)
         used += len(indices)
+        stop = config.get("kl_early_stop", 0.0)
+        if stop and record["approximate_kl"] > stop * config.get("kl_target", 0.004):
+            print(f"PPO KL early stop after {len(reports)} updates", flush=True)
+            early_stopped = True
+            break
         percent = 100 * len(reports) / max_updates
         print(
             f"PPO update progress: {len(reports)}/{max_updates} updates "
@@ -278,10 +305,16 @@ def train(
     with torch.no_grad():
         ratios = []
         log_deltas = []
+        holdout_values = []
+        holdout_entropy = []
         model.eval()
         for start in range(0, len(heldout), config.get("micro_batch_size", 128)):
             rows = heldout[start : start + config.get("micro_batch_size", 128)]
-            new_logp = joint_stats(model, batch(data, rows, device), manifest["temperature"])[0]
+            new_logp, new_value, new_entropy = joint_stats(
+                model, batch(data, rows, device), manifest["temperature"]
+            )
+            holdout_values.extend(new_value.cpu().tolist())
+            holdout_entropy.extend(new_entropy.cpu().tolist())
             delta = new_logp - torch.as_tensor(
                 data["old_logp"][rows], device=device, dtype=new_logp.dtype
             )
@@ -289,6 +322,20 @@ def train(
             log_deltas.extend((-delta).cpu().tolist())
         global_kl = float(np.mean(ratios))
         sampled_forward_kl = float(np.mean(log_deltas))
+        held_returns = returns[heldout]
+        held_values = np.asarray(holdout_values)
+        explained_variance_after = float(
+            1 - np.var(held_returns - held_values) / max(float(np.var(held_returns)), 1e-8)
+        )
+        bins = np.clip(((held_values + 1) / 2 * 10).astype(int), 0, 9)
+        value_ece = float(
+            sum(
+                (bins == b).mean()
+                * abs(held_values[bins == b].mean() - held_returns[bins == b].mean())
+                for b in range(10)
+                if (bins == b).any()
+            )
+        )
     state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
     delta = float(
         sum((state[k].double() - before[k].double()).square().sum() for k in state).sqrt()
@@ -313,6 +360,17 @@ def train(
         optimizer_resumed="optimizer_state" in payload,
         mean_metrics={k: float(np.mean([r[k] for r in reports])) for k in reports[0]},
         last_metrics=reports[-1],
+        updates_log=reports,
+        early_stopped=early_stopped,
+        health_inputs=dict(
+            raw_advantage=raw_advantage,
+            return_range=return_range,
+            explained_variance_before=explained_variance_before,
+            explained_variance_after_heldout=explained_variance_after,
+            value_ece_heldout=value_ece,
+            entropy_behavior_heldout=float(np.mean(data["old_entropy"][heldout])),
+            entropy_updated_heldout=float(np.mean(holdout_entropy)),
+        ),
         opponent_distribution=manifest["collection"],
         hardware=torch.cuda.get_device_name(0) if device == "cuda" else "CPU",
     )

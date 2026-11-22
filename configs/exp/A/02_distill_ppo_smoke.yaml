@@ -1,0 +1,27 @@
+# A/02: distil the strongest data-scale GBDT into the Transformer (GPU), validate, then one small PPO
+# cycle with full health checks. Teacher = 1,600-game GBDT seed 0, chosen by test top-1 (A/01)
+# before the A/01 rating finished; re-checked against the rating afterwards.
+extends: ../../base/full.yaml
+name: distill_ppo_smoke
+owner: A
+question: pipeline
+hypothesis: The distilled Transformer matches its GBDT teacher (top-1, arena); one PPO cycle passes all health checks.
+seeds: [0]
+resources: {cpus: 32, mem: 160G, time: "23:00:00", gpus: 1}
+stages:
+  distill:
+    teacher_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    teacher_games_per_opponent: 1250
+    epochs: 5
+    device: cuda
+  ppo:
+    gbdt_model: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+    cycles: 1
+    games: 1000
+    updates: 16
+    workers: 32
+    device: cuda
+  eval:
+    games_per_pair: 200
+    workers: 32
+    extra: {gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt}

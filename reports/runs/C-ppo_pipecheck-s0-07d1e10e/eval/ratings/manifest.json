@@ -1,0 +1,29 @@
+{
+  "format": "ptcg-rating-corpus-v1",
+  "binary_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "roster": {
+    "ppo_pipecheck_s0_ppo": {
+      "agent": "mega_lucario_transformer",
+      "deck": "src/agents/mega_lucario/deck.csv",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-001/models/model.bin",
+      "model_sha256": "7f013ef2234394638953a32a48194455a51f784b336ef5cb9ebb9a3fee2085f2"
+    },
+    "ppo_pipecheck_s0_ppo_c0": {
+      "agent": "mega_lucario_transformer",
+      "deck": "src/agents/mega_lucario/deck.csv",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "model": "runs/C-ppo_pipecheck-s0-07d1e10e/ppo/cycle-000/models/model.bin",
+      "model_sha256": "a64d65d6644823b9c9d6e640e39f946720a9fb72b46585d198ceab14f83ccead"
+    },
+    "start_transformer": {
+      "agent": "mega_lucario_transformer",
+      "deck": "src/agents/mega_lucario/deck.csv",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "model": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin",
+      "model_sha256": "59d8aa4d9e759c173ac9709f2601f9d47e03b4211099cde42db22dc3451d6bf1"
+    }
+  },
+  "seed": 3146688782,
+  "schedule": "sorted unordered pairs; same game seeds for both seats; pair stride 1000000"
+}

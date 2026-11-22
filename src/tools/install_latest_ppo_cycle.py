@@ -83,7 +83,9 @@ def main() -> None:
     parser.add_argument("repo_id")
     parser.add_argument("--repo-type", default="model")
     parser.add_argument("--remote-root", default="mega_lucario/ppo")
-    parser.add_argument("--output-dir", type=Path, default=Path("outputs/mega_lucario/ppo_training"))
+    parser.add_argument(
+        "--output-dir", type=Path, default=Path("outputs/mega_lucario/ppo_training")
+    )
     parser.add_argument("--alias", default="latest")
     parser.add_argument("--previous-alias")
     args = parser.parse_args()

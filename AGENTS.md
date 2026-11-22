@@ -54,7 +54,7 @@ An independent implementation of the game rules is outside the initial scope.
 - `src/agents/cpp/registry.h` only registers and connects agents. Add learning methods through agent factories and recording hooks, not model-specific arena branches.
 - `src/tools/` contains asset downloads, whole-project builds, official-policy validation, and model-independent ratings. Agent-specific training, extraction, export, and validation commands belong inside the agent directory.
 - Download the competition engine into ignored `src/engine/cg/`. Include the unmodified files from repository-owned `src/engine/cpp/` code. Do not patch distribution files to hide defects.
-- Work directly on `main`; commit and push to `main` after each task's necessary validation and diff review. Never create or switch branches without explicit user instructions. Keep unrelated changes out of the same commit.
+- `main` is protected (PR with 1 approving review, CI job `test` green, branch up to date, conversations resolved, linear history, no force pushes). Work on a branch `<owner>/<topic>`, push it and open a PR; never push to `main` directly. Keep unrelated changes out of the same commit.
 - Create PRs only when explicitly requested. Never overwrite someone else's uncommitted work.
 - Exclude datasets, build artifacts, checkpoints, and logs from Git.
 - Use only relative repository-local paths in `.gitignore`; do not add leading `/`, personal absolute paths, or paths containing `../`.

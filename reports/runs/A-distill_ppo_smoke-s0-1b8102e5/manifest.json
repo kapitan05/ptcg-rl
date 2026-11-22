@@ -1,0 +1,164 @@
+{
+  "run_id": "A-distill_ppo_smoke-s0-1b8102e5",
+  "config": {
+    "name": "distill_ppo_smoke",
+    "owner": "A",
+    "question": "pipeline",
+    "hypothesis": "The distilled Transformer matches its GBDT teacher (top-1, arena); one PPO cycle passes all health checks.",
+    "profile": "full",
+    "seeds": [
+      0
+    ],
+    "resources": {
+      "cpus": 32,
+      "mem": "160G",
+      "time": "23:00:00",
+      "gpus": 1
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "distill": {
+        "teacher_model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+        "teacher_games_per_opponent": 1250,
+        "epochs": 5,
+        "batch_size": 256,
+        "learning_rate": 0.0003,
+        "temperature": 1.0,
+        "hard_weight": 0.1,
+        "value_weight": 0.25,
+        "device": "cuda",
+        "max_updates": null
+      },
+      "ppo": {
+        "checkpoint": null,
+        "gbdt_model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+        "cycles": 1,
+        "games": 1000,
+        "updates": 16,
+        "batch_size": 1024,
+        "workers": 32,
+        "device": "cuda"
+      },
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 200,
+        "workers": 32,
+        "include_rule_bots": true,
+        "extra": {
+          "gbdt_1600_s0": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt"
+        }
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "1b8102e50f8dada79fcc6755916fa63b27f1f687e0ba2d49804f61c92645427c",
+  "seed": 0,
+  "created": "2026-11-17T10:54:08+0100",
+  "stages": {
+    "distill": {
+      "status": "done",
+      "inputs_hash": "69c8b9e14ee0210fdda0264ff7857ba6e94a6958b7bead4c8d380b13313f497e",
+      "finished": "2026-11-17T14:14:06+0100",
+      "children_max_rss_mb": 14675.5,
+      "outputs": {
+        "transformer_checkpoint": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.pt",
+        "transformer_bin": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin",
+        "canary": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/canary.npz",
+        "transformer_sha256": "8f60deb9290a3e46e2049e98e67f0ae3ed9250ea4707b350a7c862f43767c7fb"
+      }
+    },
+    "ppo": {
+      "status": "done",
+      "inputs_hash": "89790f1fd80405e4f814b8f425b5687af20d5b9a3152502305e18f49cf5dddb1",
+      "finished": "2026-11-17T14:20:01+0100",
+      "children_max_rss_mb": 14675.5,
+      "outputs": {
+        "ppo_bin": "runs/A-distill_ppo_smoke-s0-1b8102e5/ppo/cycle-000/models/model.bin",
+        "ppo_checkpoint": "runs/A-distill_ppo_smoke-s0-1b8102e5/ppo/cycle-000/models/model.pt"
+      }
+    },
+    "eval": {
+      "status": "done",
+      "inputs_hash": "be664683db9050a332e692e824b920e744cf5bc8df0c5fd2323665fafe8ae501",
+      "finished": "2026-11-17T14:20:17+0100",
+      "children_max_rss_mb": 14675.5,
+      "outputs": {
+        "eval_summary": "runs/A-distill_ppo_smoke-s0-1b8102e5/eval/summary.json"
+      }
+    }
+  },
+  "gates": {
+    "transformer_validate_2e-5": {
+      "passed": true
+    },
+    "ppo_health": {
+      "passed": true,
+      "statuses": [
+        "pass"
+      ]
+    }
+  },
+  "git": {
+    "sha": "c7bfa7f24a92f7ef334fe7944dfd9cc5c8fc5a47",
+    "branch": "main",
+    "dirty": true
+  },
+  "uv_lock_sha256": "54b780a453f9e982a4ad527a1fd134554a1e73c672f8064ce93761e0821c62d3",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-3",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1943742",
+    "slurm_array_task": null,
+    "slurm_cpus": "32",
+    "gpus": [
+      "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "distill": {
+      "teacher_games": 709309177,
+      "split": 1088219892,
+      "train": 1086154023
+    },
+    "ppo": {
+      "arena": 1862971003,
+      "sample": 1905354094,
+      "update": 1374455452
+    }
+  },
+  "outputs": {
+    "transformer_checkpoint": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.pt",
+    "transformer_bin": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/model/model.bin",
+    "canary": "runs/A-distill_ppo_smoke-s0-1b8102e5/distill/canary.npz",
+    "transformer_sha256": "8f60deb9290a3e46e2049e98e67f0ae3ed9250ea4707b350a7c862f43767c7fb",
+    "ppo_bin": "runs/A-distill_ppo_smoke-s0-1b8102e5/ppo/cycle-000/models/model.bin",
+    "ppo_checkpoint": "runs/A-distill_ppo_smoke-s0-1b8102e5/ppo/cycle-000/models/model.pt",
+    "eval_summary": "runs/A-distill_ppo_smoke-s0-1b8102e5/eval/summary.json"
+  }
+}

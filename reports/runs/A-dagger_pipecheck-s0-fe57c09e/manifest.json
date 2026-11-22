@@ -1,0 +1,137 @@
+{
+  "run_id": "A-dagger_pipecheck-s0-fe57c09e",
+  "config": {
+    "name": "dagger_pipecheck",
+    "owner": "A",
+    "question": "pipeline",
+    "hypothesis": "The DAgger stage runs end to end, relabeled shards train, the parity gate passes.",
+    "profile": "full",
+    "seeds": [
+      0
+    ],
+    "resources": {
+      "cpus": 16,
+      "mem": "64G",
+      "time": "02:00:00",
+      "gpus": 1
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "dagger": {
+        "base_features": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/features",
+        "player": "student",
+        "student_model": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin",
+        "games_per_opponent": 4
+      },
+      "distill": {
+        "teacher_model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+        "teacher_games_per_opponent": 1250,
+        "epochs": 1,
+        "batch_size": 256,
+        "learning_rate": 0.0003,
+        "temperature": 1.0,
+        "hard_weight": 0.1,
+        "value_weight": 0.25,
+        "device": "cuda",
+        "max_updates": 50,
+        "features_from": null,
+        "keep_teacher_replays": false
+      },
+      "ppo": null,
+      "eval": null
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "fe57c09e9f568d3521cdaa230a7ab38e2b5ddf016b9b9f2a8a1ce4c9b1a4a28e",
+  "seed": 0,
+  "created": "2026-11-18T20:21:55+0100",
+  "stages": {
+    "dagger": {
+      "status": "done",
+      "inputs_hash": "289d18d8d5d1cd907979cbc3a8a90ccb2a614b481a581ea165f82cbbe721d195",
+      "finished": "2026-11-18T20:22:19+0100",
+      "children_max_rss_mb": 213.8,
+      "outputs": {
+        "dagger_features": "runs/A-dagger_pipecheck-s0-fe57c09e/dagger/features",
+        "dagger_train_games": "4765"
+      }
+    },
+    "distill": {
+      "status": "done",
+      "inputs_hash": "01eaa1b0565d2ed86b48d86eaa6c44e0d702e891d157e1279454307fee588a88",
+      "finished": "2026-11-18T20:23:07+0100",
+      "children_max_rss_mb": 14707.6,
+      "outputs": {
+        "transformer_checkpoint": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/model/model.pt",
+        "transformer_bin": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/model/model.bin",
+        "canary": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/canary.npz",
+        "transformer_sha256": "d86ba8ae706df4320ba9df3a4156eb8c8bf8e623791c2691fdd58d20a176ffef"
+      }
+    }
+  },
+  "gates": {
+    "transformer_validate_2e-5": {
+      "passed": true
+    }
+  },
+  "git": {
+    "sha": "7037f93ce865781fcfd55870b3762a88d8846426",
+    "branch": "maksim/shared-layer",
+    "dirty": true,
+    "code_sha256": "c3efea7a5c2d9f4bd209f145bd5df754579d97caf21aa70d0c6002cab45ae653"
+  },
+  "uv_lock_sha256": "823fd3a94bcdfec8b27789d69b888ae4acf8ed6f995c9b4195f18836bdd07257",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-3",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1944843",
+    "slurm_array_task": null,
+    "slurm_cpus": "16",
+    "gpus": [
+      "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "dagger": {
+      "games": 1403080763,
+      "split": 1931149484
+    },
+    "distill": {
+      "train": 1086154023
+    }
+  },
+  "outputs": {
+    "dagger_features": "runs/A-dagger_pipecheck-s0-fe57c09e/dagger/features",
+    "dagger_train_games": "4765",
+    "transformer_checkpoint": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/model/model.pt",
+    "transformer_bin": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/model/model.bin",
+    "canary": "runs/A-dagger_pipecheck-s0-fe57c09e/distill/canary.npz",
+    "transformer_sha256": "d86ba8ae706df4320ba9df3a4156eb8c8bf8e623791c2691fdd58d20a176ffef"
+  }
+}

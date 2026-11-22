@@ -1,4 +1,46 @@
-# Pokémon TCG AI Battle — Population-based RL Sample Implementation
+# PTCG-RL: what actually makes a Pokémon TCG agent stronger?
+
+A team research project on the [Pokémon TCG AI Battle (playground)](https://www.kaggle.com/competitions/the-pokemon-company-ptcg-ai-battle-challenge-playground).
+It builds on a fork of the 24th-place pipeline: C++ arena → GBDT imitation → Transformer distillation → PPO.
+
+**Research question:** *Under a fixed compute budget, which stages of an imitation → RL pipeline improve playing strength over a rule-based baseline, and why?*
+
+| Owner | Sub-question | First experiment |
+|---|---|---|
+| A (infra/data) | Does imitation quality scale with teacher data? Does DAgger close the accuracy-vs-win-rate gap? | `configs/exp/A/01_gbdt_data_scale.yaml` |
+| B (modeling) | Do history tokens (`logs[]`) and a belief head improve distillation and strength? | `configs/exp/B/01_example_history_tokens.yaml` |
+| C (RL/eval) | Which PPO choices matter (KL-to-teacher, epochs + KL stop, value clip, PFSP)? | `configs/exp/C/01_example_ppo_baseline.yaml` |
+
+**Baseline:** the official Mega Lucario rule bot (Kaggle ladder 600 → 538.9; arena BT 1073 ± 20).
+
+## Quickstart
+```bash
+uv sync --locked --dev                     # see docs/setup.md for macOS and the Eden cluster
+make test                                  # ruff + unit tests (configs, seeds, stats, PPO health)
+make smoke                                 # every stage + gates at toy size (needs the engine)
+PYTHONPATH=src uv run python -m ptcg_exp.run configs/exp/A/01_gbdt_data_scale.yaml --submit   # on Eden
+```
+
+## How an experiment runs (`src/ptcg_exp/`)
+- **`config.py`:** pydantic YAML configs with `extends:`, a strict schema (typos fail), and a stable `config_hash`.
+- **`run.py`:** stages `data → gbdt → distill → ppo → eval`. Each one wraps the repo's validated scripts. Stages are resumable, and **a failed correctness gate stops downstream stages.**
+- **`tracking.py`:** `runs/<id>/manifest.json` records the git SHA and dirty flag, the config and its hash, every derived seed, the `uv.lock`, arena and engine hashes, the contract IDs, the Slurm job and hardware. Metrics go to `metrics.jsonl` (and W&B with `PTCG_WANDB=1`).
+- **`seeds.py`:** one master seed → `derive(master, stage, name)`. Evaluation seeds come from a disjoint range.
+- **`evaluate.py`:** the frozen [evaluation protocol](docs/evaluation.md): BT ratings + per-opponent Wilson CIs + the promotion rule.
+- **`health.py` + `canary.py`:** PPO health checks (pass/warn/fail) on data, every update, post-update and drift. See [docs/evaluation.md](docs/evaluation.md#ppo-health).
+- **`slurm.py`:** job arrays (one task per seed) for the Eden cluster.
+- **`report.py`:** figures and tables for the report.
+
+## Reproducing a result
+Every experiment folder in `experiments/<owner>/<NN>/README.md` names its config and config hash, the seeds, and the artifact sha256s.
+Rerun it with `python -m ptcg_exp.run <config> --seed <s>`: the same config, seed and code give the same manifest seeds and (on CPU) identical model hashes.
+
+Team workflow: [docs/contributing.md](docs/contributing.md) · Setup: [docs/setup.md](docs/setup.md)
+
+---
+
+# Upstream pipeline reference
+## Pokémon TCG AI Battle — Population-based RL Sample Implementation
 
 [日本語版](README.ja.md)はこちら
 

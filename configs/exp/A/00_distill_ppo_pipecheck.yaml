@@ -1,0 +1,24 @@
+# A/00: functional check of distill → validate → canary → PPO (+health) → eval on GPU, at toy size.
+# Uses the 120-game GBDT (seed 0) as teacher. Not a result; it debugs the stages before A/02.
+extends: ../../base/full.yaml
+name: distill_ppo_pipecheck
+owner: A
+question: pipeline
+hypothesis: All distill/PPO stages and gates run on an Eden GPU node.
+seeds: [0]
+resources: {cpus: 16, mem: 64G, time: "06:00:00", gpus: 1}
+stages:
+  distill:
+    teacher_model: outputs/mega_lucario/scale/runs/games_120_s0/model/model.gbdt
+    teacher_games_per_opponent: 50
+    epochs: 1
+    device: cuda
+  ppo:
+    gbdt_model: outputs/mega_lucario/scale/runs/games_120_s0/model/model.gbdt
+    cycles: 1
+    games: 64
+    updates: 2
+    batch_size: 64
+    workers: 16
+    device: cuda
+  eval: {games_per_pair: 20, workers: 16}

@@ -1,0 +1,24 @@
+# C/06: rate all Sprint 3 arms in ONE roster per seed (paired head-to-head): C/01 final (start),
+# C/03 control, C/04 league, C/05 league+PFSP, plus the A/02 Transformer, the GBDT and the
+# held-out pool. Promotion candidate = best arm whose LCB clears C/01 final and the GBDT.
+extends: ../../base/full.yaml
+name: sprint3_eval
+owner: C
+question: ppo_opponent_pool
+hypothesis: See C/04 and C/05 (pre-registered there).
+seeds: [0, 1, 2]
+resources: {cpus: 32, mem: 64G, time: "06:00:00", gpus: 0}
+stages:
+  eval:
+    games_per_pair: 200
+    workers: 32
+    extra:
+      c01_final: runs/C01_s{seed}/ppo/cycle-011/models/model.bin
+      c03_continue: runs/C-ppo_continue-s{seed}-4cbddd27/ppo/cycle-005/models/model.bin
+      c04_league: runs/C-ppo_league-s{seed}-a00bacd2/ppo/cycle-005/models/model.bin
+      c05_league_pfsp: runs/C-ppo_league_pfsp-s{seed}-073d3c90/ppo/cycle-005/models/model.bin
+      a02_transformer: runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin
+      gbdt_1600_s0: outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt
+      heldout_dragapult_gbdt: outputs/dragapult/heldout/model/model.gbdt
+      heldout_iono_gbdt: outputs/iono/heldout/model/model.gbdt
+      heldout_abomasnow_gbdt: outputs/mega_abomasnow/heldout/model/model.gbdt

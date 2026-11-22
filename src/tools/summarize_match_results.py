@@ -32,7 +32,9 @@ def summarize(path: Path) -> dict[str, dict[str, float | int]]:
     for item in summary.values():
         games = int(item["games"])
         decisive = int(item["wins"]) + int(item["losses"])
-        item["win_rate"] = (float(item["wins"]) + 0.5 * float(item["draws"])) / games if games else 0.0
+        item["win_rate"] = (
+            (float(item["wins"]) + 0.5 * float(item["draws"])) / games if games else 0.0
+        )
         item["non_draw_win_rate"] = float(item["wins"]) / decisive if decisive else 0.0
     return summary
 
