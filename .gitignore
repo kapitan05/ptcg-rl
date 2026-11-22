@@ -40,3 +40,4 @@ logs/
 wandb/
 *.tar.zst
 *.tar.zst.sha256
+!reports/runs/**/models/
