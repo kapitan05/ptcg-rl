@@ -37,10 +37,15 @@ EXP_DIR = {
     "C/03": "C/03_ppo_continue",
     "C/04": "C/04_ppo_league",
     "C/05": "C/05_ppo_league_pfsp",
+    "C/06": "C/06_sprint3_eval",
+    "C/06b": "C/06_sprint3_eval/2k_games",
 }
 OPPONENTS = [
     "start Transformer",
     "C/01 final",
+    "C/03 continue",
+    "C/04 league",
+    "C/05 league + PFSP",
     "GBDT teacher",
     "Lucario rule bot",
     "Dragapult rule bot",
@@ -256,7 +261,9 @@ def health(cycles: list[Row], experiment: str, path: Path) -> bool:
 
 def overview(pairs: list[Row], path: Path) -> None:
     """Every arm's pooled win rate (with CI) against five key opponents, as small multiples."""
-    arms = [a for a in dict.fromkeys(r["arm"] for r in pairs)]
+    arms = [
+        a for a in dict.fromkeys(r["arm"] for r in pairs) if not a.startswith("C/06")
+    ]  # C/06, C/06b
     order = ["A/02", "A/04", "C/02", "C/01", "C/03", "C/04", "C/05"]
     arms.sort(key=lambda a: (order.index(a[:4]) if a[:4] in order else 99, a))
     panels = [
@@ -322,16 +329,21 @@ def main() -> None:
             continue
         out = reports / sub
         out.mkdir(parents=True, exist_ok=True)
+        cols = min(len(arms), 2)
+        nrows = math.ceil(len(arms) / cols)
+        height = 4.8 if len(OPPONENTS) <= 10 else 5.6
         fig, axes = plt.subplots(
-            1, len(arms), figsize=(6.8 * len(arms), 4.8), dpi=150, squeeze=False
+            nrows, cols, figsize=(6.8 * cols, height * nrows), dpi=150, squeeze=False
         )
-        for ax, arm in zip(axes[0], arms, strict=True):
+        for ax in axes.flat[len(arms) :]:
+            ax.set_visible(False)
+        for ax, arm in zip(axes.flat, arms, strict=False):
             winrates(pairs, arm, ax)
         fig.tight_layout()
         fig.savefig(out / "winrates.png")
         plt.close(fig)
         written.append(f"{sub}/winrates.png")
-        if exp.startswith("C/") and exp != "C/02":
+        if exp.startswith("C/") and exp not in ("C/02", "C/06", "C/06b"):
             if learning_curve(ratings, exp, out / "learning_curve.png"):
                 written.append(f"{sub}/learning_curve.png")
             if health(cycles, exp, out / "health.png"):

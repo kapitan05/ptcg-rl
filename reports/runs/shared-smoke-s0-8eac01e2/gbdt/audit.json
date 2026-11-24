@@ -1,0 +1,58 @@
+{
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "model_id": "f497f39c66c2d157c23f027eb8ff6270a988ee3f4d52c828df01679e3d45edb2",
+  "atol": 1e-10,
+  "rtol": 1e-10,
+  "games": 8,
+  "decisions": 398,
+  "queries": 411,
+  "feature_rows": 2527,
+  "feature_max_abs_error": 0.0,
+  "prediction_max_abs_error": 0.0,
+  "action_mismatches": 0,
+  "agent_errors": 0,
+  "engine_errors": 0,
+  "probe_rows": 5629,
+  "replays": [
+    {
+      "path": "dragapult-seat0/game-0.jsonl",
+      "sha256": "ea40b5fcf28356fd6b36444976794831caaf63718931e297d52f90eae24d39e5",
+      "steps": 142
+    },
+    {
+      "path": "dragapult-seat1/game-0.jsonl",
+      "sha256": "979ffd751874ecea7bda41a7af806489f66696d0a9bf5aa197ddb698f3c7fd12",
+      "steps": 192
+    },
+    {
+      "path": "iono-seat0/game-0.jsonl",
+      "sha256": "d968a478043d42fc91cc00357f8445fccda3960efb93c74fe0c0933ee2d7beba",
+      "steps": 190
+    },
+    {
+      "path": "iono-seat1/game-0.jsonl",
+      "sha256": "40a438762ec173162b6e4e974ad08ae48357fafd8638ef12cdc0b9e1729476b8",
+      "steps": 201
+    },
+    {
+      "path": "mega_abomasnow-seat0/game-0.jsonl",
+      "sha256": "3c7ff6f533b73e5ccd1bc8da7c2fa7a904fe2264677e3d6619465c0dd8655542",
+      "steps": 75
+    },
+    {
+      "path": "mega_abomasnow-seat1/game-0.jsonl",
+      "sha256": "7347da5b2ac7b454733ce7492ca8f5b923560c0f6afb3508e767c2d5539ebcca",
+      "steps": 22
+    },
+    {
+      "path": "mega_lucario-seat0/game-0.jsonl",
+      "sha256": "97d151ee0d4afa92bed2432d91b87202e4491f811b6f559795ce50020a171031",
+      "steps": 169
+    },
+    {
+      "path": "mega_lucario-seat1/game-0.jsonl",
+      "sha256": "2c9ce075e4a4447a66fc66752353aef0e7d2bc5bba33ccd4323f7d6a7a477ca9",
+      "steps": 46
+    }
+  ]
+}

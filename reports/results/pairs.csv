@@ -175,3 +175,331 @@ C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,held-out Iono GBDT,200,161,
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,Iono rule bot,200,153,0,47,0.765,0.7016,0.8184
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,Lucario rule bot,200,106,0,94,0.53,0.4609,0.598
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,start Transformer,200,113,0,87,0.565,0.4957,0.6318
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,Abomasnow rule bot,200,117,0,83,0.585,0.5157,0.6511
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,C/01 final,200,114,0,86,0.57,0.5007,0.6367
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,Dragapult rule bot,200,108,0,92,0.54,0.4708,0.6077
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,GBDT teacher,200,135,0,65,0.675,0.6073,0.7361
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,held-out Abomasnow GBDT,200,115,0,85,0.575,0.5057,0.6415
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,held-out Dragapult GBDT,200,138,0,62,0.69,0.6228,0.75
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,held-out Iono GBDT,200,156,0,44,0.78,0.7176,0.8318
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,Iono rule bot,200,154,0,46,0.77,0.7069,0.8229
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,Lucario rule bot,200,106,1,93,0.5325,0.4634,0.6004
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,start Transformer,200,129,0,71,0.645,0.5765,0.708
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,Abomasnow rule bot,200,123,1,76,0.6175,0.5485,0.682
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,C/01 final,200,108,0,92,0.54,0.4708,0.6077
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,Dragapult rule bot,200,97,0,103,0.485,0.4167,0.5539
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,GBDT teacher,200,128,0,72,0.64,0.5714,0.7033
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,held-out Abomasnow GBDT,200,112,0,88,0.56,0.4907,0.627
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,held-out Dragapult GBDT,200,136,0,64,0.68,0.6125,0.7407
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,held-out Iono GBDT,200,162,0,38,0.81,0.75,0.8583
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,Iono rule bot,200,151,0,49,0.755,0.691,0.8094
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,Lucario rule bot,200,110,0,90,0.55,0.4808,0.6174
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,start Transformer,200,121,1,78,0.6075,0.5384,0.6725
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,Abomasnow rule bot,200,117,0,83,0.585,0.5157,0.6511
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,C/01 final,200,104,0,96,0.52,0.451,0.5882
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,Dragapult rule bot,200,87,0,113,0.435,0.3682,0.5043
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,GBDT teacher,200,121,0,79,0.605,0.5359,0.6702
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,held-out Abomasnow GBDT,200,108,0,92,0.54,0.4708,0.6077
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,held-out Dragapult GBDT,200,121,0,79,0.605,0.5359,0.6702
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,held-out Iono GBDT,200,157,0,43,0.785,0.723,0.8363
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,Iono rule bot,200,144,0,56,0.72,0.6541,0.7776
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,Lucario rule bot,200,96,0,104,0.48,0.4118,0.549
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,start Transformer,200,116,0,84,0.58,0.5107,0.6463
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,Abomasnow rule bot,200,117,0,83,0.585,0.5157,0.6511
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,C/01 final,200,111,0,89,0.555,0.4857,0.6222
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,Dragapult rule bot,200,119,0,81,0.595,0.5258,0.6606
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,GBDT teacher,200,131,0,69,0.655,0.5868,0.7174
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,held-out Abomasnow GBDT,200,117,0,83,0.585,0.5157,0.6511
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,held-out Dragapult GBDT,200,140,0,60,0.7,0.6332,0.7593
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,held-out Iono GBDT,200,164,0,36,0.82,0.7609,0.8671
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,Iono rule bot,200,152,0,48,0.76,0.6963,0.8139
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,Lucario rule bot,200,100,0,100,0.5,0.4314,0.5686
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,start Transformer,200,119,0,81,0.595,0.5258,0.6606
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,start Transformer,200,120,0,80,0.6,0.5308,0.6654
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,Abomasnow rule bot,200,112,0,88,0.56,0.4907,0.627
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,C/03 continue,200,97,1,102,0.4875,0.4191,0.5564
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,C/04 league,200,105,2,93,0.53,0.4609,0.598
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,C/05 league + PFSP,200,95,1,104,0.4775,0.4094,0.5465
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,Dragapult rule bot,200,104,1,95,0.5225,0.4535,0.5906
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,GBDT teacher,200,125,0,75,0.625,0.5561,0.6891
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,held-out Abomasnow GBDT,200,111,0,89,0.555,0.4857,0.6222
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,held-out Dragapult GBDT,200,122,1,77,0.6125,0.5435,0.6773
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,held-out Iono GBDT,200,149,0,51,0.745,0.6804,0.8004
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,Iono rule bot,200,151,0,49,0.755,0.691,0.8094
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,Lucario rule bot,200,104,0,96,0.52,0.451,0.5882
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,start Transformer,200,134,0,66,0.67,0.6022,0.7314
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,Abomasnow rule bot,200,115,0,85,0.575,0.5057,0.6415
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,C/01 final,200,102,1,97,0.5125,0.4436,0.5809
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,C/04 league,200,104,0,96,0.52,0.451,0.5882
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,C/05 league + PFSP,200,100,1,99,0.5025,0.4338,0.5711
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,Dragapult rule bot,200,94,1,105,0.4725,0.4045,0.5416
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,GBDT teacher,200,120,0,80,0.6,0.5308,0.6654
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,held-out Abomasnow GBDT,200,116,1,83,0.5825,0.5132,0.6487
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,held-out Dragapult GBDT,200,135,0,65,0.675,0.6073,0.7361
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,held-out Iono GBDT,200,163,0,37,0.815,0.7554,0.8627
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,Iono rule bot,200,157,0,43,0.785,0.723,0.8363
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,Lucario rule bot,200,117,0,83,0.585,0.5157,0.6511
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,start Transformer,200,130,0,70,0.65,0.5816,0.7127
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,Abomasnow rule bot,200,104,0,96,0.52,0.451,0.5882
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,C/01 final,200,93,2,105,0.47,0.402,0.5391
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,C/03 continue,200,96,0,104,0.48,0.4118,0.549
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,C/05 league + PFSP,200,101,0,99,0.505,0.4363,0.5735
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,Dragapult rule bot,200,107,0,93,0.535,0.4659,0.6028
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,GBDT teacher,200,131,0,69,0.655,0.5868,0.7174
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,held-out Abomasnow GBDT,200,129,0,71,0.645,0.5765,0.708
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,held-out Dragapult GBDT,200,126,0,74,0.63,0.5612,0.6939
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,held-out Iono GBDT,200,167,0,33,0.835,0.7773,0.88
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,Iono rule bot,200,167,0,33,0.835,0.7773,0.88
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,Lucario rule bot,200,104,0,96,0.52,0.451,0.5882
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,start Transformer,200,129,0,71,0.645,0.5765,0.708
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,Abomasnow rule bot,200,93,0,107,0.465,0.3972,0.5341
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,C/01 final,200,104,1,95,0.5225,0.4535,0.5906
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,C/03 continue,200,99,1,100,0.4975,0.4289,0.5662
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,C/04 league,200,99,0,101,0.495,0.4265,0.5637
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,Dragapult rule bot,200,102,0,98,0.51,0.4412,0.5784
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,GBDT teacher,200,125,0,75,0.625,0.5561,0.6891
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,held-out Abomasnow GBDT,200,128,0,72,0.64,0.5714,0.7033
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,held-out Dragapult GBDT,200,131,0,69,0.655,0.5868,0.7174
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,held-out Iono GBDT,200,155,0,45,0.775,0.7123,0.8274
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,Iono rule bot,200,147,0,53,0.735,0.6698,0.7913
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,Lucario rule bot,200,116,0,84,0.58,0.5107,0.6463
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,start Transformer,200,114,0,86,0.57,0.5007,0.6367
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,Abomasnow rule bot,200,115,0,85,0.575,0.5057,0.6415
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,C/03 continue,200,86,0,114,0.43,0.3633,0.4993
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,C/04 league,200,95,0,105,0.475,0.4069,0.544
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,C/05 league + PFSP,200,84,0,116,0.42,0.3537,0.4893
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,Dragapult rule bot,200,98,0,102,0.49,0.4216,0.5588
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,GBDT teacher,200,122,0,78,0.61,0.5409,0.6749
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,held-out Abomasnow GBDT,200,107,0,93,0.535,0.4659,0.6028
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,held-out Dragapult GBDT,200,112,0,88,0.56,0.4907,0.627
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,held-out Iono GBDT,200,165,0,35,0.825,0.7664,0.8714
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,Iono rule bot,200,145,0,55,0.725,0.6593,0.7822
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,Lucario rule bot,200,105,0,95,0.525,0.456,0.5931
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,start Transformer,200,122,2,76,0.615,0.546,0.6797
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,Abomasnow rule bot,200,110,0,90,0.55,0.4808,0.6174
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,C/01 final,200,114,0,86,0.57,0.5007,0.6367
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,C/04 league,200,106,0,94,0.53,0.4609,0.598
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,C/05 league + PFSP,200,106,0,94,0.53,0.4609,0.598
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,Dragapult rule bot,200,102,0,98,0.51,0.4412,0.5784
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,GBDT teacher,200,120,1,79,0.6025,0.5334,0.6678
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,held-out Abomasnow GBDT,200,120,0,80,0.6,0.5308,0.6654
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,held-out Dragapult GBDT,200,125,0,75,0.625,0.5561,0.6891
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,held-out Iono GBDT,200,154,0,46,0.77,0.7069,0.8229
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,Iono rule bot,200,144,0,56,0.72,0.6541,0.7776
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,Lucario rule bot,200,105,0,95,0.525,0.456,0.5931
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,start Transformer,200,125,0,75,0.625,0.5561,0.6891
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,Abomasnow rule bot,200,113,0,87,0.565,0.4957,0.6318
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,C/01 final,200,105,0,95,0.525,0.456,0.5931
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,C/03 continue,200,94,0,106,0.47,0.402,0.5391
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,C/05 league + PFSP,200,100,0,100,0.5,0.4314,0.5686
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,Dragapult rule bot,200,104,0,96,0.52,0.451,0.5882
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,GBDT teacher,200,111,0,89,0.555,0.4857,0.6222
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,held-out Abomasnow GBDT,200,115,0,85,0.575,0.5057,0.6415
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,held-out Dragapult GBDT,200,128,0,72,0.64,0.5714,0.7033
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,held-out Iono GBDT,200,150,0,50,0.75,0.6857,0.8049
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,Iono rule bot,200,159,0,41,0.795,0.7337,0.8451
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,Lucario rule bot,200,101,0,99,0.505,0.4363,0.5735
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,start Transformer,200,114,0,86,0.57,0.5007,0.6367
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,Abomasnow rule bot,200,91,0,109,0.455,0.3875,0.5242
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,C/01 final,200,116,0,84,0.58,0.5107,0.6463
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,C/03 continue,200,94,0,106,0.47,0.402,0.5391
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,C/04 league,200,100,0,100,0.5,0.4314,0.5686
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,Dragapult rule bot,200,94,1,105,0.4725,0.4045,0.5416
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,GBDT teacher,200,116,0,84,0.58,0.5107,0.6463
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,held-out Abomasnow GBDT,200,119,0,81,0.595,0.5258,0.6606
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,held-out Dragapult GBDT,200,120,2,78,0.605,0.5359,0.6702
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,held-out Iono GBDT,200,158,0,42,0.79,0.7284,0.8407
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,Iono rule bot,200,140,0,60,0.7,0.6332,0.7593
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,Lucario rule bot,200,114,0,86,0.57,0.5007,0.6367
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,start Transformer,200,117,0,83,0.585,0.5157,0.6511
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,Abomasnow rule bot,200,108,0,92,0.54,0.4708,0.6077
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,C/03 continue,200,97,2,101,0.49,0.4216,0.5588
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,C/04 league,200,85,0,115,0.425,0.3585,0.4943
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,C/05 league + PFSP,200,90,0,110,0.45,0.3826,0.5192
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,Dragapult rule bot,200,105,0,95,0.525,0.456,0.5931
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,GBDT teacher,200,115,1,84,0.5775,0.5082,0.6439
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,held-out Abomasnow GBDT,200,103,0,97,0.515,0.4461,0.5833
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,held-out Dragapult GBDT,200,121,0,79,0.605,0.5359,0.6702
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,held-out Iono GBDT,200,152,0,48,0.76,0.6963,0.8139
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,Iono rule bot,200,148,0,52,0.74,0.6751,0.7959
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,Lucario rule bot,200,109,0,91,0.545,0.4758,0.6125
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,start Transformer,200,128,0,72,0.64,0.5714,0.7033
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,Abomasnow rule bot,200,99,1,100,0.4975,0.4289,0.5662
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,C/01 final,200,101,2,97,0.51,0.4412,0.5784
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,C/04 league,200,106,0,94,0.53,0.4609,0.598
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,C/05 league + PFSP,200,110,1,89,0.5525,0.4832,0.6198
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,Dragapult rule bot,200,106,0,94,0.53,0.4609,0.598
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,GBDT teacher,200,122,0,78,0.61,0.5409,0.6749
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,held-out Abomasnow GBDT,200,106,0,94,0.53,0.4609,0.598
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,held-out Dragapult GBDT,200,140,1,59,0.7025,0.6358,0.7616
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,held-out Iono GBDT,200,155,0,45,0.775,0.7123,0.8274
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,Iono rule bot,200,150,0,50,0.75,0.6857,0.8049
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,Lucario rule bot,200,107,0,93,0.535,0.4659,0.6028
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,start Transformer,200,121,0,79,0.605,0.5359,0.6702
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,Abomasnow rule bot,200,116,0,84,0.58,0.5107,0.6463
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,C/01 final,200,115,0,85,0.575,0.5057,0.6415
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,C/03 continue,200,94,0,106,0.47,0.402,0.5391
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,C/05 league + PFSP,200,89,1,110,0.4475,0.3802,0.5168
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,Dragapult rule bot,200,116,0,84,0.58,0.5107,0.6463
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,GBDT teacher,200,121,0,79,0.605,0.5359,0.6702
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,held-out Abomasnow GBDT,200,115,1,84,0.5775,0.5082,0.6439
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,held-out Dragapult GBDT,200,130,0,70,0.65,0.5816,0.7127
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,held-out Iono GBDT,200,158,0,42,0.79,0.7284,0.8407
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,Iono rule bot,200,152,0,48,0.76,0.6963,0.8139
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,Lucario rule bot,200,111,0,89,0.555,0.4857,0.6222
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,start Transformer,200,126,0,74,0.63,0.5612,0.6939
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,Abomasnow rule bot,200,98,0,102,0.49,0.4216,0.5588
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,C/01 final,200,110,0,90,0.55,0.4808,0.6174
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,C/03 continue,200,89,1,110,0.4475,0.3802,0.5168
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,C/04 league,200,110,1,89,0.5525,0.4832,0.6198
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,Dragapult rule bot,200,113,0,87,0.565,0.4957,0.6318
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,GBDT teacher,200,118,1,81,0.5925,0.5233,0.6582
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,held-out Abomasnow GBDT,200,113,0,87,0.565,0.4957,0.6318
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,held-out Dragapult GBDT,200,128,2,70,0.645,0.5765,0.708
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,held-out Iono GBDT,200,163,0,37,0.815,0.7554,0.8627
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,Iono rule bot,200,143,0,57,0.715,0.6488,0.7731
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,Lucario rule bot,200,113,0,87,0.565,0.4957,0.6318
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,start Transformer,2000,1196,1,803,0.5982,0.5766,0.6195
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,Abomasnow rule bot,2000,1038,0,962,0.519,0.4971,0.5408
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,C/03 continue,2000,927,3,1070,0.4642,0.4425,0.4862
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,C/04 league,2000,936,3,1061,0.4688,0.447,0.4907
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,C/05 league + PFSP,2000,911,1,1088,0.4557,0.434,0.4776
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,Dragapult rule bot,2000,1013,2,985,0.507,0.4851,0.5289
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,GBDT teacher,2000,1217,0,783,0.6085,0.5869,0.6297
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,held-out Abomasnow GBDT,2000,1105,0,895,0.5525,0.5306,0.5742
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,held-out Dragapult GBDT,2000,1259,3,738,0.6302,0.6089,0.6511
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,held-out Iono GBDT,2000,1608,1,391,0.8043,0.7863,0.821
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,Iono rule bot,2000,1577,0,423,0.7885,0.7701,0.8058
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,Lucario rule bot,2000,1097,2,901,0.549,0.5271,0.5707
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,start Transformer,2000,1294,0,706,0.647,0.6258,0.6676
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,Abomasnow rule bot,2000,1094,1,905,0.5473,0.5254,0.569
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,C/01 final,2000,1070,3,927,0.5357,0.5138,0.5575
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,C/04 league,2000,1038,4,958,0.52,0.4981,0.5418
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,C/05 league + PFSP,2000,1045,5,950,0.5238,0.5018,0.5456
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,Dragapult rule bot,2000,1028,4,968,0.515,0.4931,0.5369
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,GBDT teacher,2000,1292,2,706,0.6465,0.6253,0.6672
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,held-out Abomasnow GBDT,2000,1126,1,873,0.5633,0.5414,0.5848
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,held-out Dragapult GBDT,2000,1317,8,675,0.6605,0.6395,0.6809
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,held-out Iono GBDT,2000,1662,0,338,0.831,0.8139,0.8468
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,Iono rule bot,2000,1582,0,418,0.791,0.7726,0.8083
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,Lucario rule bot,2000,1144,0,856,0.572,0.5502,0.5935
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,start Transformer,2000,1253,2,745,0.627,0.6056,0.6479
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,Abomasnow rule bot,2000,1099,0,901,0.5495,0.5276,0.5712
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,C/01 final,2000,1061,3,936,0.5312,0.5093,0.553
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,C/03 continue,2000,958,4,1038,0.48,0.4582,0.5019
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,C/05 league + PFSP,2000,1000,2,998,0.5005,0.4786,0.5224
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,Dragapult rule bot,2000,1004,1,995,0.5022,0.4804,0.5241
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,GBDT teacher,2000,1217,1,782,0.6088,0.5872,0.6299
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,held-out Abomasnow GBDT,2000,1169,0,831,0.5845,0.5628,0.6059
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,held-out Dragapult GBDT,2000,1339,8,653,0.6715,0.6506,0.6917
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,held-out Iono GBDT,2000,1639,1,360,0.8197,0.8023,0.836
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,Iono rule bot,2000,1555,0,445,0.7775,0.7587,0.7952
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,Lucario rule bot,2000,1103,1,896,0.5517,0.5299,0.5734
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,start Transformer,2000,1288,3,709,0.6448,0.6235,0.6654
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,Abomasnow rule bot,2000,1059,1,940,0.5298,0.5078,0.5515
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,C/01 final,2000,1088,1,911,0.5443,0.5224,0.566
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,C/03 continue,2000,950,5,1045,0.4763,0.4544,0.4982
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,C/04 league,2000,998,2,1000,0.4995,0.4776,0.5214
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,Dragapult rule bot,2000,1023,1,976,0.5118,0.4898,0.5336
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,GBDT teacher,2000,1220,4,776,0.611,0.5894,0.6321
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,held-out Abomasnow GBDT,2000,1164,1,835,0.5823,0.5605,0.6037
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,held-out Dragapult GBDT,2000,1331,3,666,0.6663,0.6453,0.6866
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,held-out Iono GBDT,2000,1609,0,391,0.8045,0.7865,0.8213
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,Iono rule bot,2000,1543,0,457,0.7715,0.7526,0.7894
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,Lucario rule bot,2000,1155,2,843,0.578,0.5562,0.5995
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,start Transformer,2000,1149,0,851,0.5745,0.5527,0.596
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,Abomasnow rule bot,2000,1061,0,939,0.5305,0.5086,0.5523
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,C/03 continue,2000,905,1,1094,0.4527,0.431,0.4746
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,C/04 league,2000,912,3,1085,0.4567,0.435,0.4786
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,C/05 league + PFSP,2000,889,0,1111,0.4445,0.4228,0.4664
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,Dragapult rule bot,2000,962,1,1037,0.4813,0.4594,0.5032
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,GBDT teacher,2000,1109,0,891,0.5545,0.5326,0.5762
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,held-out Abomasnow GBDT,2000,1058,1,941,0.5292,0.5073,0.551
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,held-out Dragapult GBDT,2000,1195,2,803,0.598,0.5763,0.6193
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,held-out Iono GBDT,2000,1552,0,448,0.776,0.7572,0.7937
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,Iono rule bot,2000,1515,0,485,0.7575,0.7382,0.7758
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,Lucario rule bot,2000,1023,0,977,0.5115,0.4896,0.5334
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,start Transformer,2000,1198,3,799,0.5998,0.5781,0.621
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,Abomasnow rule bot,2000,1090,1,909,0.5453,0.5234,0.567
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,C/01 final,2000,1094,1,905,0.5473,0.5254,0.569
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,C/04 league,2000,1003,5,992,0.5028,0.4809,0.5246
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,C/05 league + PFSP,2000,1012,3,985,0.5068,0.4848,0.5286
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,Dragapult rule bot,2000,1026,1,973,0.5132,0.4913,0.5351
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,GBDT teacher,2000,1169,4,827,0.5855,0.5638,0.6069
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,held-out Abomasnow GBDT,2000,1070,0,930,0.535,0.5131,0.5568
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,held-out Dragapult GBDT,2000,1265,2,733,0.633,0.6116,0.6539
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,held-out Iono GBDT,2000,1556,0,444,0.778,0.7593,0.7957
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,Iono rule bot,2000,1500,0,500,0.75,0.7306,0.7685
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,Lucario rule bot,2000,1083,2,915,0.542,0.5201,0.5637
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,start Transformer,2000,1234,2,764,0.6175,0.596,0.6386
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,Abomasnow rule bot,2000,1060,1,939,0.5302,0.5083,0.552
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,C/01 final,2000,1085,3,912,0.5433,0.5214,0.565
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,C/03 continue,2000,992,5,1003,0.4973,0.4754,0.5191
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,C/05 league + PFSP,2000,989,2,1009,0.495,0.4731,0.5169
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,Dragapult rule bot,2000,970,1,1029,0.4853,0.4634,0.5072
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,GBDT teacher,2000,1170,1,829,0.5853,0.5635,0.6067
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,held-out Abomasnow GBDT,2000,1102,1,897,0.5513,0.5294,0.5729
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,held-out Dragapult GBDT,2000,1246,3,751,0.6238,0.6023,0.6447
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,held-out Iono GBDT,2000,1582,0,418,0.791,0.7726,0.8083
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,Iono rule bot,2000,1515,0,485,0.7575,0.7382,0.7758
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,Lucario rule bot,2000,1116,1,883,0.5583,0.5364,0.5799
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,start Transformer,2000,1217,1,782,0.6088,0.5872,0.6299
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,Abomasnow rule bot,2000,1041,1,958,0.5208,0.4988,0.5426
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,C/01 final,2000,1111,0,889,0.5555,0.5336,0.5772
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,C/03 continue,2000,985,3,1012,0.4933,0.4714,0.5152
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,C/04 league,2000,1009,2,989,0.505,0.4831,0.5269
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,Dragapult rule bot,2000,941,1,1058,0.4708,0.449,0.4927
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,GBDT teacher,2000,1192,1,807,0.5962,0.5746,0.6175
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,held-out Abomasnow GBDT,2000,1131,3,866,0.5663,0.5444,0.5878
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,held-out Dragapult GBDT,2000,1223,5,772,0.6128,0.5912,0.6339
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,held-out Iono GBDT,2000,1552,0,448,0.776,0.7572,0.7937
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,Iono rule bot,2000,1505,0,495,0.7525,0.7331,0.7709
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,Lucario rule bot,2000,1097,3,900,0.5493,0.5274,0.5709
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,start Transformer,2000,1143,1,856,0.5717,0.5499,0.5933
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,Abomasnow rule bot,2000,1039,1,960,0.5198,0.4978,0.5416
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,C/03 continue,2000,911,3,1086,0.4562,0.4345,0.4781
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,C/04 league,2000,914,2,1084,0.4575,0.4358,0.4794
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,C/05 league + PFSP,2000,879,3,1118,0.4402,0.4186,0.4621
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,Dragapult rule bot,2000,1072,0,928,0.536,0.5141,0.5578
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,GBDT teacher,2000,1163,2,835,0.582,0.5602,0.6034
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,held-out Abomasnow GBDT,2000,1053,0,947,0.5265,0.5046,0.5483
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,held-out Dragapult GBDT,2000,1288,5,707,0.6452,0.624,0.6659
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,held-out Iono GBDT,2000,1554,0,446,0.777,0.7582,0.7947
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,Iono rule bot,2000,1547,0,453,0.7735,0.7546,0.7913
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,Lucario rule bot,2000,1012,2,986,0.5065,0.4846,0.5284
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,start Transformer,2000,1247,0,753,0.6235,0.602,0.6445
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,Abomasnow rule bot,2000,1019,2,979,0.51,0.4881,0.5319
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,C/01 final,2000,1086,3,911,0.5437,0.5219,0.5655
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,C/04 league,2000,1001,1,998,0.5008,0.4789,0.5226
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,C/05 league + PFSP,2000,980,3,1017,0.4908,0.4689,0.5127
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,Dragapult rule bot,2000,1121,3,876,0.5613,0.5394,0.5829
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,GBDT teacher,2000,1213,1,786,0.6068,0.5852,0.6279
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,held-out Abomasnow GBDT,2000,1110,2,888,0.5555,0.5336,0.5772
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,held-out Dragapult GBDT,2000,1384,3,613,0.6927,0.6722,0.7126
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,held-out Iono GBDT,2000,1610,0,390,0.805,0.7871,0.8218
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,Iono rule bot,2000,1519,0,481,0.7595,0.7403,0.7777
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,Lucario rule bot,2000,1110,4,886,0.556,0.5341,0.5776
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,start Transformer,2000,1237,4,759,0.6195,0.598,0.6405
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,Abomasnow rule bot,2000,1081,0,919,0.5405,0.5186,0.5622
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,C/01 final,2000,1084,2,914,0.5425,0.5206,0.5642
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,C/03 continue,2000,998,1,1001,0.4993,0.4774,0.5211
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,C/05 league + PFSP,2000,983,3,1014,0.4923,0.4704,0.5142
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,Dragapult rule bot,2000,1104,2,894,0.5525,0.5306,0.5742
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,GBDT teacher,2000,1222,3,775,0.6118,0.5902,0.6329
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,held-out Abomasnow GBDT,2000,1107,2,891,0.554,0.5321,0.5757
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,held-out Dragapult GBDT,2000,1323,4,673,0.6625,0.6415,0.6829
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,held-out Iono GBDT,2000,1628,0,372,0.814,0.7964,0.8304
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,Iono rule bot,2000,1528,0,472,0.764,0.7449,0.7821
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,Lucario rule bot,2000,1128,1,871,0.5643,0.5424,0.5858
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,start Transformer,2000,1269,3,728,0.6352,0.6139,0.6561
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,Abomasnow rule bot,2000,1073,1,926,0.5367,0.5148,0.5585
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,C/01 final,2000,1118,3,879,0.5597,0.5379,0.5814
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,C/03 continue,2000,1017,3,980,0.5092,0.4873,0.5311
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,C/04 league,2000,1014,3,983,0.5078,0.4858,0.5296
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,Dragapult rule bot,2000,1073,5,922,0.5377,0.5158,0.5595
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,GBDT teacher,2000,1258,3,739,0.6298,0.6084,0.6506
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,held-out Abomasnow GBDT,2000,1150,1,849,0.5753,0.5535,0.5967
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,held-out Dragapult GBDT,2000,1337,9,654,0.6707,0.6498,0.691
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,held-out Iono GBDT,2000,1628,0,372,0.814,0.7964,0.8304
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,Iono rule bot,2000,1515,0,485,0.7575,0.7382,0.7758
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,Lucario rule bot,2000,1157,4,839,0.5795,0.5577,0.601

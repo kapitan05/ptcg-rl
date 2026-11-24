@@ -1,0 +1,106 @@
+{
+  "run_id": "C-sprint3_eval_2k-s0-3b8e886f",
+  "config": {
+    "name": "sprint3_eval_2k",
+    "owner": "C",
+    "question": "ppo_opponent_pool",
+    "hypothesis": "See C/04 and C/05 (pre-registered there).",
+    "profile": "full",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "resources": {
+      "cpus": 32,
+      "mem": "64G",
+      "time": "06:00:00",
+      "gpus": 0
+    },
+    "stages": {
+      "data": null,
+      "gbdt": null,
+      "dagger": null,
+      "distill": null,
+      "ppo": null,
+      "eval": {
+        "protocol": "rating_v1",
+        "games_per_pair": 2000,
+        "workers": 32,
+        "include_rule_bots": true,
+        "extra": {
+          "c01_final": "runs/C01_s{seed}/ppo/cycle-011/models/model.bin",
+          "c03_continue": "runs/C-ppo_continue-s{seed}-4cbddd27/ppo/cycle-005/models/model.bin",
+          "c04_league": "runs/C-ppo_league-s{seed}-a00bacd2/ppo/cycle-005/models/model.bin",
+          "c05_league_pfsp": "runs/C-ppo_league_pfsp-s{seed}-073d3c90/ppo/cycle-005/models/model.bin",
+          "a02_transformer": "runs/A-distill_ppo_smoke-s{seed}-1b8102e5/distill/model/model.bin",
+          "gbdt_1600_s0": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt",
+          "heldout_dragapult_gbdt": "outputs/dragapult/heldout/model/model.gbdt",
+          "heldout_iono_gbdt": "outputs/iono/heldout/model/model.gbdt",
+          "heldout_abomasnow_gbdt": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+        }
+      }
+    },
+    "health": {
+      "kl_target": 0.004,
+      "kl_fail_multiple": 4.0,
+      "kl_low_multiple": 0.25,
+      "clip_fraction_warn": 0.3,
+      "ratio_p99_warn": 2.0,
+      "grad_spike_warn": 20.0,
+      "update_ratio_band": [
+        1e-05,
+        0.01
+      ],
+      "entropy_drop_warn": 0.3,
+      "ece_warn": 0.15,
+      "seat_win_band": [
+        0.02,
+        0.98
+      ],
+      "length_shift_warn": 0.3,
+      "canary_agreement_drop_warn": 0.1
+    }
+  },
+  "config_hash": "3b8e886f424540b02436afafa18f2df0cd1b0f0b34b12e6e59c4be4dd861ef24",
+  "seed": 0,
+  "created": "2026-11-24T08:59:25+0100",
+  "stages": {
+    "eval": {
+      "status": "done",
+      "inputs_hash": "743d797b57c5b43c8e9f9f8344e9ccde239fefe3ea0d6bb1eaf861ab68336e17",
+      "finished": "2026-11-24T09:08:33+0100",
+      "children_max_rss_mb": 112.1,
+      "outputs": {
+        "eval_summary": "runs/C-sprint3_eval_2k-s0-3b8e886f/eval/summary.json"
+      }
+    }
+  },
+  "gates": {},
+  "git": {
+    "sha": "c75592459fbe94586644ef54963327f7678330ce",
+    "branch": "maksim/shared-layer",
+    "dirty": true,
+    "code_sha256": "be868cf6dc1dbffb1f342e79a069da2389ffbdcfb52be292e9d4af784f92e1f9"
+  },
+  "uv_lock_sha256": "f14f09623b806369de11c344d46f1b5cb414620fb7c0e5751ca53c8aa8255017",
+  "arena_sha256": "5a183ab1f2b0a182c0b3ce5d276367fcb487eeb477ea0d63fa050626446d5c89",
+  "engine_manifest_sha256": "e32474d27ad6a097dc37d1475bbeda700715043fc9f3817f9b42c50b63d97b88",
+  "hardware": {
+    "host": "stud-2",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpus": 48,
+    "slurm_job": "1984222",
+    "slurm_array_task": "0",
+    "slurm_cpus": "32",
+    "gpus": [
+      "No devices were found"
+    ]
+  },
+  "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "outputs": {
+    "eval_summary": "runs/C-sprint3_eval_2k-s0-3b8e886f/eval/summary.json"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "opponents": [
+    "mega_lucario",
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario_gbdt",
+    "self",
+    "snap_pool0",
+    "snap_pool2",
+    "snap_c001",
+    "snap_c002",
+    "snap_c003"
+  ],
+  "weights": {
+    "mega_lucario": 0.4610000000000001,
+    "dragapult": 0.48950000000000005,
+    "iono": 0.29800000000000004,
+    "mega_abomasnow": 0.507,
+    "mega_lucario_gbdt": 0.4165,
+    "self": 0.504,
+    "snap_pool0": 0.44199999999999995,
+    "snap_pool2": 0.49,
+    "snap_c001": 0.5475,
+    "snap_c002": 0.488,
+    "snap_c003": 0.5
+  },
+  "models": {
+    "snap_pool0": "runs/C01_s0/ppo/cycle-002/models/model.bin",
+    "snap_pool2": "runs/C01_s0/ppo/cycle-008/models/model.bin",
+    "snap_c001": "runs/C-ppo_league_pfsp-s0-073d3c90/ppo/cycle-001/models/model.bin",
+    "snap_c002": "runs/C-ppo_league_pfsp-s0-073d3c90/ppo/cycle-002/models/model.bin",
+    "snap_c003": "runs/C-ppo_league_pfsp-s0-073d3c90/ppo/cycle-003/models/model.bin"
+  }
+}

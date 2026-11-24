@@ -1,0 +1,1713 @@
+{
+  "format": "ptcg-internal-rating-v1",
+  "scale": "Bayesian Bradley-Terry, field mean 1000; not Kaggle LB rating",
+  "prior_sigma": 600.0,
+  "pair_cap": 500,
+  "profile_bandwidth": 0.12,
+  "profile_prior_games": 16.0,
+  "uncertainty": "centered Laplace covariance; conditional on the model and comparison pool",
+  "max_sigma": null,
+  "precision_met": null,
+  "ratings": [
+    {
+      "agent": "c04_league",
+      "mu": 1057.602980421333,
+      "sigma": 4.590508433726523,
+      "lcb": 1048.42196355388,
+      "interval95": [
+        1048.6055838912291,
+        1066.600376951437
+      ],
+      "games": 24000,
+      "weight": 0.7557403241362682
+    },
+    {
+      "agent": "c03_continue",
+      "mu": 1057.1922292630757,
+      "sigma": 4.589343314693098,
+      "lcb": 1048.0135426336894,
+      "interval95": [
+        1048.1971163662772,
+        1066.187342159874
+      ],
+      "games": 24000,
+      "weight": 0.7558549683383182
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "mu": 1055.763137588381,
+      "sigma": 4.591277747491947,
+      "lcb": 1046.580582093397,
+      "interval95": [
+        1046.7642332032967,
+        1064.762041973465
+      ],
+      "games": 24000,
+      "weight": 0.7520162991341153
+    },
+    {
+      "agent": "dragapult_rule",
+      "mu": 1043.0315403420086,
+      "sigma": 4.575135625363196,
+      "lcb": 1033.8812690912823,
+      "interval95": [
+        1034.0642745162968,
+        1051.9988061677204
+      ],
+      "games": 24000,
+      "weight": 0.7441501830612515
+    },
+    {
+      "agent": "lucario_rule",
+      "mu": 1039.8048997516516,
+      "sigma": 4.592026018070973,
+      "lcb": 1030.6208477155096,
+      "interval95": [
+        1030.8045287562325,
+        1048.8052707470708
+      ],
+      "games": 24000,
+      "weight": 0.7282599574733662
+    },
+    {
+      "agent": "c01_final",
+      "mu": 1038.5871968250617,
+      "sigma": 4.6083070756552145,
+      "lcb": 1029.3705826737512,
+      "interval95": [
+        1029.5549149567776,
+        1047.6194786933459
+      ],
+      "games": 24000,
+      "weight": 0.7157343626711531
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "mu": 1007.2404118187147,
+      "sigma": 4.566508569095903,
+      "lcb": 998.1073946805229,
+      "interval95": [
+        998.2900550232868,
+        1016.1907686141427
+      ],
+      "games": 24000,
+      "weight": 0.7200128680946745
+    },
+    {
+      "agent": "a02_transformer",
+      "mu": 994.0432622665812,
+      "sigma": 4.4955171419440525,
+      "lcb": 985.0522279826931,
+      "interval95": [
+        985.2320486683709,
+        1002.8544758647915
+      ],
+      "games": 24000,
+      "weight": 0.7679357568233709
+    },
+    {
+      "agent": "abomasnow_rule",
+      "mu": 964.6007221604814,
+      "sigma": 3.9766121003034605,
+      "lcb": 956.6474979598745,
+      "interval95": [
+        956.8065624438866,
+        972.3948818770762
+      ],
+      "games": 24000,
+      "weight": 1.3371271956503714
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "mu": 953.2884744999845,
+      "sigma": 4.385025624308326,
+      "lcb": 944.518423251368,
+      "interval95": [
+        944.6938242763403,
+        961.8831247236288
+      ],
+      "games": 24000,
+      "weight": 0.8813833415608426
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "mu": 940.3006560800621,
+      "sigma": 3.9162588084544927,
+      "lcb": 932.4681384631532,
+      "interval95": [
+        932.6247888154913,
+        947.9765233446329
+      ],
+      "games": 24000,
+      "weight": 1.4876715526236146
+    },
+    {
+      "agent": "iono_rule",
+      "mu": 930.6365974469389,
+      "sigma": 3.8621300895329833,
+      "lcb": 922.912337267873,
+      "interval95": [
+        923.0668224714543,
+        938.2063724224236
+      ],
+      "games": 24000,
+      "weight": 1.6186157026847825
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "mu": 917.9078915357255,
+      "sigma": 3.832030977685447,
+      "lcb": 910.2438295803546,
+      "interval95": [
+        910.397110819462,
+        925.418672251989
+      ],
+      "games": 24000,
+      "weight": 1.7354974877478693
+    }
+  ],
+  "covariance_order": [
+    "a02_transformer",
+    "abomasnow_rule",
+    "c01_final",
+    "c03_continue",
+    "c04_league",
+    "c05_league_pfsp",
+    "dragapult_rule",
+    "gbdt_1600_s0",
+    "heldout_abomasnow_gbdt",
+    "heldout_dragapult_gbdt",
+    "heldout_iono_gbdt",
+    "iono_rule",
+    "lucario_rule"
+  ],
+  "covariance": [
+    [
+      20.209674373512826,
+      -1.396003458812629,
+      -1.9012233123066835,
+      -1.8856107720566797,
+      -1.8865732476624544,
+      -1.887254153702088,
+      -1.873706594331452,
+      -1.8632204616151284,
+      -1.3450795392418513,
+      -1.7031431072646228,
+      -1.2769637794444861,
+      -1.303234470404277,
+      -1.8876614766813873
+    ],
+    [
+      -1.396003458812629,
+      15.813443796279898,
+      -1.5289076645458408,
+      -1.5269791685241216,
+      -1.528238820435945,
+      -1.5275869252473058,
+      -1.5046975979421404,
+      -1.4670148754667025,
+      -0.8961368713498814,
+      -1.2644695672970556,
+      -0.8104679318639683,
+      -0.8466869321528065,
+      -1.5162539827324508
+    ],
+    [
+      -1.9012233122994076,
+      -1.5289076645385649,
+      21.236494103533914,
+      -1.907962667330139,
+      -1.9084238922478107,
+      -1.9113501895044465,
+      -1.9133433710558165,
+      -1.9462268465867965,
+      -1.5049828330156743,
+      -1.8487681136102765,
+      -1.4605589568782307,
+      -1.4735123033242417,
+      -1.9312339531643374
+    ],
+    [
+      -1.8856107720421278,
+      -1.5269791685059317,
+      -1.9079626673228631,
+      21.062072060118226,
+      -1.8598213974473765,
+      -1.8637552693253383,
+      -1.8726488200918538,
+      -1.9241191281253123,
+      -1.5134410470673174,
+      -1.8517804944603995,
+      -1.477824150104425,
+      -1.485862408830144,
+      -1.8922667367041868
+    ],
+    [
+      -1.8865732476551784,
+      -1.528238820432307,
+      -1.9084238922478107,
+      -1.8598213974582904,
+      21.07276768011434,
+      -1.8640089157815964,
+      -1.8730570134794107,
+      -1.924939226188144,
+      -1.514923594218999,
+      -1.8531464560837776,
+      -1.4794937819060578,
+      -1.4874278537354257,
+      -1.892713480956445
+    ],
+    [
+      -1.887254153694812,
+      -1.5275869252436678,
+      -1.9113501895080844,
+      -1.8637552693398902,
+      -1.8640089157815964,
+      21.079831354614726,
+      -1.876220687157911,
+      -1.926258257299196,
+      -1.5132711113838013,
+      -1.8520173700999294,
+      -1.4770008384039102,
+      -1.4854030365022481,
+      -1.8957046002215066
+    ],
+    [
+      -1.8737065943387279,
+      -1.5046975979312265,
+      -1.9133433710630925,
+      -1.8726488200991298,
+      -1.8730570134830486,
+      -1.876220687161549,
+      20.931865990467486,
+      -1.9171513773726474,
+      -1.4833048752188915,
+      -1.8257603733327414,
+      -1.4410439672465145,
+      -1.452788300215616,
+      -1.8981430130261288
+    ],
+    [
+      -1.8632204616114905,
+      -1.4670148754557886,
+      -1.9462268465867965,
+      -1.9241191281325882,
+      -1.924939226180868,
+      -1.926258257295558,
+      -1.9171513773653714,
+      20.853000511626306,
+      -1.424378578489268,
+      -1.7780409584811423,
+      -1.3636563246509468,
+      -1.385756913721707,
+      -1.9322375636074867
+    ],
+    [
+      -1.3450795392382133,
+      -0.8961368713426054,
+      -1.5049828330229502,
+      -1.5134410470818693,
+      -1.5149235942262749,
+      -1.5132711113838013,
+      -1.4833048752188915,
+      -1.424378578496544,
+      15.337083054797404,
+      -1.1867186105846486,
+      -0.7083884711137216,
+      -0.7534314848417125,
+      -1.493026038257085
+    ],
+    [
+      -1.7031431072682608,
+      -1.2644695672934176,
+      -1.8487681136139145,
+      -1.8517804944676755,
+      -1.8531464560837776,
+      -1.8520173700999294,
+      -1.8257603733327414,
+      -1.7780409584811423,
+      -1.1867186105810106,
+      19.22844972584062,
+      -1.0939487109899346,
+      -1.1342107123200549,
+      -1.836445251294208
+    ],
+    [
+      -1.2769637794444861,
+      -0.8104679318639683,
+      -1.4605589568782307,
+      -1.4778241501189768,
+      -1.4794937819133338,
+      -1.4770008384039102,
+      -1.4410439672537905,
+      -1.3636563246618607,
+      -0.7083884711137216,
+      -1.0939487109899346,
+      14.68446141394088,
+      -0.6459160298691131,
+      -1.4491984714986756
+    ],
+    [
+      -1.303234470404277,
+      -0.8466869321564445,
+      -1.4735123033315176,
+      -1.485862408844696,
+      -1.4874278537390637,
+      -1.4854030365022481,
+      -1.452788300215616,
+      -1.3857569137326209,
+      -0.7534314848417125,
+      -1.1342107123236929,
+      -0.6459160298763891,
+      14.91604882847605,
+      -1.46181838254779
+    ],
+    [
+      -1.8876614766850253,
+      -1.5162539827288128,
+      -1.9312339531679754,
+      -1.8922667367114627,
+      -1.892713480956445,
+      -1.8957046002215066,
+      -1.8981430130261288,
+      -1.9322375636147626,
+      -1.493026038249809,
+      -1.83644525129057,
+      -1.4491984714950377,
+      -1.461818382540514,
+      21.086702950640756
+    ]
+  ],
+  "matchups": [
+    {
+      "a": "a02_transformer",
+      "b": "abomasnow_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 846,
+        "abomasnow_rule": 1154
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 173252,
+      "model_win_probability": 0.5422700851658769,
+      "score_rate": 0.423,
+      "difference_sigma": 6.230178575885123
+    },
+    {
+      "a": "a02_transformer",
+      "b": "c01_final",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c01_final": 1149,
+        "a02_transformer": 851
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 277035,
+      "model_win_probability": 0.43624506113462364,
+      "score_rate": 0.4255,
+      "difference_sigma": 6.726709084066302
+    },
+    {
+      "a": "a02_transformer",
+      "b": "c03_continue",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1198,
+        "a02_transformer": 799
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 278929,
+      "model_win_probability": 0.41010902925658,
+      "score_rate": 0.40025,
+      "difference_sigma": 6.711405812327579
+    },
+    {
+      "a": "a02_transformer",
+      "b": "c04_league",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1234,
+        "a02_transformer": 764
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 279092,
+      "model_win_probability": 0.40953713850367374,
+      "score_rate": 0.3825,
+      "difference_sigma": 6.712345979532944
+    },
+    {
+      "a": "a02_transformer",
+      "b": "c05_league_pfsp",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1217,
+        "a02_transformer": 782
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 279572,
+      "model_win_probability": 0.4121006456398552,
+      "score_rate": 0.39125,
+      "difference_sigma": 6.712973561360996
+    },
+    {
+      "a": "a02_transformer",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 849,
+        "dragapult_rule": 1151
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 300785,
+      "model_win_probability": 0.4299637145640418,
+      "score_rate": 0.4245,
+      "difference_sigma": 6.699921906458553
+    },
+    {
+      "a": "a02_transformer",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 997,
+        "gbdt_1600_s0": 1001
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 277583,
+      "model_win_probability": 0.48101690394923163,
+      "score_rate": 0.499,
+      "difference_sigma": 6.69246709430606
+    },
+    {
+      "a": "a02_transformer",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 1118,
+        "a02_transformer": 882
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 175492,
+      "model_win_probability": 0.5767308210892167,
+      "score_rate": 0.441,
+      "difference_sigma": 6.183600610226532
+    },
+    {
+      "a": "a02_transformer",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 1077,
+        "heldout_dragapult_gbdt": 918
+      },
+      "draws": 5,
+      "none": 0,
+      "errors": {},
+      "steps": 302257,
+      "model_win_probability": 0.5583833207386877,
+      "score_rate": 0.53975,
+      "difference_sigma": 6.5455641707864025
+    },
+    {
+      "a": "a02_transformer",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 1483,
+        "heldout_iono_gbdt": 516
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 360796,
+      "model_win_probability": 0.607846830385629,
+      "score_rate": 0.74175,
+      "difference_sigma": 6.119482277639398
+    },
+    {
+      "a": "a02_transformer",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "a02_transformer": 1485,
+        "iono_rule": 515
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 364694,
+      "model_win_probability": 0.5902497931375289,
+      "score_rate": 0.7425,
+      "difference_sigma": 6.142653509909006
+    },
+    {
+      "a": "a02_transformer",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1131,
+        "a02_transformer": 867
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 283382,
+      "model_win_probability": 0.43452191500283305,
+      "score_rate": 0.434,
+      "difference_sigma": 6.713546028554236
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "c01_final",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c01_final": 1061,
+        "abomasnow_rule": 939
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 172094,
+      "model_win_probability": 0.39510570570439374,
+      "score_rate": 0.4695,
+      "difference_sigma": 6.333068231821405
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "c03_continue",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1090,
+        "abomasnow_rule": 909
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 174559,
+      "model_win_probability": 0.36981756042681346,
+      "score_rate": 0.45475,
+      "difference_sigma": 6.318977305976527
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "c04_league",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "abomasnow_rule": 939,
+        "c04_league": 1060
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 172448,
+      "model_win_probability": 0.3692666836587125,
+      "score_rate": 0.46975,
+      "difference_sigma": 6.320022873160043
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "c05_league_pfsp",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "abomasnow_rule": 958,
+        "c05_league_pfsp": 1041
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 171941,
+      "model_win_probability": 0.37173681470349806,
+      "score_rate": 0.47925,
+      "difference_sigma": 6.320478542119199
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "abomasnow_rule": 961,
+        "dragapult_rule": 1039
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 228328,
+      "model_win_probability": 0.3890079702652401,
+      "score_rate": 0.4805,
+      "difference_sigma": 6.305133224812277
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "gbdt_1600_s0": 956,
+        "abomasnow_rule": 1044
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 174000,
+      "model_win_probability": 0.4389427921706876,
+      "score_rate": 0.522,
+      "difference_sigma": 6.292890755355571
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "abomasnow_rule": 1097,
+        "heldout_abomasnow_gbdt": 903
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 97633,
+      "model_win_probability": 0.53491369479573,
+      "score_rate": 0.5485,
+      "difference_sigma": 5.739581918030011
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_dragapult_gbdt": 845,
+        "abomasnow_rule": 1155
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 232971,
+      "model_win_probability": 0.516273882746764,
+      "score_rate": 0.5775,
+      "difference_sigma": 6.129505090683474
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_iono_gbdt": 1418,
+        "abomasnow_rule": 582
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 324943,
+      "model_win_probability": 0.5667947323913212,
+      "score_rate": 0.291,
+      "difference_sigma": 5.667348681169063
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 1452,
+        "abomasnow_rule": 548
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 328701,
+      "model_win_probability": 0.548723197942792,
+      "score_rate": 0.274,
+      "difference_sigma": 5.694108050350078
+    },
+    {
+      "a": "abomasnow_rule",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1055,
+        "abomasnow_rule": 945
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 171686,
+      "model_win_probability": 0.3934316540604372,
+      "score_rate": 0.4725,
+      "difference_sigma": 6.319228965022992
+    },
+    {
+      "a": "c01_final",
+      "b": "c03_continue",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1094,
+        "c01_final": 905
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 278920,
+      "model_win_probability": 0.47325076947350686,
+      "score_rate": 0.45275,
+      "difference_sigma": 6.790765162948312
+    },
+    {
+      "a": "c01_final",
+      "b": "c04_league",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1085,
+        "c01_final": 912
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 278149,
+      "model_win_probability": 0.47266138042338407,
+      "score_rate": 0.45675,
+      "difference_sigma": 6.791620540647414
+    },
+    {
+      "a": "c01_final",
+      "b": "c05_league_pfsp",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1111,
+        "c01_final": 889
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 280978,
+      "model_win_probability": 0.47530195127024816,
+      "score_rate": 0.4445,
+      "difference_sigma": 6.792571371517383
+    },
+    {
+      "a": "c01_final",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 1037,
+        "c01_final": 962
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 302229,
+      "model_win_probability": 0.49360442437877267,
+      "score_rate": 0.48125,
+      "difference_sigma": 6.78196482120875
+    },
+    {
+      "a": "c01_final",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "gbdt_1600_s0": 891,
+        "c01_final": 1109
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 277863,
+      "model_win_probability": 0.5449896405669992,
+      "score_rate": 0.5545,
+      "difference_sigma": 6.78099906417438
+    },
+    {
+      "a": "c01_final",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 941,
+        "c01_final": 1058
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 176361,
+      "model_win_probability": 0.6377895119761675,
+      "score_rate": 0.52925,
+      "difference_sigma": 6.291545344695742
+    },
+    {
+      "a": "c01_final",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_dragapult_gbdt": 803,
+        "c01_final": 1195
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 305329,
+      "model_win_probability": 0.6203464335679159,
+      "score_rate": 0.598,
+      "difference_sigma": 6.645485690045167
+    },
+    {
+      "a": "c01_final",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c01_final": 1552,
+        "heldout_iono_gbdt": 448
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 353448,
+      "model_win_probability": 0.6670085217992014,
+      "score_rate": 0.776,
+      "difference_sigma": 6.232340927069961
+    },
+    {
+      "a": "c01_final",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 485,
+        "c01_final": 1515
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 365521,
+      "model_win_probability": 0.6505399820307239,
+      "score_rate": 0.7575,
+      "difference_sigma": 6.252964699937018
+    },
+    {
+      "a": "c01_final",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c01_final": 1023,
+        "lucario_rule": 977
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 280234,
+      "model_win_probability": 0.49824759179638917,
+      "score_rate": 0.5115,
+      "difference_sigma": 6.796003602154971
+    },
+    {
+      "a": "c03_continue",
+      "b": "c04_league",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 992,
+        "c03_continue": 1003
+      },
+      "draws": 5,
+      "none": 0,
+      "errors": {},
+      "steps": 278664,
+      "model_win_probability": 0.4994088818416904,
+      "score_rate": 0.50275,
+      "difference_sigma": 6.77159379578599
+    },
+    {
+      "a": "c03_continue",
+      "b": "c05_league_pfsp",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1012,
+        "c05_league_pfsp": 985
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 282198,
+      "model_win_probability": 0.5020566166431351,
+      "score_rate": 0.50675,
+      "difference_sigma": 6.772696210032134
+    },
+    {
+      "a": "c03_continue",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1026,
+        "dragapult_rule": 973
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 302233,
+      "model_win_probability": 0.520367592589545,
+      "score_rate": 0.51325,
+      "difference_sigma": 6.763078861788425
+    },
+    {
+      "a": "c03_continue",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1169,
+        "gbdt_1600_s0": 827
+      },
+      "draws": 4,
+      "none": 0,
+      "errors": {},
+      "steps": 280637,
+      "model_win_probability": 0.5713951922677215,
+      "score_rate": 0.5855,
+      "difference_sigma": 6.764858522393144
+    },
+    {
+      "a": "c03_continue",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 930,
+        "c03_continue": 1070
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 174081,
+      "model_win_probability": 0.6621481831346033,
+      "score_rate": 0.535,
+      "difference_sigma": 6.279015624208166
+    },
+    {
+      "a": "c03_continue",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1265,
+        "heldout_dragapult_gbdt": 733
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 305792,
+      "model_win_probability": 0.6452256374226266,
+      "score_rate": 0.633,
+      "difference_sigma": 6.632803538088524
+    },
+    {
+      "a": "c03_continue",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1556,
+        "heldout_iono_gbdt": 444
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 351715,
+      "model_win_probability": 0.6903562016353593,
+      "score_rate": 0.778,
+      "difference_sigma": 6.221107761023591
+    },
+    {
+      "a": "c03_continue",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1500,
+        "iono_rule": 500
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 365320,
+      "model_win_probability": 0.6744788271739991,
+      "score_rate": 0.75,
+      "difference_sigma": 6.240981149326968
+    },
+    {
+      "a": "c03_continue",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c03_continue": 1083,
+        "lucario_rule": 915
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 282225,
+      "model_win_probability": 0.5250015101631429,
+      "score_rate": 0.542,
+      "difference_sigma": 6.777411636027972
+    },
+    {
+      "a": "c04_league",
+      "b": "c05_league_pfsp",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1009,
+        "c04_league": 989
+      },
+      "draws": 2,
+      "none": 0,
+      "errors": {},
+      "steps": 277776,
+      "model_win_probability": 0.502647721926066,
+      "score_rate": 0.495,
+      "difference_sigma": 6.773523224016602
+    },
+    {
+      "a": "c04_league",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 1029,
+        "c04_league": 970
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 305164,
+      "model_win_probability": 0.520957701453973,
+      "score_rate": 0.48525,
+      "difference_sigma": 6.763929900401145
+    },
+    {
+      "a": "c04_league",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1170,
+        "gbdt_1600_s0": 829
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 276803,
+      "model_win_probability": 0.5719741603256429,
+      "score_rate": 0.58525,
+      "difference_sigma": 6.765770218099114
+    },
+    {
+      "a": "c04_league",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1102,
+        "heldout_abomasnow_gbdt": 897
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 173632,
+      "model_win_probability": 0.6626769317801615,
+      "score_rate": 0.55125,
+      "difference_sigma": 6.280103336996115
+    },
+    {
+      "a": "c04_league",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1246,
+        "heldout_dragapult_gbdt": 751
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 306062,
+      "model_win_probability": 0.6457667019126924,
+      "score_rate": 0.62375,
+      "difference_sigma": 6.633815668084433
+    },
+    {
+      "a": "c04_league",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c04_league": 1582,
+        "heldout_iono_gbdt": 418
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 350398,
+      "model_win_probability": 0.6908614145922535,
+      "score_rate": 0.791,
+      "difference_sigma": 6.222235663960932
+    },
+    {
+      "a": "c04_league",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 485,
+        "c04_league": 1515
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 362093,
+      "model_win_probability": 0.6749977499384843,
+      "score_rate": 0.7575,
+      "difference_sigma": 6.2420887702804455
+    },
+    {
+      "a": "c04_league",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 883,
+        "c04_league": 1116
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 279757,
+      "model_win_probability": 0.5255911154927674,
+      "score_rate": 0.55825,
+      "difference_sigma": 6.778266562526734
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "dragapult_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 941,
+        "dragapult_rule": 1058
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 307568,
+      "model_win_probability": 0.5183140445253654,
+      "score_rate": 0.47075,
+      "difference_sigma": 6.7649197127089415
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1192,
+        "gbdt_1600_s0": 807
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 279343,
+      "model_win_probability": 0.5693793241943487,
+      "score_rate": 0.59625,
+      "difference_sigma": 6.766487152196436
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1131,
+        "heldout_abomasnow_gbdt": 866
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 171642,
+      "model_win_probability": 0.6603053989224459,
+      "score_rate": 0.56625,
+      "difference_sigma": 6.280402585199434
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1223,
+        "heldout_dragapult_gbdt": 772
+      },
+      "draws": 5,
+      "none": 0,
+      "errors": {},
+      "steps": 305456,
+      "model_win_probability": 0.6433402685169946,
+      "score_rate": 0.61275,
+      "difference_sigma": 6.634177855669472
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1552,
+        "heldout_iono_gbdt": 448
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 355691,
+      "model_win_probability": 0.6885949168864052,
+      "score_rate": 0.776,
+      "difference_sigma": 6.222402626426823
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1505,
+        "iono_rule": 495
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 361480,
+      "model_win_probability": 0.6726700514945871,
+      "score_rate": 0.7525,
+      "difference_sigma": 6.242330194414204
+    },
+    {
+      "a": "c05_league_pfsp",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "c05_league_pfsp": 1097,
+        "lucario_rule": 900
+      },
+      "draws": 3,
+      "none": 0,
+      "errors": {},
+      "steps": 283332,
+      "model_win_probability": 0.5229496136608587,
+      "score_rate": 0.54925,
+      "difference_sigma": 6.779228828244293
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "gbdt_1600_s0",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 1154,
+        "gbdt_1600_s0": 845
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 305320,
+      "model_win_probability": 0.5513261429494416,
+      "score_rate": 0.57725,
+      "difference_sigma": 6.7541964182898235
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 835,
+        "dragapult_rule": 1165
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 233320,
+      "model_win_probability": 0.6436786243296021,
+      "score_rate": 0.5825,
+      "difference_sigma": 6.2638294034642
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 1313,
+        "heldout_dragapult_gbdt": 687
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 318353,
+      "model_win_probability": 0.6263530012931612,
+      "score_rate": 0.6565,
+      "difference_sigma": 6.619051024351874
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_iono_gbdt": 628,
+        "dragapult_rule": 1372
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 436708,
+      "model_win_probability": 0.6726663867541736,
+      "score_rate": 0.686,
+      "difference_sigma": 6.204709126051067
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 1363,
+        "iono_rule": 637
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 447518,
+      "model_win_probability": 0.6563334924597489,
+      "score_rate": 0.6815,
+      "difference_sigma": 6.2252302302304265
+    },
+    {
+      "a": "dragapult_rule",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "dragapult_rule": 978,
+        "lucario_rule": 1021
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 301626,
+      "model_win_probability": 0.5046433755831006,
+      "score_rate": 0.48925,
+      "difference_sigma": 6.768667148498329
+    },
+    {
+      "a": "gbdt_1600_s0",
+      "b": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "gbdt_1600_s0": 1004,
+        "heldout_abomasnow_gbdt": 996
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 175145,
+      "model_win_probability": 0.5951594842803002,
+      "score_rate": 0.502,
+      "difference_sigma": 6.248106971187533
+    },
+    {
+      "a": "gbdt_1600_s0",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_dragapult_gbdt": 877,
+        "gbdt_1600_s0": 1117
+      },
+      "draws": 6,
+      "none": 0,
+      "errors": {},
+      "steps": 308819,
+      "model_win_probability": 0.5770249509521892,
+      "score_rate": 0.56,
+      "difference_sigma": 6.605871036769429
+    },
+    {
+      "a": "gbdt_1600_s0",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_iono_gbdt": 497,
+        "gbdt_1600_s0": 1503
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 354497,
+      "model_win_probability": 0.6257997439099771,
+      "score_rate": 0.7515,
+      "difference_sigma": 6.185852776688844
+    },
+    {
+      "a": "gbdt_1600_s0",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 552,
+        "gbdt_1600_s0": 1448
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 365296,
+      "model_win_probability": 0.6084894239711802,
+      "score_rate": 0.724,
+      "difference_sigma": 6.208104635679538
+    },
+    {
+      "a": "gbdt_1600_s0",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1078,
+        "gbdt_1600_s0": 921
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 280742,
+      "model_win_probability": 0.4532726871949804,
+      "score_rate": 0.46075,
+      "difference_sigma": 6.767878440802703
+    },
+    {
+      "a": "heldout_abomasnow_gbdt",
+      "b": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 1004,
+        "heldout_dragapult_gbdt": 996
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 236019,
+      "model_win_probability": 0.48131772827566105,
+      "score_rate": 0.502,
+      "difference_sigma": 6.07774382495736
+    },
+    {
+      "a": "heldout_abomasnow_gbdt",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_iono_gbdt": 1499,
+        "heldout_abomasnow_gbdt": 501
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 327170,
+      "model_win_probability": 0.5321812306674423,
+      "score_rate": 0.2505,
+      "difference_sigma": 5.606988622332466
+    },
+    {
+      "a": "heldout_abomasnow_gbdt",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 1531,
+        "heldout_abomasnow_gbdt": 469
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 321930,
+      "model_win_probability": 0.5139041126729992,
+      "score_rate": 0.2345,
+      "difference_sigma": 5.635600664787816
+    },
+    {
+      "a": "heldout_abomasnow_gbdt",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_abomasnow_gbdt": 935,
+        "lucario_rule": 1065
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 174766,
+      "model_win_probability": 0.36059272687651434,
+      "score_rate": 0.4675,
+      "difference_sigma": 6.277725550066069
+    },
+    {
+      "a": "heldout_dragapult_gbdt",
+      "b": "heldout_iono_gbdt",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_iono_gbdt": 889,
+        "heldout_dragapult_gbdt": 1110
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 449165,
+      "model_win_probability": 0.5507414755374017,
+      "score_rate": 0.55525,
+      "difference_sigma": 6.008394840700914
+    },
+    {
+      "a": "heldout_dragapult_gbdt",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "heldout_dragapult_gbdt": 1037,
+        "iono_rule": 963
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 461223,
+      "model_win_probability": 0.5325525609309065,
+      "score_rate": 0.5185,
+      "difference_sigma": 6.034311889433358
+    },
+    {
+      "a": "heldout_dragapult_gbdt",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1178,
+        "heldout_dragapult_gbdt": 821
+      },
+      "draws": 1,
+      "none": 0,
+      "errors": {},
+      "steps": 302963,
+      "model_win_probability": 0.3780040720791316,
+      "score_rate": 0.41075,
+      "difference_sigma": 6.632348240183848
+    },
+    {
+      "a": "heldout_iono_gbdt",
+      "b": "iono_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "iono_rule": 1025,
+        "heldout_iono_gbdt": 975
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 643754,
+      "model_win_probability": 0.4816901108592513,
+      "score_rate": 0.4875,
+      "difference_sigma": 5.558088007773461
+    },
+    {
+      "a": "heldout_iono_gbdt",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1569,
+        "heldout_iono_gbdt": 431
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 354459,
+      "model_win_probability": 0.33143640207714353,
+      "score_rate": 0.2155,
+      "difference_sigma": 6.2184854512637555
+    },
+    {
+      "a": "iono_rule",
+      "b": "lucario_rule",
+      "games": 2000,
+      "fit_games": 2000,
+      "wins": {
+        "lucario_rule": 1571,
+        "iono_rule": 429
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 360126,
+      "model_win_probability": 0.34786814386390064,
+      "score_rate": 0.2145,
+      "difference_sigma": 6.239101581494918
+    }
+  ],
+  "corpus_sha256": "0c18ce9e69972ddab81b3299fcf32225cf76131f96987ca87ff204d4521aa948",
+  "games_per_pair": 2000,
+  "workers": 32,
+  "blas_threads": 1
+}

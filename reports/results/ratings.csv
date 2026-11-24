@@ -182,3 +182,129 @@ C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_dragapult_gbdt,held
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,iono_rule,rule bot,,945.23,932.33,957.87,2200
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_abomasnow_gbdt,held-out,,944.91,931.93,957.64,2200
 C-ppo_league-s1-a00bacd2,C/04,C/04 snapshot league,1,heldout_iono_gbdt,held-out,,903.73,891.04,916.16,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,ppo_league_s2_ppo,own final,17,1081.96,1067.1,1096.53,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,ppo_league_s2_ppo_c2,own checkpoint,14,1057.21,1042.27,1071.85,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,lucario_rule,rule bot,,1055.3,1040.48,1069.81,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,c01_final,C/01 final,11,1043.44,1028.45,1058.13,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,dragapult_rule,rule bot,,1040.89,1025.9,1055.58,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,gbdt_1600_s0,teacher,,1014.78,999.93,1029.32,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,start_transformer,start,-1,999.93,985.06,1014.5,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,abomasnow_rule,rule bot,,968.05,954.69,981.14,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,heldout_dragapult_gbdt,held-out,,949.06,934.73,963.11,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,heldout_abomasnow_gbdt,held-out,,943.95,930.96,956.68,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,iono_rule,rule bot,,942.53,929.55,955.25,2200
+C-ppo_league-s2-a00bacd2,C/04,C/04 snapshot league,2,heldout_iono_gbdt,held-out,,902.91,890.08,915.48,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,ppo_league_pfsp_s0_ppo,own final,17,1076.93,1061.98,1091.58,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,c01_final,C/01 final,11,1064.53,1049.49,1079.28,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,ppo_league_pfsp_s0_ppo_c2,own checkpoint,14,1053.62,1038.76,1068.18,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,dragapult_rule,rule bot,,1047.6,1032.61,1062.28,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,lucario_rule,rule bot,,1043.11,1028.23,1057.7,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,gbdt_1600_s0,teacher,,1014.73,999.82,1029.35,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,start_transformer,start,-1,1002.21,987.27,1016.84,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,abomasnow_rule,rule bot,,970.32,957.04,983.34,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,heldout_dragapult_gbdt,held-out,,945.72,931.41,959.75,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,iono_rule,rule bot,,944.25,931.17,957.08,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,heldout_abomasnow_gbdt,held-out,,939.28,926.24,952.07,2200
+C-ppo_league_pfsp-s0-073d3c90,C/05,C/05 league + PFSP,0,heldout_iono_gbdt,held-out,,897.68,884.86,910.25,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,ppo_league_pfsp_s1_ppo_c2,own checkpoint,14,1059.8,1044.91,1074.39,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,ppo_league_pfsp_s1_ppo,own final,17,1054.05,1039.13,1068.67,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,dragapult_rule,rule bot,,1052.13,1037.27,1066.69,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,lucario_rule,rule bot,,1051.88,1037.11,1066.35,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,c01_final,C/01 final,11,1045.55,1030.63,1060.18,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,gbdt_1600_s0,teacher,,1018.94,1004.1,1033.49,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,start_transformer,start,-1,998.83,983.96,1013.41,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,abomasnow_rule,rule bot,,969.94,956.6,983.02,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,heldout_dragapult_gbdt,held-out,,955.78,941.43,969.84,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,iono_rule,rule bot,,947.59,934.61,960.3,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,heldout_abomasnow_gbdt,held-out,,942.2,929.16,954.97,2200
+C-ppo_league_pfsp-s1-073d3c90,C/05,C/05 league + PFSP,1,heldout_iono_gbdt,held-out,,903.32,890.62,915.77,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,ppo_league_pfsp_s2_ppo,own final,17,1080.31,1065.4,1094.91,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,ppo_league_pfsp_s2_ppo_c2,own checkpoint,14,1065.5,1050.56,1080.13,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,lucario_rule,rule bot,,1057.16,1042.36,1071.67,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,c01_final,C/01 final,11,1043.91,1028.91,1058.6,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,dragapult_rule,rule bot,,1038.14,1023.13,1052.85,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,gbdt_1600_s0,teacher,,1013.62,998.8,1028.15,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,start_transformer,start,-1,1003.44,988.57,1018.02,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,abomasnow_rule,rule bot,,966.38,953.0,979.5,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,heldout_dragapult_gbdt,held-out,,947.56,933.24,961.59,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,iono_rule,rule bot,,942.04,929.03,954.8,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,heldout_abomasnow_gbdt,held-out,,941.1,928.06,953.88,2200
+C-ppo_league_pfsp-s2-073d3c90,C/05,C/05 league + PFSP,2,heldout_iono_gbdt,held-out,,900.84,888.0,913.42,2200
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/04 league,0,c04_league,own final,,1073.46,1059.17,1087.47,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/03 continue,0,c03_continue,own final,,1072.71,1058.39,1086.73,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/05 league + PFSP,0,c05_league_pfsp,own final,,1062.5,1048.18,1076.53,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 · C/01 final,0,c01_final,own final,,1054.22,1039.81,1068.34,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,lucario_rule,rule bot,,1035.66,1021.34,1049.7,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,dragapult_rule,rule bot,,1034.54,1020.22,1048.56,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,gbdt_1600_s0,teacher,,995.38,981.19,1009.28,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,a02_transformer,start,-1,990.84,976.69,1004.71,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,abomasnow_rule,rule bot,,966.84,954.2,979.23,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,heldout_dragapult_gbdt,held-out,,946.96,933.1,960.54,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,heldout_abomasnow_gbdt,held-out,,931.47,918.95,943.73,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,heldout_iono_gbdt,held-out,,919.45,906.95,931.7,2400
+C-sprint3_eval-s0-08b58908,C/06,C/06 eval,0,iono_rule,rule bot,,915.98,903.5,928.22,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/03 continue,1,c03_continue,own final,,1063.15,1048.87,1077.15,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/04 league,1,c04_league,own final,,1057.74,1043.44,1071.76,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/05 league + PFSP,1,c05_league_pfsp,own final,,1048.61,1034.39,1062.54,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 · C/01 final,1,c01_final,own final,,1042.81,1028.55,1056.79,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,lucario_rule,rule bot,,1040.78,1026.54,1054.74,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,dragapult_rule,rule bot,,1039.27,1024.99,1053.27,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,gbdt_1600_s0,teacher,,1006.28,992.08,1020.19,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,a02_transformer,start,-1,992.12,978.07,1005.88,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,abomasnow_rule,rule bot,,966.7,954.03,979.13,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,heldout_dragapult_gbdt,held-out,,953.86,940.04,967.4,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,heldout_abomasnow_gbdt,held-out,,940.06,927.63,952.26,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,iono_rule,rule bot,,927.13,914.69,939.31,2400
+C-sprint3_eval-s1-08b58908,C/06,C/06 eval,1,heldout_iono_gbdt,held-out,,921.48,909.23,933.48,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/04 league,2,c04_league,own final,,1066.54,1052.23,1080.55,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/03 continue,2,c03_continue,own final,,1062.85,1048.63,1076.79,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/05 league + PFSP,2,c05_league_pfsp,own final,,1061.56,1047.34,1075.5,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 · C/01 final,2,c01_final,own final,,1041.71,1027.34,1055.79,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,lucario_rule,rule bot,,1035.42,1021.1,1049.45,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,dragapult_rule,rule bot,,1024.62,1010.3,1038.64,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,gbdt_1600_s0,teacher,,1003.79,989.6,1017.7,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,a02_transformer,start,-1,1002.51,988.37,1016.37,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,abomasnow_rule,rule bot,,968.27,955.62,980.66,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,heldout_dragapult_gbdt,held-out,,944.91,931.14,958.4,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,heldout_abomasnow_gbdt,held-out,,943.58,931.18,955.73,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,iono_rule,rule bot,,922.77,910.35,934.95,2400
+C-sprint3_eval-s2-08b58908,C/06,C/06 eval,2,heldout_iono_gbdt,held-out,,921.47,909.1,933.59,2400
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/03 continue,0,c03_continue,own final,,1075.54,1066.35,1084.55,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/04 league,0,c04_league,own final,,1067.94,1058.7,1077.0,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/05 league + PFSP,0,c05_league_pfsp,own final,,1067.72,1058.49,1076.78,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06b,C/06b · C/01 final,0,c01_final,own final,,1053.42,1044.15,1062.49,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,dragapult_rule,rule bot,,1038.31,1029.1,1047.33,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,lucario_rule,rule bot,,1034.74,1025.5,1043.79,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,gbdt_1600_s0,teacher,,999.45,990.32,1008.4,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,a02_transformer,start,-1,989.52,980.47,998.39,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,abomasnow_rule,rule bot,,962.15,954.19,969.95,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,heldout_dragapult_gbdt,held-out,,944.06,935.3,952.64,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,heldout_abomasnow_gbdt,held-out,,932.85,924.95,940.58,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,iono_rule,rule bot,,924.45,916.63,932.12,24000
+C-sprint3_eval_2k-s0-3b8e886f,C/06,C/06 eval,0,heldout_iono_gbdt,held-out,,909.84,902.1,917.44,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/04 league,1,c04_league,own final,,1057.6,1048.42,1066.6,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/03 continue,1,c03_continue,own final,,1057.19,1048.01,1066.19,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/05 league + PFSP,1,c05_league_pfsp,own final,,1055.76,1046.58,1064.76,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,dragapult_rule,rule bot,,1043.03,1033.88,1052.0,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,lucario_rule,rule bot,,1039.8,1030.62,1048.81,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06b,C/06b · C/01 final,1,c01_final,own final,,1038.59,1029.37,1047.62,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,gbdt_1600_s0,teacher,,1007.24,998.11,1016.19,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,a02_transformer,start,-1,994.04,985.05,1002.85,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,abomasnow_rule,rule bot,,964.6,956.65,972.39,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,heldout_dragapult_gbdt,held-out,,953.29,944.52,961.88,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,heldout_abomasnow_gbdt,held-out,,940.3,932.47,947.98,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,iono_rule,rule bot,,930.64,922.91,938.21,24000
+C-sprint3_eval_2k-s1-3b8e886f,C/06,C/06 eval,1,heldout_iono_gbdt,held-out,,917.91,910.24,925.42,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/05 league + PFSP,2,c05_league_pfsp,own final,,1072.53,1063.35,1081.53,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/04 league,2,c04_league,own final,,1067.4,1058.2,1076.42,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/03 continue,2,c03_continue,own final,,1066.15,1056.96,1075.16,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06b,C/06b · C/01 final,2,c01_final,own final,,1044.52,1035.27,1053.59,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,lucario_rule,rule bot,,1036.94,1027.71,1045.98,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,dragapult_rule,rule bot,,1030.51,1021.27,1039.57,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,gbdt_1600_s0,teacher,,1001.92,992.78,1010.87,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,a02_transformer,start,-1,994.2,985.15,1003.08,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,abomasnow_rule,rule bot,,965.13,957.19,972.9,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,heldout_dragapult_gbdt,held-out,,942.4,933.68,950.95,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,heldout_abomasnow_gbdt,held-out,,937.39,929.54,945.09,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,iono_rule,rule bot,,928.39,920.58,936.04,24000
+C-sprint3_eval_2k-s2-3b8e886f,C/06,C/06 eval,2,heldout_iono_gbdt,held-out,,912.51,904.79,920.08,24000

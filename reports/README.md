@@ -24,8 +24,8 @@ Interpretation, hypotheses and decisions are in each experiment's README: [`expe
 | C/02 | Critic weight 0.25 → 1.0 | [win rates](C/02_critic_value_weight/winrates.png) | [README](../experiments/C/02_critic_value_weight/README.md) |
 | C/03 | +6 cycles, default pool (control) | [win rates](C/03_ppo_continue/winrates.png) · [learning curve](C/03_ppo_continue/learning_curve.png) · [health](C/03_ppo_continue/health.png) | [README](../experiments/C/03_ppo_continue/README.md) |
 | C/04 | +6 cycles, snapshot league | [win rates](C/04_ppo_league/winrates.png) · [learning curve](C/04_ppo_league/learning_curve.png) · [health](C/04_ppo_league/health.png) | [README](../experiments/C/04_ppo_league/README.md) |
-| C/05 | league + PFSP | queued | |
-| C/06 | joint evaluation, promotion | queued | |
+| C/05 | league + PFSP | [win rates](C/05_ppo_league_pfsp/winrates.png) · [learning curve](C/05_ppo_league_pfsp/learning_curve.png) · [health](C/05_ppo_league_pfsp/health.png) | [README](../experiments/C/05_ppo_league_pfsp/README.md) |
+| C/06 | joint evaluation, promotion (C/06b: 2,000 games per pair) | [C/06b win rates](C/06_sprint3_eval/2k_games/winrates.png) · [C/06 (200 games)](C/06_sprint3_eval/winrates.png) | [README](../experiments/C/06_sprint3_eval/README.md) |
 
 ## Refresh
 ```bash
