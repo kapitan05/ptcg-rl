@@ -1,0 +1,439 @@
+<title>PTCG RL Field Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky table of contents (left) + one long reading column; figures full column width, tables scroll in place. */
+:root {
+  --bg: #f7f6f2; --paper: #ffffff; --ink: #1d2229; --muted: #5b6470; --line: #dedbd2;
+  --accent: #b4441f; --accent-soft: #fbeee7; --blue: #2459a8; --blue-soft: #e8eff9;
+  --good: #1f7a4a; --warn: #9a6400; --bad: #b0302a; --code-bg: #f1efe8;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15171b; --paper: #1d2026; --ink: #e7e4dc; --muted: #a2a8b2; --line: #33373f;
+  --accent: #f08a62; --accent-soft: #3a241c; --blue: #86afe8; --blue-soft: #1e2a3b;
+  --good: #67c993; --warn: #e2b154; --bad: #f08079; --code-bg: #252830; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15171b; --paper: #1d2026; --ink: #e7e4dc; --muted: #a2a8b2; --line: #33373f;
+  --accent: #f08a62; --accent-soft: #3a241c; --blue: #86afe8; --blue-soft: #1e2a3b;
+  --good: #67c993; --warn: #e2b154; --bad: #f08079; --code-bg: #252830; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 17px/1.62 var(--body); }
+.shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; max-width: 1180px; margin: 0 auto;
+  padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; font-size: 14px; }
+nav.toc .k { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+nav.toc ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+nav.toc a { color: var(--muted); text-decoration: none; display: block; padding: 3px 8px; border-left: 2px solid transparent; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--ink); border-left-color: var(--accent); outline: none; }
+nav.toc .sub a { padding-left: 20px; font-size: 13px; }
+main { min-width: 0; }
+h1, h2, h3, h4 { font-family: var(--display); text-wrap: balance; line-height: 1.18; font-weight: 700; }
+h1 { font-size: clamp(2rem, 4vw, 2.9rem); margin: 0 0 12px; }
+h2 { font-size: 1.75rem; margin: 64px 0 14px; padding-top: 18px; border-top: 2px solid var(--ink); }
+h3 { font-size: 1.28rem; margin: 34px 0 10px; }
+h4 { font-family: var(--body); font-size: 1rem; margin: 22px 0 6px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); }
+p, li { max-width: 72ch; }
+.kicker { font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 66ch; }
+a { color: var(--blue); }
+code { font: .86em var(--mono); background: var(--code-bg); padding: 1px 5px; border-radius: 3px; }
+pre { font: 13.5px/1.55 var(--mono); background: var(--code-bg); padding: 14px 16px; overflow-x: auto; border-radius: 4px; max-width: 100%; }
+figure { margin: 22px 0; }
+figure a { display: block; }
+figure img { width: 100%; height: auto; border: 1px solid var(--line); background: #fff; display: block; }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
+.tbl { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); background: var(--paper); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; padding: 8px 11px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--bg); font-weight: 600; font-size: 13px; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.callout { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--blue); padding: 12px 16px; margin: 18px 0; }
+.callout.ours { border-left-color: var(--accent); background: var(--accent-soft); }
+.callout.key { border-left-color: var(--good); }
+.callout p { margin: 6px 0; }
+.callout .t { font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.zone { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; margin: 26px 0; }
+.zone .num { font: 700 20px var(--display); width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; }
+.zone > div:last-child { min-width: 0; }
+.zone h3 { margin-top: 2px; }
+.cmp { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+.cmp > div { background: var(--paper); border: 1px solid var(--line); padding: 12px 16px; min-width: 0; }
+.cmp h4 { margin-top: 2px; }
+.pill { font: 500 11.5px var(--mono); padding: 1px 7px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+details { background: var(--paper); border: 1px solid var(--line); padding: 10px 14px; margin: 8px 0; }
+summary { cursor: pointer; font-weight: 600; }
+summary:focus-visible { outline: 2px solid var(--blue); }
+.formula { font: 15px var(--mono); background: var(--paper); border: 1px dashed var(--line); padding: 10px 14px; margin: 12px 0; overflow-x: auto; }
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  nav.toc { position: static; max-height: none; border: 1px solid var(--line); background: var(--paper); padding: 12px; margin-bottom: 24px; }
+}
+</style>
+
+<div class="shell">
+<nav class="toc" aria-label="Contents">
+  <div class="k">Field guide</div>
+  <ol>
+    <li><a href="#start">0 · How to read this</a></li>
+    <li><a href="#problem">1 · The problem</a></li>
+    <li><a href="#fig1">2 · Figure 1: the ecosystem</a></li>
+    <li class="sub"><a href="#f1-1">① Expert replays</a></li>
+    <li class="sub"><a href="#f1-2">② GBDT teacher</a></li>
+    <li class="sub"><a href="#f1-3">③ Distillation</a></li>
+    <li class="sub"><a href="#f1-4">④ Population PPO</a></li>
+    <li class="sub"><a href="#f1-5">⑤ Evaluation</a></li>
+    <li class="sub"><a href="#f1-6">⑥ Expert review</a></li>
+    <li><a href="#fig2">3 · Figure 2: the model</a></li>
+    <li class="sub"><a href="#f2-tokens">Tokens</a></li>
+    <li class="sub"><a href="#f2-encoder">Encoder</a></li>
+    <li class="sub"><a href="#f2-pointer">Pointer policy</a></li>
+    <li class="sub"><a href="#f2-value">Distributional value</a></li>
+    <li class="sub"><a href="#f2-params">Parameter budget</a></li>
+    <li><a href="#fig3">4 · Figure 3: one PPO cycle</a></li>
+    <li class="sub"><a href="#f3-collect">Rollout collection</a></li>
+    <li class="sub"><a href="#f3-gae">GAE</a></li>
+    <li class="sub"><a href="#f3-update">The update</a></li>
+    <li class="sub"><a href="#f3-export">Export + parity</a></li>
+    <li class="sub"><a href="#f3-ours">Our cycle vs. theirs</a></li>
+    <li><a href="#built">5 · What we built around it</a></li>
+    <li><a href="#results">6 · What the experiments showed</a></li>
+    <li><a href="#gap">7 · Gap to the 24th place</a></li>
+    <li><a href="#next">8 · What to do next</a></li>
+    <li><a href="#check">9 · Self-check questions</a></li>
+    <li><a href="#map">10 · Where everything lives</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="kicker">PTCG AI Battle · Mega Lucario ex · study guide · 22 Nov 2026</div>
+<h1>The whole solution, cover to cover</h1>
+<p class="lede">This guide walks through the 24th-place solution we forked, using its own three figures, and after every part says what <em>we</em> did with it, what we measured, and what is still missing. Read it once top to bottom. Then use section 9 to test yourself.</p>
+
+<h2 id="start">0 · How to read this</h2>
+<p>The solution is one idea repeated: <b>get a decent policy cheaply, then let reinforcement learning improve it against many opponents</b>. Every stage exists to make the next one possible:</p>
+<ol>
+  <li>A strong player's games give <b>labels</b> ("in this state, this option was chosen").</li>
+  <li>A <b>GBDT</b> learns those preferences fast and plays thousands of new games, producing many more labels.</li>
+  <li>A small <b>Transformer</b> copies the GBDT. It's slightly weaker, but it is differentiable and has a value head, which PPO needs.</li>
+  <li><b>PPO</b> improves the Transformer by playing a <b>population</b> of opponents, millions of games.</li>
+  <li>A rating system <b>measures</b> every agent; humans and coding agents decide what to change next.</li>
+</ol>
+<p>Underneath, a fast <b>C++ engine and inference</b> makes the millions of games affordable, and <b>parity checks</b> prove the C++ and Python versions are the same agent.</p>
+<div class="callout"><div class="t">Notation</div>
+<p>Blue boxes describe the 24th-place design. <span class="pill bad" style="color:var(--accent)">Ours</span> orange boxes describe our fork. File paths are relative to the repo; <code>L/</code> means <code>src/agents/mega_lucario/</code>. Deeper theory for each part is in <code>notes/lectures/</code> (section 10).</p></div>
+
+<h2 id="problem">1 · The problem</h2>
+<p><b>Pokémon TCG as a decision problem.</b> Two players with 60-card decks take turns. Each turn the engine asks the acting player a <b>question</b> (a "selection"): choose your active Pokémon, choose cards to discard, choose an attack, choose a target… Every question comes with a list of <b>legal options</b> and a <code>minCount</code>/<code>maxCount</code>: how many options must and may be picked. Picking several options one after another, then STOP, is how a multi-select is answered.</p>
+<ul>
+  <li><b>Partially observable:</b> you see your hand and the board, not the opponent's hand or either deck's order.</li>
+  <li><b>Long:</b> a game has roughly 60–70 of your decisions (393,199 decisions in 5,000 games in one of our PPO cycles, both seats counted where the learner plays itself).</li>
+  <li><b>Sparse reward:</b> only the result at the end: win +1, loss −1, draw 0.</li>
+  <li><b>Opponent-dependent:</b> the best play depends on the opponent's deck and style, and on Kaggle the opponents are other teams' agents with four official decks.</li>
+</ul>
+<p><b>Our setting.</b> The Kaggle <i>playground</i> version of the competition, its own engine and R2 card pool, our deck <b>Mega Lucario ex</b>. Baseline: the hosts' rule bot, which scored <b>538.9</b> on the leaderboard.</p>
+<p><b>Research question.</b> Under a fixed compute budget, which stages of this imitation → RL pipeline actually improve strength over the rule-based baseline, and why?</p>
+
+<!-- ============================ FIGURE 1 ============================ -->
+<h2 id="fig1">2 · Figure 1: a population-based learning ecosystem</h2>
+<figure>
+  <a href="../assets/Fig1.png" target="_blank" rel="noopener"><img src="../assets/Fig1.png" alt="Figure 1: six-stage ecosystem: expert replays, GBDT teacher, Transformer distillation, population-based PPO, internal evaluation, expert review"></a>
+  <figcaption>Figure 1 from the 24th-place write-up (<code>docs/../assets/Fig1.png</code>). Click to open full size. Stages ①–④ form the training pipeline along the top; ⑤ and ⑥ close the loop at the bottom. The band in the middle is the shared C++ simulation layer.</figcaption>
+</figure>
+<p><b>How to read it.</b> The top row is a pipeline from left to right: each box produces the input of the next one. The arrow labels say <i>how</i> knowledge flows: <b>imitation</b> (①→②), <b>generated teacher data</b> (②→③), <b>reinforcement learning</b> (③→④). The bottom row is the feedback loop: ⑤ measures everything, ⑥ is people (and coding agents) deciding what to change, and the arrow from ⑥ back up to ① means the whole thing is iterated. The blue band — <i>C++ simulation and inference · OpenBLAS · AVX2 · GPU parameter updates</i> — runs under every stage.</p>
+
+<div class="zone" id="f1-1"><div class="num">1</div><div>
+<h3>Expert replays: 100–1,000 games</h3>
+<p><b>What.</b> Start from recorded games of strong players: leaderboard agents or human experts. Each replay is a sequence of <b>(observation, legal actions, selected action)</b> triples, plus the final result.</p>
+<p><b>Why.</b> Reinforcement learning from a random policy in a long, sparse-reward game learns almost nothing: a random agent rarely wins, and the "you lost" signal arrives 60 decisions after the moves that caused it. Imitation gives a competent starting point. The figure stresses <i>100–1,000 games</i>: that's a tiny amount, which is why stage ② exists.</p>
+<p><b>The subtle part.</b> Every action must be paired with the observation <i>before</i> it was chosen, and only with information the acting player could see. Using the spectator's full state (the opponent's hand) would teach the model to cheat, and it would collapse when that information is missing at play time.</p>
+<div class="callout ours"><div class="t">Ours</div>
+<p>We had no leaderboard or human replays, so our expert is the <b>hosts' rule bot</b> (<code>L/main.py</code>, ported to C++ in <code>L/cpp/policy.h</code>). We collected <b>1,600 games</b> (job 1943566): 8 balanced groups, the rule bot vs. each of the 4 official decks' rule bots × both seats.</p>
+<p><b>Consequence:</b> our teacher is a "competent beginner" with a fixed priority list. Its strength is the <b>ceiling</b> of everything imitation can reach. That one fact explains a lot of our results (section 6).</p></div>
+</div></div>
+
+<div class="zone" id="f1-2"><div class="num">2</div><div>
+<h3>GBDT teacher: learn preferences, generate 15k–30k games</h3>
+<p><b>A. Learn expert action preferences.</b> At every decision the legal options are <b>ranked</b>, not classified. Each option gets a feature vector (≈4.9k hand-built features: the card, its effect, the board, hand, prizes, energy…). A gradient-boosted tree model (LightGBM, <b>LambdaRank</b> objective) learns to score the expert's chosen option above the others in the same decision. Ranking fits the problem: the number and identity of options changes from question to question, and only their relative order matters.</p>
+<p><b>Why a GBDT first?</b> It learns well from little data (hundreds of games), trains in minutes on CPUs, and handles heterogeneous hand-made features without tuning. It turns 1,000 expert games into a policy that can play new games.</p>
+<p><b>B. Generate games with the teacher.</b> The trained GBDT then plays <b>15k–30k</b> simulated games. Every decision it makes becomes a label: the GBDT's full score vector over the options, plus the game's final outcome. This is <b>data amplification</b>: the Transformer in ③ needs far more labels than the original replays hold, and the GBDT can generate them for free, in exactly the state distribution it will itself visit.</p>
+<p><b>Parity.</b> The GBDT is trained in Python but plays inside the C++ arena. Its C++ feature extraction and tree evaluation are audited against LightGBM to <b>1e-10</b> on games the GBDT played. Without that, the "teacher" generating data would not be the model that was trained (train/serve skew).</p>
+<div class="callout ours"><div class="t">Ours · experiment A/01</div>
+<p>We measured how the GBDT scales with teacher data: 120 / 400 / 1,600 games × 3 seeds, one rating tournament of 15,600 games.</p>
+<div class="tbl"><table>
+<tr><th>Teacher games</th><th>Test top-1 (main bank)</th><th>BT rating</th><th>Win rate vs. the rule bot it imitates</th><th>Train RAM</th></tr>
+<tr><td class="n">120</td><td class="n">0.878</td><td class="n">974.5</td><td class="n">0.41–0.42</td><td class="n">11 GB</td></tr>
+<tr><td class="n">400</td><td class="n">0.903</td><td class="n">1004.9</td><td class="n">0.39–0.47</td><td class="n">37 GB</td></tr>
+<tr><td class="n">1,600</td><td class="n">0.923</td><td class="n">1017.5</td><td class="n">0.43–0.48</td><td class="n">148 GB</td></tr>
+<tr><td>Rule bot (teacher)</td><td></td><td class="n">1052.6</td><td></td><td></td></tr>
+</table></div>
+<p><b>Lesson:</b> more data helps with diminishing returns, but the student never reaches its teacher even at 92% per-decision agreement. The remaining 8% of decisions lose whole games. Memory grows ~0.09 GB per game, which is why 1,600 is our practical limit. Then we generated <b>5,000</b> GBDT games for distillation, not 15–30k.</p></div>
+<figure><a href="../../reports/A/01_gbdt_data_scale/data_scale.png" target="_blank" rel="noopener"><img src="../../reports/A/01_gbdt_data_scale/data_scale.png" alt="A/01 data scale: BT rating rises with teacher games but stays below the rule bot"></a><figcaption>A/01: rating vs. number of teacher games, 3 seeds each. The dashed rule-bot rating is never reached.</figcaption></figure>
+</div></div>
+
+<div class="zone" id="f1-3"><div class="num">3</div><div>
+<h3>Transformer distillation: ≈1M parameters, policy + value</h3>
+<p><b>What.</b> A compact Transformer (980,916 parameters, Figure 2) is trained on the GBDT's generated games. Two targets per decision:</p>
+<ul>
+  <li><b>Policy head</b> learns the teacher's preferences: a KL loss toward the softmax (with a temperature) of the GBDT's scores over the legal options, plus a cross-entropy on the option actually chosen. Soft targets carry more information than the argmax alone: they say how close the second-best option was.</li>
+  <li><b>Value head</b> learns to predict the game's outcome from the state: a 51-bin distribution over [−1, 1], trained on the final result.</li>
+</ul>
+<p><b>Why not just use the GBDT?</b> PPO in ④ needs (a) a policy whose log-probabilities can be differentiated with respect to its parameters and (b) a value estimate V(s) for advantages. A tree ensemble gives neither. The Transformer is the "RL-ready" copy of the teacher. Distillation also <b>initializes</b> the value head, so PPO doesn't start with a random critic.</p>
+<p><b>The cost.</b> Copying is lossy. Small errors compound over a game, so the distilled model is usually a bit weaker than its teacher. That's accepted, because PPO is expected to more than recover it.</p>
+<div class="callout ours"><div class="t">Ours · experiment A/02</div>
+<p>5,000 GBDT games, 5 epochs on one RTX 6000, 3 seeds. The Transformer agrees with the GBDT on <b>95.5%</b> of decisions (KL 0.024), and its C++ export matches PyTorch within 4.4e-6. Yet head-to-head it wins only <b>0.448 [0.41, 0.49]</b> against the GBDT: each imitation step costs about 20 rating points.</p>
+<p>The critic is the weak spot: explained variance 0.31, validation value loss rising after epoch 3. Experiment C/02 tried weighting the value loss 4× higher; it didn't help (rejected).</p></div>
+</div></div>
+
+<div class="zone" id="f1-4"><div class="num">4</div><div>
+<h3>Population-based PPO: 20–40 opponents, 5,000 matches per cycle</h3>
+<p><b>What.</b> The distilled Transformer is the <b>base policy</b>. It plays 5,000 matches per cycle against a <b>weighted population of 20–40 opponent policies</b>, and PPO updates it on those games. Then <b>matchup experts</b> are derived: copies of the base policy fine-tuned against one opponent type each (Expert A, B, C, D…).</p>
+<p><b>Why a population?</b> Whom you practise against decides what you become good at:</p>
+<ul>
+  <li>Against <b>one fixed bot</b> you learn to exploit that bot, and nothing else.</li>
+  <li>Against <b>only your current self</b> you can chase your own tail (rock beats scissors beats paper beats rock) and forget how to beat strategies you no longer see.</li>
+  <li>Against a <b>mixture of many</b> opponents (past versions, other decks, other styles), a strategy has to be robust to all of them. This is the idea behind fictitious self-play and AlphaStar's league. Weights let you emphasize the metagame (opponents you'll actually meet) and opponents you lose to.</li>
+</ul>
+<p><b>Why experts?</b> One network for every matchup has to compromise. A specialist fine-tuned for, say, the Dragapult matchup can play it better. At play time the agent switches to the expert for the detected opponent deck.</p>
+<div class="callout ours"><div class="t">Ours · C/01, C/03, C/04 (C/05 queued)</div>
+<p>Our pool started with <b>6 opponents</b>: the 4 rule bots, the GBDT and <code>self</code>, equal weights. In Sprint 3 we built the population part ourselves: a <b>snapshot league</b> (past checkpoints as frozen opponents: 3 recent + 2 older) and <b>PFSP</b> weights (more games against opponents we lose to). We have <b>no matchup experts</b> yet, and our pool never exceeds ~11 opponents.</p>
+<p>PPO is clearly the stage that adds strength: C/01 beats its start <b>0.604 [0.56, 0.64]</b> and also beats held-out opponents it never trained against. But it only <b>ties</b> the rule bots. Details in section 6.</p></div>
+</div></div>
+
+<div class="zone" id="f1-5"><div class="num">5</div><div>
+<h3>Internal evaluation: 320 agents, 2.2M matches</h3>
+<p><b>What.</b> Every agent ever trained is kept and rated against the others: <b>ratings with uncertainty</b> (Bayesian Bradley–Terry, an Elo-like scale), a <b>matchup matrix</b> (who beats whom), and per-agent strengths and weaknesses ("strong vs. Token decks, weak vs. Aggro").</p>
+<p><b>Why.</b> The Kaggle leaderboard is slow and noisy, and you can't submit thousands of agents. An internal league gives fast, cheap, statistically sound answers to "did this change help?" The matchup matrix is what tells you <i>where</i> to improve and which opponents to weight up in ④.</p>
+<p><b>Reading a rating.</b> A gap of Δ rating points predicts win rate 1 / (1 + 10<sup>−Δ/400</sup>): +26 ≈ 54%, +100 ≈ 64%, +200 ≈ 76%. Ratings are relative to the tournament's average (1000).</p>
+<div class="callout ours"><div class="t">Ours</div>
+<p>Protocol <code>rating_v1</code> (<code>docs/evaluation.md</code>): each experiment gets one tournament per seed with ~12 agents, 200 games per pair, both seats, evaluation seeds disjoint from training seeds. We report <b>head-to-head win rates with Wilson 95% intervals</b> (the primary evidence) and BT ratings (a summary). We added a <b>held-out pool</b>: GBDTs for the other three decks that no arm ever trains against, so "better" can't be just exploiting the training opponents. Promotion rule, written before results: pooled lower bound vs. the champion > 0.5 and no loss on the held-out pool.</p></div>
+</div></div>
+
+<div class="zone" id="f1-6"><div class="num">6</div><div>
+<h3>Expert review and development</h3>
+<p><b>What.</b> Humans inspect replays and comment on key patterns; they track the leaderboard's top agents and metagame trends; <b>coding agents</b> help design features, implement changes and automate training. The outputs are three kinds of decision: <b>deck and feature changes</b>, <b>opponent selection and weights</b>, and <b>expert training targets</b>. Then the loop restarts at ①.</p>
+<p><b>Why it matters.</b> The automated pipeline optimizes what it's told to. Choosing what to tell it — which opponents matter, which features the model lacks, which matchups deserve an expert — is where most of the remaining gains in such competitions come from.</p>
+<div class="callout ours"><div class="t">Ours</div>
+<p>This is the part of the loop we are only starting: failure analysis of the replays (why we only tie the Dragapult rule bot), history features (B/01: the model currently has no memory of what the opponent played), and Kaggle submissions to learn the real metagame. The experiment READMEs and these notes play the role of the "expert review".</p></div>
+</div></div>
+
+<div class="callout"><div class="t">The C++ band</div>
+<p><b>C++ simulation and inference · OpenBLAS · AVX2 · GPU parameter updates.</b> Games, feature extraction, GBDT and Transformer inference and action sampling all run in one C++ process with many threads (OpenBLAS matrix products, AVX2 vector instructions). Python is used only for training: LightGBM on CPU, PyTorch on GPU. Moving data between them is what the parity checks guard (lecture 03 Q&amp;A, lecture 11).</p></div>
+
+<!-- ============================ FIGURE 2 ============================ -->
+<h2 id="fig2">3 · Figure 2: the Transformer policy/value model</h2>
+<figure>
+  <a href="../assets/Fig2.png" target="_blank" rel="noopener"><img src="../assets/Fig2.png" alt="Figure 2: token design, shared encoder, pointer policy, distributional value, parameter counts"></a>
+  <figcaption>Figure 2 (<code>docs/../assets/Fig2.png</code>). Panels: ① tokens, ② encoder, ③ pointer policy, ④ value head, ⑤ constants and exact parameter counts. Code: <code>L/transformer/features.py</code> (tokens), <code>L/transformer/model.py</code> (network), <code>L/transformer/cpp/</code> (C++ copy).</figcaption>
+</figure>
+
+<h3 id="f2-tokens">① Input token design: the game state as a set of tokens</h3>
+<p>The observation is turned into a <b>set of tokens</b>, each a row of 198 numbers, in a fixed order: <code>[Global] [Board × ≤12] [Zone × 6] [Option × ≤100] [STOP]</code>. At most 1 + 12 + 6 + 100 + 1 = <b>120 tokens</b>; at least 20 (the code checks 20–120).</p>
+<div class="tbl"><table>
+<tr><th>Token</th><th>Count</th><th>What it describes</th><th>Input width</th></tr>
+<tr><td><b>Global</b></td><td class="n">1</td><td>Aggregates for the whole state: hand, deck and prize counts, turn, and the current question's context (what is being asked, min/max count, how many already selected)</td><td class="n">96 generic + 2 × 16 deck embeddings</td></tr>
+<tr><td><b>Board</b></td><td class="n">≤ 12</td><td>One per Pokémon in play (both players, active and bench): its card, attached cards, damage, evolution</td><td class="n">96 + 3 × 16</td></tr>
+<tr><td><b>Zone</b></td><td class="n">6</td><td>Hand, trash, side/prizes for both players, including belief about the opponent's cards and the opponent's trash</td><td class="n">48 + 16</td></tr>
+<tr><td><b>Option</b></td><td class="n">≤ 100</td><td>One per legal option of the current question. Includes 32 "result features": what picking it would do (damage, knock-out, prize taken, win, hand/deck/board changes)</td><td class="n">96 + 16 + 32</td></tr>
+<tr><td><b>STOP</b></td><td class="n">1</td><td>A learned 128-d vector meaning "end the selection now"</td><td class="n">—</td></tr>
+</table></div>
+<p><b>Card identity: the deck embedding.</b> The 60-card deck is mapped to at most <b>32 deck-local slots</b> (one per distinct card), each with a learned 16-d embedding. A token refers to cards by slot, so the network learns "what this card does in <i>this</i> deck". This is why each deck has its own model, and why the card IDs and counts are bound into the checkpoint and checked at load time (a mismatch fails loudly).</p>
+<p><b>Why tokens instead of one flat vector?</b> The number of Pokémon in play and the number of options change every decision. A set of tokens handles variable size naturally, attention lets every token look at every other one (an option token can "see" the board it would affect), and options become things the network can point at (③).</p>
+<p><b>Why option "result features"?</b> They give the model a one-step lookahead computed by the engine: "this attack would knock out their active and take a prize". That is cheap, exact information the network would otherwise have to learn from millions of games.</p>
+
+<h3 id="f2-encoder">② Shared encoder: typed stems, then 6 Transformer blocks</h3>
+<ol>
+  <li><b>Independent stems per token type.</b> Each type has its own small MLP: Linear (input → 128) → GELU → Linear (128 → 128) → LayerNorm. Different token types carry different features, so they get their own "translator" into a common 128-d space.</li>
+  <li><b>Option result features</b> get an extra separate projection (32 → 128) that is <i>added</i> to the option token, so the lookahead signal has its own direct path.</li>
+  <li><b>Token-type embeddings</b> (5 learned vectors: global/board/zone/option/STOP) are added, so attention knows which kind of token it is looking at.</li>
+  <li><b>6 Transformer blocks</b>, pre-LayerNorm: multi-head self-attention (4 heads × 32 dims = d_model 128, no dropout) with a residual, then a feed-forward 128 → 256 → 128 (GELU) with a residual.</li>
+  <li><b>Final LayerNorm.</b> The result is one 128-d "hidden state" per token, each now informed by the whole state.</li>
+</ol>
+<p><b>Important property:</b> the encoder never reads the "legal / selected" columns. So the state is encoded <b>once per decision</b>, and only the cheap pointer head is re-run for each pick of a multi-select. Our NumPy submission relies on this (encode once, re-score per step).</p>
+
+<h3 id="f2-pointer">③ Pointer policy: score the options, not a fixed action list</h3>
+<p>The policy doesn't output "action #17 of 1,000". It <b>points</b> at one of the option tokens (or STOP). For each selection step:</p>
+<div class="formula">query = global_hidden + Σ hidden(already-selected options) + step_embedding(min(selected_count, 5))<br>logit(c) = dot(W_q·query, W_k·hidden(c)) / √128 + bias(c)     for every candidate c = valid options + STOP</div>
+<ul>
+  <li><b>Masking:</b> invalid options and already-selected options get −∞; STOP is masked until <code>minCount</code> picks are made; selection ends at <code>maxCount</code>. Softmax over the rest gives probabilities.</li>
+  <li><b>Multi-select is sequential:</b> pick one, add it to the query, score again, until STOP. The joint probability of a multi-pick action is the product of the step probabilities, so its log-probability (needed by PPO) is the sum.</li>
+  <li><b>When playing greedily</b> (evaluation, Kaggle), the agent takes the best-scoring candidate, with a tie rule: the first option within 1e-5 of the best, so C++, PyTorch and NumPy break ties identically despite rounding.</li>
+</ul>
+<p><b>Why a pointer?</b> Options are different every time (a card in hand, a target on the bench…). Scoring each option from its own token means the same network handles any question, any number of options, and generalizes across cards that look alike.</p>
+
+<h3 id="f2-value">④ Distributional value: 51 bins on [−1, 1]</h3>
+<p>From the global token's final hidden state: Linear 128 → 96 → GELU → Linear 96 → 51 → softmax. The 51 outputs are probabilities p<sub>i</sub> of the game result landing in bin z<sub>i</sub>, evenly spaced from −1 (loss) to +1 (win). The value used by PPO is the expectation:</p>
+<div class="formula">V(s) = Σ p_i · z_i</div>
+<p><b>Why a distribution instead of one number?</b> Outcomes are bimodal (mostly ±1), and a categorical cross-entropy loss gives richer, more stable gradients than squared error on a single scalar — the same reason as in distributional RL (C51). Training targets are made by linear interpolation of the return onto the two nearest bins (<code>distribution_targets</code> in <code>L/ppo/train.py</code>).</p>
+
+<h3 id="f2-params">⑤ Constants and the parameter budget: 980,916</h3>
+<div class="tbl"><table>
+<tr><th>Part</th><th>Parameters</th><th>Share</th><th>Comment</th></tr>
+<tr><td>6 Transformer blocks</td><td class="n">794,880</td><td class="n">81%</td><td>132,480 each: attention (qkv + out) and the 128→256→128 feed-forward</td></tr>
+<tr><td>4 stems</td><td class="n">129,024</td><td class="n">13%</td><td>global 33,280 · board 35,328 · zone 25,088 · option 35,328</td></tr>
+<tr><td>Policy head</td><td class="n">33,921</td><td class="n">3.5%</td><td>query and key projections 16,512 each, candidate bias 129, step embedding 768</td></tr>
+<tr><td>Value head</td><td class="n">17,331</td><td class="n">1.8%</td><td>128→96 (12,384) and 96→51 (4,947)</td></tr>
+<tr><td>Small parts</td><td class="n">5,760</td><td class="n">0.6%</td><td>result projection 4,224, type embeddings 640, deck embedding 512, STOP 128, final norm 256</td></tr>
+</table></div>
+<p>The model is deliberately <b>small</b>: CPU inference must take milliseconds (thousands of games per cycle on CPUs, and Kaggle's time limit). Our NumPy port needs about 5 ms per decision (p99 10 ms).</p>
+
+<!-- ============================ FIGURE 3 ============================ -->
+<h2 id="fig3">4 · Figure 3: one population-based PPO cycle</h2>
+<figure>
+  <a href="../assets/Fig3.png" target="_blank" rel="noopener"><img src="../assets/Fig3.png" alt="Figure 3: CPU rollout collection, rollout data, GAE, GPU PPO update, weight export, loop"></a>
+  <figcaption>Figure 3 (<code>docs/../assets/Fig3.png</code>). Five steps form one cycle; the orange arrow returns the new policy to step 1. The base policy ran <b>300–2,500 cycles (1.5M–12.5M matches)</b>. Code: <code>L/ppo/scripts/run_cycle.py</code>, <code>collect.py</code>, <code>rollout.py</code>, <code>train.py</code>; config <code>L/ppo/config.json</code>.</figcaption>
+</figure>
+
+<h3 id="f3-collect">Step 1 · CPU rollout collection</h3>
+<p>The current policy plays <b>5,000 matches</b> against the weighted opponent population. Everything — simulation, features, Transformer inference, <b>sampling</b> an action from the policy's probabilities (temperature 1, so it explores), and recording — runs in C++ on CPUs. The opponent weights decide how many of the 5,000 games go to each opponent (exact, seat-balanced allocation). In the original: <b>50–60 s on 32 vCPU</b>, 30–40 s on 64.</p>
+<p><b>Why sample, not play greedily?</b> PPO is on-policy: it estimates how good the policy's own random choices were. Sampling gives the variety of actions it needs to learn which ones are better.</p>
+
+<h3>Step 2 · Rollout data</h3>
+<p>For every decision of the learner: the state, the chosen action, the <b>old log-probability</b> log π<sub>old</sub>(a|s), the <b>old value</b> V<sub>old</sub>(s), and at the end the terminal result. A "self" game produces two episodes (the learner plays both seats): 5,000 games gave 5,832 learner episodes and 393,199 decisions in one of our cycles.</p>
+<p><b>Why keep the old log-probabilities?</b> The update in step 4 compares the new policy to exactly the policy that generated the data. If the recorded values didn't match what the trained model would compute, every ratio would be wrong — hence our behavior audit (log π, V, entropy recomputed in PyTorch must match C++ within 2e-5).</p>
+
+<h3 id="f3-gae">Step 3 · GAE: who deserves credit for the result?</h3>
+<p>Each decision gets an <b>advantage</b> A<sub>t</sub>: was this action better or worse than what the policy usually achieves from this state? Generalized Advantage Estimation, computed backwards over each complete episode (per game and seat):</p>
+<div class="formula">δ_t = r_t + γ · V(s_{t+1}) − V(s_t)<br>A_t = δ_t + γ · λ · A_{t+1}          returns R_t = A_t + V(s_t)</div>
+<ul>
+  <li><b>γ = 1.0:</b> no discounting. A game is finite and only the result matters; a win on turn 30 is worth the same as on turn 10.</li>
+  <li><b>λ = 0.99:</b> close to a Monte-Carlo estimate (trust the actual result) with a little smoothing by the critic. With rewards only at the end, a smaller λ would lean on V(s) much more, and our critic is weak (explained variance ≈ 0.3), so leaning on the result is safer.</li>
+  <li>Advantages are normalized (mean 0, std 1) over the cycle's training decisions before the update.</li>
+</ul>
+
+<h3 id="f3-update">Step 4 · GPU PPO update</h3>
+<p>128 optimizer updates, batch 1,024 decisions → <b>131,072 decisions used</b>, one epoch, about <b>10–15 s</b> on one GPU. The loss per batch:</p>
+<div class="formula">ratio = exp(log π_new(a|s) − log π_old(a|s))<br>L_policy = −mean( min(ratio·A, clip(ratio, 0.8, 1.2)·A) )<br>L_value  = ½·mean( max((V−R)², (V_clipped−R)²) )      V_clipped = V_old + clip(V−V_old, ±0.2)<br>L = L_policy + 0.25·L_value + 0.25·CE(value distribution, R) − 0.01·entropy</div>
+<ul>
+  <li><b>The clip</b> is PPO's trust region: once an action's probability has moved by more than 20% in the helpful direction, the gradient stops pushing it further. Big jumps on noisy data are the classic way policy-gradient training collapses.</li>
+  <li><b>Value clipping and the distribution loss</b> train the critic; the 0.25 weight keeps it from dominating the shared encoder.</li>
+  <li><b>Entropy bonus 0.01</b> keeps the policy from becoming deterministic too early, which would stop exploration.</li>
+  <li><b>Gradient clipping</b> at norm 0.5, AdamW, lr 3e-5, weight decay 1e-4.</li>
+  <li><b>Learning-rate calibration:</b> the lr is set so the update moves the policy by a global KL of about <b>0.004</b>, measured on 10,000 held-out decisions. It's recalibrated when the start checkpoint or opponent mix changes, not used as a per-cycle stop rule.</li>
+</ul>
+<div class="callout key"><div class="t">Notice</div>
+<p>One cycle collects ~393k decisions but the update uses <b>131,072</b> of them (one third), once. The rest is thrown away. That's a deliberate choice for stability in the original, and also the first knob our roadmap suggests testing: more epochs/updates with KL early stopping.</p></div>
+
+<h3 id="f3-export">Step 5 · Weight export and the loop</h3>
+<p>The updated PyTorch weights are exported to the C++ format (<code>model.bin</code>) and become the policy for the next cycle's collection. Before they're used, C++ inference is checked against PyTorch (2e-5) on validation games, so the next rollout is guaranteed to come from the trained model.</p>
+<p><b>Why so many cycles?</b> Each cycle moves the policy only a tiny, safe step (KL 0.004). Strength comes from repeating that hundreds or thousands of times: 300–2,500 cycles in the original.</p>
+
+<h3 id="f3-ours">Our cycle vs. theirs</h3>
+<div class="cmp">
+  <div><h4>24th place</h4>
+  <ul><li>20–40 weighted opponents</li><li>Collection 50–60 s; update 10–15 s → about <b>1–1.5 min per cycle</b></li><li><b>300–2,500 cycles</b>, 1.5M–12.5M matches</li><li>Matchup experts afterwards</li></ul></div>
+  <div><h4>Ours (Eden, 32 CPUs + 1 RTX 6000)</h4>
+  <ul><li>6 opponents (C/01), up to ~11 with the league (C/04)</li><li>About <b>31 min per cycle</b> (C/01 seed 0, cycle 5: games ~13 min; feature extraction + behavior audit + update ~11 min; C++ validation and canary ~1 min; compressing 43 GB of replays ~4 min)</li><li><b>18 cycles</b> so far (12 in C/01 + 6 in C/03/C/04), 90,000 matches per seed</li><li>Per-cycle health gate, canary, archiving (added by us)</li></ul></div>
+</div>
+<div class="callout ours"><div class="t">The biggest single difference</div>
+<p>We have run about <b>1–6% of their training</b> (18 vs. 300–2,500 cycles), and each of our cycles takes ~25× longer. Our learning curves are still rising. Most of the slowdown is likely in writing, reading and compressing ~43 GB of JSON replays per cycle on the shared Lustre filesystem (a hypothesis from file timestamps, not yet profiled). <b>Cycle throughput is probably our largest lever</b> (section 8).</p></div>
+
+<!-- ============================ BUILT ============================ -->
+<h2 id="built">5 · What we built around the pipeline</h2>
+<p>The fork gave us the four training stages. To run them as <b>experiments</b> — comparable, reproducible, safe — we built:</p>
+<div class="tbl"><table>
+<tr><th>Piece</th><th>What it does</th><th>Why</th></tr>
+<tr><td>Playground port + parity</td><td>Engine and agents on the playground engine; rule bots C++ ≡ Python on 10,189 decisions, 0 mismatches</td><td>Everything downstream assumes the C++ agents are the official ones</td></tr>
+<tr><td><code>src/ptcg_exp</code> framework</td><td>YAML configs (hash in every run ID), one master seed for every RNG, run manifests (git SHA, hashes, hardware), resumable stages, Slurm submission</td><td>Any experiment can be rerun from its config; no result is overwritten</td></tr>
+<tr><td>Correctness gates</td><td>Features exact, GBDT 1e-10, Transformer 2e-5, PPO behavior audit 2e-5, split disjointness, contract IDs</td><td>A failed gate means no result</td></tr>
+<tr><td>PPO health checks (~22 per cycle)</td><td>KL per update and held-out, clip fraction, ratio tails, gradient spikes, entropy, value calibration (ECE), C++ export parity, canary (2k fixed states: drift, teacher agreement, illegal picks)</td><td>A failed check stops the run before a bad policy plays the next cycle. It caught C/01 seed 2.</td></tr>
+<tr><td>Per-cycle PPO + disk management</td><td>One cycle per call; health gate; compress rollouts (43 GB → ~0.3 GB kept)</td><td>200 GB quota; 1-day job limit; resume after crashes</td></tr>
+<tr><td>New methods</td><td>DAgger (student plays, GBDT relabels), held-out pool, KL early stop, snapshot league, PFSP</td><td>The experiments of Sprints 2–3</td></tr>
+<tr><td>Kaggle submission</td><td>NumPy Transformer (no torch), builder, gate: scores within 2.8e-6 of C++, 513/513 identical actions, 28–11–1 vs. rule bots in Kaggle's simulator</td><td>Kaggle may not have torch; the uploaded agent must be the evaluated one</td></tr>
+<tr><td>Results and tracking</td><td><code>reports/</code> (run records, CSVs, figures), W&amp;B project, results dashboard, CI, protected <code>main</code></td><td>Everything is inspectable without Eden</td></tr>
+</table></div>
+
+<!-- ============================ RESULTS ============================ -->
+<h2 id="results">6 · What the experiments showed</h2>
+<figure><a href="../../reports/overview.png" target="_blank" rel="noopener"><img src="../../reports/overview.png" alt="Pooled win rate of each experiment arm against its start, three rule bots and the held-out GBDTs"></a><figcaption><code>reports/overview.png</code>: each arm's final model, pooled over seeds, with 95% intervals. Blue = PPO arms, grey = imitation and ablations. Right of the dashed line = wins more than it loses.</figcaption></figure>
+<div class="tbl"><table>
+<tr><th>ID</th><th>Question</th><th>Result</th><th>Verdict</th></tr>
+<tr><td>A/01</td><td>Does GBDT imitation scale with data?</td><td>top-1 0.878 → 0.923; rating 974 → 1018 (teacher 1053)</td><td><span class="pill good">yes, diminishing</span></td></tr>
+<tr><td>A/02</td><td>Does the Transformer match the GBDT?</td><td>95.5% agreement, but 0.448 [0.41, 0.49] head-to-head</td><td><span class="pill warn">−20 rating</span></td></tr>
+<tr><td>C/01</td><td>Does PPO (12 cycles) improve it?</td><td>vs. start 0.604 [0.56, 0.64]; vs. GBDT 0.60; rule bots ≈ 0.49–0.51; held-out 0.53–0.80</td><td><span class="pill good">PPO is the lever</span></td></tr>
+<tr><td>C/02</td><td>Heavier critic (value weight 1.0)?</td><td>value error unchanged, rating −11 on every seed</td><td><span class="pill bad">rejected</span></td></tr>
+<tr><td>A/04</td><td>DAgger vs. equal-budget imitation</td><td>0.505 [0.47, 0.55] vs. BC; student agrees with teacher on 94.2% of its own states</td><td><span class="pill bad">no gain</span></td></tr>
+<tr><td>C/03</td><td>+6 cycles on top of C/01, same pool (control)</td><td>vs. C/01 final <b>0.542</b> [0.53, 0.56]; vs. Lucario rule bot 0.557; held-out 0.673 (C/06b)</td><td><span class="pill good">+4 pp more</span></td></tr>
+<tr><td>C/04</td><td>+6 cycles, snapshot league</td><td>vs. C/01 final 0.539; vs. C/03 0.492; Lucario rule 0.558</td><td><span class="pill warn">= C/03</span></td></tr>
+<tr><td>C/05</td><td>+6 cycles, league + PFSP</td><td>vs. C/01 final 0.553; vs. C/03 0.493; Lucario rule 0.569</td><td><span class="pill warn">= C/03 · champion</span></td></tr>
+<tr><td>C/06 / C/06b</td><td>All arms in one tournament (200, then 2,000 games per pair)</td><td>200 games: dominated by shared deal sets. 2,000 games: every arm beats C/01 final by 4–5 pp; arms tie each other</td><td><span class="pill good">more cycles help; pool doesn't</span></td></tr>
+</table></div>
+<div class="callout key"><div class="t">Read the C rows carefully</div>
+<p>C/01 is compared with the <b>distilled start</b> (no PPO): 0.58–0.60. C/03–C/05 are compared with <b>C/01 final</b>, a model that already had 12 PPO cycles. Their 0.54–0.55 is an <i>additional</i> gain from 6 more cycles, on top of C/01's. Each step adds less (about +8 pp for the first 12 cycles, +4 pp for the next 6), but every PPO step adds strength, while no imitation-only arm does. The opponent-pool variants (league, PFSP) add nothing measurable over plain continuation.</p></div>
+<figure><a href="../../reports/C/06_sprint3_eval/2k_games/winrates.png" target="_blank" rel="noopener"><img src="../../reports/C/06_sprint3_eval/2k_games/winrates.png" alt="C/06b: win rates of C/01 final, C/03, C/04 and C/05 against every opponent, 2,000 games per pair"></a><figcaption>C/06b: the four PPO models in one tournament, 2,000 games per pair, 3 seeds.</figcaption></figure>
+<figure><a href="../../reports/C/01_ppo_baseline/learning_curve.png" target="_blank" rel="noopener"><img src="../../reports/C/01_ppo_baseline/learning_curve.png" alt="C/01 learning curve: rating relative to the Lucario rule bot rises from about −40 to between +6 and +26 over 12 cycles"></a><figcaption>C/01 learning curve: all three seeds start 30–45 points below the Lucario rule bot and end above it. The curve is still rising at cycle 11.</figcaption></figure>
+<figure><a href="../../reports/C/01_ppo_baseline/health.png" target="_blank" rel="noopener"><img src="../../reports/C/01_ppo_baseline/health.png" alt="C/01 health per cycle: KL and clip fraction settle after cycle 1; value calibration improves; teacher agreement slowly drops"></a><figcaption>C/01 health: warnings cluster in cycles 0–1 (the critic is re-fitting), then KL, clip fraction and value calibration settle. Agreement with the GBDT slowly falls from 95% to 93%: PPO is leaving its teacher behind, as intended. The red point is the original seed-2 run stopped by its gate.</figcaption></figure>
+<h3>Five lessons</h3>
+<ol>
+  <li><b>Per-decision accuracy is not strength.</b> 92–96% agreement still loses games, because small errors compound over ~60 decisions.</li>
+  <li><b>Imitation is capped by the teacher.</b> Our teacher is the rule bot. DAgger fixes distribution shift, but there was almost none (94.2% vs. 95.5%): the gap is the teacher's ceiling, which more labels from the same teacher can't raise. The 24th place started from <i>leaderboard and human</i> games — a much higher ceiling.</li>
+  <li><b>RL is what adds strength, and it generalizes:</b> PPO improved against held-out decks it never saw.</li>
+  <li><b>We are early on the learning curve.</b> 18 cycles vs. their 300–2,500. Six more cycles still added ~4 pp (C/03 vs. C/01 final) and a clear win over the Lucario rule bot (0.56–0.57); the curves haven't flattened.</li>
+  <li><b>Health gates pay off.</b> They stopped an unstable run (seed 2) before it contaminated anything, and the KL-early-stop rerun was clean.</li>
+</ol>
+
+<!-- ============================ GAP ============================ -->
+<h2 id="gap">7 · Gap to the 24th place, stage by stage</h2>
+<div class="tbl"><table>
+<tr><th>Stage</th><th>24th place (Figures 1–3)</th><th>Ours now</th><th>Gap</th></tr>
+<tr><td>① Expert data</td><td>100–1,000 games from leaderboard agents / human experts</td><td>1,600 games of the hosts' rule bot</td><td><span class="pill bad">teacher much weaker</span></td></tr>
+<tr><td>② GBDT teacher games</td><td>15k–30k</td><td>5,000</td><td><span class="pill warn">3–6× fewer</span></td></tr>
+<tr><td>③ Transformer</td><td>980,916 params, policy + value</td><td>identical architecture</td><td><span class="pill good">same</span></td></tr>
+<tr><td>④ PPO opponents</td><td>20–40, weighted by metagame, strength, difficulty</td><td>6 equal (C/01), ~11 with league (C/04), PFSP queued</td><td><span class="pill warn">narrower</span></td></tr>
+<tr><td>④ PPO volume</td><td>300–2,500 cycles, ~1–1.5 min each</td><td>18 cycles, ~31 min each</td><td><span class="pill bad">1–6% of theirs</span></td></tr>
+<tr><td>④ Matchup experts</td><td>yes</td><td>no</td><td><span class="pill bad">missing</span></td></tr>
+<tr><td>⑤ Evaluation</td><td>320 agents, 2.2M matches, matchup matrix</td><td>~12 agents per roster, 200 games per pair, CIs, held-out pool</td><td><span class="pill warn">smaller, more rigorous per comparison</span></td></tr>
+<tr><td>⑥ Review loop</td><td>human replay review, metagame tracking, coding agents</td><td>experiment READMEs, notes; no replay review or Kaggle feedback yet</td><td><span class="pill warn">starting</span></td></tr>
+</table></div>
+
+<!-- ============================ NEXT ============================ -->
+<h2 id="next">8 · What to do next, ranked</h2>
+<ol>
+  <li><b>Make cycles fast, then run many.</b> Profile one cycle; move rollouts to node-local disk or a binary format instead of 43 GB of JSON on Lustre; skip compression of replays we never read. Target: minutes per cycle, then 100+ cycles of the best arm. This attacks the biggest gap in the table.</li>
+  <li><b>Use the data we already collect.</b> 2–4 epochs (or all ~393k decisions) with KL early stopping instead of one third once.</li>
+  <li><b>Failure analysis</b> of games lost to the Dragapult and Lucario rule bots (the replays are saved): which situations, which decisions. It tells us what to fix.</li>
+  <li><b>Broaden the population</b> towards the original's 20–40: more snapshots, PFSP (C/05), learned agents of other decks (and then train matchup experts).</li>
+  <li><b>A better critic:</b> an asymmetric critic that sees hidden cards during training only; advantages are only as good as V(s).</li>
+  <li><b>History features (B/01):</b> the model has no memory of what the opponent has played; add log-derived tokens (new contract, parity).</li>
+  <li><b>A stronger teacher:</b> distil the PPO policy into a fresh network, or imitate stronger agents' Kaggle replays once we have them.</li>
+  <li><b>Kaggle feedback:</b> submit the champion, check whether our local ratings predict the leaderboard.</li>
+</ol>
+
+<!-- ============================ SELF CHECK ============================ -->
+<h2 id="check">9 · Self-check questions</h2>
+<details><summary>Why does the pipeline need a GBDT and a Transformer, instead of one of them?</summary><p>The GBDT learns well from a few hundred games and cheaply generates tens of thousands more labelled games. But PPO needs a differentiable policy and a value function, which a tree ensemble can't provide. The Transformer is the RL-ready copy, distilled from the GBDT's generated games.</p></details>
+<details><summary>What is a pointer policy and why is it used here?</summary><p>The network scores each legal option from its own token (query · key) instead of outputting a fixed list of actions. Questions and options change every decision, so pointing at options handles any number and type of option with one network.</p></details>
+<details><summary>How does the model answer "choose 2 cards to discard"?</summary><p>Sequentially: score the options, pick one, add its hidden state to the query (and increase the step embedding), score again with the picked option masked, pick the second; STOP is masked until minCount is reached and selection ends at maxCount. The action's log-probability is the sum of the step log-probabilities.</p></details>
+<details><summary>Why is V(s) a 51-bin distribution and what number does PPO use?</summary><p>Outcomes cluster at ±1; cross-entropy over bins trains more stably than squared error on one number. PPO uses the expectation Σ p_i z_i.</p></details>
+<details><summary>What do γ = 1 and λ = 0.99 mean for this game?</summary><p>No discounting (only the final result matters, whenever it happens); advantages close to Monte-Carlo, using the actual outcome rather than leaning on a weak critic.</p></details>
+<details><summary>What does PPO's clip protect against?</summary><p>Large policy changes from noisy advantage estimates. Once the probability ratio leaves [0.8, 1.2] in the helpful direction, the gradient for that sample stops, so one update can't move the policy far.</p></details>
+<details><summary>Why keep old log-probabilities and audit them?</summary><p>The ratio π_new/π_old must use exactly the policy that generated the data. If C++ (which played) and PyTorch (which trains) disagree, every ratio is biased and PPO optimizes the wrong thing.</p></details>
+<details><summary>Why train against a population instead of the latest self?</summary><p>Self-play alone can cycle and forget; a fixed bot gets exploited. A mixture of past and different opponents forces robust strategies; weights focus on likely and difficult opponents.</p></details>
+<details><summary>Why didn't DAgger help us?</summary><p>DAgger fixes covariate shift (the student visiting states the teacher never shows). The student agreed with the teacher on 94.2% of its own states vs. 95.5% on the teacher's, so there was little shift to fix; the limit is the teacher's own strength.</p></details>
+<details><summary>What is the biggest difference between our run and the 24th place?</summary><p>Volume and teacher: about 18 PPO cycles vs. 300–2,500 (and each of ours ~25× slower), and a rule-bot teacher instead of leaderboard/human games.</p></details>
+<details><summary>How do you know a gain is real and not exploitation of training opponents?</summary><p>Wilson intervals over 600 paired games with lower bound above 0.5, three seeds, evaluation seeds disjoint from training, and a held-out pool of other-deck GBDTs never used in training.</p></details>
+
+<!-- ============================ MAP ============================ -->
+<h2 id="map">10 · Where everything lives</h2>
+<div class="tbl"><table>
+<tr><th>Topic</th><th>Code</th><th>Lecture (notes/lectures)</th></tr>
+<tr><td>Game, API, engine, arena</td><td><code>src/engine/</code>, <code>src/tools/</code></td><td>01, 02</td></tr>
+<tr><td>Rule bot and parity</td><td><code>L/main.py</code>, <code>L/cpp/policy.h</code>, <code>src/tools/validate_cpp_agents.py</code></td><td>03 (with the Q&amp;A on why two implementations)</td></tr>
+<tr><td>RL theory, PPO from scratch</td><td>—</td><td>04, 05, 05a–05h, appendix</td></tr>
+<tr><td>Teacher data, GBDT ranking</td><td><code>L/scripts/collect_replays.py</code>, <code>L/gbdt/</code></td><td>06, 07</td></tr>
+<tr><td>Tokens, Transformer, distillation</td><td><code>L/transformer/features.py</code>, <code>model.py</code>, <code>train.py</code></td><td>08, 09, 10</td></tr>
+<tr><td>C++ inference, NumPy submission</td><td><code>L/transformer/cpp/</code>, <code>numpy_model.py</code></td><td>11, 20</td></tr>
+<tr><td>PPO cycle</td><td><code>L/ppo/scripts/run_cycle.py</code>, <code>rollout.py</code>, <code>train.py</code>, <code>config.json</code></td><td>12, 13, 14, 15</td></tr>
+<tr><td>Populations, league, PFSP</td><td><code>src/ptcg_exp/run.py</code> (<code>league_roster</code>)</td><td>16</td></tr>
+<tr><td>Ratings and evaluation</td><td><code>src/tools/rating.py</code>, <code>src/ptcg_exp/evaluate.py</code>, <code>docs/evaluation.md</code></td><td>17</td></tr>
+<tr><td>Health, framework, ops</td><td><code>src/ptcg_exp/</code>, <code>jobs/</code></td><td>18, 19</td></tr>
+<tr><td>Results</td><td><code>reports/README.md</code>, <code>experiments/*/README.md</code></td><td>21 (roadmap)</td></tr>
+</table></div>
+<p style="color:var(--muted);font-size:14px">Figures 1–3 © the 24th-place authors (Apache-2.0 repository). Our numbers: <code>reports/results/*.csv</code> and the experiment READMEs, as of 22 Nov 2026.</p>
+</main>
+</div>

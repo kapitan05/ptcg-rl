@@ -35,4 +35,6 @@ PYTHONPATH=src uv run python -m ptcg_exp.export_results   # reports/runs → rep
 PYTHONPATH=src uv run python -m ptcg_exp.figures          # → the PNGs above
 ```
 
+Presentation and study material: [`docs/checkpoint/index.html`](../docs/checkpoint/index.html) (checkpoint slides, arrow keys, N = notes) · [`docs/study_guide/index.html`](../docs/study_guide/index.html) (the whole solution explained).
+
 Other views: the W&B project `ptcg-rl` (per-cycle curves, tables) and the results dashboard artifact, both fed from the same files.
