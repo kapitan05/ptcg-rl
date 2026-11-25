@@ -33,10 +33,20 @@ ARMS: dict[str, tuple[str, str, int]] = {
     "A-distill_ppo_smoke": ("A/02", "A/02 distilled Transformer", 0),
 }
 DAGGER = {"dagger_student": "A/04 DAgger student", "dagger_teacher_bc": "A/04 BC control"}
+# C/06 joint evaluation: every Sprint 3 arm's final model in one roster per seed.
+JOINT = {
+    "c01_final": "C/06 · C/01 final",
+    "c03_continue": "C/06 · C/03 continue",
+    "c04_league": "C/06 · C/04 league",
+    "c05_league_pfsp": "C/06 · C/05 league + PFSP",
+}
 OPPONENT = {
     "start_transformer": "start Transformer",
     "a02_transformer": "start Transformer",
     "c01_final": "C/01 final",
+    "c03_continue": "C/03 continue",
+    "c04_league": "C/04 league",
+    "c05_league_pfsp": "C/05 league + PFSP",
     "gbdt_1600_s0": "GBDT teacher",
     "lucario_rule": "Lucario rule bot",
     "dragapult_rule": "Dragapult rule bot",
@@ -74,6 +84,10 @@ def _seed(run: str) -> int:
 
 def _own(agent: str, run: str) -> tuple[str, str, int | None] | None:
     """(experiment, arm, local cycle or None for final) if `agent` is the run's own model."""
+    if run.startswith("C-sprint3_eval"):
+        exp = "C/06b" if run.startswith("C-sprint3_eval_2k-") else "C/06"
+        label = JOINT[agent].replace("C/06", exp) if agent in JOINT else ""
+        return (exp, label, None) if agent in JOINT else None
     if run.startswith("A-dagger_r1_eval-"):
         return ("A/04", DAGGER[agent], None) if agent in DAGGER else None
     arm = _arm(run)
@@ -110,10 +124,14 @@ def export(runs_dir: Path, out: Path) -> dict[str, int]:
     for run_dir in sorted(d for d in runs_dir.iterdir() if d.is_dir()):
         run = run_dir.name
         summary = run_dir / "eval/summary.json"
-        if summary.exists() and (run.startswith("A-dagger_r1_eval-") or _arm(run)):
+        joint = run.startswith(("A-dagger_r1_eval-", "C-sprint3_eval"))
+        if summary.exists() and (joint or _arm(run)):
             s = json.loads(summary.read_text())
             seed = _seed(run)
-            experiment, arm_label, start = _arm(run) or ("A/04", "A/04 eval", 0)
+            fallback = (
+                ("C/06", "C/06 eval", 0) if run.startswith("C-") else ("A/04", "A/04 eval", 0)
+            )
+            experiment, arm_label, start = _arm(run) or fallback
             cycles_file = run_dir / "ppo/cycles.json"
             final_cycle = (
                 start + int(json.loads(cycles_file.read_text())[-1]["cycle"])
@@ -153,8 +171,10 @@ def export(runs_dir: Path, out: Path) -> dict[str, int]:
                 if own is None or own[2] is not None:
                     continue
                 opponent = p["opponent"]
-                if _own(opponent, run) or opponent in DAGGER:
-                    continue  # own checkpoints / the other DAgger arm
+                if (_own(opponent, run) and not run.startswith("C-sprint3_eval")) or (
+                    opponent in DAGGER
+                ):
+                    continue  # own checkpoints / the other DAgger arm (C/06 keeps arm-vs-arm)
                 pairs.append(
                     dict(
                         run=run,

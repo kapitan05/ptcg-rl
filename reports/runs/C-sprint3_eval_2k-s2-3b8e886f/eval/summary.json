@@ -1,0 +1,2400 @@
+{
+  "protocol": "rating_v1",
+  "eval_seed": 3146688782,
+  "games_per_pair": 2000,
+  "roster": {
+    "lucario_rule": {
+      "agent": "mega_lucario"
+    },
+    "dragapult_rule": {
+      "agent": "dragapult"
+    },
+    "iono_rule": {
+      "agent": "iono"
+    },
+    "abomasnow_rule": {
+      "agent": "mega_abomasnow"
+    },
+    "c01_final": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_baseline_klstop-s2-856aebb4/ppo/cycle-011/models/model.bin"
+    },
+    "c03_continue": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_continue-s2-4cbddd27/ppo/cycle-005/models/model.bin"
+    },
+    "c04_league": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-005/models/model.bin"
+    },
+    "c05_league_pfsp": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/C-ppo_league_pfsp-s2-073d3c90/ppo/cycle-005/models/model.bin"
+    },
+    "a02_transformer": {
+      "agent": "mega_lucario_transformer",
+      "model": "runs/A-distill_ppo_smoke-s2-1b8102e5/distill/model/model.bin"
+    },
+    "gbdt_1600_s0": {
+      "agent": "mega_lucario_gbdt",
+      "model": "outputs/mega_lucario/scale/runs/games_1600_s0/model/model.gbdt"
+    },
+    "heldout_dragapult_gbdt": {
+      "agent": "dragapult_gbdt",
+      "model": "outputs/dragapult/heldout/model/model.gbdt"
+    },
+    "heldout_iono_gbdt": {
+      "agent": "iono_gbdt",
+      "model": "outputs/iono/heldout/model/model.gbdt"
+    },
+    "heldout_abomasnow_gbdt": {
+      "agent": "mega_abomasnow_gbdt",
+      "model": "outputs/mega_abomasnow/heldout/model/model.gbdt"
+    }
+  },
+  "ratings": [
+    {
+      "agent": "c05_league_pfsp",
+      "mu": 1072.5314786264983,
+      "sigma": 4.5895902117763425,
+      "lcb": 1063.3522982029456,
+      "interval95": [
+        1063.5358818114166,
+        1081.5270754415799
+      ],
+      "games": 24000,
+      "weight": 0.7921903188192365
+    },
+    {
+      "agent": "c04_league",
+      "mu": 1067.3978431896514,
+      "sigma": 4.601365506498,
+      "lcb": 1058.1951121766554,
+      "interval95": [
+        1058.3791667969153,
+        1076.4165195823875
+      ],
+      "games": 24000,
+      "weight": 0.772405764058583
+    },
+    {
+      "agent": "c03_continue",
+      "mu": 1066.154064376443,
+      "sigma": 4.596849260467058,
+      "lcb": 1056.960365855509,
+      "interval95": [
+        1057.1442398259276,
+        1075.1638889269586
+      ],
+      "games": 24000,
+      "weight": 0.7731729010692292
+    },
+    {
+      "agent": "c01_final",
+      "mu": 1044.5245867981484,
+      "sigma": 4.6263502837943635,
+      "lcb": 1035.2718862305596,
+      "interval95": [
+        1035.4569402419115,
+        1053.5922333543854
+      ],
+      "games": 24000,
+      "weight": 0.7166444246234753
+    },
+    {
+      "agent": "lucario_rule",
+      "mu": 1036.937842581855,
+      "sigma": 4.6138174061198445,
+      "lcb": 1027.7102077696152,
+      "interval95": [
+        1027.8947604658601,
+        1045.9809246978498
+      ],
+      "games": 24000,
+      "weight": 0.7158103948185323
+    },
+    {
+      "agent": "dragapult_rule",
+      "mu": 1030.5115504884382,
+      "sigma": 4.619619133523122,
+      "lcb": 1021.2723122213919,
+      "interval95": [
+        1021.4570969867328,
+        1039.5660039901434
+      ],
+      "games": 24000,
+      "weight": 0.7053120783371709
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "mu": 1001.9163869992337,
+      "sigma": 4.569261072508998,
+      "lcb": 992.7778648542157,
+      "interval95": [
+        992.9606352971161,
+        1010.8721387013513
+      ],
+      "games": 24000,
+      "weight": 0.7222807267811193
+    },
+    {
+      "agent": "a02_transformer",
+      "mu": 994.2048673339764,
+      "sigma": 4.526042593363167,
+      "lcb": 985.15278214725,
+      "interval95": [
+        985.3338238509846,
+        1003.0759108169682
+      ],
+      "games": 24000,
+      "weight": 0.7516157073570736
+    },
+    {
+      "agent": "abomasnow_rule",
+      "mu": 965.1264393017482,
+      "sigma": 3.9684338378837416,
+      "lcb": 957.1895716259806,
+      "interval95": [
+        957.3483089794961,
+        972.9045696240003
+      ],
+      "games": 24000,
+      "weight": 1.359217587563242
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "mu": 942.3984647533777,
+      "sigma": 4.360623482235315,
+      "lcb": 933.677217788907,
+      "interval95": [
+        933.8516427281965,
+        950.9452867785589
+      ],
+      "games": 24000,
+      "weight": 0.9262416225257538
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "mu": 937.3930144615503,
+      "sigma": 3.9260706313071654,
+      "lcb": 929.540873198936,
+      "interval95": [
+        929.6979160241882,
+        945.0881128989123
+      ],
+      "games": 24000,
+      "weight": 1.490693277041551
+    },
+    {
+      "agent": "iono_rule",
+      "mu": 928.3896612391445,
+      "sigma": 3.9056017721917007,
+      "lcb": 920.5784576947611,
+      "interval95": [
+        920.7346817656488,
+        936.0446407126402
+      ],
+      "games": 24000,
+      "weight": 1.5581921793123652
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "mu": 912.5137998499351,
+      "sigma": 3.8608224246457272,
+      "lcb": 904.7921550006437,
+      "interval95": [
+        904.9465878976296,
+        920.0810118022407
+      ],
+      "games": 24000,
+      "weight": 1.7162230176926674
+    }
+  ],
+  "pairs": [
+    {
+      "agent": "a02_transformer",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 868,
+      "draws": 0,
+      "losses": 1132,
+      "win_rate": 0.434,
+      "ci95": [
+        0.41242527529003753,
+        0.45582778423323017
+      ],
+      "seat0_win_rate": 0.498
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 856,
+      "draws": 1,
+      "losses": 1143,
+      "win_rate": 0.42825,
+      "ci95": [
+        0.4067212457087017,
+        0.45005386066697195
+      ],
+      "seat0_win_rate": 0.43
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 753,
+      "draws": 0,
+      "losses": 1247,
+      "win_rate": 0.3765,
+      "ci95": [
+        0.35552131916835306,
+        0.39795220887897365
+      ],
+      "seat0_win_rate": 0.36
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 759,
+      "draws": 4,
+      "losses": 1237,
+      "win_rate": 0.3805,
+      "ci95": [
+        0.35946986305803624,
+        0.40198832804848633
+      ],
+      "seat0_win_rate": 0.3675
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 728,
+      "draws": 3,
+      "losses": 1269,
+      "win_rate": 0.36475,
+      "ci95": [
+        0.34393139562148606,
+        0.38608718468945274
+      ],
+      "seat0_win_rate": 0.329
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 875,
+      "draws": 2,
+      "losses": 1123,
+      "win_rate": 0.438,
+      "ci95": [
+        0.4163950465231388,
+        0.4598426760593248
+      ],
+      "seat0_win_rate": 0.414
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 974,
+      "draws": 0,
+      "losses": 1026,
+      "win_rate": 0.487,
+      "ci95": [
+        0.4651398584807809,
+        0.5089099865768324
+      ],
+      "seat0_win_rate": 0.447
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 940,
+      "draws": 0,
+      "losses": 1060,
+      "win_rate": 0.47,
+      "ci95": [
+        0.44820442902962754,
+        0.49191059802640313
+      ],
+      "seat0_win_rate": 0.507
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1091,
+      "draws": 5,
+      "losses": 904,
+      "win_rate": 0.54675,
+      "ci95": [
+        0.5248636444359678,
+        0.5684571050683842
+      ],
+      "seat0_win_rate": 0.553
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1492,
+      "draws": 0,
+      "losses": 508,
+      "win_rate": 0.746,
+      "ci95": [
+        0.7264630926318592,
+        0.7645936855086886
+      ],
+      "seat0_win_rate": 0.714
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1483,
+      "draws": 0,
+      "losses": 517,
+      "win_rate": 0.7415,
+      "ci95": [
+        0.7218619504608959,
+        0.7602120817380564
+      ],
+      "seat0_win_rate": 0.723
+    },
+    {
+      "agent": "a02_transformer",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 866,
+      "draws": 4,
+      "losses": 1130,
+      "win_rate": 0.434,
+      "ci95": [
+        0.41242527529003753,
+        0.45582778423323017
+      ],
+      "seat0_win_rate": 0.3865
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1132,
+      "draws": 0,
+      "losses": 868,
+      "win_rate": 0.566,
+      "ci95": [
+        0.5441722157667698,
+        0.5875747247099624
+      ],
+      "seat0_win_rate": 0.63
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 960,
+      "draws": 1,
+      "losses": 1039,
+      "win_rate": 0.48025,
+      "ci95": [
+        0.4584124650635121,
+        0.5021632610817082
+      ],
+      "seat0_win_rate": 0.53
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 979,
+      "draws": 2,
+      "losses": 1019,
+      "win_rate": 0.49,
+      "ci95": [
+        0.4681310909517787,
+        0.5119072514002315
+      ],
+      "seat0_win_rate": 0.575
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 919,
+      "draws": 0,
+      "losses": 1081,
+      "win_rate": 0.4595,
+      "ci95": [
+        0.43775699074140767,
+        0.48139829578423393
+      ],
+      "seat0_win_rate": 0.518
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 926,
+      "draws": 1,
+      "losses": 1073,
+      "win_rate": 0.46325,
+      "ci95": [
+        0.4414871039677893,
+        0.48515380417584836
+      ],
+      "seat0_win_rate": 0.5135
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 961,
+      "draws": 0,
+      "losses": 1039,
+      "win_rate": 0.4805,
+      "ci95": [
+        0.45866155663836544,
+        0.5024132109480545
+      ],
+      "seat0_win_rate": 0.494
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1044,
+      "draws": 0,
+      "losses": 956,
+      "win_rate": 0.522,
+      "ci95": [
+        0.5000865341486851,
+        0.5438291126768924
+      ],
+      "seat0_win_rate": 0.575
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1097,
+      "draws": 0,
+      "losses": 903,
+      "win_rate": 0.5485,
+      "ci95": [
+        0.5266176071018875,
+        0.5701964324908626
+      ],
+      "seat0_win_rate": 0.674
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1155,
+      "draws": 0,
+      "losses": 845,
+      "win_rate": 0.5775,
+      "ci95": [
+        0.5557230441690519,
+        0.5989798026028685
+      ],
+      "seat0_win_rate": 0.582
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 582,
+      "draws": 0,
+      "losses": 1418,
+      "win_rate": 0.291,
+      "ci95": [
+        0.27150851005603377,
+        0.3112928451009806
+      ],
+      "seat0_win_rate": 0.328
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 548,
+      "draws": 0,
+      "losses": 1452,
+      "win_rate": 0.274,
+      "ci95": [
+        0.2549000040470526,
+        0.2939665331083793
+      ],
+      "seat0_win_rate": 0.318
+    },
+    {
+      "agent": "abomasnow_rule",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 945,
+      "draws": 0,
+      "losses": 1055,
+      "win_rate": 0.4725,
+      "ci95": [
+        0.45069334381200093,
+        0.49441209765602717
+      ],
+      "seat0_win_rate": 0.525
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1143,
+      "draws": 1,
+      "losses": 856,
+      "win_rate": 0.57175,
+      "ci95": [
+        0.549946139333028,
+        0.5932787542912983
+      ],
+      "seat0_win_rate": 0.5735
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1039,
+      "draws": 1,
+      "losses": 960,
+      "win_rate": 0.51975,
+      "ci95": [
+        0.4978367389182919,
+        0.541587534936488
+      ],
+      "seat0_win_rate": 0.5695
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 911,
+      "draws": 3,
+      "losses": 1086,
+      "win_rate": 0.45625,
+      "ci95": [
+        0.43452522991949594,
+        0.47814251787054896
+      ],
+      "seat0_win_rate": 0.4585
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 914,
+      "draws": 2,
+      "losses": 1084,
+      "win_rate": 0.4575,
+      "ci95": [
+        0.43576810441990776,
+        0.47939485057613584
+      ],
+      "seat0_win_rate": 0.467
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 879,
+      "draws": 3,
+      "losses": 1118,
+      "win_rate": 0.44025,
+      "ci95": [
+        0.41862867209453114,
+        0.46210042345873015
+      ],
+      "seat0_win_rate": 0.4585
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 1072,
+      "draws": 0,
+      "losses": 928,
+      "win_rate": 0.536,
+      "ci95": [
+        0.5140952429051588,
+        0.5577667246276043
+      ],
+      "seat0_win_rate": 0.53
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1163,
+      "draws": 2,
+      "losses": 835,
+      "win_rate": 0.582,
+      "ci95": [
+        0.5602461898092507,
+        0.6034394029042652
+      ],
+      "seat0_win_rate": 0.558
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1053,
+      "draws": 0,
+      "losses": 947,
+      "win_rate": 0.5265,
+      "ci95": [
+        0.5045874561669267,
+        0.548310936600246
+      ],
+      "seat0_win_rate": 0.582
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1288,
+      "draws": 5,
+      "losses": 707,
+      "win_rate": 0.64525,
+      "ci95": [
+        0.6240213493508919,
+        0.6659217279861591
+      ],
+      "seat0_win_rate": 0.647
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1554,
+      "draws": 0,
+      "losses": 446,
+      "win_rate": 0.777,
+      "ci95": [
+        0.7582353935260097,
+        0.7947025233233062
+      ],
+      "seat0_win_rate": 0.759
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1547,
+      "draws": 0,
+      "losses": 453,
+      "win_rate": 0.7735,
+      "ci95": [
+        0.7546412849599674,
+        0.7913100517125521
+      ],
+      "seat0_win_rate": 0.765
+    },
+    {
+      "agent": "c01_final",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 1012,
+      "draws": 2,
+      "losses": 986,
+      "win_rate": 0.5065,
+      "ci95": [
+        0.48459693442249635,
+        0.5283781430486968
+      ],
+      "seat0_win_rate": 0.496
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1247,
+      "draws": 0,
+      "losses": 753,
+      "win_rate": 0.6235,
+      "ci95": [
+        0.6020477911210265,
+        0.6444786808316469
+      ],
+      "seat0_win_rate": 0.607
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1019,
+      "draws": 2,
+      "losses": 979,
+      "win_rate": 0.51,
+      "ci95": [
+        0.4880927485997684,
+        0.5318689090482213
+      ],
+      "seat0_win_rate": 0.595
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 1086,
+      "draws": 3,
+      "losses": 911,
+      "win_rate": 0.54375,
+      "ci95": [
+        0.521857482129451,
+        0.5654747700805041
+      ],
+      "seat0_win_rate": 0.546
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 1001,
+      "draws": 1,
+      "losses": 998,
+      "win_rate": 0.50075,
+      "ci95": [
+        0.47885613598704774,
+        0.5226409883365516
+      ],
+      "seat0_win_rate": 0.4755
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 980,
+      "draws": 3,
+      "losses": 1017,
+      "win_rate": 0.49075,
+      "ci95": [
+        0.4688790220640726,
+        0.5126564446115369
+      ],
+      "seat0_win_rate": 0.511
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 1121,
+      "draws": 3,
+      "losses": 876,
+      "win_rate": 0.56125,
+      "ci95": [
+        0.5394046911943305,
+        0.5828604618996066
+      ],
+      "seat0_win_rate": 0.587
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1213,
+      "draws": 1,
+      "losses": 786,
+      "win_rate": 0.60675,
+      "ci95": [
+        0.5851566906729189,
+        0.6279340047193716
+      ],
+      "seat0_win_rate": 0.5775
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1110,
+      "draws": 2,
+      "losses": 888,
+      "win_rate": 0.5555,
+      "ci95": [
+        0.5336361755023165,
+        0.5771510244440266
+      ],
+      "seat0_win_rate": 0.616
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1384,
+      "draws": 3,
+      "losses": 613,
+      "win_rate": 0.69275,
+      "ci95": [
+        0.6721767601580934,
+        0.712584191006909
+      ],
+      "seat0_win_rate": 0.6735
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1610,
+      "draws": 0,
+      "losses": 390,
+      "win_rate": 0.805,
+      "ci95": [
+        0.7870578186656875,
+        0.8217727395979998
+      ],
+      "seat0_win_rate": 0.799
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1519,
+      "draws": 0,
+      "losses": 481,
+      "win_rate": 0.7595,
+      "ci95": [
+        0.7402827932429171,
+        0.7777222227224166
+      ],
+      "seat0_win_rate": 0.759
+    },
+    {
+      "agent": "c03_continue",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 1110,
+      "draws": 4,
+      "losses": 886,
+      "win_rate": 0.556,
+      "ci95": [
+        0.5341376685300183,
+        0.5776476142987244
+      ],
+      "seat0_win_rate": 0.544
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1237,
+      "draws": 4,
+      "losses": 759,
+      "win_rate": 0.6195,
+      "ci95": [
+        0.5980116719515136,
+        0.6405301369419638
+      ],
+      "seat0_win_rate": 0.6065
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1081,
+      "draws": 0,
+      "losses": 919,
+      "win_rate": 0.5405,
+      "ci95": [
+        0.518601704215766,
+        0.5622430092585924
+      ],
+      "seat0_win_rate": 0.599
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 1084,
+      "draws": 2,
+      "losses": 914,
+      "win_rate": 0.5425,
+      "ci95": [
+        0.5206051494238642,
+        0.5642318955800922
+      ],
+      "seat0_win_rate": 0.552
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 998,
+      "draws": 1,
+      "losses": 1001,
+      "win_rate": 0.49925,
+      "ci95": [
+        0.4773590116634486,
+        0.5211438640129524
+      ],
+      "seat0_win_rate": 0.474
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 983,
+      "draws": 3,
+      "losses": 1014,
+      "win_rate": 0.49225,
+      "ci95": [
+        0.4703750318511684,
+        0.5141546834716395
+      ],
+      "seat0_win_rate": 0.4885
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 1104,
+      "draws": 2,
+      "losses": 894,
+      "win_rate": 0.5525,
+      "ci95": [
+        0.5306276845340758,
+        0.5741710181178703
+      ],
+      "seat0_win_rate": 0.5695
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1222,
+      "draws": 3,
+      "losses": 775,
+      "win_rate": 0.61175,
+      "ci95": [
+        0.5901960288954832,
+        0.6328754953208023
+      ],
+      "seat0_win_rate": 0.604
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1107,
+      "draws": 2,
+      "losses": 891,
+      "win_rate": 0.554,
+      "ci95": [
+        0.5321318299484297,
+        0.575661121350715
+      ],
+      "seat0_win_rate": 0.5875
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1323,
+      "draws": 4,
+      "losses": 673,
+      "win_rate": 0.6625,
+      "ci95": [
+        0.641482127200953,
+        0.6828948095788803
+      ],
+      "seat0_win_rate": 0.6665
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1628,
+      "draws": 0,
+      "losses": 372,
+      "win_rate": 0.814,
+      "ci95": [
+        0.7963503962940377,
+        0.8304456538528402
+      ],
+      "seat0_win_rate": 0.811
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1528,
+      "draws": 0,
+      "losses": 472,
+      "win_rate": 0.764,
+      "ci95": [
+        0.7448949528033763,
+        0.7820928091035529
+      ],
+      "seat0_win_rate": 0.743
+    },
+    {
+      "agent": "c04_league",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 1128,
+      "draws": 1,
+      "losses": 871,
+      "win_rate": 0.56425,
+      "ci95": [
+        0.5424155241993797,
+        0.5858381261889546
+      ],
+      "seat0_win_rate": 0.5425
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1269,
+      "draws": 3,
+      "losses": 728,
+      "win_rate": 0.63525,
+      "ci95": [
+        0.6139128153105473,
+        0.656068604378514
+      ],
+      "seat0_win_rate": 0.5995
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1073,
+      "draws": 1,
+      "losses": 926,
+      "win_rate": 0.53675,
+      "ci95": [
+        0.5148461958241516,
+        0.5585128960322107
+      ],
+      "seat0_win_rate": 0.587
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 1118,
+      "draws": 3,
+      "losses": 879,
+      "win_rate": 0.55975,
+      "ci95": [
+        0.5378995765412699,
+        0.5813713279054687
+      ],
+      "seat0_win_rate": 0.578
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 1017,
+      "draws": 3,
+      "losses": 980,
+      "win_rate": 0.50925,
+      "ci95": [
+        0.4873435553884631,
+        0.5311209779359274
+      ],
+      "seat0_win_rate": 0.5295
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 1014,
+      "draws": 3,
+      "losses": 983,
+      "win_rate": 0.50775,
+      "ci95": [
+        0.4858453165283605,
+        0.5296249681488316
+      ],
+      "seat0_win_rate": 0.504
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 1073,
+      "draws": 5,
+      "losses": 922,
+      "win_rate": 0.53775,
+      "ci95": [
+        0.5158475434851241,
+        0.5595077141360371
+      ],
+      "seat0_win_rate": 0.5365
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1258,
+      "draws": 3,
+      "losses": 739,
+      "win_rate": 0.62975,
+      "ci95": [
+        0.608357307337963,
+        0.650645200644704
+      ],
+      "seat0_win_rate": 0.6205
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1150,
+      "draws": 1,
+      "losses": 849,
+      "win_rate": 0.57525,
+      "ci95": [
+        0.5534621601689457,
+        0.5967493136321772
+      ],
+      "seat0_win_rate": 0.621
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1337,
+      "draws": 9,
+      "losses": 654,
+      "win_rate": 0.67075,
+      "ci95": [
+        0.6498437329874855,
+        0.6910015713519393
+      ],
+      "seat0_win_rate": 0.653
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1628,
+      "draws": 0,
+      "losses": 372,
+      "win_rate": 0.814,
+      "ci95": [
+        0.7963503962940377,
+        0.8304456538528402
+      ],
+      "seat0_win_rate": 0.803
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1515,
+      "draws": 0,
+      "losses": 485,
+      "win_rate": 0.7575,
+      "ci95": [
+        0.7382338565211073,
+        0.7757788279146285
+      ],
+      "seat0_win_rate": 0.752
+    },
+    {
+      "agent": "c05_league_pfsp",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 1157,
+      "draws": 4,
+      "losses": 839,
+      "win_rate": 0.5795,
+      "ci95": [
+        0.5577331040382113,
+        0.6009620742633072
+      ],
+      "seat0_win_rate": 0.5605
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1123,
+      "draws": 2,
+      "losses": 875,
+      "win_rate": 0.562,
+      "ci95": [
+        0.5401573239406752,
+        0.5836049534768613
+      ],
+      "seat0_win_rate": 0.538
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1039,
+      "draws": 0,
+      "losses": 961,
+      "win_rate": 0.5195,
+      "ci95": [
+        0.49758678905194537,
+        0.5413384433616344
+      ],
+      "seat0_win_rate": 0.533
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 928,
+      "draws": 0,
+      "losses": 1072,
+      "win_rate": 0.464,
+      "ci95": [
+        0.44223327537239576,
+        0.48590475709484127
+      ],
+      "seat0_win_rate": 0.458
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 876,
+      "draws": 3,
+      "losses": 1121,
+      "win_rate": 0.43875,
+      "ci95": [
+        0.4171395381003934,
+        0.46059530880566935
+      ],
+      "seat0_win_rate": 0.4645
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 894,
+      "draws": 2,
+      "losses": 1104,
+      "win_rate": 0.4475,
+      "ci95": [
+        0.42582898188212964,
+        0.46937231546592423
+      ],
+      "seat0_win_rate": 0.4645
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 922,
+      "draws": 5,
+      "losses": 1073,
+      "win_rate": 0.46225,
+      "ci95": [
+        0.4404922858639629,
+        0.4841524565148759
+      ],
+      "seat0_win_rate": 0.461
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1154,
+      "draws": 1,
+      "losses": 845,
+      "win_rate": 0.57725,
+      "ci95": [
+        0.5554718121928762,
+        0.5987319931378446
+      ],
+      "seat0_win_rate": 0.584
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1165,
+      "draws": 0,
+      "losses": 835,
+      "win_rate": 0.5825,
+      "ci95": [
+        0.5607488752003451,
+        0.6039348003955702
+      ],
+      "seat0_win_rate": 0.576
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1313,
+      "draws": 0,
+      "losses": 687,
+      "win_rate": 0.6565,
+      "ci95": [
+        0.635405383003408,
+        0.6769945591876315
+      ],
+      "seat0_win_rate": 0.658
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1372,
+      "draws": 0,
+      "losses": 628,
+      "win_rate": 0.686,
+      "ci95": [
+        0.6653189985041471,
+        0.7059678337484622
+      ],
+      "seat0_win_rate": 0.681
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1363,
+      "draws": 0,
+      "losses": 637,
+      "win_rate": 0.6815,
+      "ci95": [
+        0.6607499279019758,
+        0.701554158409038
+      ],
+      "seat0_win_rate": 0.678
+    },
+    {
+      "agent": "dragapult_rule",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 978,
+      "draws": 1,
+      "losses": 1021,
+      "win_rate": 0.48925,
+      "ci95": [
+        0.46738320903254965,
+        0.5111580089958615
+      ],
+      "seat0_win_rate": 0.4835
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1026,
+      "draws": 0,
+      "losses": 974,
+      "win_rate": 0.513,
+      "ci95": [
+        0.49109001342316755,
+        0.534860141519219
+      ],
+      "seat0_win_rate": 0.473
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 956,
+      "draws": 0,
+      "losses": 1044,
+      "win_rate": 0.478,
+      "ci95": [
+        0.4561708873231076,
+        0.4999134658513149
+      ],
+      "seat0_win_rate": 0.531
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 835,
+      "draws": 2,
+      "losses": 1163,
+      "win_rate": 0.418,
+      "ci95": [
+        0.39656059709573477,
+        0.43975381019074933
+      ],
+      "seat0_win_rate": 0.394
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 786,
+      "draws": 1,
+      "losses": 1213,
+      "win_rate": 0.39325,
+      "ci95": [
+        0.37206599528062834,
+        0.41484330932708113
+      ],
+      "seat0_win_rate": 0.364
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 775,
+      "draws": 3,
+      "losses": 1222,
+      "win_rate": 0.38825,
+      "ci95": [
+        0.3671245046791977,
+        0.4098039711045169
+      ],
+      "seat0_win_rate": 0.3805
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 739,
+      "draws": 3,
+      "losses": 1258,
+      "win_rate": 0.37025,
+      "ci95": [
+        0.3493547993552961,
+        0.391642692662037
+      ],
+      "seat0_win_rate": 0.361
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 845,
+      "draws": 1,
+      "losses": 1154,
+      "win_rate": 0.42275,
+      "ci95": [
+        0.40126800686215547,
+        0.4445281878071238
+      ],
+      "seat0_win_rate": 0.4295
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1004,
+      "draws": 0,
+      "losses": 996,
+      "win_rate": 0.502,
+      "ci95": [
+        0.4801038898127836,
+        0.5238884417168144
+      ],
+      "seat0_win_rate": 0.551
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1117,
+      "draws": 6,
+      "losses": 877,
+      "win_rate": 0.56,
+      "ci95": [
+        0.5381504150236893,
+        0.5816195308642493
+      ],
+      "seat0_win_rate": 0.5725
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1503,
+      "draws": 0,
+      "losses": 497,
+      "win_rate": 0.7515,
+      "ci95": [
+        0.732090355076716,
+        0.769945334770226
+      ],
+      "seat0_win_rate": 0.728
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1448,
+      "draws": 0,
+      "losses": 552,
+      "win_rate": 0.724,
+      "ci95": [
+        0.703993269591393,
+        0.7431478617235773
+      ],
+      "seat0_win_rate": 0.699
+    },
+    {
+      "agent": "gbdt_1600_s0",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 921,
+      "draws": 1,
+      "losses": 1078,
+      "win_rate": 0.46075,
+      "ci95": [
+        0.4390002240082007,
+        0.4826502697234395
+      ],
+      "seat0_win_rate": 0.439
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1060,
+      "draws": 0,
+      "losses": 940,
+      "win_rate": 0.53,
+      "ci95": [
+        0.5080894019735969,
+        0.5517955709703724
+      ],
+      "seat0_win_rate": 0.567
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 903,
+      "draws": 0,
+      "losses": 1097,
+      "win_rate": 0.4515,
+      "ci95": [
+        0.4298035675091374,
+        0.47338239289811235
+      ],
+      "seat0_win_rate": 0.577
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 947,
+      "draws": 0,
+      "losses": 1053,
+      "win_rate": 0.4735,
+      "ci95": [
+        0.4516890633997539,
+        0.4954125438330732
+      ],
+      "seat0_win_rate": 0.529
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 888,
+      "draws": 2,
+      "losses": 1110,
+      "win_rate": 0.4445,
+      "ci95": [
+        0.42284897555597345,
+        0.46636382449768354
+      ],
+      "seat0_win_rate": 0.505
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 891,
+      "draws": 2,
+      "losses": 1107,
+      "win_rate": 0.446,
+      "ci95": [
+        0.424338878649285,
+        0.46786817005157044
+      ],
+      "seat0_win_rate": 0.4795
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 849,
+      "draws": 1,
+      "losses": 1150,
+      "win_rate": 0.42475,
+      "ci95": [
+        0.40325068636782285,
+        0.4465378398310544
+      ],
+      "seat0_win_rate": 0.4705
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 835,
+      "draws": 0,
+      "losses": 1165,
+      "win_rate": 0.4175,
+      "ci95": [
+        0.39606519960442965,
+        0.4392511247996549
+      ],
+      "seat0_win_rate": 0.411
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 996,
+      "draws": 0,
+      "losses": 1004,
+      "win_rate": 0.498,
+      "ci95": [
+        0.47611155828318563,
+        0.5198961101872164
+      ],
+      "seat0_win_rate": 0.547
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1004,
+      "draws": 0,
+      "losses": 996,
+      "win_rate": 0.502,
+      "ci95": [
+        0.4801038898127836,
+        0.5238884417168144
+      ],
+      "seat0_win_rate": 0.504
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 501,
+      "draws": 0,
+      "losses": 1499,
+      "win_rate": 0.2505,
+      "ci95": [
+        0.23200025083818615,
+        0.2699563908444698
+      ],
+      "seat0_win_rate": 0.277
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 469,
+      "draws": 0,
+      "losses": 1531,
+      "win_rate": 0.2345,
+      "ci95": [
+        0.21645096743508435,
+        0.253567022010788
+      ],
+      "seat0_win_rate": 0.277
+    },
+    {
+      "agent": "heldout_abomasnow_gbdt",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 935,
+      "draws": 0,
+      "losses": 1065,
+      "win_rate": 0.4675,
+      "ci95": [
+        0.4457160634702022,
+        0.48940854917383114
+      ],
+      "seat0_win_rate": 0.488
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 904,
+      "draws": 5,
+      "losses": 1091,
+      "win_rate": 0.45325,
+      "ci95": [
+        0.43154289493161574,
+        0.47513635556403216
+      ],
+      "seat0_win_rate": 0.4595
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 845,
+      "draws": 0,
+      "losses": 1155,
+      "win_rate": 0.4225,
+      "ci95": [
+        0.4010201973971314,
+        0.4442769558309481
+      ],
+      "seat0_win_rate": 0.427
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 707,
+      "draws": 5,
+      "losses": 1288,
+      "win_rate": 0.35475,
+      "ci95": [
+        0.33407827201384094,
+        0.3759786506491081
+      ],
+      "seat0_win_rate": 0.3565
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 613,
+      "draws": 3,
+      "losses": 1384,
+      "win_rate": 0.30725,
+      "ci95": [
+        0.28741580899309105,
+        0.32782323984190676
+      ],
+      "seat0_win_rate": 0.288
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 673,
+      "draws": 4,
+      "losses": 1323,
+      "win_rate": 0.3375,
+      "ci95": [
+        0.3171051904211198,
+        0.35851787279904695
+      ],
+      "seat0_win_rate": 0.3415
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 654,
+      "draws": 9,
+      "losses": 1337,
+      "win_rate": 0.32925,
+      "ci95": [
+        0.30899842864806076,
+        0.3501562670125144
+      ],
+      "seat0_win_rate": 0.3115
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 687,
+      "draws": 0,
+      "losses": 1313,
+      "win_rate": 0.3435,
+      "ci95": [
+        0.3230054408123686,
+        0.364594616996592
+      ],
+      "seat0_win_rate": 0.345
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 877,
+      "draws": 6,
+      "losses": 1117,
+      "win_rate": 0.44,
+      "ci95": [
+        0.4183804691357508,
+        0.4618495849763108
+      ],
+      "seat0_win_rate": 0.4525
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 996,
+      "draws": 0,
+      "losses": 1004,
+      "win_rate": 0.498,
+      "ci95": [
+        0.47611155828318563,
+        0.5198961101872164
+      ],
+      "seat0_win_rate": 0.5
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1110,
+      "draws": 1,
+      "losses": 889,
+      "win_rate": 0.55525,
+      "ci95": [
+        0.5333854373363686,
+        0.5769027211687748
+      ],
+      "seat0_win_rate": 0.5475
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1037,
+      "draws": 0,
+      "losses": 963,
+      "win_rate": 0.5185,
+      "ci95": [
+        0.4965870443342313,
+        0.5403420223145496
+      ],
+      "seat0_win_rate": 0.522
+    },
+    {
+      "agent": "heldout_dragapult_gbdt",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 821,
+      "draws": 1,
+      "losses": 1178,
+      "win_rate": 0.41075,
+      "ci95": [
+        0.38937956714108596,
+        0.43246263835060555
+      ],
+      "seat0_win_rate": 0.413
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 508,
+      "draws": 0,
+      "losses": 1492,
+      "win_rate": 0.254,
+      "ci95": [
+        0.23540631449131144,
+        0.27353690736814096
+      ],
+      "seat0_win_rate": 0.222
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1418,
+      "draws": 0,
+      "losses": 582,
+      "win_rate": 0.709,
+      "ci95": [
+        0.6887071548990193,
+        0.7284914899439663
+      ],
+      "seat0_win_rate": 0.746
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 446,
+      "draws": 0,
+      "losses": 1554,
+      "win_rate": 0.223,
+      "ci95": [
+        0.20529747667669382,
+        0.24176460647399037
+      ],
+      "seat0_win_rate": 0.205
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 390,
+      "draws": 0,
+      "losses": 1610,
+      "win_rate": 0.195,
+      "ci95": [
+        0.17822726040200024,
+        0.21294218133431267
+      ],
+      "seat0_win_rate": 0.189
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 372,
+      "draws": 0,
+      "losses": 1628,
+      "win_rate": 0.186,
+      "ci95": [
+        0.16955434614715986,
+        0.2036496037059623
+      ],
+      "seat0_win_rate": 0.183
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 372,
+      "draws": 0,
+      "losses": 1628,
+      "win_rate": 0.186,
+      "ci95": [
+        0.16955434614715986,
+        0.2036496037059623
+      ],
+      "seat0_win_rate": 0.175
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 628,
+      "draws": 0,
+      "losses": 1372,
+      "win_rate": 0.314,
+      "ci95": [
+        0.2940321662515379,
+        0.33468100149585295
+      ],
+      "seat0_win_rate": 0.309
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 497,
+      "draws": 0,
+      "losses": 1503,
+      "win_rate": 0.2485,
+      "ci95": [
+        0.23005466522977405,
+        0.26790964492328395
+      ],
+      "seat0_win_rate": 0.225
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1499,
+      "draws": 0,
+      "losses": 501,
+      "win_rate": 0.7495,
+      "ci95": [
+        0.7300436091555302,
+        0.767999749161814
+      ],
+      "seat0_win_rate": 0.776
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 889,
+      "draws": 1,
+      "losses": 1110,
+      "win_rate": 0.44475,
+      "ci95": [
+        0.4230972788312251,
+        0.4666145626636315
+      ],
+      "seat0_win_rate": 0.437
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 975,
+      "draws": 0,
+      "losses": 1025,
+      "win_rate": 0.4875,
+      "ci95": [
+        0.46563834255376574,
+        0.509409585386247
+      ],
+      "seat0_win_rate": 0.523
+    },
+    {
+      "agent": "heldout_iono_gbdt",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 431,
+      "draws": 0,
+      "losses": 1569,
+      "win_rate": 0.2155,
+      "ci95": [
+        0.19803417610265373,
+        0.23405666381203816
+      ],
+      "seat0_win_rate": 0.2
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 517,
+      "draws": 0,
+      "losses": 1483,
+      "win_rate": 0.2585,
+      "ci95": [
+        0.23978791826194357,
+        0.27813804953910415
+      ],
+      "seat0_win_rate": 0.24
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1452,
+      "draws": 0,
+      "losses": 548,
+      "win_rate": 0.726,
+      "ci95": [
+        0.7060334668916207,
+        0.7450999959529475
+      ],
+      "seat0_win_rate": 0.77
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 453,
+      "draws": 0,
+      "losses": 1547,
+      "win_rate": 0.2265,
+      "ci95": [
+        0.20868994828744794,
+        0.24535871504003268
+      ],
+      "seat0_win_rate": 0.218
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 481,
+      "draws": 0,
+      "losses": 1519,
+      "win_rate": 0.2405,
+      "ci95": [
+        0.2222777772775834,
+        0.2597172067570828
+      ],
+      "seat0_win_rate": 0.24
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 472,
+      "draws": 0,
+      "losses": 1528,
+      "win_rate": 0.236,
+      "ci95": [
+        0.21790719089644706,
+        0.2551050471966238
+      ],
+      "seat0_win_rate": 0.215
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 485,
+      "draws": 0,
+      "losses": 1515,
+      "win_rate": 0.2425,
+      "ci95": [
+        0.22422117208537146,
+        0.2617661434788927
+      ],
+      "seat0_win_rate": 0.237
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 637,
+      "draws": 0,
+      "losses": 1363,
+      "win_rate": 0.3185,
+      "ci95": [
+        0.298445841590962,
+        0.33925007209802416
+      ],
+      "seat0_win_rate": 0.315
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 552,
+      "draws": 0,
+      "losses": 1448,
+      "win_rate": 0.276,
+      "ci95": [
+        0.2568521382764228,
+        0.2960067304086071
+      ],
+      "seat0_win_rate": 0.251
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1531,
+      "draws": 0,
+      "losses": 469,
+      "win_rate": 0.7655,
+      "ci95": [
+        0.7464329779892119,
+        0.7835490325649156
+      ],
+      "seat0_win_rate": 0.808
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 963,
+      "draws": 0,
+      "losses": 1037,
+      "win_rate": 0.4815,
+      "ci95": [
+        0.4596579776854503,
+        0.5034129556657687
+      ],
+      "seat0_win_rate": 0.485
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1025,
+      "draws": 0,
+      "losses": 975,
+      "win_rate": 0.5125,
+      "ci95": [
+        0.4905904146137529,
+        0.5343616574462342
+      ],
+      "seat0_win_rate": 0.548
+    },
+    {
+      "agent": "iono_rule",
+      "opponent": "lucario_rule",
+      "games": 2000,
+      "wins": 429,
+      "draws": 0,
+      "losses": 1571,
+      "win_rate": 0.2145,
+      "ci95": [
+        0.1970663959676341,
+        0.2330282781822588
+      ],
+      "seat0_win_rate": 0.205
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "a02_transformer",
+      "games": 2000,
+      "wins": 1130,
+      "draws": 4,
+      "losses": 866,
+      "win_rate": 0.566,
+      "ci95": [
+        0.5441722157667698,
+        0.5875747247099624
+      ],
+      "seat0_win_rate": 0.5185
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "abomasnow_rule",
+      "games": 2000,
+      "wins": 1055,
+      "draws": 0,
+      "losses": 945,
+      "win_rate": 0.5275,
+      "ci95": [
+        0.5055879023439728,
+        0.549306656187999
+      ],
+      "seat0_win_rate": 0.58
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "c01_final",
+      "games": 2000,
+      "wins": 986,
+      "draws": 2,
+      "losses": 1012,
+      "win_rate": 0.4935,
+      "ci95": [
+        0.4716218569513031,
+        0.5154030655775036
+      ],
+      "seat0_win_rate": 0.483
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "c03_continue",
+      "games": 2000,
+      "wins": 886,
+      "draws": 4,
+      "losses": 1110,
+      "win_rate": 0.444,
+      "ci95": [
+        0.42235238570127576,
+        0.4658623314699817
+      ],
+      "seat0_win_rate": 0.432
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "c04_league",
+      "games": 2000,
+      "wins": 871,
+      "draws": 1,
+      "losses": 1128,
+      "win_rate": 0.43575,
+      "ci95": [
+        0.4141618738110455,
+        0.45758447580062045
+      ],
+      "seat0_win_rate": 0.414
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "c05_league_pfsp",
+      "games": 2000,
+      "wins": 839,
+      "draws": 4,
+      "losses": 1157,
+      "win_rate": 0.4205,
+      "ci95": [
+        0.3990379257366928,
+        0.44226689596178875
+      ],
+      "seat0_win_rate": 0.4015
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "dragapult_rule",
+      "games": 2000,
+      "wins": 1021,
+      "draws": 1,
+      "losses": 978,
+      "win_rate": 0.51075,
+      "ci95": [
+        0.4888419910041386,
+        0.5326167909674504
+      ],
+      "seat0_win_rate": 0.505
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "gbdt_1600_s0",
+      "games": 2000,
+      "wins": 1078,
+      "draws": 1,
+      "losses": 921,
+      "win_rate": 0.53925,
+      "ci95": [
+        0.5173497302765604,
+        0.5609997759917993
+      ],
+      "seat0_win_rate": 0.5175
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "heldout_abomasnow_gbdt",
+      "games": 2000,
+      "wins": 1065,
+      "draws": 0,
+      "losses": 935,
+      "win_rate": 0.5325,
+      "ci95": [
+        0.5105914508261689,
+        0.5542839365297978
+      ],
+      "seat0_win_rate": 0.553
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "heldout_dragapult_gbdt",
+      "games": 2000,
+      "wins": 1178,
+      "draws": 1,
+      "losses": 821,
+      "win_rate": 0.58925,
+      "ci95": [
+        0.5675373616493945,
+        0.6106204328589141
+      ],
+      "seat0_win_rate": 0.5915
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "heldout_iono_gbdt",
+      "games": 2000,
+      "wins": 1569,
+      "draws": 0,
+      "losses": 431,
+      "win_rate": 0.7845,
+      "ci95": [
+        0.7659433361879618,
+        0.8019658238973463
+      ],
+      "seat0_win_rate": 0.769
+    },
+    {
+      "agent": "lucario_rule",
+      "opponent": "iono_rule",
+      "games": 2000,
+      "wins": 1571,
+      "draws": 0,
+      "losses": 429,
+      "win_rate": 0.7855,
+      "ci95": [
+        0.7669717218177411,
+        0.8029336040323659
+      ],
+      "seat0_win_rate": 0.776
+    }
+  ],
+  "corpus_sha256": "fbe7d88d915cd0efa5460dc6c1375315891594dec49559250d7b52792c44986a"
+}

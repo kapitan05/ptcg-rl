@@ -1,0 +1,25 @@
+{"t": 1795465687.8841057, "stage": "ppo_roster", "cycle": 0, "weights": {"mega_lucario": 0.5, "dragapult": 0.5, "iono": 0.5, "mega_abomasnow": 0.5, "mega_lucario_gbdt": 0.5, "self": 0.5, "snap_pool0": 0.5, "snap_pool1": 0.5, "snap_pool2": 0.5, "snap_start": 0.5}}
+{"t": 1795467185.8357377, "stage": "ppo_health", "cycle": "cycle-000", "status": "pass"}
+{"t": 1795467369.9625804, "stage": "ppo_roster", "cycle": 1, "weights": {"mega_lucario": 0.501, "dragapult": 0.517, "iono": 0.31000000000000005, "mega_abomasnow": 0.558, "mega_lucario_gbdt": 0.486, "self": 0.502, "snap_pool0": 0.526, "snap_pool1": 0.518, "snap_pool2": 0.5720000000000001, "snap_start": 0.598, "snap_c000": 0.5}}
+{"t": 1795468813.8568, "stage": "ppo_health", "cycle": "cycle-001", "status": "pass"}
+{"t": 1795468965.7446125, "stage": "ppo_roster", "cycle": 2, "weights": {"mega_lucario": 0.5445, "dragapult": 0.55, "iono": 0.3165, "mega_abomasnow": 0.55, "mega_lucario_gbdt": 0.4495, "self": 0.493, "snap_pool0": 0.46799999999999997, "snap_pool1": 0.541, "snap_start": 0.5615, "snap_c000": 0.5595, "snap_c001": 0.5}}
+{"t": 1795470462.3163447, "stage": "ppo_health", "cycle": "cycle-002", "status": "pass"}
+{"t": 1795470618.584646, "stage": "ppo_roster", "cycle": 3, "weights": {"mega_lucario": 0.5165, "dragapult": 0.512, "iono": 0.2975, "mega_abomasnow": 0.506, "mega_lucario_gbdt": 0.48750000000000004, "self": 0.491, "snap_pool0": 0.4784999999999999, "snap_pool2": 0.5, "snap_c000": 0.582, "snap_c001": 0.5785, "snap_c002": 0.5}}
+{"t": 1795472056.1617038, "stage": "ppo_health", "cycle": "cycle-003", "status": "pass"}
+{"t": 1795472278.9807148, "stage": "ppo_roster", "cycle": 4, "weights": {"mega_lucario": 0.521, "dragapult": 0.5235000000000001, "iono": 0.30299999999999994, "mega_abomasnow": 0.532, "mega_lucario_gbdt": 0.4385, "self": 0.5135, "snap_pool0": 0.4570000000000001, "snap_pool2": 0.5035000000000001, "snap_c001": 0.5355, "snap_c002": 0.569, "snap_c003": 0.5}}
+{"t": 1795473710.5749145, "stage": "ppo_health", "cycle": "cycle-004", "status": "pass"}
+{"t": 1795473988.7527997, "stage": "ppo_roster", "cycle": 5, "weights": {"mega_lucario": 0.492, "dragapult": 0.502, "iono": 0.23950000000000005, "mega_abomasnow": 0.494, "mega_lucario_gbdt": 0.46799999999999997, "self": 0.48449999999999993, "snap_pool0": 0.4265, "snap_start": 0.5, "snap_c002": 0.5660000000000001, "snap_c003": 0.567, "snap_c004": 0.5}}
+{"t": 1795475469.0266197, "stage": "ppo_health", "cycle": "cycle-005", "status": "pass"}
+{"t": 1795475698.610202, "stage": "gate", "gate": "ppo_health", "passed": true, "statuses": ["pass", "pass", "pass", "pass", "pass", "pass"]}
+{"t": 1795475746.343345, "stage": "eval", "agent": "ppo_league_pfsp_s2_ppo", "mu": 1080.3053705443117, "sigma": 7.451298355981673, "lcb": 1065.4027738323484}
+{"t": 1795475746.3451648, "stage": "eval", "agent": "ppo_league_pfsp_s2_ppo_c2", "mu": 1065.4967480299865, "sigma": 7.466157917449141, "lcb": 1050.5644321950883}
+{"t": 1795475746.349895, "stage": "eval", "agent": "lucario_rule", "mu": 1057.1621680570252, "sigma": 7.400782501875765, "lcb": 1042.3606030532737}
+{"t": 1795475746.351864, "stage": "eval", "agent": "c01_final", "mu": 1043.9086908401507, "sigma": 7.496916683339871, "lcb": 1028.9148574734709}
+{"t": 1795475746.356189, "stage": "eval", "agent": "dragapult_rule", "mu": 1038.1414107426635, "sigma": 7.50384925087071, "lcb": 1023.1337122409221}
+{"t": 1795475746.3577383, "stage": "eval", "agent": "gbdt_1600_s0", "mu": 1013.6248791466166, "sigma": 7.4103762538141, "lcb": 998.8041266389885}
+{"t": 1795475746.3625293, "stage": "eval", "agent": "start_transformer", "mu": 1003.4418359556039, "sigma": 7.437496641483485, "lcb": 988.5668426726369}
+{"t": 1795475746.363796, "stage": "eval", "agent": "abomasnow_rule", "mu": 966.3811656440439, "sigma": 6.692520155668281, "lcb": 952.9961253327074}
+{"t": 1795475746.3687172, "stage": "eval", "agent": "heldout_dragapult_gbdt", "mu": 947.556432079144, "sigma": 7.157728941907034, "lcb": 933.24097419533}
+{"t": 1795475746.3703806, "stage": "eval", "agent": "iono_rule", "mu": 942.0428967766064, "sigma": 6.507896561105327, "lcb": 929.0271036543958}
+{"t": 1795475746.374993, "stage": "eval", "agent": "heldout_abomasnow_gbdt", "mu": 941.1015143752934, "sigma": 6.5209711650426705, "lcb": 928.059572045208}
+{"t": 1795475746.3768482, "stage": "eval", "agent": "heldout_iono_gbdt", "mu": 900.8368878085543, "sigma": 6.420565257895461, "lcb": 887.9957572927633}

@@ -1,0 +1,128 @@
+{
+  "format": "ptcg-internal-rating-v1",
+  "scale": "Bayesian Bradley-Terry, field mean 1000; not Kaggle LB rating",
+  "prior_sigma": 600.0,
+  "pair_cap": 500,
+  "profile_bandwidth": 0.12,
+  "profile_prior_games": 16.0,
+  "uncertainty": "centered Laplace covariance; conditional on the model and comparison pool",
+  "max_sigma": null,
+  "precision_met": null,
+  "ratings": [
+    {
+      "agent": "ppo_pipecheck_s0_ppo_c0",
+      "mu": 1023.2094992677492,
+      "sigma": 52.052586948376764,
+      "lcb": 919.1043253709956,
+      "interval95": [
+        921.1864288489307,
+        1125.2325696865676
+      ],
+      "games": 20,
+      "weight": 0.9942777921826788
+    },
+    {
+      "agent": "start_transformer",
+      "mu": 1023.2094992677492,
+      "sigma": 52.052586948376764,
+      "lcb": 919.1043253709956,
+      "interval95": [
+        921.1864288489307,
+        1125.2325696865676
+      ],
+      "games": 20,
+      "weight": 0.9942777921826788
+    },
+    {
+      "agent": "ppo_pipecheck_s0_ppo",
+      "mu": 953.5810014645017,
+      "sigma": 52.45838047139212,
+      "lcb": 848.6642405217175,
+      "interval95": [
+        850.7625757405731,
+        1056.3994271884303
+      ],
+      "games": 20,
+      "weight": 1.0114444156346423
+    }
+  ],
+  "covariance_order": [
+    "ppo_pipecheck_s0_ppo",
+    "ppo_pipecheck_s0_ppo_c0",
+    "start_transformer"
+  ],
+  "covariance": [
+    [
+      2751.881681681334,
+      -1375.9408408407035,
+      -1375.9408408406744
+    ],
+    [
+      -1375.940840840689,
+      2709.471808018323,
+      -1333.5309671776195
+    ],
+    [
+      -1375.9408408407035,
+      -1333.5309671776631,
+      2709.471808018323
+    ]
+  ],
+  "matchups": [
+    {
+      "a": "ppo_pipecheck_s0_ppo",
+      "b": "ppo_pipecheck_s0_ppo_c0",
+      "games": 10,
+      "fit_games": 10,
+      "wins": {
+        "ppo_pipecheck_s0_ppo": 4,
+        "ppo_pipecheck_s0_ppo_c0": 6
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 1370,
+      "model_win_probability": 0.4011168187398277,
+      "score_rate": 0.4,
+      "difference_sigma": 90.62690092561405
+    },
+    {
+      "a": "ppo_pipecheck_s0_ppo",
+      "b": "start_transformer",
+      "games": 10,
+      "fit_games": 10,
+      "wins": {
+        "start_transformer": 6,
+        "ppo_pipecheck_s0_ppo": 4
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 1533,
+      "model_win_probability": 0.4011168187398277,
+      "score_rate": 0.4,
+      "difference_sigma": 90.62690092561373
+    },
+    {
+      "a": "ppo_pipecheck_s0_ppo_c0",
+      "b": "start_transformer",
+      "games": 10,
+      "fit_games": 10,
+      "wins": {
+        "start_transformer": 5,
+        "ppo_pipecheck_s0_ppo_c0": 5
+      },
+      "draws": 0,
+      "none": 0,
+      "errors": {},
+      "steps": 1416,
+      "model_win_probability": 0.5,
+      "score_rate": 0.5,
+      "difference_sigma": 89.92221944765312
+    }
+  ],
+  "corpus_sha256": "c346d82f36031bd03a172f49504bab1aacc06da9a7c740e1bfe78f40bf5b3dcd",
+  "games_per_pair": 10,
+  "workers": 16,
+  "blas_threads": 1
+}

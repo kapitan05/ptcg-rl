@@ -37,10 +37,15 @@ EXP_DIR = {
     "C/03": "C/03_ppo_continue",
     "C/04": "C/04_ppo_league",
     "C/05": "C/05_ppo_league_pfsp",
+    "C/06": "C/06_sprint3_eval",
+    "C/06b": "C/06_sprint3_eval/2k_games",
 }
 OPPONENTS = [
     "start Transformer",
     "C/01 final",
+    "C/03 continue",
+    "C/04 league",
+    "C/05 league + PFSP",
     "GBDT teacher",
     "Lucario rule bot",
     "Dragapult rule bot",
@@ -59,6 +64,11 @@ HEALTH = [
     ("teacher_agreement", "Agreement with GBDT (canary)"),
 ]
 Row = dict[str, str]
+# Health thresholds drawn on the panels (src/ptcg_exp/health.py defaults; kl_target = 0.004).
+THRESHOLDS = {
+    "heldout_kl": [(0.001, "too-small step"), (0.016, "fail: 4×kl_target")],
+    "value_ece": [(0.15, "warn")],
+}
 
 
 def _read(path: Path) -> list[Row]:
@@ -232,6 +242,20 @@ def health(cycles: list[Row], experiment: str, path: Path) -> bool:
                         color=WARN if r["health_status"] == "warn" else BAD,
                         zorder=3,
                     )
+        for y, label in THRESHOLDS.get(key, []):
+            ax.axhline(
+                y, color=BAD if "fail" in label else WARN, linestyle=(0, (4, 3)), linewidth=1
+            )
+            ax.annotate(
+                label,
+                (1, y),
+                xycoords=("axes fraction", "data"),
+                xytext=(-2, 3),
+                textcoords="offset points",
+                ha="right",
+                fontsize=6.5,
+                color=MUTED,
+            )
         ax.set_title(title, fontsize=8.5, color=INK, loc="left")
         _style(ax)
     axes.flat[0].scatter([], [], marker="^", s=36, color=WARN, label="health warn")
@@ -254,9 +278,83 @@ def health(cycles: list[Row], experiment: str, path: Path) -> bool:
     return True
 
 
+def health_matrix(runs_dir: Path, path: Path) -> None:
+    """Status of every PPO cycle (rows: run, columns: global cycle), labelled with non-pass checks."""
+    import json
+
+    starts = {"C-ppo_baseline": 0, "C-ppo_continue": 12, "C-ppo_league": 12}
+    names = {
+        "C-ppo_baseline_klstop": "C/01b",
+        "C-ppo_baseline": "C/01",
+        "C-ppo_continue": "C/03",
+        "C-ppo_league_pfsp": "C/05",
+        "C-ppo_league": "C/04",
+    }
+    rows: list[tuple[str, dict[int, tuple[str, list[str]]]]] = []
+    for run in sorted(runs_dir.iterdir()):
+        prefix = next((p for p in names if run.name.startswith(p + "-")), None)
+        if prefix is None or not (run / "ppo").exists():
+            continue
+        start = next(v for k, v in starts.items() if prefix.startswith(k))
+        seed = run.name.split("-s")[-1].split("-")[0]
+        cells: dict[int, tuple[str, list[str]]] = {}
+        for h in sorted((run / "ppo").glob("cycle-*/health.json")):
+            d = json.loads(h.read_text())
+            bad = [c["check"] for c in d["checks"] if c["status"] != "pass"]
+            cells[start + int(h.parent.name.split("-")[1])] = (d["status"], bad)
+        if cells:
+            rows.append((f"{names[prefix]} s{seed}", cells))
+    order = ["C/01 ", "C/01b", "C/03", "C/04", "C/05"]
+    rows.sort(key=lambda r: (next(i for i, o in enumerate(order) if r[0].startswith(o)), r[0]))
+    ncyc = max(c for _, cells in rows for c in cells) + 1
+    color = {"pass": "#cfe8d8", "warn": "#f6d58a", "fail": "#ef9a93"}
+    short = {
+        "value_calibration_ece": "ECE",
+        "heldout_kl": "hKL",
+        "approx_kl_per_update": "KL",
+        "gradient_spike": "grad",
+    }
+    fig, ax = plt.subplots(figsize=(10.5, 0.36 * len(rows) + 1.6), dpi=150)
+    for i, (label, cells) in enumerate(rows):
+        for c, (status, bad) in cells.items():
+            ax.add_patch(plt.Rectangle((c, i), 0.94, 0.86, color=color[status], linewidth=0))
+            if bad:
+                text = ",".join(short.get(b, b[:4]) for b in bad)
+                ax.text(c + 0.47, i + 0.43, text, ha="center", va="center", fontsize=5.5, color=INK)
+    ax.set_xlim(0, ncyc)
+    ax.set_ylim(len(rows), 0)
+    ax.set_yticks([i + 0.43 for i in range(len(rows))], [r[0] for r in rows], fontsize=8, color=INK)
+    ax.set_xticks(
+        [c + 0.47 for c in range(ncyc)], [str(c) for c in range(ncyc)], fontsize=7, color=MUTED
+    )
+    ax.set_xlabel(
+        "global PPO cycle (C/03–C/05 continue from C/01 cycle 11)", fontsize=8.5, color=MUTED
+    )
+    for s in ("top", "right", "left", "bottom"):
+        ax.spines[s].set_visible(False)
+    ax.tick_params(length=0)
+    for st, col in color.items():
+        ax.scatter([], [], marker="s", s=60, color=col, label=st)
+    ax.legend(loc="lower right", bbox_to_anchor=(1, 1.0), ncol=3, fontsize=7.5, frameon=False)
+    total = sum(len(c) for _, c in rows)
+    counts = {s: sum(1 for _, c in rows for st, _ in c.values() if st == s) for s in color}
+    ax.set_title(
+        f"PPO health per cycle: {total} cycles — {counts['pass']} pass, {counts['warn']} warn, "
+        f"{counts['fail']} fail (label = check that did not pass)",
+        fontsize=9.5,
+        color=INK,
+        loc="left",
+    )
+    fig.tight_layout()
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def overview(pairs: list[Row], path: Path) -> None:
     """Every arm's pooled win rate (with CI) against five key opponents, as small multiples."""
-    arms = [a for a in dict.fromkeys(r["arm"] for r in pairs)]
+    arms = [
+        a for a in dict.fromkeys(r["arm"] for r in pairs) if not a.startswith("C/06")
+    ]  # C/06, C/06b
     order = ["A/02", "A/04", "C/02", "C/01", "C/03", "C/04", "C/05"]
     arms.sort(key=lambda a: (order.index(a[:4]) if a[:4] in order else 99, a))
     panels = [
@@ -322,20 +420,27 @@ def main() -> None:
             continue
         out = reports / sub
         out.mkdir(parents=True, exist_ok=True)
+        cols = min(len(arms), 2)
+        nrows = math.ceil(len(arms) / cols)
+        height = 4.8 if len(OPPONENTS) <= 10 else 5.6
         fig, axes = plt.subplots(
-            1, len(arms), figsize=(6.8 * len(arms), 4.8), dpi=150, squeeze=False
+            nrows, cols, figsize=(6.8 * cols, height * nrows), dpi=150, squeeze=False
         )
-        for ax, arm in zip(axes[0], arms, strict=True):
+        for ax in axes.flat[len(arms) :]:
+            ax.set_visible(False)
+        for ax, arm in zip(axes.flat, arms, strict=False):
             winrates(pairs, arm, ax)
         fig.tight_layout()
         fig.savefig(out / "winrates.png")
         plt.close(fig)
         written.append(f"{sub}/winrates.png")
-        if exp.startswith("C/") and exp != "C/02":
+        if exp.startswith("C/") and exp not in ("C/02", "C/06", "C/06b"):
             if learning_curve(ratings, exp, out / "learning_curve.png"):
                 written.append(f"{sub}/learning_curve.png")
             if health(cycles, exp, out / "health.png"):
                 written.append(f"{sub}/health.png")
+    health_matrix(reports / "runs", reports / "health_matrix.png")
+    written.append("health_matrix.png")
     overview(pairs, reports / "overview.png")
     written.append("overview.png")
     print("\n".join(written))

@@ -108,8 +108,8 @@ Decision rules applied: C/01 beat its start (LCB 0.58 > 0.5), so the pool ablati
 | 1 | **C/01b:** seed 2 rerun with `kl_early_stop: 2.0` (deviation, reported) | C | **done** (1948509): 12 cycles no fail; BT 1020 → 1056; vs. start 0.562, rule bots 0.52–0.53 |
 | 2 | **C/03 control:** continue each C/01 final for 6 cycles, default pool | C | **done** (1948510): 18/18 pass; vs. C/01 final 0.532 [0.49, 0.57]; abomasnow rule 0.582 [0.54, 0.62] (`experiments/C/03_ppo_continue`) |
 | 3 | **C/04 snapshot league (P2):** + frozen snapshots (3 newest + 2 older, from C/01 c2/c5/c8, the start and own cycles) | C | implemented (`League`, `league_roster`); queued 1948511 |
-| 4 | **C/05 league + PFSP (P3):** weight × max(0.2, 1 − win rate) from the previous cycle | C | queued 1948512 |
-| 5 | **C/06 joint evaluation:** C/01 final, C/03, C/04, C/05, A/02, GBDT and held-out pool, one roster per seed | C | queued 1948513 |
+| 4 | **C/05 league + PFSP (P3):** weight × max(0.2, 1 − win rate) from the previous cycle | C | **done** (1948512): 18/18 pass; ≈ C/03 and C/04 (`experiments/C/05_ppo_league_pfsp`) |
+| 5 | **C/06 joint evaluation:** C/01 final, C/03, C/04, C/05, A/02, GBDT and held-out pool, one roster per seed | C | **done** (1948513; rerun C/06b 1984220 at 2,000 games per pair after finding shared-deal noise): all arms beat C/01 final by 4–5 pp and the Lucario rule bot at 0.56–0.57; arms tie each other (pool effect not supported). **Champion: C/05 s0**, Kaggle gate passed (`experiments/C/06_sprint3_eval`) |
 | 6 | **Kaggle submission:** NumPy inference (`transformer/numpy_model.py`, no torch), `build_submission.py --transformer-checkpoint`, gate `submission_check.py` | all | **built and gated** for C/01 s0 final: scores ≡ C++ within 2.8e-6, 513/513 actions identical, cg games vs. rule bots 28-11-1, p99 10 ms/decision, 5.8 MB. Uploading to Kaggle is the user's step; re-gate the C/06 champion |
 | 7 | **History features (B/01)** | B | designed (`experiments/B/01_history`): 20 free Global-token slots, parity-safe log fields only, as a second arena agent (v3 contract). Built after the PPO chain frees the build and disk |
 

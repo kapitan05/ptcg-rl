@@ -1,0 +1,218 @@
+{
+  "cycle": "runs/C-ppo_league_pfsp-s1-073d3c90/ppo/cycle-001",
+  "status": "pass",
+  "promote_allowed": true,
+  "thresholds": {
+    "kl_target": 0.004,
+    "kl_fail_multiple": 4.0,
+    "kl_low_multiple": 0.25,
+    "clip_fraction_warn": 0.3,
+    "ratio_p99_warn": 2.0,
+    "grad_spike_warn": 20.0,
+    "update_ratio_band": [
+      1e-05,
+      0.01
+    ],
+    "entropy_drop_warn": 0.3,
+    "ece_warn": 0.15,
+    "seat_win_band": [
+      0.02,
+      0.98
+    ],
+    "length_shift_warn": 0.3,
+    "canary_agreement_drop_warn": 0.1
+  },
+  "checks": [
+    {
+      "check": "win_rate_per_opponent_seat",
+      "status": "pass",
+      "value": {
+        "dragapult/seat0": 0.5,
+        "dragapult/seat1": 0.452,
+        "iono/seat0": 0.654,
+        "iono/seat1": 0.819,
+        "mega_abomasnow/seat0": 0.54,
+        "mega_abomasnow/seat1": 0.408,
+        "mega_lucario/seat0": 0.467,
+        "mega_lucario/seat1": 0.478,
+        "mega_lucario_gbdt/seat0": 0.483,
+        "mega_lucario_gbdt/seat1": 0.537,
+        "self/seat0": 0.513,
+        "self/seat1": 0.571,
+        "snap_c000/seat0": 0.455,
+        "snap_c000/seat1": 0.482,
+        "snap_pool0/seat0": 0.464,
+        "snap_pool0/seat1": 0.536,
+        "snap_pool1/seat0": 0.451,
+        "snap_pool1/seat1": 0.511,
+        "snap_pool2/seat0": 0.506,
+        "snap_pool2/seat1": 0.477,
+        "snap_start/seat0": 0.412,
+        "snap_start/seat1": 0.471
+      },
+      "rule": "each in [0.02, 0.98] when \u226520 games; outside: none"
+    },
+    {
+      "check": "game_length_shift",
+      "status": "pass",
+      "value": {
+        "mean": 137.9638,
+        "previous": 140.1372,
+        "shift": 0.015509086809212792
+      },
+      "rule": "relative shift \u2264 0.3"
+    },
+    {
+      "check": "behavior_audit",
+      "status": "pass",
+      "value": {
+        "logp": 9.049808247230118e-06,
+        "value": 2.4381771297384003e-06,
+        "entropy": 3.147254273638822e-06
+      },
+      "rule": "logp/value/entropy recomputation \u2264 2e-5 (r = 1 at update start)"
+    },
+    {
+      "check": "rollout_temperature",
+      "status": "pass",
+      "value": 1.0,
+      "rule": "equals configured 1.0"
+    },
+    {
+      "check": "seeds_recorded",
+      "status": "pass",
+      "value": {
+        "seed": 1257518349,
+        "sample_seed": 306644290
+      },
+      "rule": "arena and sampling seeds recorded"
+    },
+    {
+      "check": "gae_sanity",
+      "status": "pass",
+      "value": {
+        "adv": {
+          "mean": -0.005720846230164191,
+          "std": 0.6681706903788621,
+          "nonfinite": 0
+        },
+        "return_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      "rule": "no non-finite advantages; returns within [-1, 1]"
+    },
+    {
+      "check": "explained_variance_before",
+      "status": "pass",
+      "value": 0.3577,
+      "rule": "critic better than a constant (EV \u2265 0)"
+    },
+    {
+      "check": "approx_kl_per_update",
+      "status": "pass",
+      "value": {
+        "mean": 0.0014980282604583062,
+        "max": 0.002735264686634764,
+        "early_stopped": false
+      },
+      "rule": "max \u2264 4.0\u00d7kl_target = 0.016 (warn if early-stopped)"
+    },
+    {
+      "check": "clip_fraction",
+      "status": "pass",
+      "value": 0.04,
+      "rule": "max \u2264 0.3"
+    },
+    {
+      "check": "ratio_p99",
+      "status": "pass",
+      "value": 1.2926,
+      "rule": "max p99 \u2264 2.0"
+    },
+    {
+      "check": "gradient_spike",
+      "status": "pass",
+      "value": {
+        "max": 1.477447748184204,
+        "median": 0.8295455276966095,
+        "ratio": 1.7810327448652734
+      },
+      "rule": "max/median pre-clip norm \u2264 20.0"
+    },
+    {
+      "check": "finite_metrics",
+      "status": "pass",
+      "value": true,
+      "rule": "all per-update metrics finite"
+    },
+    {
+      "check": "update_ratio",
+      "status": "pass",
+      "value": 7.731066265921583e-05,
+      "rule": "median \u2016\u0394\u03b8\u2016/\u2016\u03b8\u2016 in [1e-05, 0.01]"
+    },
+    {
+      "check": "parameters_moved",
+      "status": "pass",
+      "value": 0.2863148433464276,
+      "rule": "\u0394\u03b8 L2 > 0"
+    },
+    {
+      "check": "heldout_kl",
+      "status": "pass",
+      "value": 0.002158896245314827,
+      "rule": "in [0.001, 0.016] (low = step too small)"
+    },
+    {
+      "check": "explained_variance_after",
+      "status": "pass",
+      "value": 0.3661,
+      "rule": "EV \u2265 0 on held-out"
+    },
+    {
+      "check": "value_calibration_ece",
+      "status": "pass",
+      "value": 0.0309,
+      "rule": "10-bin ECE \u2264 0.15"
+    },
+    {
+      "check": "entropy_drop",
+      "status": "pass",
+      "value": {
+        "behavior": 0.6230387440470299,
+        "updated": 0.61800118339748,
+        "drop": 0.008085469319014929
+      },
+      "rule": "relative drop \u2264 0.3"
+    },
+    {
+      "check": "cpp_export_parity",
+      "status": "pass",
+      "value": true,
+      "rule": "new checkpoint exported to C++ and validated (2e-5) before next rollout"
+    },
+    {
+      "check": "illegal_picks",
+      "status": "pass",
+      "value": 0.0,
+      "rule": "argmax always on a legal option"
+    },
+    {
+      "check": "teacher_agreement_drift",
+      "status": "pass",
+      "value": {
+        "now": 0.9365,
+        "previous": 0.9425
+      },
+      "rule": "drop \u2264 0.1"
+    },
+    {
+      "check": "canary_kl_vs_previous",
+      "status": "pass",
+      "value": 0.0017821381038344705,
+      "rule": "informational"
+    }
+  ]
+}

@@ -90,8 +90,41 @@
   "config_hash": "a00bacd2977b288298af13a8ab77be8b1ab44b3127d3d7edf4a8a6261c57efda",
   "seed": 2,
   "created": "2026-11-22T15:27:02+0100",
-  "stages": {},
-  "gates": {},
+  "stages": {
+    "ppo": {
+      "status": "done",
+      "inputs_hash": "21a2b4e6cfa188aee108f28829a02d4a389671be3e340ecbe2dc6459c19cf235",
+      "finished": "2026-11-22T18:27:57+0100",
+      "children_max_rss_mb": 19812.8,
+      "outputs": {
+        "ppo_bin": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-005/models/model.bin",
+        "ppo_checkpoint": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-005/models/model.pt",
+        "ppo_c2_bin": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-002/models/model.bin"
+      }
+    },
+    "eval": {
+      "status": "done",
+      "inputs_hash": "17852609c9a6f982da79a4b6fb1bd3154504d8fccd0b7c4bea861f054603d1a1",
+      "finished": "2026-11-22T18:28:45+0100",
+      "children_max_rss_mb": 19812.8,
+      "outputs": {
+        "eval_summary": "runs/C-ppo_league-s2-a00bacd2/eval/summary.json"
+      }
+    }
+  },
+  "gates": {
+    "ppo_health": {
+      "passed": true,
+      "statuses": [
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass",
+        "pass"
+      ]
+    }
+  },
   "git": {
     "sha": "c75592459fbe94586644ef54963327f7678330ce",
     "branch": "maksim/shared-layer",
@@ -114,5 +147,18 @@
     ]
   },
   "schema_id": "a28581507bcacc42b9f316e68a63bc75658e3a9ac2cc91b6755031340d701575",
-  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5"
+  "contract_id": "ce61f6c2fad9c6e4a4f50457ad97bd1f91b982db3aea7eea307bf632bb4da4a5",
+  "seeds": {
+    "ppo": {
+      "arena": 1677292638,
+      "sample": 291442536,
+      "update": 615402446
+    }
+  },
+  "outputs": {
+    "ppo_bin": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-005/models/model.bin",
+    "ppo_checkpoint": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-005/models/model.pt",
+    "ppo_c2_bin": "runs/C-ppo_league-s2-a00bacd2/ppo/cycle-002/models/model.bin",
+    "eval_summary": "runs/C-ppo_league-s2-a00bacd2/eval/summary.json"
+  }
 }
