@@ -7,6 +7,7 @@ Everything here is generated from the cluster runs and committed; nothing needs 
 | [`overview.png`](overview.png) | every arm's pooled win rate (95% CI) vs. its start, the rule bots and the held-out GBDTs |
 | `<A\|C>/<experiment>/winrates.png` | one experiment: win rate of its final model vs. each opponent, per seed and pooled |
 | `C/<experiment>/learning_curve.png` | rating above the Lucario rule bot by PPO cycle, per seed |
+| [`health_matrix.png`](health_matrix.png) | status of every PPO cycle (91): pass / warn / fail, labelled with the check that didn't pass |
 | `C/<experiment>/health.png` | PPO health per cycle (KL, held-out KL, clip fraction, entropy, value calibration, teacher agreement) |
 | [`A/01_gbdt_data_scale/data_scale.png`](A/01_gbdt_data_scale/data_scale.png) | A/01 data-scale curve |
 | [`results/`](results) | tidy CSVs behind the figures: `pairs.csv` (head-to-head), `ratings.csv` (BT ratings), `cycles.csv` (PPO health) |
